@@ -39,8 +39,8 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
       copy_button: '复制',
@@ -51,12 +51,12 @@
   };
 </script>
 
-  <meta name="description" content="title: httpclent调用webservice   #文章标题 date: #文章日期格式：2018-05-30 15:20:36 tags: #文章标签 categories: #文章分类">
+  <meta name="description" content="title: httpclent调用webservice   #文章标题date: #文章日期格式：2018-05-30 15:20:36">
 <meta property="og:type" content="article">
 <meta property="og:title" content="abc">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;05&#x2F;abc&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="title: httpclent调用webservice   #文章标题 date: #文章日期格式：2018-05-30 15:20:36 tags: #文章标签 categories: #文章分类">
+<meta property="og:description" content="title: httpclent调用webservice   #文章标题date: #文章日期格式：2018-05-30 15:20:36">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-11-05T11:26:21.003Z">
 <meta name="twitter:card" content="summary">
@@ -163,9 +163,34 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
 </div>
     </header>
 
@@ -192,7 +217,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/05/abc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/head.jpg">
       <meta itemprop="name" content="mellofly">
       <meta itemprop="description" content="">
     </span>
@@ -227,8 +252,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>title: httpclent调用webservice   #文章标题</p>
-<p>date: #文章日期格式：2018-05-30 15:20:36</p>
+        <p>title: httpclent调用webservice   #文章标题</p><p>date: #文章日期格式：2018-05-30 15:20:36</p><a id="more"></a>
+
 <p>tags: #文章标签</p>
 <p>categories: #文章分类</p>
 
@@ -296,7 +321,7 @@
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <img class="site-author-image" itemprop="image" alt="mellofly"
-    src="/images/avatar.gif">
+    src="/images/head.jpg">
   <p class="site-author-name" itemprop="name">mellofly</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -315,6 +340,17 @@
     <a href="/atom.xml" rel="alternate">
       <i class="fa fa-rss"></i>RSS
     </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mellofly" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;mellofly" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mailto:mellofly@outlook.com" title="E-Mail &amp;rarr; mailto:mellofly@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/" title="Weibo &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
   </div>
 
 
@@ -380,6 +416,8 @@
 
 
 
+
+  <script src="/js/local-search.js"></script>
 
 
 
