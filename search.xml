@@ -2,12 +2,18 @@
 <search>
   <entry>
     <title>Java_正则表达式</title>
-    <url>/2019/11/25/Java-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <url>/undefined/12588/</url>
     <content><![CDATA[]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/2019/11/05/hello-world/</url>
+    <url>/undefined/16107/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><a id="more"></a>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
@@ -25,7 +31,7 @@
   </entry>
   <entry>
     <title>目录</title>
-    <url>/2019/10/14/abc/</url>
+    <url>/undefined/2044296166/</url>
     <content><![CDATA[<div align=center>我是目录</div>
 <div align=center>对应代码仓库地址如下:</div>
 
@@ -204,8 +210,8 @@
   </entry>
   <entry>
     <title>测试</title>
-    <url>/2019/07/22/test/</url>
-    <content><![CDATA[<p>#图片</p><img src="/2019/07/22/test/abc.jpg" class title="测试图">]]></content>
+    <url>/undefined/37773/</url>
+    <content><![CDATA[<p>#图片</p><img src="/undefined/undefined/abc.jpg" class title="测试图">]]></content>
       <categories>
         <category>Test</category>
       </categories>
