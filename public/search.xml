@@ -1,6 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>装饰器</title>
+    <url>/undefined/38966/</url>
+    <content><![CDATA[<blockquote class="blockquote-center"><p>装饰器模式(Decorator Pattern)允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，他是作为现有的类的一个包装。<br>这种模式创建了一个装饰类，用来包装原有的类，并在保持类方法签名完整性的前提下，提供了额外的功能。<br>通过下面的实例来演示装饰器模式的用法。其中，我们将把一个形状装饰上不同的颜色，同时又不改变形状类。</p>
+</blockquote><a id="more"></a>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 动态地给一个对象添加一些额外的职责。新增加功能来说，装饰器模式相比生成子类更为灵活。</li>
+<li><strong>主要解决：</strong> 一般的，我们为了扩展一个类经常使用继承方式实现，由于继承为类引入静态特征，并且随着扩展功能的增多，子类会很膨胀。</li>
+<li><strong>何时使用：</strong> 在不想增加很多子类的情况下扩展类。</li>
+<li><strong>如何解决：</strong> 将具体功能职责划分，同时继承装饰者模式。</li>
+<li><strong>关键代码：</strong> </li>
+</ul>
+<ol>
+<li>Component类充当抽象角色，不应该具体实现。</li>
+<li>修饰类引用和继承Component类，具体扩展类重写父类方法。</li>
+</ol>
+<ul>
+<li><strong>应用实例：</strong> </li>
+</ul>
+<ol>
+<li>孙悟空有72变，当他变成“庙宇”后，他的根本还是一只猴子，但是他又有了庙宇的功能。</li>
+<li>不论一幅画有没有画框都可以挂在墙上，但是通常都是有画框的，并且实际上是画框被挂在墙上。在挂在墙上之前，画可以被蒙上玻璃，装到框子里；这时画、玻璃和护矿形成一个物体。</li>
+</ol>
+<ul>
+<li><strong><em>优点：</em></strong> 装饰类和被装饰类可以独立发展，不会互相耦合，装饰模式是继承的一个替代模式，装饰模式可以扩展一个实现类的功能。</li>
+<li><strong><em>缺点：</em></strong> 多层装饰比较复杂。</li>
+<li><strong>使用场景：</strong> </li>
+</ul>
+<ol>
+<li>扩展一个类的功能。</li>
+<li>动态增加功能，动态撤销。</li>
+</ol>
+<ul>
+<li><strong>注意事项：</strong> 可替代继承。</li>
+</ul>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们将创建一个Shape接口和实现了Shape接口的实体类。然后我们创建一个实现了Shape接口的抽象装饰类ShapeDecorator，并把Shape对象作为它的实例变量。<br>RedShapeDecorator是实现了ShapeDecorator的实体类。<br>DecoratorPatternDemo，我们的演示类使用RedShapeDecorator来装饰Shape对象。</p>
+</blockquote>
+<img src="/undefined/undefined/%E8%A3%85%E9%A5%B0%E5%99%A8.jpg" class title="装饰器UML图">
+
+<h2 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h2><blockquote>
+<p>创建一个接口：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Shape.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2："><a href="#步骤2：" class="headerlink" title="步骤2："></a>步骤2：</h2><blockquote>
+<p>创建实现接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Rectangle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Shape: Rectangle"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Circle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Shape: Circle"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="步骤3："><a href="#步骤3：" class="headerlink" title="步骤3："></a>步骤3：</h2><blockquote>
+<p>创建实现了Shape接口的抽象装饰类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ShapeDecorator.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeDecorator</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">   <span class="keyword">protected</span> Shape decoratedShape;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">ShapeDecorator</span><span class="params">(Shape decoratedShape)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.decoratedShape = decoratedShape;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">      decoratedShape.draw();</span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4："><a href="#步骤4：" class="headerlink" title="步骤4："></a>步骤4：</h2><blockquote>
+<p>创建扩展了ShapeDecorator类的实体装饰类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*RedShapeDecorator.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedShapeDecorator</span> <span class="keyword">extends</span> <span class="title">ShapeDecorator</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">RedShapeDecorator</span><span class="params">(Shape decoratedShape)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>(decoratedShape);     </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      decoratedShape.draw();         </span><br><span class="line">      setRedBorder(decoratedShape);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setRedBorder</span><span class="params">(Shape decoratedShape)</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Border Color: Red"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤5："><a href="#步骤5：" class="headerlink" title="步骤5："></a>步骤5：</h2><blockquote>
+<p>使用RedShapeDecorator来装饰Shape对象。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*DecoratorPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DecoratorPatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">      Shape circle = <span class="keyword">new</span> Circle();</span><br><span class="line">      ShapeDecorator redCircle = <span class="keyword">new</span> RedShapeDecorator(<span class="keyword">new</span> Circle());</span><br><span class="line">      ShapeDecorator redRectangle = <span class="keyword">new</span> RedShapeDecorator(<span class="keyword">new</span> Rectangle());</span><br><span class="line">      <span class="comment">//Shape redCircle = new RedShapeDecorator(new Circle());</span></span><br><span class="line">      <span class="comment">//Shape redRectangle = new RedShapeDecorator(new Rectangle());</span></span><br><span class="line">      System.out.println(<span class="string">"Circle with normal border"</span>);</span><br><span class="line">      circle.draw();</span><br><span class="line"> </span><br><span class="line">      System.out.println(<span class="string">"\nCircle of red border"</span>);</span><br><span class="line">      redCircle.draw();</span><br><span class="line"> </span><br><span class="line">      System.out.println(<span class="string">"\nRectangle of red border"</span>);</span><br><span class="line">      redRectangle.draw();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤6："><a href="#步骤6：" class="headerlink" title="步骤6："></a>步骤6：</h2><blockquote>
+<p>执行程序，输出结果：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Circle with normal border</span><br><span class="line">Shape: Circle</span><br><span class="line"></span><br><span class="line">Circle of red border</span><br><span class="line">Shape: Circle</span><br><span class="line">Border Color: Red</span><br><span class="line"></span><br><span class="line">Rectangle of red border</span><br><span class="line">Shape: Rectangle</span><br><span class="line">Border Color: Red</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>组合模式</title>
+    <url>/undefined/44993/</url>
+    <content><![CDATA[<blockquote class="blockquote-center"><p>组合模式(Composite Pattern),又叫部分整体模式，是用于把一族相似的对象当做一个单一的对象。组合模式依据树形结构来组合对象，用来表示部分以及整体层次。这种类型的设计模式属于结构型模式，它创建了对象组的树形结构。<br>组合模式，就是在一个对象中包含其他对象，这些被包含的对象可能是终点对象（不再包含别的对象），也有可能是非终点对象（其内部还包含其他对象，或叫组对象），我们将对象称为节点，即一个根节点包含许多子节点，这些子节点有的不再包含子节点，而有的仍然包含子节点<br>实例为：组织中员工的层次结构。</p>
+</blockquote><a id="more"></a>
+
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 将对象组合成树形结构以宝石“部分-整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。</li>
+<li><strong>主要解决：</strong> 它在我们树型结构的问题中，模糊了简单元素和复杂元素的概念，客户程序可以像处理复杂元素，从而使得客户程序与复杂元素的内部结构解耦。</li>
+<li><strong>何时使用：</strong> </li>
+</ul>
+<ol>
+<li>想表示对象的部分-整体层次结构(树形结构)。</li>
+<li>您希望用户忽略组合对象与单个对象的不同，用户将统一地使用组合结构中的所有对象。</li>
+</ol>
+<ul>
+<li><strong>如何解决：</strong> 树枝和叶子实现统一接口，树枝内部组合该接口。</li>
+<li><strong>关键代码：</strong> 树枝内部组合该接口，并且含有内部属性List，里面放Component。</li>
+<li><strong>应用实例：</strong> </li>
+</ul>
+<ol>
+<li>算数表达式包括操作数、操作符合另一个操作数，其中，另一个操作符也可以是操作数、操作符合另一个操作数。</li>
+<li>在Java awt和Swing中，对于Button和CheckBox是树叶，Container是树枝。</li>
+</ol>
+<ul>
+<li><strong><em>优点：</em></strong> </li>
+</ul>
+<ol>
+<li>高层模块调用简单</li>
+<li>节点自由增加。</li>
+</ol>
+<ul>
+<li><strong><em>缺点：</em></strong> 在使用组合模式时，其叶子和树枝的生命都是实现类，而不是接口，违反了依赖倒置原则。</li>
+<li><strong>使用场景：</strong> 部分、整体场景，如树形菜单，文件、文件夹的管理。</li>
+<li><strong>注意事项：</strong> 定义时为具体类。</li>
+</ul>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们有一个类Employee,该类被当做组合模型类。CompositePatternDemo，我们的演示类使用Employee类来添加部门层次结构，并打印所有员工。</p>
+</blockquote>
+<img src="/undefined/44993/%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F.jpg" class title="组合模式UML图">
+
+<h2 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h2><blockquote>
+<p>创建Employee类，该类带有Employee对象的列表。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Employee.java*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> String name;</span><br><span class="line">   <span class="keyword">private</span> String dept;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> salary;</span><br><span class="line">   <span class="keyword">private</span> List&lt;Employee&gt; subordinates;</span><br><span class="line"> </span><br><span class="line">   <span class="comment">//构造函数</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">(String name,String dept, <span class="keyword">int</span> sal)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">      <span class="keyword">this</span>.dept = dept;</span><br><span class="line">      <span class="keyword">this</span>.salary = sal;</span><br><span class="line">      subordinates = <span class="keyword">new</span> ArrayList&lt;Employee&gt;();</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Employee e)</span> </span>&#123;</span><br><span class="line">      subordinates.add(e);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(Employee e)</span> </span>&#123;</span><br><span class="line">      subordinates.remove(e);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> List&lt;Employee&gt; <span class="title">getSubordinates</span><span class="params">()</span></span>&#123;</span><br><span class="line">     <span class="keyword">return</span> subordinates;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> (<span class="string">"Employee :[ Name : "</span>+ name </span><br><span class="line">      +<span class="string">", dept : "</span>+ dept + <span class="string">", salary :"</span></span><br><span class="line">      + salary+<span class="string">" ]"</span>);</span><br><span class="line">   &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="步骤2："><a href="#步骤2：" class="headerlink" title="步骤2："></a>步骤2：</h2><blockquote>
+<p>使用 Employee 类来创建和打印员工的层次结构。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*CompositePatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CompositePatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      Employee CEO = <span class="keyword">new</span> Employee(<span class="string">"John"</span>,<span class="string">"CEO"</span>, <span class="number">30000</span>);</span><br><span class="line"> </span><br><span class="line">      Employee headSales = <span class="keyword">new</span> Employee(<span class="string">"Robert"</span>,<span class="string">"Head Sales"</span>, <span class="number">20000</span>);</span><br><span class="line"> </span><br><span class="line">      Employee headMarketing = <span class="keyword">new</span> Employee(<span class="string">"Michel"</span>,<span class="string">"Head Marketing"</span>, <span class="number">20000</span>);</span><br><span class="line"> </span><br><span class="line">      Employee clerk1 = <span class="keyword">new</span> Employee(<span class="string">"Laura"</span>,<span class="string">"Marketing"</span>, <span class="number">10000</span>);</span><br><span class="line">      Employee clerk2 = <span class="keyword">new</span> Employee(<span class="string">"Bob"</span>,<span class="string">"Marketing"</span>, <span class="number">10000</span>);</span><br><span class="line"> </span><br><span class="line">      Employee salesExecutive1 = <span class="keyword">new</span> Employee(<span class="string">"Richard"</span>,<span class="string">"Sales"</span>, <span class="number">10000</span>);</span><br><span class="line">      Employee salesExecutive2 = <span class="keyword">new</span> Employee(<span class="string">"Rob"</span>,<span class="string">"Sales"</span>, <span class="number">10000</span>);</span><br><span class="line"> </span><br><span class="line">      CEO.add(headSales);</span><br><span class="line">      CEO.add(headMarketing);</span><br><span class="line"> </span><br><span class="line">      headSales.add(salesExecutive1);</span><br><span class="line">      headSales.add(salesExecutive2);</span><br><span class="line"> </span><br><span class="line">      headMarketing.add(clerk1);</span><br><span class="line">      headMarketing.add(clerk2);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//打印该组织的所有员工</span></span><br><span class="line">      System.out.println(CEO); </span><br><span class="line">      <span class="keyword">for</span> (Employee headEmployee : CEO.getSubordinates()) &#123;</span><br><span class="line">         System.out.println(headEmployee);</span><br><span class="line">         <span class="keyword">for</span> (Employee employee : headEmployee.getSubordinates()) &#123;</span><br><span class="line">            System.out.println(employee);</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;        </span><br><span class="line">   &#125;          </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="步骤-3"><a href="#步骤-3" class="headerlink" title="步骤 3"></a>步骤 3</h2><blockquote>
+<p>执行程序，输出结果为：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Employee :[ Name : John, dept : CEO, salary :<span class="number">30000</span> ]</span><br><span class="line">Employee :[ Name : Robert, dept : Head Sales, salary :<span class="number">20000</span> ]</span><br><span class="line">Employee :[ Name : Richard, dept : Sales, salary :<span class="number">10000</span> ]</span><br><span class="line">Employee :[ Name : Rob, dept : Sales, salary :<span class="number">10000</span> ]</span><br><span class="line">Employee :[ Name : Michel, dept : Head Marketing, salary :<span class="number">20000</span> ]</span><br><span class="line">Employee :[ Name : Laura, dept : Marketing, salary :<span class="number">10000</span> ]</span><br><span class="line">Employee :[ Name : Bob, dept : Marketing, salary :<span class="number">10000</span> ]</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>过滤器模式</title>
     <url>/undefined/6526/</url>
     <content><![CDATA[<blockquote class="blockquote-center"><p>过滤器模式(Filter Pattern)或标准器模式(Criteria Pattern) 是一种设计模式，这种模式允许开发人员使用不同的标准来过滤一组对象，通过逻辑运算以解耦的方式把他们连接起来。这种类型的设计模式属于结构型模式，它结合多个标准来获得单一标准。</p>
@@ -8,7 +145,7 @@
 <h1 id="实现"><a href="#实现" class="headerlink" title="实现:"></a>实现:</h1><blockquote>
 <p>我们将创建一个Person对象、Criteria接口和实现了该接口的实体类，来过滤Person对象的列表。CriteriaPatternDemo，我们的演示类使用Criteria对象，基于各种标准和他们结合来过滤Person对象的列表。</p>
 </blockquote>
-<img src="/undefined/undefined/%E8%BF%87%E6%BB%A4%E5%99%A8%E6%A8%A1%E5%BC%8F.jpg" class title="过滤器模式类UML图">
+<img src="/undefined/6526/%E8%BF%87%E6%BB%A4%E5%99%A8%E6%A8%A1%E5%BC%8F.jpg" class title="过滤器模式类UML图">
 
 <h2 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h2><blockquote>
 <p>创建一个类，在该类上应用标准。</p>
