@@ -43,10 +43,10 @@
 <li>这些类必须有一个工厂独享加以控制。<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
 <p>将创建一个Shape接口和实现了Shape接口的实体类Circle。下一步是定义工厂类ShapeFactory。<br>ShapeFactory有一个Circle的HashMap，其中键名为Circle对象的颜色。无论何时接收到请求，都会创建一个特定颜色的圆。ShapeFactory检查它的HashMap中的circle对象，如果找到Circle对象，则返回该对象，否则将创建一个存储在HashMap中以备后续使用的新对象，并把该对象返回到客户端。<br>FlyWeightPatternDemo，我们的演示类使用ShapeFactory来获取Shape对象。它将向ShapeFactory传递信息(red/green/blue/black/white),以便获取它所需对象的颜色。</p>
 </blockquote>
-
-
 </li>
 </ol>
+<img src="/undefined/65163/%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F.jpg" class title="享元模式UML图">
+
 <h2 id="步骤1：创建一个接口"><a href="#步骤1：创建一个接口" class="headerlink" title="步骤1：创建一个接口"></a>步骤1：创建一个接口</h2><blockquote>
 <p>创建接口</p>
 </blockquote>
