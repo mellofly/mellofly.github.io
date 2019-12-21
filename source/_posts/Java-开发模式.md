@@ -10,7 +10,7 @@ date: 2019-12-20 08:59:42
 ---
 
 
-Java的三层架构分别为表示层、业务逻辑层和数据持久层。
+Java的三层架构分别为 ***表示层、业务逻辑层*** 和 ***数据持久层*** 。
 表示层的主要架构模式为MVC(Model View Controller，模型-视图-控制器)，主要框架有：Spring MVC和Struts2。
 业务逻辑层的主要框架有Spring。
 数据持久层的主要框架有Mybatis和Hibernate。
