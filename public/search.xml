@@ -1,6 +1,264 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>中介者模式</title>
+    <url>/mellofly/55487.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center"><p>中介者模式(Mediator Pattern)是用来降低多个对象和类之间的通信复杂性。这种模式提供了一个中介类，该类通常处理不同类之间的通信，并支持松耦合，使代码易于维护，中介者模式属于行为模式。</p>
+</blockquote><a id="more"></a>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 用一个中介对象来封装一系列的对象交互，中介者使对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变他们之间的交互。</li>
+<li><strong>主要解决：</strong> 对象与对象之间存在大量的关联关系，这样势必会导致系统的结构变得很复杂，同时若一个对象发生改变，我们也需要跟踪与之相关联的对象，同时做出相应的处理。</li>
+<li><strong>何时使用：</strong> 多个类相互耦合，形成网状结构。</li>
+<li><strong>如何解决：</strong> 将上述网状结构分离为星型结构。</li>
+<li><strong>关键代码：</strong> 独享Colleague之间的通信封装到一个类中单独处理。</li>
+<li><strong>应用实例：</strong> <ol>
+<li>中国加入WTO之前是各个国家相互贸易，结构复杂，现在是各个国家通过WTO来相互贸易。</li>
+<li>机场调度系统。</li>
+<li>MVC框架，其中C(控制器)就是M(模型)和V(视图)的中介者。</li>
+</ol>
+</li>
+<li><strong><em>优点</em></strong> <ol>
+<li>降低了类的复杂度，将一对多转化为一对一。</li>
+<li>各个类之间的解耦。</li>
+<li>符合迪米特原则。</li>
+</ol>
+</li>
+<li><strong><em>缺点：</em></strong> 中介者会庞大，变得复杂难以维护。</li>
+<li><strong>使用场景：</strong> <ol>
+<li>系统中对象之间存在比较复杂的引用关系，导致他们之间的依赖关系结构混乱而且难以复用该对象。</li>
+<li>想通过一个中间类来封装多个类中的行为，而又不想生成太多的子类。</li>
+</ol>
+</li>
+<li><strong>注意事项：</strong> 不应当在职责混乱的时候使用。</li>
+</ul>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们通过聊天室实例来演示中介者模式。实例中，多个用户可以向聊天室发送消息，聊天室向所有的用户显示消息。我们将创建两个类 ChatRoom 和 User。User 对象使用 ChatRoom 方法来分享他们的消息。<br>MediatorPatternDemo，我们的演示类使用 User 对象来显示他们之间的通信。</p>
+</blockquote>
+<img src="/mellofly/undefined/%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F.jpg" class title="中介者模式UML图">
+
+<h2 id="步骤1：创建中介类"><a href="#步骤1：创建中介类" class="headerlink" title="步骤1：创建中介类"></a>步骤1：创建中介类</h2><blockquote>
+<p>创建中介类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ChatRoom.java*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChatRoom</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showMessage</span><span class="params">(User user, String message)</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="keyword">new</span> Date().toString()</span><br><span class="line">         + <span class="string">" ["</span> + user.getName() +<span class="string">"] : "</span> + message);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2：创建user类"><a href="#步骤2：创建user类" class="headerlink" title="步骤2：创建user类"></a>步骤2：创建user类</h2><blockquote>
+<p>创建user类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*User.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> String name;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> name;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.name  = name;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendMessage</span><span class="params">(String message)</span></span>&#123;</span><br><span class="line">      ChatRoom.showMessage(<span class="keyword">this</span>,message);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="步骤3：使用User对象来显示他们之间的通信。"><a href="#步骤3：使用User对象来显示他们之间的通信。" class="headerlink" title="步骤3：使用User对象来显示他们之间的通信。"></a>步骤3：使用User对象来显示他们之间的通信。</h1><blockquote>
+<p>使用 User 对象来显示他们之间的通信。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*MediatorPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MediatorPatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      User robert = <span class="keyword">new</span> User(<span class="string">"Robert"</span>);</span><br><span class="line">      User john = <span class="keyword">new</span> User(<span class="string">"John"</span>);</span><br><span class="line"> </span><br><span class="line">      robert.sendMessage(<span class="string">"Hi! John!"</span>);</span><br><span class="line">      john.sendMessage(<span class="string">"Hello! Robert!"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4：结果"><a href="#步骤4：结果" class="headerlink" title="步骤4：结果"></a>步骤4：结果</h2><blockquote>
+<p>执行结果，输出结果。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Thu Jan <span class="number">31</span> <span class="number">16</span>:<span class="number">05</span>:<span class="number">46</span> IST <span class="number">2013</span> [Robert] : Hi! John!</span><br><span class="line">Thu Jan <span class="number">31</span> <span class="number">16</span>:<span class="number">05</span>:<span class="number">46</span> IST <span class="number">2013</span> [John] : Hello! Robert!</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>迭代器模式</title>
+    <url>/mellofly/28241.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center"><p>迭代器模式(Iterator Pattern) 是java和.Net编程环境中非常常用的设计模式。这种模式用于顺序访问集合对象的元素，不需要知道集合对象的底层表示。迭代模式属于行为模式。</p>
+</blockquote><a id="more"></a>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 提供一种方法顺序访问一个聚合对象中各个元素，而又无须暴露该对象的内部表示。</li>
+<li><strong>主要解决：</strong> 不同的方式来遍历真个整合对象。</li>
+<li><strong>何时使用：</strong> 遍历一个聚合对象。</li>
+<li><strong>关键代码：</strong> 定义接口：hasNext，next。</li>
+<li><strong>应用实例：</strong> JAVA中的iterator。</li>
+<li><strong><em>优点：</em></strong><ol>
+<li>它支持以不同的方式遍历一个聚合对象。</li>
+<li>迭代器简化了聚合类。</li>
+<li>在同一个聚合上可以有多个遍历</li>
+<li>在迭代器模式中，增加新的聚合类和迭代器都很方便，无须修改原有代码。</li>
+</ol>
+</li>
+<li><strong><em>缺点：</em></strong> 由于迭代器模式将存储数据和遍历数据的职责分离，增加新的聚合类需要对应增加新的迭代器类，类的个数成对增加，这在一定程度上增加了系统的复杂性。</li>
+<li><strong>使用场景：</strong> <ol>
+<li>访问一个聚合对象的内容而无需暴露它的内部表示。</li>
+<li>需要为聚合独享提供多种遍历方式。</li>
+<li>为遍历不同的聚合结构提供一个统一地接口。</li>
+</ol>
+</li>
+<li><strong>注意事项：</strong> 迭代器模式就是分离了集合对象的遍历行为，抽象出一个迭代器类来负责，这样既可以做到不暴露集合的内部结构，又可让外部代码透明地访问集合内部的数据。</li>
+</ul>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们将创建一个叙述导航方法的Iterator接口和一个返回迭代器的Container接口。实现了Container接口的实体类将负责实现Iterator接口。IteratorPatternDemo，我们的演示类使用实体类NamesRepository来打印NamesRepository中存储为集合的Names。</p>
+</blockquote>
+<img src="/mellofly/28241/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F.jpg" class title="迭代器模式UML图">
+
+<h2 id="步骤1：创建接口："><a href="#步骤1：创建接口：" class="headerlink" title="步骤1：创建接口："></a>步骤1：创建接口：</h2><blockquote>
+<p>创建接口</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Iterator.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Container.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Container</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Iterator <span class="title">getIterator</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2：实现接口"><a href="#步骤2：实现接口" class="headerlink" title="步骤2：实现接口"></a>步骤2：实现接口</h2><blockquote>
+<p>创建实现了Container接口的实体类。该类有实现了Iterator接口的内部类NameIterator。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*NameRepository.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NameRepository</span> <span class="keyword">implements</span> <span class="title">Container</span> </span>&#123;</span><br><span class="line">   <span class="keyword">public</span> String names[] = &#123;<span class="string">"Robert"</span> , <span class="string">"John"</span> ,<span class="string">"Julie"</span> , <span class="string">"Lora"</span>&#125;;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Iterator <span class="title">getIterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> NameIterator();</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">NameIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">int</span> index;</span><br><span class="line"> </span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(index &lt; names.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line"> </span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(<span class="keyword">this</span>.hasNext())&#123;</span><br><span class="line">            <span class="keyword">return</span> names[index++];</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;     </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3：获取迭代器，并打印名字。"><a href="#步骤3：获取迭代器，并打印名字。" class="headerlink" title="步骤3：获取迭代器，并打印名字。"></a>步骤3：获取迭代器，并打印名字。</h2><blockquote>
+<p>使用NameRepository来获取迭代器，并打印名字。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*IteratorPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IteratorPatternDemo</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      NameRepository namesRepository = <span class="keyword">new</span> NameRepository();</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">for</span>(Iterator iter = namesRepository.getIterator(); iter.hasNext();)&#123;</span><br><span class="line">         String name = (String)iter.next();</span><br><span class="line">         System.out.println(<span class="string">"Name : "</span> + name);</span><br><span class="line">      &#125;  </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4：输出结果"><a href="#步骤4：输出结果" class="headerlink" title="步骤4：输出结果"></a>步骤4：输出结果</h2><blockquote>
+<p>执行程序，输出结果：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Name : Robert</span><br><span class="line">Name : John</span><br><span class="line">Name : Julie</span><br><span class="line">Name : Lora</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>命令模式</title>
+    <url>/mellofly/22977.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center"><p>命令模式(Command Pattern)是一种数据驱动的设计模式。它属于行为模式。请求以命令的形式包裹在对象中，并传给调用对象。调用对象寻找可以处理该命令的合适的对象，并把该命令传给相应的对象，该对象执行命令。</p>
+</blockquote><a id="more"></a>
+
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><ul>
+<li><strong>意图：</strong> 将一个请求封装成一个对象，从而使您可以用不同的请求对客户进行参数化。</li>
+<li><strong>主要解决：</strong> 在软件系统中，行为请求者与行为实现者通常是一种紧耦合的关系，但某些场合，biubiu需要对行为进行记录、撤销或重做事物等处理是，这种无法抵御变化的紧耦合的设计就不太合适了。</li>
+<li><strong>何时使用：</strong> 在某些场合，比如要对行为进行“记录、撤销/重做、事物”等处理，这种无法抵御变化的紧耦合是不合适的。在这种情况下，如何将“行为请求者”与“行为实现者”解耦？将一组行为抽象为对象，可以实现二者之间的松耦合。</li>
+<li><strong>如何解决：</strong> 通过调用者调用接受者执行命令，顺序：调用者-&gt;接受者-&gt;命令。</li>
+<li><strong>关键代码：</strong> 定义三个角色：<ol>
+<li>received真正的命令执行对象;</li>
+<li>Command;</li>
+<li>invoker使用命令对象的入口。</li>
+</ol>
+</li>
+<li><strong>应用实例：</strong> Struts 1 中的action核心控制器ActionServlet只有一个，相当于Invoker,而模型层的类会随着不同的应用有不同的模型类，相当于具体的Command。</li>
+<li><strong><em>优点：</em></strong> <ol>
+<li>降低系统耦合度。</li>
+<li>新的命令可以很容易添加到系统中去。</li>
+</ol>
+</li>
+<li><strong><em>缺点：</em></strong> 使用命令模式可能会导致某些系统有过多的具体命令类。</li>
+<li><strong>使用场景：</strong> 认为是命令的地方都可以使用命令模式，比如：1.GUI中每一个按钮都是一条命令。2.模拟CMD。</li>
+<li><strong><em>注意事项：</em></strong> 系统需要支持命令的撤销(Undo)操作和回复(Redo)操作，也可以考虑使用命令模式，见命令模式的扩展。<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们首先创建作为命令的接口 Order，然后创建作为请求的 Stock 类。实体命令类 BuyStock 和 SellStock，实现了 Order 接口，将执行实际的命令处理。创建作为调用对象的类 Broker，它接受订单并能下订单。<br>Broker 对象使用命令模式，基于命令的类型确定哪个对象执行哪个命令。CommandPatternDemo，我们的演示类使用 Broker 类来演示命令模式。</p>
+</blockquote>
+<img src="/mellofly/22977/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F.jpg" class title="命令模式UML图">
+
+</li>
+</ul>
+<h2 id="步骤1：创建一个命令接口"><a href="#步骤1：创建一个命令接口" class="headerlink" title="步骤1：创建一个命令接口"></a>步骤1：创建一个命令接口</h2><blockquote>
+<p>创建一个命令接口。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Order.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Order</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2：创建一个请求类"><a href="#步骤2：创建一个请求类" class="headerlink" title="步骤2：创建一个请求类"></a>步骤2：创建一个请求类</h2><blockquote>
+<p>创建一个请求类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Stock.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Stock</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">private</span> String name = <span class="string">"ABC"</span>;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> quantity = <span class="number">10</span>;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buy</span><span class="params">()</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Stock [ Name: "</span>+name+<span class="string">", </span></span><br><span class="line"><span class="string">         Quantity: "</span> + quantity +<span class="string">" ] bought"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sell</span><span class="params">()</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Stock [ Name: "</span>+name+<span class="string">", </span></span><br><span class="line"><span class="string">         Quantity: "</span> + quantity +<span class="string">" ] sold"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="步骤3：创建实现了-Order-接口的实体类。"><a href="#步骤3：创建实现了-Order-接口的实体类。" class="headerlink" title="步骤3：创建实现了 Order 接口的实体类。"></a>步骤3：创建实现了 Order 接口的实体类。</h2><blockquote>
+<p>创建实现了 Order 接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*BuyStock.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BuyStock</span> <span class="keyword">implements</span> <span class="title">Order</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> Stock abcStock;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">BuyStock</span><span class="params">(Stock abcStock)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.abcStock = abcStock;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      abcStock.buy();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*SellStock.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SellStock</span> <span class="keyword">implements</span> <span class="title">Order</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> Stock abcStock;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">SellStock</span><span class="params">(Stock abcStock)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.abcStock = abcStock;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      abcStock.sell();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4：创建命令调用类。"><a href="#步骤4：创建命令调用类。" class="headerlink" title="步骤4：创建命令调用类。"></a>步骤4：创建命令调用类。</h2><blockquote>
+<p>创建命令调用类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Broker.java*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Broker</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> List&lt;Order&gt; orderList = <span class="keyword">new</span> ArrayList&lt;Order&gt;(); </span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">takeOrder</span><span class="params">(Order order)</span></span>&#123;</span><br><span class="line">      orderList.add(order);      </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">placeOrders</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">for</span> (Order order : orderList) &#123;</span><br><span class="line">         order.execute();</span><br><span class="line">      &#125;</span><br><span class="line">      orderList.clear();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤5：使用-Broker-类来接受并执行命令。"><a href="#步骤5：使用-Broker-类来接受并执行命令。" class="headerlink" title="步骤5：使用 Broker 类来接受并执行命令。"></a>步骤5：使用 Broker 类来接受并执行命令。</h2><blockquote>
+<p>使用 Broker 类来接受并执行命令。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*CommandPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CommandPatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      Stock abcStock = <span class="keyword">new</span> Stock();</span><br><span class="line"> </span><br><span class="line">      BuyStock buyStockOrder = <span class="keyword">new</span> BuyStock(abcStock);</span><br><span class="line">      SellStock sellStockOrder = <span class="keyword">new</span> SellStock(abcStock);</span><br><span class="line"> </span><br><span class="line">      Broker broker = <span class="keyword">new</span> Broker();</span><br><span class="line">      broker.takeOrder(buyStockOrder);</span><br><span class="line">      broker.takeOrder(sellStockOrder);</span><br><span class="line"> </span><br><span class="line">      broker.placeOrders();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤6：结果"><a href="#步骤6：结果" class="headerlink" title="步骤6：结果"></a>步骤6：结果</h2><blockquote>
+<p>执行结果，输出结果。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Stock [ Name: ABC, Quantity: <span class="number">10</span> ] bought</span><br><span class="line">Stock [ Name: ABC, Quantity: <span class="number">10</span> ] sold</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>责任链模式</title>
+    <url>/mellofly/60015.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center"><p>责任链模式(Chain of Responsibility Pattern) 为请求创建了一个接收者对象的链。这种模式给予请求的类型，对请求的发送者和接收者进行解耦。这种类型的设计模式属于行为型模式。<br>在这种模式中，通常每个接收者都包含对另一个接收者的引用。如果一个对象不能处理该请求，那么他会把相同的请求传给下一个接收者，以此类推。</p>
+</blockquote><a id="more"></a>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 避免请求发送者与接收者耦合在一起，让多个对象都有可能接收请求，将这些对象连接成一条链，并且沿着这条链传递请求，知道有对象处理它为止。</li>
+<li><strong>主要解决：</strong> 职责链上的处理者负责处理请求，客户只需要将请求发送到职责链上即可，无需关心请求的处理细节和请求的传递，所以职责链将请求的发送者和请求的处理者解耦了。</li>
+<li><strong>何时使用：</strong> 在处理消息的时候以过滤很多道。</li>
+<li><strong>如何解决：</strong> 拦截的类都实现统一接口。</li>
+<li><strong>关键代码：</strong> Handler里面聚合他自己，在HandlerRequest里判断是否合适，如果没达到条件则向下传递，向谁传递之前set进去。</li>
+<li><strong>应用实例：</strong> </li>
+</ul>
+<ol>
+<li>红楼梦中的“击鼓传花”。</li>
+<li>JS中的事件冒泡。</li>
+<li>java web 中Apache Tomcat对Encoding的处理，Struts2的拦截器，jsp servlet的Filter。</li>
+</ol>
+<ul>
+<li><strong><em>优点：</em></strong> </li>
+</ul>
+<ol>
+<li>降低耦合度。它将请求的发送者和接收者解耦。</li>
+<li>简化了对象。使得对象不需要知道链的结构。</li>
+<li>增强给对象指派职责的灵活性。通过改变链内的成员或者调动他们的次序，允许动态地新增或者删除责任。</li>
+<li>增加新的请求处理类很方便。</li>
+</ol>
+<ul>
+<li><strong><em>缺点：</em></strong> </li>
+</ul>
+<ol>
+<li>不能保证请求一定被接收。</li>
+<li>系统性能将受到一定影响，而且在进行代码调试时不太方便，可能会造成循环调用。</li>
+<li>可能不容易观察运行的特征，有碍于除错。</li>
+</ol>
+<ul>
+<li><strong>使用场景：</strong> </li>
+</ul>
+<ol>
+<li>有多个对象可以处理同一个请求，具体哪个对象处理该请求由运行时刻自动确定。</li>
+<li>在不明确指定接收者的情况下，向多个对象中的一个提交一个请求。</li>
+<li>可动态指定一组对象处理请求。</li>
+</ol>
+<ul>
+<li><strong><em>注意事项：</em></strong> 在JAVA WEB 中遇到很多应用。</li>
+</ul>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们创建抽象类 AbstractLogger，带有详细的日志记录级别。然后我们创建三种类型的记录器，都扩展了 AbstractLogger。每个记录器消息的级别是否属于自己的级别，如果是则相应地打印出来，否则将不打印并把消息传给下一个记录器。</p>
+</blockquote>
+<img src="/mellofly/60015/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F.jpg" class title="责任链模式UML图">
+
+<h2 id="步骤1：创建抽象的记录器类。"><a href="#步骤1：创建抽象的记录器类。" class="headerlink" title="步骤1：创建抽象的记录器类。"></a>步骤1：创建抽象的记录器类。</h2><blockquote>
+<p>创建抽象的记录器类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*AbstractLogger.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractLogger</span> </span>&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> INFO = <span class="number">1</span>;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> DEBUG = <span class="number">2</span>;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> ERROR = <span class="number">3</span>;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">protected</span> <span class="keyword">int</span> level;</span><br><span class="line"> </span><br><span class="line">   <span class="comment">//责任链中的下一个元素</span></span><br><span class="line">   <span class="keyword">protected</span> AbstractLogger nextLogger;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setNextLogger</span><span class="params">(AbstractLogger nextLogger)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.nextLogger = nextLogger;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">logMessage</span><span class="params">(<span class="keyword">int</span> level, String message)</span></span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.level &lt;= level)&#123;</span><br><span class="line">         write(message);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span>(nextLogger !=<span class="keyword">null</span>)&#123;</span><br><span class="line">         nextLogger.logMessage(level, message);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">abstract</span> <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(String message)</span></span>;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2：创建扩展了该记录器类的实体类。"><a href="#步骤2：创建扩展了该记录器类的实体类。" class="headerlink" title="步骤2：创建扩展了该记录器类的实体类。"></a>步骤2：创建扩展了该记录器类的实体类。</h2><blockquote>
+<p>创建扩展了该记录器类的实体类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ConsoleLogger.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConsoleLogger</span> <span class="keyword">extends</span> <span class="title">AbstractLogger</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">ConsoleLogger</span><span class="params">(<span class="keyword">int</span> level)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.level = level;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(String message)</span> </span>&#123;    </span><br><span class="line">      System.out.println(<span class="string">"Standard Console::Logger: "</span> + message);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*ErrorLogger.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ErrorLogger</span> <span class="keyword">extends</span> <span class="title">AbstractLogger</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">ErrorLogger</span><span class="params">(<span class="keyword">int</span> level)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.level = level;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(String message)</span> </span>&#123;    </span><br><span class="line">      System.out.println(<span class="string">"Error Console::Logger: "</span> + message);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*FileLogger.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileLogger</span> <span class="keyword">extends</span> <span class="title">AbstractLogger</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">FileLogger</span><span class="params">(<span class="keyword">int</span> level)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.level = level;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(String message)</span> </span>&#123;    </span><br><span class="line">      System.out.println(<span class="string">"File::Logger: "</span> + message);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3：创建不同类型的记录器。赋予它们不同的错误级别，并在每个记录器中设置下一个记录器。每个记录器中的下一个记录器代表的是链的一部分。"><a href="#步骤3：创建不同类型的记录器。赋予它们不同的错误级别，并在每个记录器中设置下一个记录器。每个记录器中的下一个记录器代表的是链的一部分。" class="headerlink" title="步骤3：创建不同类型的记录器。赋予它们不同的错误级别，并在每个记录器中设置下一个记录器。每个记录器中的下一个记录器代表的是链的一部分。"></a>步骤3：创建不同类型的记录器。赋予它们不同的错误级别，并在每个记录器中设置下一个记录器。每个记录器中的下一个记录器代表的是链的一部分。</h2><blockquote>
+<p>创建不同类型的记录器。赋予它们不同的错误级别，并在每个记录器中设置下一个记录器。每个记录器中的下一个记录器代表的是链的一部分。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ChainPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChainPatternDemo</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> AbstractLogger <span class="title">getChainOfLoggers</span><span class="params">()</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">      AbstractLogger errorLogger = <span class="keyword">new</span> ErrorLogger(AbstractLogger.ERROR);</span><br><span class="line">      AbstractLogger fileLogger = <span class="keyword">new</span> FileLogger(AbstractLogger.DEBUG);</span><br><span class="line">      AbstractLogger consoleLogger = <span class="keyword">new</span> ConsoleLogger(AbstractLogger.INFO);</span><br><span class="line"> </span><br><span class="line">      errorLogger.setNextLogger(fileLogger);</span><br><span class="line">      fileLogger.setNextLogger(consoleLogger);</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">return</span> errorLogger;  </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      AbstractLogger loggerChain = getChainOfLoggers();</span><br><span class="line"> </span><br><span class="line">      loggerChain.logMessage(AbstractLogger.INFO, <span class="string">"This is an information."</span>);</span><br><span class="line"> </span><br><span class="line">      loggerChain.logMessage(AbstractLogger.DEBUG, </span><br><span class="line">         <span class="string">"This is a debug level information."</span>);</span><br><span class="line"> </span><br><span class="line">      loggerChain.logMessage(AbstractLogger.ERROR, </span><br><span class="line">         <span class="string">"This is an error information."</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="步骤4：结果"><a href="#步骤4：结果" class="headerlink" title="步骤4：结果"></a>步骤4：结果</h2><blockquote>
+<p>执行程序，输出结果：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Standard Console::Logger: This is an information.</span><br><span class="line">File::Logger: This is a debug level information.</span><br><span class="line">Standard Console::Logger: This is a debug level information.</span><br><span class="line">Error Console::Logger: This is an error information.</span><br><span class="line">File::Logger: This is an error information.</span><br><span class="line">Standard Console::Logger: This is an error information.</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>代理模式</title>
     <url>/mellofly/48003.html</url>
     <content><![CDATA[<blockquote class="blockquote-center"><p>在代理模式(Proxy Pattern)中，一个类代表另一个类的功能。这种类型的设计模式属于结构型模式。<br>在代理模式中，我们创建具有现有对象的对象，以便向外界提供功能接口。</p>
