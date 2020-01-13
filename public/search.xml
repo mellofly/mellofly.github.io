@@ -1,6 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>观察者模式</title>
+    <url>/mellofly/7738.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center"><p>当对象间存在一对多关系时，则使用观察者模式(Observer Pattern).比如：当一个对象被修改时，则会自动通知它的依赖对象。观察者模式属于行为模式。</p>
+</blockquote><a id="more"></a>
+
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 定义对象间的一种一对多的依赖关系，当一个对象的状态发生变化时，所有依赖于它的对象都得到通知并自动更新。</li>
+<li><strong>主要解决：</strong> 一个对象状态改变给其他对象通知的问题，而且要考虑到易用和低耦合，保证高度的协作。</li>
+<li><strong>何时使用：</strong> 一个对象(目标对象)的状态发生改变，所有的依赖独享都将得到通知，进行广播通知。</li>
+<li><strong>如何解决：</strong> 使用面向对象技术，可以将这种依赖关系弱化。</li>
+<li><strong>关键代码：</strong> 在抽象类里有一个ArrayList存放观察者们。</li>
+<li><strong>应用实例：</strong> <ol>
+<li>拍卖的时候，拍卖师观察最高标价，然后通知给其他竞价者竞价。</li>
+<li>西游记里面悟空请求菩萨降服红孩儿，菩萨洒了一地水招来一个老乌龟，这个乌龟就是观察者，他观察菩萨洒水这个动作。</li>
+</ol>
+</li>
+<li><strong><em>优点：</em></strong> <ol>
+<li>观察者和被观察者是抽象耦合的。</li>
+<li>建立一套触发机制。</li>
+</ol>
+</li>
+<li><strong><em>缺点：</em></strong> <ol>
+<li>如果一个观察者对象有很多的直接和间接的观察者的话，将所有的观察者都通知到会花费很多时间。</li>
+<li>如果在观察者和观察目标之间有循环依赖的话，观察目标会触发他们之间进行循环调用，可能导致系统崩溃。</li>
+<li>观察者模式没有相应的机制让观察者知道所有观察的目标对象是怎么发生变化的，而仅仅只是知道观察目标发生了变化。</li>
+</ol>
+</li>
+<li><strong>使用场景：</strong><ul>
+<li>一个抽象模型有两个方面，其中一个方面依赖于另一个方面，将这些方面封装在独立的对象中使他们可以各自独立地改变和复用。</li>
+<li>一个对象的改变将导致其他一个或多个对象也发生改变，而不知道具体有多少对象将发生改变，可以降低对象之间的耦合度。</li>
+<li>一个对象必须通知其他对象，而并不知道这些对象是谁。</li>
+<li>需要在系统中创建一个触发链，A对象的行为将影响B对象，B对象的行为将影响C对象…..，可以使用观察者模式创建一种链式触发机制。</li>
+</ul>
+</li>
+<li><strong><em>注意事项：</em></strong> <ol>
+<li>JAVA中已经有了对观察者模式的支持类。</li>
+<li>避免循环引用。</li>
+<li>如果顺序执行，某一观察者错误会导致系统卡壳，一般采用异步方式。</li>
+</ol>
+</li>
+</ul>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>观察者模式使用三个类 Subject、Observer 和 Client。Subject 对象带有绑定观察者到 Client 对象和从 Client 对象解绑观察者的方法。我们创建 Subject 类、Observer 抽象类和扩展了抽象类 Observer 的实体类。<br>ObserverPatternDemo，我们的演示类使用 Subject 和实体类对象来演示观察者模式。</p>
+</blockquote>
+<img src="/mellofly/undefined/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F.jpg" class title="观察者模式UML图">
+
+<h2 id="步骤1：创建Subject类。"><a href="#步骤1：创建Subject类。" class="headerlink" title="步骤1：创建Subject类。"></a>步骤1：创建Subject类。</h2><blockquote>
+<p>创建Subject类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Subject.java*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Subject</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">private</span> List&lt;Observer&gt; observers </span><br><span class="line">      = <span class="keyword">new</span> ArrayList&lt;Observer&gt;();</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> state;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getState</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> state;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setState</span><span class="params">(<span class="keyword">int</span> state)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.state = state;</span><br><span class="line">      notifyAllObservers();</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attach</span><span class="params">(Observer observer)</span></span>&#123;</span><br><span class="line">      observers.add(observer);      </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">notifyAllObservers</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">for</span> (Observer observer : observers) &#123;</span><br><span class="line">         observer.update();</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2：创建Observer类"><a href="#步骤2：创建Observer类" class="headerlink" title="步骤2：创建Observer类"></a>步骤2：创建Observer类</h2><blockquote>
+<p>创建Observer类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Observer.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">   <span class="keyword">protected</span> Subject subject;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3：创建实体观察者类"><a href="#步骤3：创建实体观察者类" class="headerlink" title="步骤3：创建实体观察者类"></a>步骤3：创建实体观察者类</h2><blockquote>
+<p>创建实体观察者类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*BinaryObserver.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BinaryObserver</span> <span class="keyword">extends</span> <span class="title">Observer</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">BinaryObserver</span><span class="params">(Subject subject)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.subject = subject;</span><br><span class="line">      <span class="keyword">this</span>.subject.attach(<span class="keyword">this</span>);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println( <span class="string">"Binary String: "</span> </span><br><span class="line">      + Integer.toBinaryString( subject.getState() ) ); </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*OctalObserver.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OctalObserver</span> <span class="keyword">extends</span> <span class="title">Observer</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">OctalObserver</span><span class="params">(Subject subject)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.subject = subject;</span><br><span class="line">      <span class="keyword">this</span>.subject.attach(<span class="keyword">this</span>);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     System.out.println( <span class="string">"Octal String: "</span> </span><br><span class="line">     + Integer.toOctalString( subject.getState() ) ); </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*HexaObserver.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HexaObserver</span> <span class="keyword">extends</span> <span class="title">Observer</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">HexaObserver</span><span class="params">(Subject subject)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.subject = subject;</span><br><span class="line">      <span class="keyword">this</span>.subject.attach(<span class="keyword">this</span>);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println( <span class="string">"Hex String: "</span> </span><br><span class="line">      + Integer.toHexString( subject.getState() ).toUpperCase() ); </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4：使用Subject和实体观察者对象"><a href="#步骤4：使用Subject和实体观察者对象" class="headerlink" title="步骤4：使用Subject和实体观察者对象"></a>步骤4：使用Subject和实体观察者对象</h2><blockquote>
+<p>使用Subject和实体观察者对象。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ObserverPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObserverPatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      Subject subject = <span class="keyword">new</span> Subject();</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">new</span> HexaObserver(subject);</span><br><span class="line">      <span class="keyword">new</span> OctalObserver(subject);</span><br><span class="line">      <span class="keyword">new</span> BinaryObserver(subject);</span><br><span class="line"> </span><br><span class="line">      System.out.println(<span class="string">"First state change: 15"</span>);   </span><br><span class="line">      subject.setState(<span class="number">15</span>);</span><br><span class="line">      System.out.println(<span class="string">"Second state change: 10"</span>);  </span><br><span class="line">      subject.setState(<span class="number">10</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤5：结果"><a href="#步骤5：结果" class="headerlink" title="步骤5：结果"></a>步骤5：结果</h2><blockquote>
+<p>执行程序，输出结果：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">First state change: <span class="number">15</span></span><br><span class="line">Hex String: F</span><br><span class="line">Octal String: <span class="number">17</span></span><br><span class="line">Binary String: <span class="number">1111</span></span><br><span class="line">Second state change: <span class="number">10</span></span><br><span class="line">Hex String: A</span><br><span class="line">Octal String: <span class="number">12</span></span><br><span class="line">Binary String: <span class="number">1010</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>备忘录模式</title>
     <url>/mellofly/56214.html</url>
     <content><![CDATA[<blockquote class="blockquote-center"><p>备忘录模式(Memento Pattern) 保存一个对象的某个状态，以便在适当的时候恢复对象。备忘录模式属于行为型模式。</p>
@@ -38,7 +113,7 @@
 <h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
 <p>备忘录模式使用三个类 Memento、Originator 和 CareTaker。Memento 包含了要被恢复的对象的状态。Originator 创建并在 Memento 对象中存储状态。Caretaker 对象负责从 Memento 中恢复对象的状态。<br>MementoPatternDemo，我们的演示类使用 CareTaker 和 Originator 对象来显示对象的状态恢复。</p>
 </blockquote>
-<img src="/mellofly/undefined/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F.jpg" class title="备忘录模式UML图">
+<img src="/mellofly/56214/%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F.jpg" class title="备忘录模式UML图">
 
 <p>##步骤1：创建Memento类。</p>
 <blockquote>
@@ -1654,14 +1729,14 @@
 <p>这些设计模式关注类和对象的组合。继承的概念被用来组合接口和定义组合对象获得新功能的方式。</p>
 </blockquote>
 <ul>
-<li>适配器模式(Adapter Pattern)</li>
-<li>桥接模式(Bridge Pattern)</li>
-<li>过滤器模式(Filter、Criteria Pattern)</li>
-<li>组合模式(Composite Pattern)</li>
-<li>装饰器模式(Decorator Pattern)</li>
-<li>外观模式(Facade Pattern)</li>
-<li>享元模式(Flyweight Pattern)</li>
-<li>代理模式(Proxy Pattern)</li>
+<li>适配器模式(Adapter Pattern)：<a href="/mellofly/39554.html" title="适配器模式">适配器模式</a></li>
+<li>桥接模式(Bridge Pattern)：<a href="/mellofly/43376.html" title="桥接模式">桥接模式</a></li>
+<li>过滤器模式(Filter、Criteria Pattern)：<a href="/mellofly/6526.html" title="过滤器模式">过滤器模式</a></li>
+<li>组合模式(Composite Pattern)：</li>
+<li>装饰器模式(Decorator Pattern)：</li>
+<li>外观模式(Facade Pattern)：<a href="/mellofly/33100.html" title="外观模式">外观模式</a></li>
+<li>享元模式(Flyweight Pattern)：<a href="/mellofly/65163.html" title="享元模式">享元模式</a></li>
+<li>代理模式(Proxy Pattern)：<a href="/mellofly/48003.html" title="代理模式">代理模式</a></li>
 </ul>
 <h2 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式:"></a>行为型模式:</h2><blockquote>
 <p>这些设计模式特别关注对象之间的通信。</p>
@@ -1669,17 +1744,17 @@
 <ul>
 <li><p>责任链模式(Chain of Responsibility Pattern)</p>
 </li>
-<li><p>命令模式(Command Pattern)</p>
+<li><p>命令模式(Command Pattern)：<a href="/mellofly/22977.html" title="命令模式">命令模式</a></p>
 </li>
 <li><p>解释器模式(Interpreter Pattern)：<a href="/mellofly/16035.html" title="解释器模式">解释器模式</a></p>
 </li>
-<li><p>迭代器模式(Iterator Pattern)</p>
+<li><p>迭代器模式(Iterator Pattern)：<a href="/mellofly/28241.html" title="迭代器模式">迭代器模式</a></p>
 </li>
-<li><p>中介者模式(Mediator Pattern)</p>
+<li><p>中介者模式(Mediator Pattern)：<a href="/mellofly/55487.html" title="中介者模式">中介者模式</a></p>
 </li>
-<li><p>备忘录模式(Memento Pattern)</p>
+<li><p>备忘录模式(Memento Pattern)：<a href="/mellofly/56214.html" title="备忘录模式">备忘录模式</a></p>
 </li>
-<li><p>观察者模式(Observer Pattern)</p>
+<li><p>观察者模式(Observer Pattern)：<a href="/mellofly/undefined.html" title="观察者模式">观察者模式</a></p>
 </li>
 <li><p>状态模式(State Pattern)</p>
 </li>
