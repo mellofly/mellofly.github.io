@@ -1,6 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>状态模式</title>
+    <url>/mellofly/39447.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center"><p>在状态模式(State Pattern)中，类的行为是基于它的状态改变的，这种类型的设计模式属于行为型模式。<br>在状态模式中，我们创建表示各种状态的对象和一个行为随着状态对象改变而改变的context对象。</p>
+</blockquote><a id="more"></a>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 允许对象在内部状态发生改变时改变它的行为，对象看起来好像改变了它的类。</li>
+<li><strong>主要解决：</strong> 对象的行为依赖于它的状态(属性),并且可以根据它的状态改变而改变它的相关行为。</li>
+<li><strong>何时使用：</strong> 代码中包含大量与对象状态有关的条件语句。</li>
+<li><strong>如何解决：</strong> 将各种具体的状态类抽象出来。</li>
+<li><strong>关键代码：</strong> 通常命令模式的接口中只有一个方法。而状态模式的接口中有一个或者多个方法。而且，状态模式的实现类的方法，一般返回值，或者是改变实例变量的值。也就是说，状态模式一般和对象的状态有关。实现类的方法有不同的功能，覆盖接口中的方法。状态模式和命令模式一样，也可以用于消除if…else等条件选择语句。</li>
+<li><strong>应用实例：</strong> <ol>
+<li>打篮球的时候运动员可以有正常状态、不正常状态和超常状态。</li>
+<li>普候乙编钟中，‘钟是抽象接口’，‘钟A’等是具体状态，‘普候乙编钟’是具体环境(Context)。</li>
+</ol>
+</li>
+<li><strong><em>优点：</em></strong> <ol>
+<li>封装了转换规则。</li>
+<li>枚举可能的状态，在枚举状态之前需要确定状态种类。</li>
+<li>将所有与某个状态有关的行为放到一个类中，并且可以方便地增加新的状态，只需要改变对象状态即可改变对象的行为。</li>
+<li>允许状态转换逻辑与状态对象合成一体，而不是某一巨大的条件语句块。</li>
+<li>可以让多个环境对象共享一个状态对象，从而减少系统中对象的个数。</li>
+</ol>
+</li>
+<li><strong><em>缺点：</em></strong> <ol>
+<li>状态模式的使用必然会增加系统类和对象的个数。 </li>
+<li>状态模式的结构与实现都较为复杂，如果使用不当将导致程序结构和代码的混乱。</li>
+<li>状态模式对”开闭原则”的支持并不太好，对于可以切换状态的状态模式，增加新的状态类需要修改那些负责状态转换的源代码，否则无法切换到新增状态，而且修改某个状态类的行为也需修改对应类的源代码。</li>
+</ol>
+</li>
+<li><strong>使用场景：</strong><ol>
+<li>行为随状态改变而改变的场景。</li>
+<li>条件、分支语句的代替者。</li>
+</ol>
+</li>
+<li><strong>注意事项：</strong> 在行为受状态约束的时候使用状态模式，而且状态不超过5个。</li>
+</ul>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们将创建一个 State 接口和实现了 State 接口的实体状态类。Context 是一个带有某个状态的类。<br>StatePatternDemo，我们的演示类使用 Context 和状态对象来演示 Context 在状态改变时的行为变化。</p>
+</blockquote>
+<img src="/mellofly/undefined/%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F.jpg" class title="状态模式UML图">
+
+<h2 id="步骤1：创建一个接口"><a href="#步骤1：创建一个接口" class="headerlink" title="步骤1：创建一个接口"></a>步骤1：创建一个接口</h2><blockquote>
+<p>创建一个接口。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*State.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">State</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAction</span><span class="params">(Context context)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2：创建实现接口的实体类"><a href="#步骤2：创建实现接口的实体类" class="headerlink" title="步骤2：创建实现接口的实体类"></a>步骤2：创建实现接口的实体类</h2><blockquote>
+<p>创建实现接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*StartState.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StartState</span> <span class="keyword">implements</span> <span class="title">State</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAction</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Player is in start state"</span>);</span><br><span class="line">      context.setState(<span class="keyword">this</span>); </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"Start State"</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*StopState.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StopState</span> <span class="keyword">implements</span> <span class="title">State</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAction</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"Player is in stop state"</span>);</span><br><span class="line">      context.setState(<span class="keyword">this</span>); </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"Stop State"</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3：创建Context类"><a href="#步骤3：创建Context类" class="headerlink" title="步骤3：创建Context类"></a>步骤3：创建Context类</h2><blockquote>
+<p>创建Context类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Context.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Context</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> State state;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Context</span><span class="params">()</span></span>&#123;</span><br><span class="line">      state = <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setState</span><span class="params">(State state)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.state = state;     </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> State <span class="title">getState</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> state;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4：使用Context来查看当状态State改变时的行为变化"><a href="#步骤4：使用Context来查看当状态State改变时的行为变化" class="headerlink" title="步骤4：使用Context来查看当状态State改变时的行为变化"></a>步骤4：使用Context来查看当状态State改变时的行为变化</h2><blockquote>
+<p>使用Context来查看当状态State改变时的行为变化。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*StatePatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StatePatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      Context context = <span class="keyword">new</span> Context();</span><br><span class="line"> </span><br><span class="line">      StartState startState = <span class="keyword">new</span> StartState();</span><br><span class="line">      startState.doAction(context);</span><br><span class="line"> </span><br><span class="line">      System.out.println(context.getState().toString());</span><br><span class="line"> </span><br><span class="line">      StopState stopState = <span class="keyword">new</span> StopState();</span><br><span class="line">      stopState.doAction(context);</span><br><span class="line"> </span><br><span class="line">      System.out.println(context.getState().toString());</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="步骤5：结果"><a href="#步骤5：结果" class="headerlink" title="步骤5：结果"></a>步骤5：结果</h2><blockquote>
+<p>执行程序，输出结果。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Player is in start state</span><br><span class="line">Start State</span><br><span class="line">Player is in stop state</span><br><span class="line">Stop State;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>观察者模式</title>
     <url>/mellofly/7738.html</url>
     <content><![CDATA[<blockquote class="blockquote-center"><p>当对象间存在一对多关系时，则使用观察者模式(Observer Pattern).比如：当一个对象被修改时，则会自动通知它的依赖对象。观察者模式属于行为模式。</p>
