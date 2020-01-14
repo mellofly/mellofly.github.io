@@ -45,7 +45,7 @@
 <h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
 <p>观察者模式使用三个类 Subject、Observer 和 Client。Subject 对象带有绑定观察者到 Client 对象和从 Client 对象解绑观察者的方法。我们创建 Subject 类、Observer 抽象类和扩展了抽象类 Observer 的实体类。<br>ObserverPatternDemo，我们的演示类使用 Subject 和实体类对象来演示观察者模式。</p>
 </blockquote>
-<img src="/mellofly/undefined/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F.jpg" class title="观察者模式UML图">
+<img src="/mellofly/7738/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F.jpg" class title="观察者模式UML图">
 
 <h2 id="步骤1：创建Subject类。"><a href="#步骤1：创建Subject类。" class="headerlink" title="步骤1：创建Subject类。"></a>步骤1：创建Subject类。</h2><blockquote>
 <p>创建Subject类。</p>
@@ -1754,7 +1754,7 @@
 </li>
 <li><p>备忘录模式(Memento Pattern)：<a href="/mellofly/56214.html" title="备忘录模式">备忘录模式</a></p>
 </li>
-<li><p>观察者模式(Observer Pattern)：<a href="/mellofly/undefined.html" title="观察者模式">观察者模式</a></p>
+<li><p>观察者模式(Observer Pattern)：<a href="/mellofly/7738.html" title="观察者模式">观察者模式</a></p>
 </li>
 <li><p>状态模式(State Pattern)</p>
 </li>
