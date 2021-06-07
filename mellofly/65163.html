@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shenpf.top","root":"/","images":"/images","scheme":"Muse","version":"8.2.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="享元模式(Flyweight Pattern)主要用于减少创建对象的数量，以减少内存占用和提高性能。这种类型的设计模式属于结构型模式，它提供了减少对象数量从而改善应用所需的对象结构的方式。享元模式尝试重用现有的同类对象，如果未找到匹配的对象，则创建新对象。接下来将通过创建5个对象来画出20个分布不同位置的圆来演示这种模式。由于只有五种可用的颜色，所以color属性被用来检查现有的Circle对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="享元模式">
+<meta property="og:url" content="http://shenpf.top/mellofly/65163.html">
+<meta property="og:site_name" content="mellofly">
+<meta property="og:description" content="享元模式(Flyweight Pattern)主要用于减少创建对象的数量，以减少内存占用和提高性能。这种类型的设计模式属于结构型模式，它提供了减少对象数量从而改善应用所需的对象结构的方式。享元模式尝试重用现有的同类对象，如果未找到匹配的对象，则创建新对象。接下来将通过创建5个对象来画出20个分布不同位置的圆来演示这种模式。由于只有五种可用的颜色，所以color属性被用来检查现有的Circle对象">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-21T08:27:56.000Z">
+<meta property="article:modified_time" content="2021-02-01T02:04:35.035Z">
+<meta property="article:author" content="mellofly">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://shenpf.top/mellofly/65163.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>享元模式 | mellofly</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">mellofly</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">介绍：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">实现：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A41%EF%BC%9A%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%8E%A5%E5%8F%A3"><span class="nav-number">2.1.</span> <span class="nav-text">步骤1：创建一个接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A42%EF%BC%9A%E5%88%9B%E5%BB%BA%E5%AE%9E%E7%8E%B0%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%AE%9E%E4%BD%93%E7%B1%BB"><span class="nav-number">2.2.</span> <span class="nav-text">步骤2：创建实现接口的实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A43%EF%BC%9A%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%B7%A5%E5%8E%82%EF%BC%8C%E7%94%9F%E6%88%90%E5%9F%BA%E4%BA%8E%E7%BB%99%E5%AE%9A%E4%BF%A1%E6%81%AF%E7%9A%84%E5%AE%9E%E4%BD%93%E7%B1%BB%E7%9A%84%E5%AF%B9%E8%B1%A1%E3%80%82"><span class="nav-number">2.3.</span> <span class="nav-text">步骤3：创建一个工厂，生成基于给定信息的实体类的对象。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A44%EF%BC%9A%E4%BD%BF%E7%94%A8%E8%AF%A5%E5%B7%A5%E5%8E%82%EF%BC%8C%E9%80%9A%E8%BF%87%E4%BC%A0%E9%80%92%E9%A2%9C%E8%89%B2%E4%BF%A1%E6%81%AF%E6%9D%A5%E8%8E%B7%E5%8F%96%E5%AE%9E%E4%BD%93%E7%B1%BB%E7%9A%84%E5%AF%B9%E8%B1%A1%E3%80%82"><span class="nav-number">2.4.</span> <span class="nav-text">步骤4：使用该工厂，通过传递颜色信息来获取实体类的对象。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A45%EF%BC%9A%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C"><span class="nav-number">2.5.</span> <span class="nav-text">步骤5：输出结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">注意：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mellofly"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">mellofly</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mellofly" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mellofly" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mellofly@outlook.com" title="E-Mail → mailto:mellofly@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shenpf.top/mellofly/65163.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="mellofly">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mellofly">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          享元模式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-21 16:27:56" itemprop="dateCreated datePublished" datetime="2019-12-21T16:27:56+08:00">2019-12-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-01 10:04:35" itemprop="dateModified" datetime="2021-02-01T10:04:35+08:00">2021-02-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote class="blockquote-center">
+<p>享元模式(Flyweight Pattern)主要用于减少创建对象的数量，以减少内存占用和提高性能。这种类型的设计模式属于结构型模式，它提供了减少对象数量从而改善应用所需的对象结构的方式。<br>享元模式尝试重用现有的同类对象，如果未找到匹配的对象，则创建新对象。接下来将通过创建5个对象来画出20个分布不同位置的圆来演示这种模式。由于只有五种可用的颜色，所以color属性被用来检查现有的Circle对象。</p>
+
+</blockquote>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 运用共享技术有效地支持大量细粒度的对象。</li>
+<li><strong>主要解决：</strong> 在有大量对象时，有可能会造成内存溢出，我们把其中共同的部分抽象出来，如果有相同的业务请求，直接返回在内存中已有的对象，避免重新创建。<br>也就是一个系统中如果有多个相同的对象，那么只共享一份就可以了，不必每个都是去实例化一个对象。</li>
+<li><strong>何时使用：</strong></li>
+</ul>
+<ol>
+<li>系统中有大量对象。</li>
+<li>这些对象消耗大量内存。</li>
+<li>这些对象的状态大部分可以外部化。</li>
+<li>这些对象可以按照内蕴状态分为很多组，当把外蕴对象从对象中剔除出来时，每一组对象都可以用一个对象来代替。</li>
+<li>系统不依赖于这些对象身份，这些对象是不可分辨的。</li>
+</ol>
+<ul>
+<li><strong>如何解决：</strong> 用唯一标识码判断，如果在内存中有，则返回这个唯一标识码所标识的对象。</li>
+<li><strong>关键代码：</strong> 用HashMap存储这些对象。</li>
+<li><strong>应用实例：</strong> </li>
+</ul>
+<ol>
+<li>Java中的String，如果有则返回，如果没有则创建一个字符串保存在字符串缓存池里面。</li>
+<li>数据库的数据池。</li>
+</ol>
+<ul>
+<li><em><strong>优点：</strong></em> 大大减少对象的创建，降低系统的内存，使效率提高。</li>
+<li><em><strong>缺点：</strong></em> 提高了系统的复杂度，需要分离出外部状态和内部状态，而且外部状态具有固有化的性质，不应该随着内部状态的变化而变化，否则会造成系统的混乱。</li>
+<li><strong>使用场景：</strong> </li>
+</ul>
+<ol>
+<li>系统有大量相似对象。</li>
+<li>需要缓冲池的场景。</li>
+</ol>
+<ul>
+<li><strong>注意事项：</strong> </li>
+</ul>
+<ol>
+<li>注意划分外部状态和内部状态，否则可能会引起线程安全问题。</li>
+<li>这些类必须有一个工厂独享加以控制。<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>将创建一个Shape接口和实现了Shape接口的实体类Circle。下一步是定义工厂类ShapeFactory。<br>ShapeFactory有一个Circle的HashMap，其中键名为Circle对象的颜色。无论何时接收到请求，都会创建一个特定颜色的圆。ShapeFactory检查它的HashMap中的circle对象，如果找到Circle对象，则返回该对象，否则将创建一个存储在HashMap中以备后续使用的新对象，并把该对象返回到客户端。<br>FlyWeightPatternDemo，我们的演示类使用ShapeFactory来获取Shape对象。它将向ShapeFactory传递信息(red/green/blue/black/white),以便获取它所需对象的颜色。</p>
+</blockquote>
+</li>
+</ol>
+
+
+<h2 id="步骤1：创建一个接口"><a href="#步骤1：创建一个接口" class="headerlink" title="步骤1：创建一个接口"></a>步骤1：创建一个接口</h2><blockquote>
+<p>创建接口</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Shape.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2：创建实现接口的实体类"><a href="#步骤2：创建实现接口的实体类" class="headerlink" title="步骤2：创建实现接口的实体类"></a>步骤2：创建实现接口的实体类</h2><blockquote>
+<p>创建实现接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Circle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> String color;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> x;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> y;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> radius;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Circle</span><span class="params">(String color)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.color = color;     </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.x = x;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.y = y;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRadius</span><span class="params">(<span class="keyword">int</span> radius)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.radius = radius;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Circle: Draw() [Color : &quot;</span> + color </span><br><span class="line">         +<span class="string">&quot;, x : &quot;</span> + x +<span class="string">&quot;, y :&quot;</span> + y +<span class="string">&quot;, radius :&quot;</span> + radius);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3：创建一个工厂，生成基于给定信息的实体类的对象。"><a href="#步骤3：创建一个工厂，生成基于给定信息的实体类的对象。" class="headerlink" title="步骤3：创建一个工厂，生成基于给定信息的实体类的对象。"></a>步骤3：创建一个工厂，生成基于给定信息的实体类的对象。</h2><blockquote>
+<p>创建一个工厂，生成基于给定信息的实体类的对象。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*ShapeFactory.java*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeFactory</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> HashMap&lt;String, Shape&gt; circleMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Shape <span class="title">getCircle</span><span class="params">(String color)</span> </span>&#123;</span><br><span class="line">      Circle circle = (Circle)circleMap.get(color);</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">if</span>(circle == <span class="keyword">null</span>) &#123;</span><br><span class="line">         circle = <span class="keyword">new</span> Circle(color);</span><br><span class="line">         circleMap.put(color, circle);</span><br><span class="line">         System.out.println(<span class="string">&quot;Creating circle of color : &quot;</span> + color);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> circle;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="步骤4：使用该工厂，通过传递颜色信息来获取实体类的对象。"><a href="#步骤4：使用该工厂，通过传递颜色信息来获取实体类的对象。" class="headerlink" title="步骤4：使用该工厂，通过传递颜色信息来获取实体类的对象。"></a>步骤4：使用该工厂，通过传递颜色信息来获取实体类的对象。</h2><blockquote>
+<p>使用该工厂，通过传递颜色信息来获取实体类的对象。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*FlyweightPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlyweightPatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String colors[] = </span><br><span class="line">      &#123; <span class="string">&quot;Red&quot;</span>, <span class="string">&quot;Green&quot;</span>, <span class="string">&quot;Blue&quot;</span>, <span class="string">&quot;White&quot;</span>, <span class="string">&quot;Black&quot;</span> &#125;;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; <span class="number">20</span>; ++i) &#123;</span><br><span class="line">         Circle circle = </span><br><span class="line">            (Circle)ShapeFactory.getCircle(getRandomColor());</span><br><span class="line">         circle.setX(getRandomX());</span><br><span class="line">         circle.setY(getRandomY());</span><br><span class="line">         circle.setRadius(<span class="number">100</span>);</span><br><span class="line">         circle.draw();</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">getRandomColor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> colors[(<span class="keyword">int</span>)(Math.random()*colors.length)];</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getRandomX</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> (<span class="keyword">int</span>)(Math.random()*<span class="number">100</span> );</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getRandomY</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> (<span class="keyword">int</span>)(Math.random()*<span class="number">100</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤5：输出结果"><a href="#步骤5：输出结果" class="headerlink" title="步骤5：输出结果"></a>步骤5：输出结果</h2><blockquote>
+<p>执行程序，输出结果：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Creating circle of color : Black</span><br><span class="line">Circle: Draw() [Color : Black, x : <span class="number">36</span>, y :<span class="number">71</span>, radius :<span class="number">100</span></span><br><span class="line">Creating circle of color : Green</span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">27</span>, y :<span class="number">27</span>, radius :<span class="number">100</span></span><br><span class="line">Creating circle of color : White</span><br><span class="line">Circle: Draw() [Color : White, x : <span class="number">64</span>, y :<span class="number">10</span>, radius :<span class="number">100</span></span><br><span class="line">Creating circle of color : Red</span><br><span class="line">Circle: Draw() [Color : Red, x : <span class="number">15</span>, y :<span class="number">44</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">19</span>, y :<span class="number">10</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">94</span>, y :<span class="number">32</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : White, x : <span class="number">69</span>, y :<span class="number">98</span>, radius :<span class="number">100</span></span><br><span class="line">Creating circle of color : Blue</span><br><span class="line">Circle: Draw() [Color : Blue, x : <span class="number">13</span>, y :<span class="number">4</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">21</span>, y :<span class="number">21</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Blue, x : <span class="number">55</span>, y :<span class="number">86</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : White, x : <span class="number">90</span>, y :<span class="number">70</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">78</span>, y :<span class="number">3</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">64</span>, y :<span class="number">89</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Blue, x : <span class="number">3</span>, y :<span class="number">91</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Blue, x : <span class="number">62</span>, y :<span class="number">82</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">97</span>, y :<span class="number">61</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">86</span>, y :<span class="number">12</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">38</span>, y :<span class="number">93</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Red, x : <span class="number">76</span>, y :<span class="number">82</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Blue, x : <span class="number">95</span>, y :<span class="number">82</span>, radius :<span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h1><p>享元对象能做到共享的关键是区分内蕴状态（Internal State）和外蕴状态（ExternalState）。  </p>
+<blockquote>
+<p>一个内蕴状态是存储在享元对象内部的，并且不会随环境改变而有所不同的。因此，一个享元可以具有内蕴状态并可以共享。一个外蕴状态是随环境改变而改变的，不可以共享状态。享元对象的外蕴状态必须由客户端保存，并在享元对象被创建之后，在需要使用的时候再传到享元对象内部。外蕴状态不可以影响享元对象的内蕴状态，它们是相互独立的。所有的内蕴状态在对象创建完后就不可再改变。”</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"># 设计模式</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/mellofly/8366.html" rel="prev" title="Java-开发模式">
+                  <i class="fa fa-chevron-left"></i> Java-开发模式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/mellofly/48003.html" rel="next" title="代理模式">
+                  代理模式 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mellofly</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shenpf.top","root":"/","images":"/images","scheme":"Muse","version":"8.2.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="解释器模式： 解释器模式(Interpreter Pattern)提供了评估语言的语法或表达式的方式，它属于行为型模式。这种模式实现了一个表达式接口，该接口解释一个特定的上下文。这种模式被用在SQL解析、符号处理引擎等。  介绍： 意图：给定一个语言，定义它的文法表示，并定义一个解释器，这个解释器使用该标识来解释语言中的句子。 主要解决：对于一些固定文法构建一个解释句子的解释器。 何时使用：如果一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解释器模式">
+<meta property="og:url" content="http://shenpf.top/mellofly/16035.html">
+<meta property="og:site_name" content="mellofly">
+<meta property="og:description" content="解释器模式： 解释器模式(Interpreter Pattern)提供了评估语言的语法或表达式的方式，它属于行为型模式。这种模式实现了一个表达式接口，该接口解释一个特定的上下文。这种模式被用在SQL解析、符号处理引擎等。  介绍： 意图：给定一个语言，定义它的文法表示，并定义一个解释器，这个解释器使用该标识来解释语言中的句子。 主要解决：对于一些固定文法构建一个解释句子的解释器。 何时使用：如果一">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-11-30T06:33:23.000Z">
+<meta property="article:modified_time" content="2021-02-01T02:04:35.051Z">
+<meta property="article:author" content="mellofly">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://shenpf.top/mellofly/16035.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>解释器模式 | mellofly</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">mellofly</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">解释器模式：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">介绍：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">优缺点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">实现：</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mellofly"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">mellofly</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mellofly" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mellofly" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mellofly@outlook.com" title="E-Mail → mailto:mellofly@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shenpf.top/mellofly/16035.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="mellofly">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mellofly">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          解释器模式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-11-30 14:33:23" itemprop="dateCreated datePublished" datetime="2019-11-30T14:33:23+08:00">2019-11-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-01 10:04:35" itemprop="dateModified" datetime="2021-02-01T10:04:35+08:00">2021-02-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="解释器模式："><a href="#解释器模式：" class="headerlink" title="解释器模式："></a>解释器模式：</h1><blockquote>
+<p>解释器模式(Interpreter Pattern)提供了评估语言的语法或表达式的方式，它属于行为型模式。这种模式实现了一个表达式接口，该接口解释一个特定的上下文。这种模式被用在SQL解析、符号处理引擎等。</p>
+</blockquote>
+<h2 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h2><ul>
+<li><strong>意图</strong>：给定一个语言，定义它的文法表示，并定义一个解释器，这个解释器使用该标识来解释语言中的句子。</li>
+<li><strong>主要解决</strong>：对于一些固定文法构建一个解释句子的解释器。</li>
+<li><strong>何时使用</strong>：如果一种特定类型的问题发生的频率足够高，那么可能就值得将该问题的各个实例表述为一个简单语言中的句子。这样就可以构建一个解释器，该解释器通过解释这些句子来解决该问题。</li>
+<li><strong>如何解决</strong>：构建语法树，定义终结符与非终结符。</li>
+<li><strong>关键代码</strong>：构建环境类，包含解释器之外的一些全局信息，一般是HashMap。</li>
+<li><strong>应用实例</strong>：编译器、运算表达式计算。<h2 id="优缺点："><a href="#优缺点：" class="headerlink" title="优缺点："></a>优缺点：</h2></li>
+<li>优点：<ul>
+<li>1、可扩展性比较好，灵活。</li>
+<li>2、增加了新的解释表达式的方式。</li>
+<li>3、易于实现简单方法。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>1、可利用场景比较少。</li>
+<li>2、对于复杂的文法比较难维护。</li>
+<li>3、解释器模式会引起类膨胀。</li>
+<li>4、解释器模式采用地柜调用方法。</li>
+</ul>
+</li>
+<li>使用场景：<ul>
+<li>1、可以将一个需要解释执行的语言中的句子表示为一个抽象语法树。</li>
+<li>2、一些重复出现的问题可以用一种简单的语言来进行表达。</li>
+<li>3、一个简单语法需要解释的场景。<blockquote>
+<p><em><strong>注意事项：可利用场景比较少，JAVA中如果碰到可以用expression4J代替。</strong></em></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h2><blockquote>
+<p>我们将创建一个接口Expression和实现了Expression接口的实体类。定义作为上下文中主要解释器的TerminalExpression类。其他的类OrExpression、AndExpression用于创建组合式表达式。<br>InterpreterPatternDemo，我们的演示类使用Expression类创建规则和演示表达式的解析。</p>
+</blockquote>
+
+
+<ul>
+<li>步骤1：创建一个表达式接口：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Expression</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">interpret</span><span class="params">(String context)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>步骤2：创建实现了上述接口的实体类。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TerminalExpression</span> <span class="keyword">implements</span> <span class="title">Expression</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String data;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TerminalExpression</span><span class="params">(String data)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data=data;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">interpret</span><span class="params">(String context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(context.contains(data))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrExpression</span> <span class="keyword">implements</span> <span class="title">Expression</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Expression expr1 = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">private</span> Expression expr2 = <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">OrExpression</span><span class="params">(Expression expr1,Expression expr2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.expr1=expr1;</span><br><span class="line">        <span class="keyword">this</span>.expr2=expr2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">interpret</span><span class="params">(String context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> expr1.interpret(context)||expr2.interpret(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AndExpression</span> <span class="keyword">implements</span> <span class="title">Expression</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Expression expr1 = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">private</span> Expression expr2 = <span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AndExpression</span><span class="params">(Expression expr1,Expression expr2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.expr1=expr1;</span><br><span class="line">        <span class="keyword">this</span>.expr2=expr2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">interpret</span><span class="params">(String context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> expr1.interpret(context)&amp;&amp;expr2.interpret(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>步骤3 :InterpreterPatternDemo使用Expression类来创建规则，并解析他们。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterpreterPatternDemo</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//规则：robert和John是男性</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Expression <span class="title">getMaleExpression</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">        Expression robert = <span class="keyword">new</span> TerminalExpression(<span class="string">&quot;robert&quot;</span>);</span><br><span class="line">        Expression john = <span class="keyword">new</span> TerminalExpression(<span class="string">&quot;john&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> OrExpression(robert,john);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//规则：robert和John是男性</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Expression <span class="title">getMarriedWomanExpression</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Expression julie = <span class="keyword">new</span> TerminalExpression(<span class="string">&quot;julie&quot;</span>);</span><br><span class="line">        Expression married = <span class="keyword">new</span> TerminalExpression(<span class="string">&quot;Married&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> AndExpression(julie,married);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Expression isMale = getMaleExpression();</span><br><span class="line">        Expression isMarriedWoman = getMarriedWomanExpression();</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">&quot;john is male?&quot;</span>+isMale.interpret(<span class="string">&quot;john&quot;</span>));</span><br><span class="line">        System.out.println(<span class="string">&quot;Julie is a married women?&quot;</span>+isMarriedWoman.interpret(<span class="string">&quot;Married julie&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>步骤4：执行程序，输出结果：<blockquote>
+<p>John is male? true<br>Julie is a married women? true</p>
+</blockquote>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"># 设计模式</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/mellofly/12588.html" rel="prev" title="Java_正则表达式">
+                  <i class="fa fa-chevron-left"></i> Java_正则表达式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/mellofly/4657.html" rel="next" title="设计模式介绍">
+                  设计模式介绍 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mellofly</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shenpf.top","root":"/","images":"/images","scheme":"Muse","version":"8.2.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta property="og:type" content="website">
+<meta property="og:title" content="mellofly">
+<meta property="og:url" content="http://shenpf.top/page/2/index.html">
+<meta property="og:site_name" content="mellofly">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="mellofly">
+<meta property="article:tag" content="Java,博客,mellofly">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://shenpf.top/page/2/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>mellofly</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">mellofly</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mellofly"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">mellofly</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mellofly" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mellofly" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mellofly@outlook.com" title="E-Mail → mailto:mellofly@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shenpf.top/mellofly/8366.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="mellofly">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mellofly">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mellofly/8366.html" class="post-title-link" itemprop="url">Java-开发模式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-20 08:59:42" itemprop="dateCreated datePublished" datetime="2019-12-20T08:59:42+08:00">2019-12-20</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-01 10:04:35" itemprop="dateModified" datetime="2021-02-01T10:04:35+08:00">2021-02-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Java的三层架构分别为 <em><strong>表示层、业务逻辑层</strong></em> 和 <em><strong>数据持久层</strong></em> 。<br>表示层的主要架构模式为MVC(Model View Controller，模型-视图-控制器)，主要框架有：Spring MVC和Struts2。<br>业务逻辑层的主要框架有Spring。<br>数据持久层的主要框架有Mybatis和Hibernate。<br>常用的两种框架组合：<br>SSH：Struts2+Spring+Hibernate<br>SSM：Spring MVC+Spring+MyBatis</p>
+<p>传统的Java Web应用程序是采用JSP+Servlet+Javabean来实现的，这种模式实现了最基本的MVC分层，使的程序结构分为几层，有负责前台展示的 JSP、负责流程逻辑控制的Servlet以及负责数据封装的Javabean。但是这种结构仍然存在问题：如JSP页面中需要使用符号嵌入很多的 Java代码，造成页面结构混乱，Servlet和Javabean负责了大量的跳转和运算工作，耦合紧密，程序复用度低等等。为了解决这些问题，出现了Struts框架，它是一个完美的MVC实现，它有一个中央控制类(一个 Servlet)，针对不同的业务，我们需要一个Action类负责页面跳转和后台逻辑运算，一个或几个JSP页面负责数据的输入和输出显示，还有一个 Form类负责传递Action和JSP中间的数据。JSP中可以使用Struts框架提供的一组标签，就像使用HTML标签一样简单，但是可以完成非常复杂的逻辑。从此JSP页面中不需要出现一行包围的Java代码了。 可是所有的运算逻辑都放在Struts的Action里将使得 Action类复用度低和逻辑混乱，所以通常人们会把整个Web应用程序分为三层，Struts负责显示层，它调用业务层完成运算逻辑，业务层再调用持久层完成数据库的读写。 使用JDBC连接来读写数据库，我们最常见的就是打开数据库连接、使用复杂的SQL语句进行读写、关闭连接，获得的数据又需要转换或封装后往外传，这是一个非常烦琐的过程。<br>这时出现了 Hibernate框架，它需要你创建一系列的持久化类，每个类的属性都可以简单的看做和一张数据库表的属性一一对应，当然也可以实现关系数据库的各种表件关联的对应。当我们需要相关操作是，不用再关注数据库表。我们不用再去一行行的查询数据库，只需要持久化类就可以完成增删改查的功能。使我们的软件开发真正面向对象， 而不是面向混乱的代码。我的感受是，使用Hibernate比JDBC方式减少了80%的编程量。<br>现在我们有三个层了，可是每层之间的调用是怎样的呢?比如显示层的Struts需要调用一个业务类，就需要new一个业务类出来，然后使用;业务层需要调 用持久层的类，也需要new一个持久层类出来用。通过这种new的方式互相调用就是软件开发中最糟糕设计的体现。简单的说，就是调用者依赖被调用者，它们 之间形成了强耦合，如果我想在其他地方复用某个类，则这个类依赖的其他类也需要包含。程序就变得很混乱，每个类互相依赖互相调用，复用度极低。如果一个类 做了修改，则依赖它的很多类都会受到牵连。<br>为此，出现Spring框架。<br>Spring Spring的作用就是完全解耦类之间的依赖关系，一个类如果要依赖什么，那就是一个接口。至于如何实现这个接口，这都不重要了。只要拿到一个实现了这个接口的类，就可以轻松的通过xml配置文件把实现类注射到调用接口的那个类里。所有类之间的这种依赖关系就完全通过配置文件的方式替代了。所以 Spring框架最核心的就是所谓的依赖注射和控制反转。<br>现在的结构是，Struts负责显示层，Hibernate负责持久层，Spring负责中间的业务层，这个结构是目前国内最流行的Java Web应用程序架构了。<br>另外，由于Spring使用的依赖注射以及AOP(面向方面编程)，所以它的这种内部模式非常优秀，以至于Spring自己也实现了一个使用依赖注射的MVC框架，叫做Spring MVC，同时为了很好的处理事物，Spring集成了Hibernate，使事物管理从Hibernate的持久层提升到了业务层，使用更加方便和强大。 Struts框架是2000年就开始起步了，到目前已经发展了5年，技术相当成熟，目前全球Java开发中Struts框架是显示层技术中当之无愧的王者。它拥有大量的用户群和很好的开发团队。这也是国内大部分Java软件公司对新进员工的基本要求。 其他 Java这个名词似乎注定和开源紧密联系在一起了，在Java界，每天都有大量的开源技术出现，由于是开放源代码的，技术中存在的问题和不足很快就会被人发现，开源软件提供者会很快的修正或扩展这些技术，因此版本更新很快，几个星期或者几天就有一个新版本出来。 </p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shenpf.top/mellofly/33100.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="mellofly">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mellofly">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mellofly/33100.html" class="post-title-link" itemprop="url">外观模式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-20 08:59:42" itemprop="dateCreated datePublished" datetime="2019-12-20T08:59:42+08:00">2019-12-20</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-01 10:04:35" itemprop="dateModified" datetime="2021-02-01T10:04:35+08:00">2021-02-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote class="blockquote-center">
+<p>外观模式(Facade Pattern) 隐藏系统的复杂性，并向客户端提供了一个客户端可以访问系统的接口。这种类型的设计模式属于结构型模式，它向现有的系统添加一个接口，来隐藏系统的复杂性。<br>这种模式涉及到一个单一的类，该类提供了客户端请求的简化方法和对现有系统类方法的委托调用。</p>
+
+</blockquote>
+<blockquote class="blockquote-center">
+<p><strong>外观模式定义了一个将子系统的一组接口集成在一起的高层接口，以提供一个一致的界面。通过这个界面，其他系统可以方便地嗲用子系统中的功能，而忽略子系统内部发生的变化。</strong></p>
+
+</blockquote>
+
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。</li>
+<li><strong>主要解决：</strong> 降低访问复杂系统的内部子系统时的复杂度，简化客户端与之的接口。</li>
+<li><strong>何时使用：</strong> </li>
+</ul>
+<ol>
+<li>客户端不需要知道系统内部的复杂练习，整个系统只需提供一个“接待员”即可，</li>
+<li>定义系统的入口。</li>
+<li>为一个比较复杂的子系统提供一个简单的接口。</li>
+<li>将客户程序与子系统的实现部分分离，提高子系统的独立性和可移植性。</li>
+<li>简化子系统间的依赖关系。</li>
+</ol>
+<ul>
+<li><strong>如何解决：</strong> 客户端不予系统耦合，外观类与系统耦合。</li>
+<li><strong>关键代码：</strong> 在客户端和复杂系统之间再加一层，这一层将调用顺序、依赖关系等处理好。</li>
+<li><strong>应用实例：</strong> </li>
+</ul>
+<ol>
+<li>去医院看病，可能要去挂号、门诊、划价、取药，让患者或患者家属觉得很复杂，如果有提供接待人员，只让接待人员来处理，就很方便。</li>
+<li>java的三层开发模式。<a href="/mellofly/8366.html" title="Java-开发模式">Java-开发模式</a></li>
+</ol>
+<ul>
+<li><em><strong>优点：</strong></em> </li>
+</ul>
+<ol>
+<li>减少系统相互依赖。</li>
+<li>提高灵活性。</li>
+<li>提高安全性。</li>
+</ol>
+<ul>
+<li><em><strong>缺点：</strong></em> 不符合开闭原则，如果要改东西很麻烦，继承重写都不合适。</li>
+<li><strong>使用场景：</strong> </li>
+</ul>
+<ol>
+<li>为复杂的模块或子系统提供外界访问的模块。</li>
+<li>子系统相对独立。</li>
+<li>预防低水平人员带来的风险。</li>
+</ol>
+<ul>
+<li><em><strong>注意事项：</strong></em> 在层次结构中，可以使用外观模式定义系统中每一层的入口。<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>创建一个Shape接口和实现了Shape接口的实体类。下一步是定义一个外观类ShapeMaker。<br>ShapeMaker类使用实体类来代表用户对这些类的调用。FacadePatternDemo，我们演示类使用ShapeMaker类来显示结果。</p>
+</blockquote>
+
+<h2 id="步骤1：定义接口"><a href="#步骤1：定义接口" class="headerlink" title="步骤1：定义接口"></a>步骤1：定义接口</h2></li>
+</ul>
+<blockquote>
+<p>创建一个接口。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Shape.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="步骤2：实现接口"><a href="#步骤2：实现接口" class="headerlink" title="步骤2：实现接口"></a>步骤2：实现接口</h2><blockquote>
+<p>创建实现接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Rectangle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Rectangle::draw()&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Square.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Square::draw()&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Circle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Circle::draw()&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3："><a href="#步骤3：" class="headerlink" title="步骤3："></a>步骤3：</h2><blockquote>
+<p>创建一个外观类：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*ShapeMaker.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeMaker</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> Shape circle;</span><br><span class="line">   <span class="keyword">private</span> Shape rectangle;</span><br><span class="line">   <span class="keyword">private</span> Shape square;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">ShapeMaker</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      circle = <span class="keyword">new</span> Circle();</span><br><span class="line">      rectangle = <span class="keyword">new</span> Rectangle();</span><br><span class="line">      square = <span class="keyword">new</span> Square();</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawCircle</span><span class="params">()</span></span>&#123;</span><br><span class="line">      circle.draw();</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawRectangle</span><span class="params">()</span></span>&#123;</span><br><span class="line">      rectangle.draw();</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawSquare</span><span class="params">()</span></span>&#123;</span><br><span class="line">      square.draw();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4：调用外观类"><a href="#步骤4：调用外观类" class="headerlink" title="步骤4：调用外观类"></a>步骤4：调用外观类</h2><blockquote>
+<p>使用该外观类画出各种类型的形状。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*FacadePatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FacadePatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      ShapeMaker shapeMaker = <span class="keyword">new</span> ShapeMaker();</span><br><span class="line"> </span><br><span class="line">      shapeMaker.drawCircle();</span><br><span class="line">      shapeMaker.drawRectangle();</span><br><span class="line">      shapeMaker.drawSquare();      </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="步骤5："><a href="#步骤5：" class="headerlink" title="步骤5："></a>步骤5：</h2><blockquote>
+<p>执行程序，输出结果：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Circle::draw()</span><br><span class="line">Rectangle::draw()</span><br><span class="line">Square::draw()</span><br></pre></td></tr></table></figure>
+
+<blockquote class="blockquote-center">
+<ol>
+<li>在设计外观时，不需要增加额外的功能。</li>
+<li>不要从外观方法中返回子系统中的组件给客户。例如：有一个下面的方法：CreditCardgetCreditCard（）会报漏子系统的细节给客户。应用就不能从应用外观模式中取得最大的好处。</li>
+<li>应用外观的目的是提供一个高层次的接口。因此，外观方法最适合提供特定的高层次的业务服务，而不是进行底层次的单独的业务执行</li>
+</ol>
+
+</blockquote>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shenpf.top/mellofly/38966.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="mellofly">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mellofly">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mellofly/38966.html" class="post-title-link" itemprop="url">装饰器</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-19 21:03:18" itemprop="dateCreated datePublished" datetime="2019-12-19T21:03:18+08:00">2019-12-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-01 10:04:35" itemprop="dateModified" datetime="2021-02-01T10:04:35+08:00">2021-02-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote class="blockquote-center">
+<p>装饰器模式(Decorator Pattern)允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，他是作为现有的类的一个包装。<br>这种模式创建了一个装饰类，用来包装原有的类，并在保持类方法签名完整性的前提下，提供了额外的功能。<br>通过下面的实例来演示装饰器模式的用法。其中，我们将把一个形状装饰上不同的颜色，同时又不改变形状类。</p>
+
+</blockquote>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 动态地给一个对象添加一些额外的职责。新增加功能来说，装饰器模式相比生成子类更为灵活。</li>
+<li><strong>主要解决：</strong> 一般的，我们为了扩展一个类经常使用继承方式实现，由于继承为类引入静态特征，并且随着扩展功能的增多，子类会很膨胀。</li>
+<li><strong>何时使用：</strong> 在不想增加很多子类的情况下扩展类。</li>
+<li><strong>如何解决：</strong> 将具体功能职责划分，同时继承装饰者模式。</li>
+<li><strong>关键代码：</strong> </li>
+</ul>
+<ol>
+<li>Component类充当抽象角色，不应该具体实现。</li>
+<li>修饰类引用和继承Component类，具体扩展类重写父类方法。</li>
+</ol>
+<ul>
+<li><strong>应用实例：</strong> </li>
+</ul>
+<ol>
+<li>孙悟空有72变，当他变成“庙宇”后，他的根本还是一只猴子，但是他又有了庙宇的功能。</li>
+<li>不论一幅画有没有画框都可以挂在墙上，但是通常都是有画框的，并且实际上是画框被挂在墙上。在挂在墙上之前，画可以被蒙上玻璃，装到框子里；这时画、玻璃和护矿形成一个物体。</li>
+</ol>
+<ul>
+<li><em><strong>优点：</strong></em> 装饰类和被装饰类可以独立发展，不会互相耦合，装饰模式是继承的一个替代模式，装饰模式可以扩展一个实现类的功能。</li>
+<li><em><strong>缺点：</strong></em> 多层装饰比较复杂。</li>
+<li><strong>使用场景：</strong> </li>
+</ul>
+<ol>
+<li>扩展一个类的功能。</li>
+<li>动态增加功能，动态撤销。</li>
+</ol>
+<ul>
+<li><strong>注意事项：</strong> 可替代继承。</li>
+</ul>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们将创建一个Shape接口和实现了Shape接口的实体类。然后我们创建一个实现了Shape接口的抽象装饰类ShapeDecorator，并把Shape对象作为它的实例变量。<br>RedShapeDecorator是实现了ShapeDecorator的实体类。<br>DecoratorPatternDemo，我们的演示类使用RedShapeDecorator来装饰Shape对象。</p>
+</blockquote>
+
+
+<h2 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h2><blockquote>
+<p>创建一个接口：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Shape.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2："><a href="#步骤2：" class="headerlink" title="步骤2："></a>步骤2：</h2><blockquote>
+<p>创建实现接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Rectangle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Shape: Rectangle&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Circle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Shape: Circle&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="步骤3："><a href="#步骤3：" class="headerlink" title="步骤3："></a>步骤3：</h2><blockquote>
+<p>创建实现了Shape接口的抽象装饰类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*ShapeDecorator.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeDecorator</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">   <span class="keyword">protected</span> Shape decoratedShape;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">ShapeDecorator</span><span class="params">(Shape decoratedShape)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.decoratedShape = decoratedShape;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">      decoratedShape.draw();</span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4："><a href="#步骤4：" class="headerlink" title="步骤4："></a>步骤4：</h2><blockquote>
+<p>创建扩展了ShapeDecorator类的实体装饰类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*RedShapeDecorator.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedShapeDecorator</span> <span class="keyword">extends</span> <span class="title">ShapeDecorator</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">RedShapeDecorator</span><span class="params">(Shape decoratedShape)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>(decoratedShape);     </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      decoratedShape.draw();         </span><br><span class="line">      setRedBorder(decoratedShape);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setRedBorder</span><span class="params">(Shape decoratedShape)</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Border Color: Red&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤5："><a href="#步骤5：" class="headerlink" title="步骤5："></a>步骤5：</h2><blockquote>
+<p>使用RedShapeDecorator来装饰Shape对象。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*DecoratorPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DecoratorPatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">      Shape circle = <span class="keyword">new</span> Circle();</span><br><span class="line">      ShapeDecorator redCircle = <span class="keyword">new</span> RedShapeDecorator(<span class="keyword">new</span> Circle());</span><br><span class="line">      ShapeDecorator redRectangle = <span class="keyword">new</span> RedShapeDecorator(<span class="keyword">new</span> Rectangle());</span><br><span class="line">      <span class="comment">//Shape redCircle = new RedShapeDecorator(new Circle());</span></span><br><span class="line">      <span class="comment">//Shape redRectangle = new RedShapeDecorator(new Rectangle());</span></span><br><span class="line">      System.out.println(<span class="string">&quot;Circle with normal border&quot;</span>);</span><br><span class="line">      circle.draw();</span><br><span class="line"> </span><br><span class="line">      System.out.println(<span class="string">&quot;\nCircle of red border&quot;</span>);</span><br><span class="line">      redCircle.draw();</span><br><span class="line"> </span><br><span class="line">      System.out.println(<span class="string">&quot;\nRectangle of red border&quot;</span>);</span><br><span class="line">      redRectangle.draw();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤6："><a href="#步骤6：" class="headerlink" title="步骤6："></a>步骤6：</h2><blockquote>
+<p>执行程序，输出结果：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Circle with normal border</span><br><span class="line">Shape: Circle</span><br><span class="line"></span><br><span class="line">Circle of red border</span><br><span class="line">Shape: Circle</span><br><span class="line">Border Color: Red</span><br><span class="line"></span><br><span class="line">Rectangle of red border</span><br><span class="line">Shape: Rectangle</span><br><span class="line">Border Color: Red</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shenpf.top/mellofly/44993.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="mellofly">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mellofly">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mellofly/44993.html" class="post-title-link" itemprop="url">组合模式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-18 19:19:39" itemprop="dateCreated datePublished" datetime="2019-12-18T19:19:39+08:00">2019-12-18</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-01 10:04:35" itemprop="dateModified" datetime="2021-02-01T10:04:35+08:00">2021-02-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote class="blockquote-center">
+<p>组合模式(Composite Pattern),又叫部分整体模式，是用于把一族相似的对象当做一个单一的对象。组合模式依据树形结构来组合对象，用来表示部分以及整体层次。这种类型的设计模式属于结构型模式，它创建了对象组的树形结构。<br>组合模式，就是在一个对象中包含其他对象，这些被包含的对象可能是终点对象（不再包含别的对象），也有可能是非终点对象（其内部还包含其他对象，或叫组对象），我们将对象称为节点，即一个根节点包含许多子节点，这些子节点有的不再包含子节点，而有的仍然包含子节点<br>实例为：组织中员工的层次结构。</p>
+
+</blockquote>
+
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 将对象组合成树形结构以宝石“部分-整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。</li>
+<li><strong>主要解决：</strong> 它在我们树型结构的问题中，模糊了简单元素和复杂元素的概念，客户程序可以像处理复杂元素，从而使得客户程序与复杂元素的内部结构解耦。</li>
+<li><strong>何时使用：</strong> </li>
+</ul>
+<ol>
+<li>想表示对象的部分-整体层次结构(树形结构)。</li>
+<li>您希望用户忽略组合对象与单个对象的不同，用户将统一地使用组合结构中的所有对象。</li>
+</ol>
+<ul>
+<li><strong>如何解决：</strong> 树枝和叶子实现统一接口，树枝内部组合该接口。</li>
+<li><strong>关键代码：</strong> 树枝内部组合该接口，并且含有内部属性List，里面放Component。</li>
+<li><strong>应用实例：</strong> </li>
+</ul>
+<ol>
+<li>算数表达式包括操作数、操作符合另一个操作数，其中，另一个操作符也可以是操作数、操作符合另一个操作数。</li>
+<li>在Java awt和Swing中，对于Button和CheckBox是树叶，Container是树枝。</li>
+</ol>
+<ul>
+<li><em><strong>优点：</strong></em> </li>
+</ul>
+<ol>
+<li>高层模块调用简单</li>
+<li>节点自由增加。</li>
+</ol>
+<ul>
+<li><em><strong>缺点：</strong></em> 在使用组合模式时，其叶子和树枝的生命都是实现类，而不是接口，违反了依赖倒置原则。</li>
+<li><strong>使用场景：</strong> 部分、整体场景，如树形菜单，文件、文件夹的管理。</li>
+<li><strong>注意事项：</strong> 定义时为具体类。</li>
+</ul>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们有一个类Employee,该类被当做组合模型类。CompositePatternDemo，我们的演示类使用Employee类来添加部门层次结构，并打印所有员工。</p>
+</blockquote>
+
+
+<h2 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h2><blockquote>
+<p>创建Employee类，该类带有Employee对象的列表。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Employee.java*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> String name;</span><br><span class="line">   <span class="keyword">private</span> String dept;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> salary;</span><br><span class="line">   <span class="keyword">private</span> List&lt;Employee&gt; subordinates;</span><br><span class="line"> </span><br><span class="line">   <span class="comment">//构造函数</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">(String name,String dept, <span class="keyword">int</span> sal)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">      <span class="keyword">this</span>.dept = dept;</span><br><span class="line">      <span class="keyword">this</span>.salary = sal;</span><br><span class="line">      subordinates = <span class="keyword">new</span> ArrayList&lt;Employee&gt;();</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Employee e)</span> </span>&#123;</span><br><span class="line">      subordinates.add(e);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(Employee e)</span> </span>&#123;</span><br><span class="line">      subordinates.remove(e);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> List&lt;Employee&gt; <span class="title">getSubordinates</span><span class="params">()</span></span>&#123;</span><br><span class="line">     <span class="keyword">return</span> subordinates;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> (<span class="string">&quot;Employee :[ Name : &quot;</span>+ name </span><br><span class="line">      +<span class="string">&quot;, dept : &quot;</span>+ dept + <span class="string">&quot;, salary :&quot;</span></span><br><span class="line">      + salary+<span class="string">&quot; ]&quot;</span>);</span><br><span class="line">   &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="步骤2："><a href="#步骤2：" class="headerlink" title="步骤2："></a>步骤2：</h2><blockquote>
+<p>使用 Employee 类来创建和打印员工的层次结构。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*CompositePatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CompositePatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      Employee CEO = <span class="keyword">new</span> Employee(<span class="string">&quot;John&quot;</span>,<span class="string">&quot;CEO&quot;</span>, <span class="number">30000</span>);</span><br><span class="line"> </span><br><span class="line">      Employee headSales = <span class="keyword">new</span> Employee(<span class="string">&quot;Robert&quot;</span>,<span class="string">&quot;Head Sales&quot;</span>, <span class="number">20000</span>);</span><br><span class="line"> </span><br><span class="line">      Employee headMarketing = <span class="keyword">new</span> Employee(<span class="string">&quot;Michel&quot;</span>,<span class="string">&quot;Head Marketing&quot;</span>, <span class="number">20000</span>);</span><br><span class="line"> </span><br><span class="line">      Employee clerk1 = <span class="keyword">new</span> Employee(<span class="string">&quot;Laura&quot;</span>,<span class="string">&quot;Marketing&quot;</span>, <span class="number">10000</span>);</span><br><span class="line">      Employee clerk2 = <span class="keyword">new</span> Employee(<span class="string">&quot;Bob&quot;</span>,<span class="string">&quot;Marketing&quot;</span>, <span class="number">10000</span>);</span><br><span class="line"> </span><br><span class="line">      Employee salesExecutive1 = <span class="keyword">new</span> Employee(<span class="string">&quot;Richard&quot;</span>,<span class="string">&quot;Sales&quot;</span>, <span class="number">10000</span>);</span><br><span class="line">      Employee salesExecutive2 = <span class="keyword">new</span> Employee(<span class="string">&quot;Rob&quot;</span>,<span class="string">&quot;Sales&quot;</span>, <span class="number">10000</span>);</span><br><span class="line"> </span><br><span class="line">      CEO.add(headSales);</span><br><span class="line">      CEO.add(headMarketing);</span><br><span class="line"> </span><br><span class="line">      headSales.add(salesExecutive1);</span><br><span class="line">      headSales.add(salesExecutive2);</span><br><span class="line"> </span><br><span class="line">      headMarketing.add(clerk1);</span><br><span class="line">      headMarketing.add(clerk2);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//打印该组织的所有员工</span></span><br><span class="line">      System.out.println(CEO); </span><br><span class="line">      <span class="keyword">for</span> (Employee headEmployee : CEO.getSubordinates()) &#123;</span><br><span class="line">         System.out.println(headEmployee);</span><br><span class="line">         <span class="keyword">for</span> (Employee employee : headEmployee.getSubordinates()) &#123;</span><br><span class="line">            System.out.println(employee);</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;        </span><br><span class="line">   &#125;          </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="步骤-3"><a href="#步骤-3" class="headerlink" title="步骤 3"></a>步骤 3</h2><blockquote>
+<p>执行程序，输出结果为：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Employee :[ Name : John, dept : CEO, salary :<span class="number">30000</span> ]</span><br><span class="line">Employee :[ Name : Robert, dept : Head Sales, salary :<span class="number">20000</span> ]</span><br><span class="line">Employee :[ Name : Richard, dept : Sales, salary :<span class="number">10000</span> ]</span><br><span class="line">Employee :[ Name : Rob, dept : Sales, salary :<span class="number">10000</span> ]</span><br><span class="line">Employee :[ Name : Michel, dept : Head Marketing, salary :<span class="number">20000</span> ]</span><br><span class="line">Employee :[ Name : Laura, dept : Marketing, salary :<span class="number">10000</span> ]</span><br><span class="line">Employee :[ Name : Bob, dept : Marketing, salary :<span class="number">10000</span> ]</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shenpf.top/mellofly/6526.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="mellofly">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mellofly">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mellofly/6526.html" class="post-title-link" itemprop="url">过滤器模式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-16 16:54:29" itemprop="dateCreated datePublished" datetime="2019-12-16T16:54:29+08:00">2019-12-16</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-01 10:04:35" itemprop="dateModified" datetime="2021-02-01T10:04:35+08:00">2021-02-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote class="blockquote-center">
+<p>过滤器模式(Filter Pattern)或标准器模式(Criteria Pattern) 是一种设计模式，这种模式允许开发人员使用不同的标准来过滤一组对象，通过逻辑运算以解耦的方式把他们连接起来。这种类型的设计模式属于结构型模式，它结合多个标准来获得单一标准。</p>
+
+</blockquote>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现:"></a>实现:</h1><blockquote>
+<p>我们将创建一个Person对象、Criteria接口和实现了该接口的实体类，来过滤Person对象的列表。CriteriaPatternDemo，我们的演示类使用Criteria对象，基于各种标准和他们结合来过滤Person对象的列表。</p>
+</blockquote>
+
+
+<h2 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h2><blockquote>
+<p>创建一个类，在该类上应用标准。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Person.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">private</span> String name;</span><br><span class="line">   <span class="keyword">private</span> String gender;</span><br><span class="line">   <span class="keyword">private</span> String maritalStatus;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name,String gender,String maritalStatus)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">      <span class="keyword">this</span>.gender = gender;</span><br><span class="line">      <span class="keyword">this</span>.maritalStatus = maritalStatus;    </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> name;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getGender</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> gender;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getMaritalStatus</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> maritalStatus;</span><br><span class="line">   &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2："><a href="#步骤2：" class="headerlink" title="步骤2："></a>步骤2：</h2><blockquote>
+<p>为标准(Criteria)创建一个接口。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Criteria.java*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Criteria</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> List&lt;Person&gt; <span class="title">meetCriteria</span><span class="params">(List&lt;Person&gt; persons)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3："><a href="#步骤3：" class="headerlink" title="步骤3："></a>步骤3：</h2><blockquote>
+<p>创建实现了Criteria接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*CriteriaMale.java*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CriteriaMale</span> <span class="keyword">implements</span> <span class="title">Criteria</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> List&lt;Person&gt; <span class="title">meetCriteria</span><span class="params">(List&lt;Person&gt; persons)</span> </span>&#123;</span><br><span class="line">      List&lt;Person&gt; malePersons = <span class="keyword">new</span> ArrayList&lt;Person&gt;(); </span><br><span class="line">      <span class="keyword">for</span> (Person person : persons) &#123;</span><br><span class="line">         <span class="keyword">if</span>(person.getGender().equalsIgnoreCase(<span class="string">&quot;MALE&quot;</span>))&#123;</span><br><span class="line">            malePersons.add(person);</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> malePersons;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*CriteriaFemale.java*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CriteriaFemale</span> <span class="keyword">implements</span> <span class="title">Criteria</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> List&lt;Person&gt; <span class="title">meetCriteria</span><span class="params">(List&lt;Person&gt; persons)</span> </span>&#123;</span><br><span class="line">      List&lt;Person&gt; femalePersons = <span class="keyword">new</span> ArrayList&lt;Person&gt;(); </span><br><span class="line">      <span class="keyword">for</span> (Person person : persons) &#123;</span><br><span class="line">         <span class="keyword">if</span>(person.getGender().equalsIgnoreCase(<span class="string">&quot;FEMALE&quot;</span>))&#123;</span><br><span class="line">            femalePersons.add(person);</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> femalePersons;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*CriteriaSingle.java*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CriteriaSingle</span> <span class="keyword">implements</span> <span class="title">Criteria</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> List&lt;Person&gt; <span class="title">meetCriteria</span><span class="params">(List&lt;Person&gt; persons)</span> </span>&#123;</span><br><span class="line">      List&lt;Person&gt; singlePersons = <span class="keyword">new</span> ArrayList&lt;Person&gt;(); </span><br><span class="line">      <span class="keyword">for</span> (Person person : persons) &#123;</span><br><span class="line">         <span class="keyword">if</span>(person.getMaritalStatus().equalsIgnoreCase(<span class="string">&quot;SINGLE&quot;</span>))&#123;</span><br><span class="line">            singlePersons.add(person);</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> singlePersons;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*AndCriteria.java*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AndCriteria</span> <span class="keyword">implements</span> <span class="title">Criteria</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> Criteria criteria;</span><br><span class="line">   <span class="keyword">private</span> Criteria otherCriteria;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">AndCriteria</span><span class="params">(Criteria criteria, Criteria otherCriteria)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.criteria = criteria;</span><br><span class="line">      <span class="keyword">this</span>.otherCriteria = otherCriteria; </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> List&lt;Person&gt; <span class="title">meetCriteria</span><span class="params">(List&lt;Person&gt; persons)</span> </span>&#123;</span><br><span class="line">      List&lt;Person&gt; firstCriteriaPersons = criteria.meetCriteria(persons);     </span><br><span class="line">      <span class="keyword">return</span> otherCriteria.meetCriteria(firstCriteriaPersons);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*OrCriteria.java*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrCriteria</span> <span class="keyword">implements</span> <span class="title">Criteria</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> Criteria criteria;</span><br><span class="line">   <span class="keyword">private</span> Criteria otherCriteria;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">OrCriteria</span><span class="params">(Criteria criteria, Criteria otherCriteria)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.criteria = criteria;</span><br><span class="line">      <span class="keyword">this</span>.otherCriteria = otherCriteria; </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> List&lt;Person&gt; <span class="title">meetCriteria</span><span class="params">(List&lt;Person&gt; persons)</span> </span>&#123;</span><br><span class="line">      List&lt;Person&gt; firstCriteriaItems = criteria.meetCriteria(persons);</span><br><span class="line">      List&lt;Person&gt; otherCriteriaItems = otherCriteria.meetCriteria(persons);</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">for</span> (Person person : otherCriteriaItems) &#123;</span><br><span class="line">         <span class="keyword">if</span>(!firstCriteriaItems.contains(person))&#123;</span><br><span class="line">           firstCriteriaItems.add(person);</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;  </span><br><span class="line">      <span class="keyword">return</span> firstCriteriaItems;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4："><a href="#步骤4：" class="headerlink" title="步骤4："></a>步骤4：</h2><blockquote>
+<p>使用不同的标准（Criteria）和它们的结合来过滤 Person 对象的列表。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*CriteriaPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList; </span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CriteriaPatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      List&lt;Person&gt; persons = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br><span class="line"> </span><br><span class="line">      persons.add(<span class="keyword">new</span> Person(<span class="string">&quot;Robert&quot;</span>,<span class="string">&quot;Male&quot;</span>, <span class="string">&quot;Single&quot;</span>));</span><br><span class="line">      persons.add(<span class="keyword">new</span> Person(<span class="string">&quot;John&quot;</span>,<span class="string">&quot;Male&quot;</span>, <span class="string">&quot;Married&quot;</span>));</span><br><span class="line">      persons.add(<span class="keyword">new</span> Person(<span class="string">&quot;Laura&quot;</span>,<span class="string">&quot;Female&quot;</span>, <span class="string">&quot;Married&quot;</span>));</span><br><span class="line">      persons.add(<span class="keyword">new</span> Person(<span class="string">&quot;Diana&quot;</span>,<span class="string">&quot;Female&quot;</span>, <span class="string">&quot;Single&quot;</span>));</span><br><span class="line">      persons.add(<span class="keyword">new</span> Person(<span class="string">&quot;Mike&quot;</span>,<span class="string">&quot;Male&quot;</span>, <span class="string">&quot;Single&quot;</span>));</span><br><span class="line">      persons.add(<span class="keyword">new</span> Person(<span class="string">&quot;Bobby&quot;</span>,<span class="string">&quot;Male&quot;</span>, <span class="string">&quot;Single&quot;</span>));</span><br><span class="line"> </span><br><span class="line">      Criteria male = <span class="keyword">new</span> CriteriaMale();</span><br><span class="line">      Criteria female = <span class="keyword">new</span> CriteriaFemale();</span><br><span class="line">      Criteria single = <span class="keyword">new</span> CriteriaSingle();</span><br><span class="line">      Criteria singleMale = <span class="keyword">new</span> AndCriteria(single, male);</span><br><span class="line">      Criteria singleOrFemale = <span class="keyword">new</span> OrCriteria(single, female);</span><br><span class="line"> </span><br><span class="line">      System.out.println(<span class="string">&quot;Males: &quot;</span>);</span><br><span class="line">      printPersons(male.meetCriteria(persons));</span><br><span class="line"> </span><br><span class="line">      System.out.println(<span class="string">&quot;\nFemales: &quot;</span>);</span><br><span class="line">      printPersons(female.meetCriteria(persons));</span><br><span class="line"> </span><br><span class="line">      System.out.println(<span class="string">&quot;\nSingle Males: &quot;</span>);</span><br><span class="line">      printPersons(singleMale.meetCriteria(persons));</span><br><span class="line"> </span><br><span class="line">      System.out.println(<span class="string">&quot;\nSingle Or Females: &quot;</span>);</span><br><span class="line">      printPersons(singleOrFemale.meetCriteria(persons));</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printPersons</span><span class="params">(List&lt;Person&gt; persons)</span></span>&#123;</span><br><span class="line">      <span class="keyword">for</span> (Person person : persons) &#123;</span><br><span class="line">         System.out.println(<span class="string">&quot;Person : [ Name : &quot;</span> + person.getName() </span><br><span class="line">            +<span class="string">&quot;, Gender : &quot;</span> + person.getGender() </span><br><span class="line">            +<span class="string">&quot;, Marital Status : &quot;</span> + person.getMaritalStatus()</span><br><span class="line">            +<span class="string">&quot; ]&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;      </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="步骤5："><a href="#步骤5：" class="headerlink" title="步骤5："></a>步骤5：</h2><blockquote>
+<p>执行程序，输出结果</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Males: </span><br><span class="line">Person : [ Name : Robert, Gender : Male, Marital Status : Single ]</span><br><span class="line">Person : [ Name : John, Gender : Male, Marital Status : Married ]</span><br><span class="line">Person : [ Name : Mike, Gender : Male, Marital Status : Single ]</span><br><span class="line">Person : [ Name : Bobby, Gender : Male, Marital Status : Single ]</span><br><span class="line"></span><br><span class="line">Females: </span><br><span class="line">Person : [ Name : Laura, Gender : Female, Marital Status : Married ]</span><br><span class="line">Person : [ Name : Diana, Gender : Female, Marital Status : Single ]</span><br><span class="line"></span><br><span class="line">Single Males: </span><br><span class="line">Person : [ Name : Robert, Gender : Male, Marital Status : Single ]</span><br><span class="line">Person : [ Name : Mike, Gender : Male, Marital Status : Single ]</span><br><span class="line">Person : [ Name : Bobby, Gender : Male, Marital Status : Single ]</span><br><span class="line"></span><br><span class="line">Single Or Females: </span><br><span class="line">Person : [ Name : Robert, Gender : Male, Marital Status : Single ]</span><br><span class="line">Person : [ Name : Diana, Gender : Female, Marital Status : Single ]</span><br><span class="line">Person : [ Name : Mike, Gender : Male, Marital Status : Single ]</span><br><span class="line">Person : [ Name : Bobby, Gender : Male, Marital Status : Single ]</span><br><span class="line">Person : [ Name : Laura, Gender : Female, Marital Status : Married ]</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shenpf.top/mellofly/43376.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="mellofly">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mellofly">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mellofly/43376.html" class="post-title-link" itemprop="url">桥接模式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-13 14:39:18" itemprop="dateCreated datePublished" datetime="2019-12-13T14:39:18+08:00">2019-12-13</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-01 10:04:35" itemprop="dateModified" datetime="2021-02-01T10:04:35+08:00">2021-02-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote class="blockquote-center">
+<ol>
+<li>桥接(Bridge) 是用于把抽象化与实现化解耦，使得二者可以独立变化。这种类型的设计模式属于结构型模式，他通过提供抽象化和实现化之间的桥接结构，来实现二者的解耦。  </li>
+<li>这种模式涉及到一个座位桥接的接口，使得实体类的功能独立于接口实现类。这两种类型的类可被结构化改变而互不影响。  </li>
+<li>下面使用实例来演示桥接模式(Bridge Pattern)的用法。其中，可以使用相同的抽象类方法但是不同的桥接实现类，来画出不同颜色的圆。</li>
+</ol>
+
+</blockquote>
+
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 将抽象部分与实际部分分离，使他们都可以独立的变化。</li>
+<li><strong>主要解决：</strong> 在有多种可能会变化的情况下，用继承会造成类爆炸问题，扩展起来不灵活。</li>
+<li><strong>何时使用：</strong> 实现系统可能有多个角度分类，每一种角度都可能变化。</li>
+<li><strong>如何解决：</strong> 把这种多角度分类分离出来，让他们独立变化，减少他们之间耦合。</li>
+<li><strong>关键代码：</strong> 抽象类依赖实现类。</li>
+<li><strong>应用实例：</strong> </li>
+</ul>
+<ol>
+<li>猪八戒从天蓬元帅转世投胎到猪，转世投胎的机制将尘世划分为两个等级，即：灵魂和肉体，前者相当于抽象化，后者相当于实现化。生灵通过功能的委派，调用肉体对象的功能，使得生灵可以动态地选择。 </li>
+<li>墙上的开关，可以看到的开关是抽象的，不用管里面具体怎么实现的。</li>
+</ol>
+<ul>
+<li><em><strong>优点：</strong></em> </li>
+</ul>
+<ol>
+<li>抽象和实现的分离。</li>
+<li>优秀的扩展能力。</li>
+<li>实现细节对客户透明。</li>
+</ol>
+<ul>
+<li><em><strong>缺点：</strong></em> 桥接模式的引入会增加系统的理解与设计难度，由于聚合关联关系建立在抽象层，要求开发者针对抽象进行设计与编程。</li>
+<li><strong>使用场景：</strong> </li>
+</ul>
+<ol>
+<li>如果一个系统需要在构件的抽象化角色和具体化角色之间增加更多的灵活性，避免在两个层次之间建立静态的继承联系，通过桥接模式可以使它们在抽象层建立一个关联关系。 </li>
+<li>对于那些不希望使用继承或因为多层次继承导致系统类的个数急剧增加的系统，桥接模式尤为适用。 </li>
+<li>一个类存在两个独立变化的维度，且这两个维度都需要进行扩展。</li>
+</ol>
+<ul>
+<li><em><strong>注意事项：</strong></em> 对于两个独立变化的维度，使用桥接模式再适合不过了。</li>
+</ul>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote class="blockquote-center">
+<p>我们有一个作为桥接实现的 DrawAPI 接口和实现了 DrawAPI 接口的实体类 RedCircle、GreenCircle。Shape 是一个抽象类，将使用 DrawAPI 的对象。BridgePatternDemo，我们的演示类使用 Shape 类来画出不同颜色的圆。</p>
+
+</blockquote>
+
+<h2 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h2><blockquote>
+<p>创建桥接实现接口。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*DrawAPI.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">DrawAPI</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawCircle</span><span class="params">(<span class="keyword">int</span> radius, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2："><a href="#步骤2：" class="headerlink" title="步骤2："></a>步骤2：</h2><blockquote>
+<p>创建实现了DrawAPI接口的实体桥接实现类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*RedCircle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedCircle</span> <span class="keyword">implements</span> <span class="title">DrawAPI</span> </span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawCircle</span><span class="params">(<span class="keyword">int</span> radius, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Drawing Circle[ color: red, radius: &quot;</span></span><br><span class="line">         + radius +<span class="string">&quot;, x: &quot;</span> +x+<span class="string">&quot;, &quot;</span>+ y +<span class="string">&quot;]&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*GreenCircle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GreenCircle</span> <span class="keyword">implements</span> <span class="title">DrawAPI</span> </span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawCircle</span><span class="params">(<span class="keyword">int</span> radius, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Drawing Circle[ color: green, radius: &quot;</span></span><br><span class="line">         + radius +<span class="string">&quot;, x: &quot;</span> +x+<span class="string">&quot;, &quot;</span>+ y +<span class="string">&quot;]&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3："><a href="#步骤3：" class="headerlink" title="步骤3："></a>步骤3：</h2><blockquote>
+<p>使用DrawAPI接口创建抽象类Shape。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Shape.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">   <span class="keyword">protected</span> DrawAPI drawAPI;</span><br><span class="line">   <span class="function"><span class="keyword">protected</span> <span class="title">Shape</span><span class="params">(DrawAPI drawAPI)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.drawAPI = drawAPI;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4："><a href="#步骤4：" class="headerlink" title="步骤4："></a>步骤4：</h2><blockquote>
+<p>创建实现了Shape接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Circle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> x, y, radius;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Circle</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> radius, DrawAPI drawAPI)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">super</span>(drawAPI);</span><br><span class="line">      <span class="keyword">this</span>.x = x;  </span><br><span class="line">      <span class="keyword">this</span>.y = y;  </span><br><span class="line">      <span class="keyword">this</span>.radius = radius;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      drawAPI.drawCircle(radius,x,y);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤5："><a href="#步骤5：" class="headerlink" title="步骤5："></a>步骤5：</h2><blockquote>
+<p>使用Shape和DrawAPI类画出不同颜色的圆。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*BridgePatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BridgePatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      Shape redCircle = <span class="keyword">new</span> Circle(<span class="number">100</span>,<span class="number">100</span>, <span class="number">10</span>, <span class="keyword">new</span> RedCircle());</span><br><span class="line">      Shape greenCircle = <span class="keyword">new</span> Circle(<span class="number">100</span>,<span class="number">100</span>, <span class="number">10</span>, <span class="keyword">new</span> GreenCircle());</span><br><span class="line"> </span><br><span class="line">      redCircle.draw();</span><br><span class="line">      greenCircle.draw();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤6："><a href="#步骤6：" class="headerlink" title="步骤6："></a>步骤6：</h2><blockquote>
+<p>执行程序，输出结果。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Drawing Circle[ color: red, radius: <span class="number">10</span>, x: <span class="number">100</span>, <span class="number">100</span>]</span><br><span class="line">Drawing Circle[  color: green, radius: <span class="number">10</span>, x: <span class="number">100</span>, <span class="number">100</span>]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote class="blockquote-center">
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/bridge-pattern2.html">https://www.runoob.com/w3cnote/bridge-pattern2.html</a></p>
+
+</blockquote>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shenpf.top/mellofly/39554.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="mellofly">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mellofly">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mellofly/39554.html" class="post-title-link" itemprop="url">适配器模式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-12 19:51:27" itemprop="dateCreated datePublished" datetime="2019-12-12T19:51:27+08:00">2019-12-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-01 10:04:35" itemprop="dateModified" datetime="2021-02-01T10:04:35+08:00">2021-02-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<ol>
+<li>适配器模式(Adapter Pattern)是作为两个不兼容的接口之间的桥梁。这种类型的设计模式属于结构型模式，它结合了两个独立接口的功能。  </li>
+<li>这种模式涉及到一个单一的类，该类负责加入独立的或不兼容的接口功能。举个真实的例子，读卡器是作为内存卡和笔记本之间的适配器。您将内存卡插入读卡器，再讲读卡器插入笔记本，这样就可以通过笔记本本来读取内存卡。  </li>
+<li>下面通过具体事例来演示适配器模式的使用。其中，音频播放器设备只能播放MP3文件，通过使用一个更高级的音频播放器来播放VLC和MP4文件。</li>
+</ol>
+</blockquote>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。</li>
+<li><strong>主要解决：</strong> 主要解决在软件系统中，常常要将一些“现存的对象”放到新的环境中，而新环境要求的接口是现对象不能满足的。</li>
+<li><strong>何时使用：</strong> </li>
+</ul>
+<ol>
+<li>系统需要使用现有的类，而此类的接口不符合系统的需要。</li>
+<li>想要建立一个可以重复使用的类，用于与一些批次之间没有太大关联的一些类，包括一些可能在将来引进的类一起工作，这些袁磊不一定有一致的接口。</li>
+<li>通过接口转换，将一个类插入到另一个类系中。(比如老虎和飞禽，现在多了一个飞虎，在不增加实体的需求下，增加一个适配器，在里面包容一个虎对象，实现非的接口。)</li>
+</ol>
+<ul>
+<li><strong>如何解决：</strong> 继承或依赖(推荐)</li>
+<li><strong>关键代码：</strong> 适配器继承或依赖已有的对象，实现想要的目标接口。</li>
+<li><strong>应用实例：</strong> </li>
+</ul>
+<ol>
+<li>美国电气110V,中国220V，就要有一个适配器将110V转化为220V。</li>
+<li>JAVA JDK1.1提供了Enumeration接口，而在1.2中提供了Iterator接口，想要使用1.2的JDK，则要将以前系统的Enumeration接口转化为Iterator接口，这时就需要适配器模式。</li>
+<li>在LINUX上运行WINDOWS程序。</li>
+<li>JAVA中的jdbc。</li>
+</ol>
+<ul>
+<li><em><strong>优点：</strong></em> </li>
+</ul>
+<ol>
+<li>可以让任何两个没有关联的类一起运行。</li>
+<li>提高了类的复用。</li>
+<li>增加了类的透明度。</li>
+<li>灵活性好。</li>
+</ol>
+<ul>
+<li><em><strong>缺点：</strong></em></li>
+</ul>
+<ol>
+<li>过多的使用适配器，会让系统非常零乱，不易整体进行把握。比如：明明看到调用的是A接口，其实内部被适配成了B接口的实现，一个系统如果太多出现这种情况，无异于一场灾难。因此如果不是很有必要，可以不适用适配器，而是直接对系统进行重构。</li>
+<li>由于JAVA至多继承一个类，所以至多只能适配一个适配者类，而且目标类必须是抽象类。</li>
+</ol>
+<ul>
+<li><strong>使用场景：</strong> 有动机的修改一个正常运行的系统接口，这时应该考虑使用适配器模式。</li>
+<li><strong>注意事项：</strong> 适配器不是在详细设计时添加的，而是解决正在服役的项目的问题。</li>
+</ul>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们有一个MediaPlayer接口和一个实现了MediaPlayer接口的实体类AudioPlayer。默认情况下，AudioPlayer可以播放MP3格式的音频文件。<br>我们还有另外一个接口AdvancedMediaPlayer和实现了AdvancedMediaPlayer接口的实体类。该类可以播放VLC和MP4格式的文件。<br>我们想要让AudioPlayer播放其他格式的音频文件。为了实现这个功能，我们需要创建一个实现了MediaPlayer接口的适配器类MediaAdapter.<br>并使用AdvancedMediaPlayer对象来播放所需的格式。  </p>
+</blockquote>
+
+
+<h2 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h2><blockquote>
+<p>为媒体播放器和更高级的媒体播放器创建接口。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*MediaPlayer.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MediaPlayer</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">(String audioType, String fileName)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*AdvancedMediaPlayer.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AdvancedMediaPlayer</span> </span>&#123; </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playVlc</span><span class="params">(String fileName)</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playMp4</span><span class="params">(String fileName)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2："><a href="#步骤2：" class="headerlink" title="步骤2："></a>步骤2：</h2><blockquote>
+<p>创建实现了AdvancedMediaPlayer接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*VlcPlayer.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VlcPlayer</span> <span class="keyword">implements</span> <span class="title">AdvancedMediaPlayer</span></span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playVlc</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Playing vlc file. Name: &quot;</span>+ fileName);      </span><br><span class="line">   &#125;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playMp4</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">      <span class="comment">//什么也不做</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Mp4Player.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mp4Player</span> <span class="keyword">implements</span> <span class="title">AdvancedMediaPlayer</span></span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playVlc</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">      <span class="comment">//什么也不做</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playMp4</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Playing mp4 file. Name: &quot;</span>+ fileName);      </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3："><a href="#步骤3：" class="headerlink" title="步骤3："></a>步骤3：</h2><blockquote>
+<p>创建实现了MediaPlayer接口的适配器类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*MediaAdapter.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MediaAdapter</span> <span class="keyword">implements</span> <span class="title">MediaPlayer</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   AdvancedMediaPlayer advancedMusicPlayer;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">MediaAdapter</span><span class="params">(String audioType)</span></span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(audioType.equalsIgnoreCase(<span class="string">&quot;vlc&quot;</span>) )&#123;</span><br><span class="line">         advancedMusicPlayer = <span class="keyword">new</span> VlcPlayer();       </span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (audioType.equalsIgnoreCase(<span class="string">&quot;mp4&quot;</span>))&#123;</span><br><span class="line">         advancedMusicPlayer = <span class="keyword">new</span> Mp4Player();</span><br><span class="line">      &#125;  </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">(String audioType, String fileName)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(audioType.equalsIgnoreCase(<span class="string">&quot;vlc&quot;</span>))&#123;</span><br><span class="line">         advancedMusicPlayer.playVlc(fileName);</span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(audioType.equalsIgnoreCase(<span class="string">&quot;mp4&quot;</span>))&#123;</span><br><span class="line">         advancedMusicPlayer.playMp4(fileName);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4："><a href="#步骤4：" class="headerlink" title="步骤4："></a>步骤4：</h2><blockquote>
+<p>创建实现了MediaPlayer接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*AudioPlayer.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AudioPlayer</span> <span class="keyword">implements</span> <span class="title">MediaPlayer</span> </span>&#123;</span><br><span class="line">   MediaAdapter mediaAdapter; </span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">(String audioType, String fileName)</span> </span>&#123;    </span><br><span class="line"> </span><br><span class="line">      <span class="comment">//播放 mp3 音乐文件的内置支持</span></span><br><span class="line">      <span class="keyword">if</span>(audioType.equalsIgnoreCase(<span class="string">&quot;mp3&quot;</span>))&#123;</span><br><span class="line">         System.out.println(<span class="string">&quot;Playing mp3 file. Name: &quot;</span>+ fileName);         </span><br><span class="line">      &#125; </span><br><span class="line">      <span class="comment">//mediaAdapter 提供了播放其他文件格式的支持</span></span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span>(audioType.equalsIgnoreCase(<span class="string">&quot;vlc&quot;</span>) </span><br><span class="line">         || audioType.equalsIgnoreCase(<span class="string">&quot;mp4&quot;</span>))&#123;</span><br><span class="line">         mediaAdapter = <span class="keyword">new</span> MediaAdapter(audioType);</span><br><span class="line">         mediaAdapter.play(audioType, fileName);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span>&#123;</span><br><span class="line">         System.out.println(<span class="string">&quot;Invalid media. &quot;</span>+</span><br><span class="line">            audioType + <span class="string">&quot; format not supported&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤5："><a href="#步骤5：" class="headerlink" title="步骤5："></a>步骤5：</h2><blockquote>
+<p>使用 AudioPlayer 来播放不同类型的音频格式。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*AdapterPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AdapterPatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      AudioPlayer audioPlayer = <span class="keyword">new</span> AudioPlayer();</span><br><span class="line">      audioPlayer.play(<span class="string">&quot;mp3&quot;</span>, <span class="string">&quot;beyond the horizon.mp3&quot;</span>);</span><br><span class="line">      audioPlayer.play(<span class="string">&quot;mp4&quot;</span>, <span class="string">&quot;alone.mp4&quot;</span>);</span><br><span class="line">      audioPlayer.play(<span class="string">&quot;vlc&quot;</span>, <span class="string">&quot;far far away.vlc&quot;</span>);</span><br><span class="line">      audioPlayer.play(<span class="string">&quot;avi&quot;</span>, <span class="string">&quot;mind me.avi&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤6："><a href="#步骤6：" class="headerlink" title="步骤6："></a>步骤6：</h2><blockquote>
+<p>执行程序，输出结果</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Playing mp3 file. Name: beyond the horizon.mp3</span><br><span class="line">Playing mp4 file. Name: alone.mp4</span><br><span class="line">Playing vlc file. Name: far far away.vlc</span><br><span class="line">Invalid media. avi format not supported</span><br></pre></td></tr></table></figure>
+<h1 id="读取SD卡实例："><a href="#读取SD卡实例：" class="headerlink" title="读取SD卡实例："></a>读取SD卡实例：</h1><h2 id="一、模拟计算机读取SD卡："><a href="#一、模拟计算机读取SD卡：" class="headerlink" title="一、模拟计算机读取SD卡："></a>一、模拟计算机读取SD卡：</h2><ol>
+<li>先创建一个SD卡的接口：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SDCard</span> </span>&#123;</span><br><span class="line">    <span class="comment">//读取SD卡方法</span></span><br><span class="line">    <span class="function">String <span class="title">readSD</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//写入SD卡功能</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">writeSD</span><span class="params">(String msg)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>创建SD卡接口的实现类，模拟SD卡的功能：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SDCardImpl</span> <span class="keyword">implements</span> <span class="title">SDCard</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readSD</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String msg = <span class="string">&quot;sdcard read a msg :hello word SD&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> msg;  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">writeSD</span><span class="params">(String msg)</span> </span>&#123;      </span><br><span class="line">        System.out.println(<span class="string">&quot;sd card write msg : &quot;</span> + msg);    </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>创建计算机接口，计算机提供读取SD卡方法：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Computer</span> </span>&#123;    </span><br><span class="line">    <span class="function">String <span class="title">readSD</span><span class="params">(SDCard sdCard)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>创建一个计算机实例，实现计算机接口，并实现其读取SD卡方法：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThinkpadComputer</span> <span class="keyword">implements</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readSD</span><span class="params">(SDCard sdCard)</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">if</span>(sdCard == <span class="keyword">null</span>)<span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;sd card null&quot;</span>);        </span><br><span class="line">        <span class="keyword">return</span> sdCard.readSD();    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>这时候就可以模拟计算机读取SD卡功能：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputerReadDemo</span> </span>&#123;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;        </span><br><span class="line">        Computer computer = <span class="keyword">new</span> ThinkpadComputer();        </span><br><span class="line">        SDCard sdCard = <span class="keyword">new</span> SDCardImpl();       </span><br><span class="line">        System.out.println(computer.readSD(sdCard));    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="二、接下来在不改变计算机读取SD卡接口的情况下，通过适配器模式读取TF卡："><a href="#二、接下来在不改变计算机读取SD卡接口的情况下，通过适配器模式读取TF卡：" class="headerlink" title="二、接下来在不改变计算机读取SD卡接口的情况下，通过适配器模式读取TF卡："></a>二、接下来在不改变计算机读取SD卡接口的情况下，通过适配器模式读取TF卡：</h2><ol>
+<li>创建TF卡接口：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TFCard</span> </span>&#123;    </span><br><span class="line">    <span class="function">String <span class="title">readTF</span><span class="params">()</span></span>;    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">writeTF</span><span class="params">(String msg)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>创建TF卡实例：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TFCardImpl</span> <span class="keyword">implements</span> <span class="title">TFCard</span> </span>&#123;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readTF</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        String msg =<span class="string">&quot;tf card reade msg : hello word tf card&quot;</span>;        </span><br><span class="line">        <span class="keyword">return</span> msg;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">writeTF</span><span class="params">(String msg)</span> </span>&#123;        </span><br><span class="line">        System.out.println(<span class="string">&quot;tf card write a msg : &quot;</span> + msg);        </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>创建SD适配TF （也可以说是SD兼容TF，相当于读卡器）：<br>实现SDCard接口，并将要适配的对象作为适配器的属性引入。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SDAdapterTF</span> <span class="keyword">implements</span> <span class="title">SDCard</span> </span>&#123;    </span><br><span class="line">    <span class="keyword">private</span> TFCard tfCard;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SDAdapterTF</span><span class="params">(TFCard tfCard)</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">this</span>.tfCard = tfCard;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readSD</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        System.out.println(<span class="string">&quot;adapter read tf card &quot;</span>);        </span><br><span class="line">        <span class="keyword">return</span> tfCard.readTF();    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">writeSD</span><span class="params">(String msg)</span> </span>&#123;        </span><br><span class="line">        System.out.println(<span class="string">&quot;adapter write tf card&quot;</span>);        </span><br><span class="line">        <span class="keyword">return</span> tfCard.writeTF(msg);    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>通过上面的例子测试计算机通过SD读卡器读取TF卡：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputerReadDemo</span> </span>&#123;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;        </span><br><span class="line">        Computer computer = <span class="keyword">new</span> ThinkpadComputer();        </span><br><span class="line">        SDCard sdCard = <span class="keyword">new</span> SDCardImpl();        </span><br><span class="line">        System.out.println(computer.readSD(sdCard));        </span><br><span class="line">        System.out.println(<span class="string">&quot;====================================&quot;</span>);        </span><br><span class="line">        TFCard tfCard = <span class="keyword">new</span> TFCardImpl();        </span><br><span class="line">        SDCard tfCardAdapterSD = <span class="keyword">new</span> SDAdapterTF(tfCard);        </span><br><span class="line">        System.out.println(computer.readSD(tfCardAdapterSD));    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sdcard read a msg :hello word SD</span><br><span class="line">====================================</span><br><span class="line">adapter read tf card </span><br><span class="line">tf card reade msg : hello word tf card</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在这种模式下，计算机并不需要知道具体是什么卡，只需要负责操作接口即可，具体操作的什么类，由适配器决定。</p>
+</blockquote>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shenpf.top/mellofly/22548.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="mellofly">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mellofly">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mellofly/22548.html" class="post-title-link" itemprop="url">原型模式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-11 10:16:48" itemprop="dateCreated datePublished" datetime="2019-12-11T10:16:48+08:00">2019-12-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-01 10:04:35" itemprop="dateModified" datetime="2021-02-01T10:04:35+08:00">2021-02-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>原型模式(Prototype Pattern)用于创建重复的对象，同时又能保证性能，这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。<br>这种模式是实现了一个原型接口，该接口用于创建当前对象的克隆。当直接创建对象的代价比较大时，则采用这种模式。例如，一个对象需要在一个高代价的数据库操作之后被创建爱你，我们可以缓存该对象，在下一个请求时返回它的克隆，在需要的时候更新数据库，以此来减少数据库调用。</p>
+</blockquote>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。</li>
+<li><strong>主要解决：</strong> 在运行期建立和删除原型。</li>
+<li><strong>何时使用：</strong> </li>
+</ul>
+<ol>
+<li>当一个系统应该独立于它的产品创建，构成和表示时。</li>
+<li>当要实例化的类是在运行时刻指定时，例如，通过动态装载。</li>
+<li>为了避免创建一个与产品类层次平行的工厂类层次时。</li>
+<li>当一个类的实例只能有几个不同状态组合中的一种时。建立相应数目的原型并克隆他们可能比每次用合适的状态手工实例化该类更方便一些。</li>
+</ol>
+<ul>
+<li><strong>如何解决：</strong> 利用已有的一个原型对象，快速地生成和原型对象一样的实例。</li>
+<li><strong>关键代码：</strong> </li>
+</ul>
+<ol>
+<li>实现克隆操作，在Java继承Cloneable，重写clone()，在.NET中可以使用Object类的MemberwiseClone()方法来实现对象的浅拷贝或通过序列化的方式来实现深拷贝。</li>
+<li>原型模式同样用于隔离类对象的使用者和具体类型(易变类)之间的耦合关系，它同样要求这些“易变类”拥有稳定的接口。</li>
+</ol>
+<ul>
+<li><strong>应用实例：</strong></li>
+</ul>
+<ol>
+<li>细胞分裂。</li>
+<li>Java中的Object clone()方法。</li>
+</ol>
+<ul>
+<li><em><strong>优点：</strong></em> </li>
+</ul>
+<ol>
+<li>性能提高。</li>
+<li>逃避构造函数的约束。</li>
+</ol>
+<ul>
+<li><em><strong>缺点：</strong></em> </li>
+</ul>
+<ol>
+<li>配备克隆方法需要对类的功能进行通盘考虑，这对于全新的类不是很难，但对于已有的类不一定很容易，特别当一个类引用不支持串行化的间接对象，或者引用含有循环结构的时候。</li>
+<li>必须实现Cloneable接口。</li>
+</ol>
+<ul>
+<li><strong>使用场景</strong></li>
+</ul>
+<ol>
+<li>资源优化场景。</li>
+<li>类初始化需要消化非常多的资源，这个资源包括数据、硬件资源等。</li>
+<li>性能和安全要求的场景。 </li>
+<li>通过 new 产生一个对象需要非常繁琐的数据准备或访问权限，则可以使用原型模式。</li>
+<li>一个对象多个修改者的场景。</li>
+<li>一个对象需要提供给其他对象访问，而且各个调用者可能都需要修改其值时，可以考虑使用原型模式拷贝多个对象供调用者使用。</li>
+<li>在实际项目中，原型模式很少单独出现，一般是和工厂方法模式一起出现，通过 clone 的方法创建一个对象，然后由工厂方法提供给调用者。原型模式已经与 Java 融为浑然一体，大家可以随手拿来使用。</li>
+</ol>
+<ul>
+<li><strong>注意事项：</strong> 与通过对一个类进行实例化来构造新对象不同的是，原型模式是通过拷贝一个现有对象生成新对象的。浅拷贝实现 Cloneable，重写，深拷贝是通过实现 Serializable 读取二进制流。</li>
+</ul>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们将创建一个抽象类 Shape 和扩展了 Shape 类的实体类。下一步是定义类 ShapeCache，该类把 shape 对象存储在一个 Hashtable 中，并在请求的时候返回它们的克隆。<br>PrototypePatternDemo，我们的演示类使用 ShapeCache 类来获取 Shape 对象。</p>
+</blockquote>
+
+
+<h2 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h2><blockquote>
+<p>创建一个实现了Cloneable</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Shape.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span> <span class="keyword">implements</span> <span class="title">Cloneable</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">private</span> String id;</span><br><span class="line">   <span class="keyword">protected</span> String type;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getType</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> type;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> id;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(String id)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.id = id;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> Object <span class="title">clone</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      Object clone = <span class="keyword">null</span>;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">         clone = <span class="keyword">super</span>.clone();</span><br><span class="line">      &#125; <span class="keyword">catch</span> (CloneNotSupportedException e) &#123;</span><br><span class="line">         e.printStackTrace();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> clone;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2："><a href="#步骤2：" class="headerlink" title="步骤2："></a>步骤2：</h2><blockquote>
+<p>创建扩展了上面抽象类的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Rectangle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Rectangle</span><span class="params">()</span></span>&#123;</span><br><span class="line">     type = <span class="string">&quot;Rectangle&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Inside Rectangle::draw() method.&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Square.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Square</span><span class="params">()</span></span>&#123;</span><br><span class="line">     type = <span class="string">&quot;Square&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Inside Square::draw() method.&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Circle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Circle</span><span class="params">()</span></span>&#123;</span><br><span class="line">     type = <span class="string">&quot;Circle&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Inside Circle::draw() method.&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3："><a href="#步骤3：" class="headerlink" title="步骤3："></a>步骤3：</h2><blockquote>
+<p>创建一个类，从数据库获取实体类，并把他们存储在一个Hashtable中。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*ShapeCache.java*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.Hashtable;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeCache</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> Hashtable&lt;String, Shape&gt; shapeMap </span><br><span class="line">      = <span class="keyword">new</span> Hashtable&lt;String, Shape&gt;();</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Shape <span class="title">getShape</span><span class="params">(String shapeId)</span> </span>&#123;</span><br><span class="line">      Shape cachedShape = shapeMap.get(shapeId);</span><br><span class="line">      <span class="keyword">return</span> (Shape) cachedShape.clone();</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="comment">// 对每种形状都运行数据库查询，并创建该形状</span></span><br><span class="line">   <span class="comment">// shapeMap.put(shapeKey, shape);</span></span><br><span class="line">   <span class="comment">// 例如，我们要添加三种形状</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">loadCache</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      Circle circle = <span class="keyword">new</span> Circle();</span><br><span class="line">      circle.setId(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">      shapeMap.put(circle.getId(),circle);</span><br><span class="line"> </span><br><span class="line">      Square square = <span class="keyword">new</span> Square();</span><br><span class="line">      square.setId(<span class="string">&quot;2&quot;</span>);</span><br><span class="line">      shapeMap.put(square.getId(),square);</span><br><span class="line"> </span><br><span class="line">      Rectangle rectangle = <span class="keyword">new</span> Rectangle();</span><br><span class="line">      rectangle.setId(<span class="string">&quot;3&quot;</span>);</span><br><span class="line">      shapeMap.put(rectangle.getId(),rectangle);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4："><a href="#步骤4：" class="headerlink" title="步骤4："></a>步骤4：</h2><blockquote>
+<p>PrototypePatternDemo 使用 ShapeCache 类来获取存储在 Hashtable 中的形状的克隆。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*PrototypePatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrototypePatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      ShapeCache.loadCache();</span><br><span class="line"> </span><br><span class="line">      Shape clonedShape = (Shape) ShapeCache.getShape(<span class="string">&quot;1&quot;</span>);</span><br><span class="line">      System.out.println(<span class="string">&quot;Shape : &quot;</span> + clonedShape.getType());        </span><br><span class="line"> </span><br><span class="line">      Shape clonedShape2 = (Shape) ShapeCache.getShape(<span class="string">&quot;2&quot;</span>);</span><br><span class="line">      System.out.println(<span class="string">&quot;Shape : &quot;</span> + clonedShape2.getType());        </span><br><span class="line"> </span><br><span class="line">      Shape clonedShape3 = (Shape) ShapeCache.getShape(<span class="string">&quot;3&quot;</span>);</span><br><span class="line">      System.out.println(<span class="string">&quot;Shape : &quot;</span> + clonedShape3.getType());        </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="步骤5"><a href="#步骤5" class="headerlink" title="步骤5"></a>步骤5</h2><blockquote>
+<p>执行程序，输出结果</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Shape : Circle</span><br><span class="line">Shape : Square</span><br><span class="line">Shape : Rectangle</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shenpf.top/mellofly/39418.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="mellofly">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mellofly">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mellofly/39418.html" class="post-title-link" itemprop="url">Markdown基础语法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-10 13:10:40" itemprop="dateCreated datePublished" datetime="2019-12-10T13:10:40+08:00">2019-12-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-01 10:04:35" itemprop="dateModified" datetime="2021-02-01T10:04:35+08:00">2021-02-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Markdown/" itemprop="url" rel="index"><span itemprop="name">Markdown</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h1><h2 id="使用-和-标记一级和二级标题："><a href="#使用-和-标记一级和二级标题：" class="headerlink" title="使用=和-标记一级和二级标题："></a>使用<code>=</code>和<code>-</code>标记一级和二级标题：</h2><blockquote>
+<p>=和-的使用语法格式如下：  </p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一级标题语法：在标题文字的下一行加上： ===============</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">二级标题语法：在标题文字的下一行加上：-----</span><br></pre></td></tr></table></figure>
+<p>效果如下：  </p>
+<h2 id="使用-号标记"><a href="#使用-号标记" class="headerlink" title="使用#号标记"></a>使用#号标记</h2><blockquote>
+<p>使用<code>#</code>号可表示1-6级标题，一级标题对应一个<code>#</code>号，二级标题对应两个<code>#</code>号，以此类推。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题</span><br></pre></td></tr></table></figure>
+
+<h1 id="文字："><a href="#文字：" class="headerlink" title="文字："></a>文字：</h1><h2 id="段落："><a href="#段落：" class="headerlink" title="段落："></a>段落：</h2><blockquote>
+<ul>
+<li>Markdown段落没有特殊的格式，直接编写文字就可以，<strong>段落的换行是使用两个以上的空格加上回车。</strong></li>
+<li>当然也可以在段落后面使用一个空行来表示重新开始一个段落。</li>
+</ul>
+</blockquote>
+<h2 id="字体："><a href="#字体：" class="headerlink" title="字体："></a>字体：</h2><p>Markdown 可以使用一下几种字体：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">*斜体文本*</span><br><span class="line">_斜体文本_</span><br><span class="line">**粗体文本**</span><br><span class="line">__粗体文本__</span><br><span class="line">***粗斜体文本***</span><br><span class="line">___粗斜体文本___</span><br></pre></td></tr></table></figure>
+<p>效果如下：<br><em>斜体文本</em><br><em>斜体文本</em><br><strong>粗体文本</strong><br><strong>粗体文本</strong><br><em><strong>粗斜体文本</strong></em><br><em><strong>粗斜体文本</strong></em>  </p>
+<h2 id="分隔线："><a href="#分隔线：" class="headerlink" title="分隔线："></a>分隔线：</h2><p>可以在一行中用三个以上的星号、减号、底线来建立一个分割线，行内不能有其他东西。你也可以在星号或是减号中间插入空格。示例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">***</span><br><span class="line">* * *</span><br><span class="line">*****</span><br><span class="line">- - -</span><br><span class="line">______</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<h2 id="删除线："><a href="#删除线：" class="headerlink" title="删除线："></a>删除线：</h2><p>如果段落上的文字要添加删除线，只需要在文字的两端加上两个波浪线<code>~~</code>即可，示例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">abc</span><br><span class="line">~~bdcd~~</span><br></pre></td></tr></table></figure>
+<p>效果如下：<br>abc<br><del>bdcd</del>  </p>
+<h2 id="下划线："><a href="#下划线：" class="headerlink" title="下划线："></a>下划线：</h2><p>下划线可以通过HTML的<code>&lt;u&gt;</code>标签来实现,示例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;u&gt;测试下划线&lt;u&gt;</span><br></pre></td></tr></table></figure>
+<p>效果如下：<br><u>测试下划线<u></p>
+<h2 id="脚注："><a href="#脚注：" class="headerlink" title="脚注："></a>脚注：</h2><p>脚注是对文本的补充说明。Markdown脚注的格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[^要注明的文本]</span><br></pre></td></tr></table></figure>
+<p>演示用法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">创建脚注格式类似这样[^测试]</span><br><span class="line">[^测试]:这是一个脚注测试。</span><br></pre></td></tr></table></figure>
+<p>具体效果如下：<br>创建脚注格式类似这样 <a href="%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E8%84%9A%E6%B3%A8%E6%B5%8B%E8%AF%95%E3%80%82">^sun</a> 。</p>
+<h1 id="列表："><a href="#列表：" class="headerlink" title="列表："></a>列表：</h1><p>Markdown支持有序列表和无序列表。</p>
+<h2 id="无序列表："><a href="#无序列表：" class="headerlink" title="无序列表："></a>无序列表：</h2><blockquote>
+<p>使用星号<code>(*)</code>、加好<code>(+)</code>或是减号<code>(-)</code>作为列表标记：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">* 第一项</span><br><span class="line">* 第二项</span><br><span class="line">* 第三项</span><br><span class="line"></span><br><span class="line">+ 第一项</span><br><span class="line">+ 第二项</span><br><span class="line">+ 第三项</span><br><span class="line"></span><br><span class="line">- 第一项</span><br><span class="line">- 第二项</span><br><span class="line">- 第三项</span><br></pre></td></tr></table></figure>
+<h2 id="有序列表："><a href="#有序列表：" class="headerlink" title="有序列表："></a>有序列表：</h2><blockquote>
+<p>使用数字并加上<code>.</code>号来表示，如下：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 第一项</span><br><span class="line">2. 第二项</span><br><span class="line">3. 第三项</span><br></pre></td></tr></table></figure>
+<p>效果如下：  </p>
+<ol>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ol>
+<h1 id="列表嵌套："><a href="#列表嵌套：" class="headerlink" title="列表嵌套："></a>列表嵌套：</h1><blockquote>
+<p>列表嵌套只需在子列表中的选项添加四个空格即可：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 第一项：</span><br><span class="line">    - 第一项嵌套的第一个元素</span><br><span class="line">    - 第一项嵌套的第二个元素</span><br><span class="line">2. 第二项：</span><br><span class="line">    - 第二项嵌套的第一个元素</span><br><span class="line">    - 第二项嵌套的第二个元素</span><br></pre></td></tr></table></figure>
+<p>显示结果如下：  </p>
+<ol>
+<li>第一项：<ul>
+<li>第一项嵌套的第一个元素</li>
+<li>第一项嵌套的第二个元素</li>
+</ul>
+</li>
+<li>第二项：<ul>
+<li>第二项嵌套的第一个元素</li>
+<li>第二项嵌套的第二个元素</li>
+</ul>
+</li>
+</ol>
+<h1 id="区块："><a href="#区块：" class="headerlink" title="区块："></a>区块：</h1><h2 id="单区块"><a href="#单区块" class="headerlink" title="单区块"></a>单区块</h2><blockquote>
+<p>Markdown区块引用是在段落开头使用<code>&gt;</code> 符号，然后后面紧跟一个<strong>空格</strong>符号：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; 区块引用</span><br><span class="line">&gt; 菜鸟教程</span><br><span class="line">&gt; 学的不仅是技术更是梦想</span><br></pre></td></tr></table></figure>
+<p>显示结果如下：</p>
+<blockquote>
+<p>区块引用<br>菜鸟教程<br>学的不仅是技术更是梦想  </p>
+</blockquote>
+<h2 id="区块嵌套："><a href="#区块嵌套：" class="headerlink" title="区块嵌套："></a>区块嵌套：</h2><p>另外区块是可以嵌套的，一个<code>&gt;</code>符号是最外层，两个<code> &gt;</code>符号是第一层嵌套，以此类推：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; 最外层</span><br><span class="line">&gt; &gt; 第一层嵌套</span><br><span class="line">&gt; &gt; &gt; 第二层嵌套</span><br></pre></td></tr></table></figure>
+<p>显示结果如下：</p>
+<blockquote>
+<p>最外层</p>
+<blockquote>
+<p>第一层嵌套</p>
+<blockquote>
+<p>第二层嵌套</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="区块中使用列表："><a href="#区块中使用列表：" class="headerlink" title="区块中使用列表："></a>区块中使用列表：</h2><p>语法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; 区块中使用列表</span><br><span class="line">&gt; 1. 第一项</span><br><span class="line">&gt; 2. 第二项</span><br><span class="line">&gt; + 第一项</span><br><span class="line">&gt; + 第二项</span><br><span class="line">&gt; + 第三项</span><br></pre></td></tr></table></figure>
+<p>显示效果如下：</p>
+<blockquote>
+<p>区块中使用列表</p>
+<ol>
+<li>第一项</li>
+<li>第二项</li>
+</ol>
+<ul>
+<li>第一项</li>
+<li>第二项</li>
+<li>第三项</li>
+</ul>
+</blockquote>
+<h2 id="列表中使用区块："><a href="#列表中使用区块：" class="headerlink" title="列表中使用区块："></a>列表中使用区块：</h2><p>如果要在列表项目中放进区块，那么久需要在<code>&gt;</code>前添加四个空格的缩进。区块中使用列表语法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">* 第一项</span><br><span class="line">    &gt; 菜鸟教程</span><br><span class="line">    &gt; 学的不仅是技术更是梦想</span><br><span class="line">* 第二项</span><br></pre></td></tr></table></figure>
+<p>显示效果如下：</p>
+<ul>
+<li>第一项<blockquote>
+<p>菜鸟教程<br>学的不仅是技术更是梦想</p>
+</blockquote>
+</li>
+<li>第二项</li>
+</ul>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><h2 id="段落上的代码："><a href="#段落上的代码：" class="headerlink" title="段落上的代码："></a>段落上的代码：</h2><blockquote>
+<p>如果是段落上的一个函数或片段的代码可以用反引号把它包起来<code>(`)</code>,具体如下：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`printf()` 函数</span><br></pre></td></tr></table></figure>
+<p>显示结果如下：<br><code>printf()</code> 函数</p>
+<h2 id="代码区块："><a href="#代码区块：" class="headerlink" title="代码区块："></a>代码区块：</h2><blockquote>
+<p>代码区块使用4个空格或者一个制表符(Tab键)。  </p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abcdise</span><br></pre></td></tr></table></figure>
+<p>显示结果如下：</p>
+<pre><code>abcdise
+</code></pre>
+<h2 id="指定语言的代码区块："><a href="#指定语言的代码区块：" class="headerlink" title="指定语言的代码区块："></a>指定语言的代码区块：</h2><blockquote>
+<p>可以用<code>(```)</code>包裹一段代码，并指定一种语言(也可以不指定)：  </p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/* ```javascript</span><br><span class="line">$(document).ready(function () &#123;</span><br><span class="line">    alert(&#x27;RUNOOB&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"> ```*/</span><br></pre></td></tr></table></figure>
+<p>显示结果如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">&#x27;RUNOOB&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="Markdown链接"><a href="#Markdown链接" class="headerlink" title="Markdown链接"></a>Markdown链接</h1><h2 id="普通链接"><a href="#普通链接" class="headerlink" title="普通链接"></a>普通链接</h2><blockquote>
+<p>链接使用方法如下：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[链接名称](链接地址)</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line"></span><br><span class="line">&lt;链接地址&gt;</span><br><span class="line">示例为：  这是一个链接 [百度](https:<span class="comment">//www.baidu.com)</span></span><br><span class="line"></span><br><span class="line">直接使用链接地址：&lt;https:<span class="comment">//www.baidu.com&gt;  </span></span><br></pre></td></tr></table></figure>
+<p>显示结果如下：  </p>
+<ul>
+<li>这是一个链接 <a target="_blank" rel="noopener" href="https://www.baidu.com/">百度</a>  </li>
+<li><a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a></li>
+</ul>
+<h2 id="高级链接："><a href="#高级链接：" class="headerlink" title="高级链接："></a>高级链接：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">链接也可以用变量来代替，文档末尾附带变量地址：</span><br><span class="line">这个链接用 1 作为网址变量 [Google][1]</span><br><span class="line">这个链接用 runoob 作为网址变量 [Runoob][runoob]</span><br><span class="line">然后在文档的结尾为变量赋值（网址）</span><br><span class="line"></span><br><span class="line">  [1]: http://www.google.com/</span><br><span class="line">  [runoob]: http://www.runoob.com/</span><br></pre></td></tr></table></figure>
+
+<p>显示结果如下：<br>链接也可以用变量来代替，文档末尾附带变量地址：<br>这个链接用 1 作为网址变量 <a target="_blank" rel="noopener" href="http://www.google.com/">Google</a><br>这个链接用 runoob 作为网址变量 <a target="_blank" rel="noopener" href="http://www.runoob.com/">Runoob</a><br>然后在文档的结尾为变量赋值（网址）</p>
+<h1 id="图片："><a href="#图片：" class="headerlink" title="图片："></a>图片：</h1><p>Markdown图片格式如下：  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">![alt 属性文本](图片地址)</span><br><span class="line"></span><br><span class="line">![alt 属性文本](图片地址 &quot;可选标题&quot;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>开头一个感叹号 !</li>
+<li>接着一个方括号，里面放上图片的替代文字</li>
+<li>接着一个普通括号，里面放上图片的网址，最后还可以用引号包住并加上选择性的 ‘title’ 属性的文字。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">![abc 图标](http://www.baidu.com/abc.png)</span><br><span class="line"></span><br><span class="line">![abc 图标](http://www.baidu.com/abc.png &quot;abc&quot;)</span><br></pre></td></tr></table></figure>
+<p>也可以像网址那样对图片网址使用变量：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">这个链接用 1 作为网址变量 [abc][1].</span><br><span class="line">然后在文档的结尾位变量赋值（网址）</span><br><span class="line"></span><br><span class="line">[1]: http://www.baidu.com/abc.png</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> Markdown 还没有办法指定图片的高度与宽度，如果你需要的话，你可以使用普通的 <img> 标签。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;http://www.baidu.com/abc.png&quot; width=&quot;50%&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Markdown表格："><a href="#Markdown表格：" class="headerlink" title="Markdown表格："></a>Markdown表格：</h1><h2 id="表格形式："><a href="#表格形式：" class="headerlink" title="表格形式："></a>表格形式：</h2><blockquote>
+<p>Markdown制作表格使用<code>|</code>来分隔不同的单元格，使用<code>-</code>来分隔表头和其他行。语法如下：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">|  表头   | 表头  |</span><br><span class="line">|  ----  | ----  |</span><br><span class="line">| 单元格  | 单元格 |</span><br><span class="line">| 单元格  | 单元格 |</span><br></pre></td></tr></table></figure>
+<p>显示如下：<br>|  表头   | 表头  |<br>|  —-  | —-  |<br>| 单元格  | 单元格 |<br>| 单元格  | 单元格 |</p>
+<h2 id="对齐方式："><a href="#对齐方式：" class="headerlink" title="对齐方式："></a>对齐方式：</h2><p>我们可以设置表格的对齐方式：</p>
+<ul>
+<li><code>-:</code> 设置内容和标题栏居右对齐。</li>
+<li><code>:-</code> 设置内容和标题栏居左对齐。</li>
+<li><code>:-:</code> 设置内容和标题栏居中对齐。<br>语法示例如下：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">| 左对齐 | 右对齐 | 居中对齐 |</span><br><span class="line">| :-----| ----: | :----: |</span><br><span class="line">| 单元格 | 单元格 | 单元格 |</span><br><span class="line">| 单元格 | 单元格 | 单元格 |</span><br></pre></td></tr></table></figure>
+显示结果如下：  <table>
+<thead>
+<tr>
+<th align="left">左对齐</th>
+<th align="right">右对齐</th>
+<th align="center">居中对齐</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">单元格</td>
+<td align="right">单元格</td>
+<td align="center">单元格</td>
+</tr>
+<tr>
+<td align="left">单元格</td>
+<td align="right">单元格</td>
+<td align="center">单元格</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shenpf.top/mellofly/56456.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="mellofly">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mellofly">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mellofly/56456.html" class="post-title-link" itemprop="url">Markdown总述</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-10 12:42:40" itemprop="dateCreated datePublished" datetime="2019-12-10T12:42:40+08:00">2019-12-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-01 10:04:35" itemprop="dateModified" datetime="2021-02-01T10:04:35+08:00">2021-02-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Markdown/" itemprop="url" rel="index"><span itemprop="name">Markdown</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Markdown总体："><a href="#Markdown总体：" class="headerlink" title="Markdown总体："></a>Markdown总体：</h1><blockquote>
+<p>Markdown是一种轻量级标记语言，它允许使用易读易写的纯文本格式编写文档。</p>
+</blockquote>
+<blockquote>
+<p>Markdown语言在2004年有约翰格鲁伯(英语：John Gruber)创建。</p>
+</blockquote>
+<blockquote>
+<p>Markdown编写的文档可以到处HTML、Word、图像、PDF、Epub等多种格式的文档。编写出来的文档后缀为.md,.markdown。</p>
+</blockquote>
+<h1 id="Markdown应用："><a href="#Markdown应用：" class="headerlink" title="Markdown应用："></a>Markdown应用：</h1><p>可以被使用来撰写电子书，如Gitbook;<br>当前许多网站都广泛使用Markdown来撰写帮助文档或是用于论坛上发表消息。例如：GitHub、简书、reddit、Diaspora、Stack Exchange、OpenStreetMap、SourceForge等。</p>
+<h1 id="简单分类："><a href="#简单分类：" class="headerlink" title="简单分类："></a>简单分类：</h1><ul>
+<li><strong>基础语法：</strong> <a href="/mellofly/39418.html" title="Markdown基础语法">Markdown基础语法</a></li>
+<li><strong>公式：</strong></li>
+<li><strong>画图：</strong></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mellofly</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

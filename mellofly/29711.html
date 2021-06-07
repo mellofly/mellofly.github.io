@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"shenpf.top","root":"/","images":"/images","scheme":"Muse","version":"8.2.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="建造者模式(Builder Pattern) 使用多个简单的对象一步一步构建成一个复杂的对象。这种类型的设计模式属于创建型模式，他提供了一种创建对象的最佳方式。   一个Builder类会一步一步构造最终的对象。该Builder类是独立于其他对象的。  介绍： 意图： 将一个复杂的构建与其表示相分离，使得同样的构建过程可以创建不同的表示。 主要解决： 主要解决在软件系统中，有时候面临着“一个复杂">
+<meta property="og:type" content="article">
+<meta property="og:title" content="建造者模式">
+<meta property="og:url" content="http://shenpf.top/mellofly/29711.html">
+<meta property="og:site_name" content="mellofly">
+<meta property="og:description" content="建造者模式(Builder Pattern) 使用多个简单的对象一步一步构建成一个复杂的对象。这种类型的设计模式属于创建型模式，他提供了一种创建对象的最佳方式。   一个Builder类会一步一步构造最终的对象。该Builder类是独立于其他对象的。  介绍： 意图： 将一个复杂的构建与其表示相分离，使得同样的构建过程可以创建不同的表示。 主要解决： 主要解决在软件系统中，有时候面临着“一个复杂">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-12-09T14:39:01.000Z">
+<meta property="article:modified_time" content="2021-02-01T02:04:35.043Z">
+<meta property="article:author" content="mellofly">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://shenpf.top/mellofly/29711.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>建造者模式 | mellofly</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">mellofly</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">介绍：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">实现：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A41%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">步骤1：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A42%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">步骤2：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A43%EF%BC%9A"><span class="nav-number">2.3.</span> <span class="nav-text">步骤3：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A44%EF%BC%9A"><span class="nav-number">2.4.</span> <span class="nav-text">步骤4：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A45%EF%BC%9A"><span class="nav-number">2.5.</span> <span class="nav-text">步骤5：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A46%EF%BC%9A"><span class="nav-number">2.6.</span> <span class="nav-text">步骤6：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A47"><span class="nav-number">2.7.</span> <span class="nav-text">步骤7:</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mellofly"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">mellofly</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mellofly" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mellofly" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:mellofly@outlook.com" title="E-Mail → mailto:mellofly@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://shenpf.top/mellofly/29711.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="mellofly">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mellofly">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          建造者模式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-09 22:39:01" itemprop="dateCreated datePublished" datetime="2019-12-09T22:39:01+08:00">2019-12-09</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-01 10:04:35" itemprop="dateModified" datetime="2021-02-01T10:04:35+08:00">2021-02-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>建造者模式(Builder Pattern) 使用多个简单的对象一步一步构建成一个复杂的对象。这种类型的设计模式属于创建型模式，他提供了一种创建对象的最佳方式。</p>
+</blockquote>
+<blockquote>
+<p>一个Builder类会一步一步构造最终的对象。该Builder类是独立于其他对象的。</p>
+</blockquote>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 将一个复杂的构建与其表示相分离，使得同样的构建过程可以创建不同的表示。</li>
+<li><strong>主要解决：</strong> 主要解决在软件系统中，有时候面临着“一个复杂对象”的创建工作，其通常由各个部分的子对象用一定的算法构成；由于需求的变化，这个复杂对象的各个部分经常面临着剧烈的变化，但是将他们组合在一起的算法却相对稳定。</li>
+<li><strong>何时使用：</strong> 一些基本部件不会变，而其组合经常变化的时候。</li>
+<li><strong>如何解决：</strong> 将变与不变分离开。</li>
+<li><strong>关键代码：</strong> 建造者：创建和提供实例，导演：管理建造出来的实例的依赖关系。</li>
+<li><strong>应用实例：</strong> <blockquote>
+<p>1.去肯德基，汉堡、可乐、薯条、炸鸡翅等是不变的，而其组合是经常变化的，生成出所谓的“套餐”。2.Java中的StringBuilder。</p>
+</blockquote>
+</li>
+<li><em><strong>优点：</strong></em> 1、建造者独立，易扩展。<br>2、便于控制细节风险。</li>
+<li><em><strong>缺点：</strong></em> 1、产品必须有共同点，范围有限制。<br>2、如内部变化复杂，会有很多的建造类。</li>
+<li><strong>使用场景：</strong> 需要生成的对象具有复杂的内部结构;需要生成的对象内部属性本身相互依赖。</li>
+<li><strong>注意事项：</strong> 与工厂模式的区别是：建造者模式更加关注与零件装配的顺序。<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们假设一个快餐店的商业案例，其中，一个典型的套餐可以是一个汉堡（Burger）和一杯冷饮（Cold drink）。汉堡（Burger）可以是素食汉堡（Veg Burger）或鸡肉汉堡（Chicken Burger），它们是包在纸盒中。冷饮（Cold drink）可以是可口可乐（coke）或百事可乐（pepsi），它们是装在瓶子中。<br>我们将创建一个表示食物条目（比如汉堡和冷饮）的 Item 接口和实现 Item 接口的实体类，以及一个表示食物包装的 Packing 接口和实现 Packing 接口的实体类，汉堡是包在纸盒中，冷饮是装在瓶子中。<br>然后我们创建一个 Meal 类，带有 Item 的 ArrayList 和一个通过结合 Item 来创建不同类型的 Meal 对象的 MealBuilder。BuilderPatternDemo，我们的演示类使用 MealBuilder 来创建一个 Meal。</p>
+</blockquote>
+
+<h2 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h2><blockquote>
+<p>创建一个表示食物条目和食物包装的接口。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Item.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Item</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Packing <span class="title">packing</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">price</span><span class="params">()</span></span>;    </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Packing.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Packing</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">pack</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="步骤2："><a href="#步骤2：" class="headerlink" title="步骤2："></a>步骤2：</h2><blockquote>
+<p>创建实现Packing接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Wrapper.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Wrapper</span> <span class="keyword">implements</span> <span class="title">Packing</span> </span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">pack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;Wrapper&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Bottle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bottle</span> <span class="keyword">implements</span> <span class="title">Packing</span> </span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">pack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;Bottle&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3："><a href="#步骤3：" class="headerlink" title="步骤3："></a>步骤3：</h2><blockquote>
+<p>创建实现Item接口的抽象类，该类提供了默认的功能。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Burger.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Burger</span> <span class="keyword">implements</span> <span class="title">Item</span> </span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Packing <span class="title">packing</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> Wrapper();</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">float</span> <span class="title">price</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*ColdDrink.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ColdDrink</span> <span class="keyword">implements</span> <span class="title">Item</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Packing <span class="title">packing</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">new</span> Bottle();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">float</span> <span class="title">price</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="步骤4："><a href="#步骤4：" class="headerlink" title="步骤4："></a>步骤4：</h2><blockquote>
+<p>创建扩展了Burger和ColdDrink的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*VegBurger.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VegBurger</span> <span class="keyword">extends</span> <span class="title">Burger</span> </span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">price</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">25.0f</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;Veg Burger&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*ChickenBurger.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChickenBurger</span> <span class="keyword">extends</span> <span class="title">Burger</span> </span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">price</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">50.5f</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;Chicken Burger&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Coke.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Coke</span> <span class="keyword">extends</span> <span class="title">ColdDrink</span> </span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">price</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">30.0f</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;Coke&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Pepsi.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pepsi</span> <span class="keyword">extends</span> <span class="title">ColdDrink</span> </span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">price</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">35.0f</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;Pepsi&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤5："><a href="#步骤5：" class="headerlink" title="步骤5："></a>步骤5：</h2><blockquote>
+<p>创建一个Meal类，带有上面定义的Item对象。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*Meal.java*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Meal</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> List&lt;Item&gt; items = <span class="keyword">new</span> ArrayList&lt;Item&gt;();    </span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addItem</span><span class="params">(Item item)</span></span>&#123;</span><br><span class="line">      items.add(item);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getCost</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">float</span> cost = <span class="number">0.0f</span>;</span><br><span class="line">      <span class="keyword">for</span> (Item item : items) &#123;</span><br><span class="line">         cost += item.price();</span><br><span class="line">      &#125;        </span><br><span class="line">      <span class="keyword">return</span> cost;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showItems</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">for</span> (Item item : items) &#123;</span><br><span class="line">         System.out.print(<span class="string">&quot;Item : &quot;</span>+item.name());</span><br><span class="line">         System.out.print(<span class="string">&quot;, Packing : &quot;</span>+item.packing().pack());</span><br><span class="line">         System.out.println(<span class="string">&quot;, Price : &quot;</span>+item.price());</span><br><span class="line">      &#125;        </span><br><span class="line">   &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤6："><a href="#步骤6：" class="headerlink" title="步骤6："></a>步骤6：</h2><blockquote>
+<p>创建一个MealBuilder类，实际的builder类负责创建Meal对象。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*MealBuilder.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MealBuilder</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> Meal <span class="title">prepareVegMeal</span> <span class="params">()</span></span>&#123;</span><br><span class="line">      Meal meal = <span class="keyword">new</span> Meal();</span><br><span class="line">      meal.addItem(<span class="keyword">new</span> VegBurger());</span><br><span class="line">      meal.addItem(<span class="keyword">new</span> Coke());</span><br><span class="line">      <span class="keyword">return</span> meal;</span><br><span class="line">   &#125;   </span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> Meal <span class="title">prepareNonVegMeal</span> <span class="params">()</span></span>&#123;</span><br><span class="line">      Meal meal = <span class="keyword">new</span> Meal();</span><br><span class="line">      meal.addItem(<span class="keyword">new</span> ChickenBurger());</span><br><span class="line">      meal.addItem(<span class="keyword">new</span> Pepsi());</span><br><span class="line">      <span class="keyword">return</span> meal;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤7"><a href="#步骤7" class="headerlink" title="步骤7:"></a>步骤7:</h2><blockquote>
+<p>BuilderPatternDemo使用MealBuilder来演示建造者模式(Builder Pattern).</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*BuilderPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BuilderPatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      MealBuilder mealBuilder = <span class="keyword">new</span> MealBuilder();</span><br><span class="line"> </span><br><span class="line">      Meal vegMeal = mealBuilder.prepareVegMeal();</span><br><span class="line">      System.out.println(<span class="string">&quot;Veg Meal&quot;</span>);</span><br><span class="line">      vegMeal.showItems();</span><br><span class="line">      System.out.println(<span class="string">&quot;Total Cost: &quot;</span> +vegMeal.getCost());</span><br><span class="line"> </span><br><span class="line">      Meal nonVegMeal = mealBuilder.prepareNonVegMeal();</span><br><span class="line">      System.out.println(<span class="string">&quot;\n\nNon-Veg Meal&quot;</span>);</span><br><span class="line">      nonVegMeal.showItems();</span><br><span class="line">      System.out.println(<span class="string">&quot;Total Cost: &quot;</span> +nonVegMeal.getCost());</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>#步骤8：</p>
+<blockquote>
+<p>执行程序，输出结果：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Veg Meal</span><br><span class="line">Item : Veg Burger, Packing : Wrapper, Price : <span class="number">25.0</span></span><br><span class="line">Item : Coke, Packing : Bottle, Price : <span class="number">30.0</span></span><br><span class="line">Total Cost: <span class="number">55.0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Non-Veg Meal</span><br><span class="line">Item : Chicken Burger, Packing : Wrapper, Price : <span class="number">50.5</span></span><br><span class="line">Item : Pepsi, Packing : Bottle, Price : <span class="number">35.0</span></span><br><span class="line">Total Cost: <span class="number">85.5</span></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"># 设计模式</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/mellofly/46132.html" rel="prev" title="单例模式">
+                  <i class="fa fa-chevron-left"></i> 单例模式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/mellofly/56456.html" rel="next" title="Markdown总述">
+                  Markdown总述 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mellofly</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
