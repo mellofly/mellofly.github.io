@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"shenpf.top","root":"/","images":"/images","scheme":"Mist","version":"8.5.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shenpf.top","root":"/","images":"/images","scheme":"Mist","version":"8.5.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta name="description" content="桥接(Bridge) 是用于把抽象化与实现化解耦，使得二者可以独立变化。这种类型的设计模式属于结构型模式，他通过提供抽象化和实现化之间的桥接结构，来实现二者的解耦。   这种模式涉及到一个座位桥接的接口，使得实体类的功能独立于接口实现类。这两种类型的类可被结构化改变而互不影响。   下面使用实例来演示桥接模式(Bridge Pattern)的用法。其中，可以使用相同的抽象类方法但是不同的桥接实">
 <meta property="og:type" content="article">
 <meta property="og:title" content="桥接模式">
@@ -27,12 +27,14 @@
 <meta property="og:site_name" content="mellofly">
 <meta property="og:description" content="桥接(Bridge) 是用于把抽象化与实现化解耦，使得二者可以独立变化。这种类型的设计模式属于结构型模式，他通过提供抽象化和实现化之间的桥接结构，来实现二者的解耦。   这种模式涉及到一个座位桥接的接口，使得实体类的功能独立于接口实现类。这两种类型的类可被结构化改变而互不影响。   下面使用实例来演示桥接模式(Bridge Pattern)的用法。其中，可以使用相同的抽象类方法但是不同的桥接实">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://shenpf.top/mellofly/43376/桥接模式.jpg">
 <meta property="article:published_time" content="2019-12-13T06:39:18.000Z">
-<meta property="article:modified_time" content="2021-06-07T07:54:10.936Z">
+<meta property="article:modified_time" content="2021-06-25T07:06:57.932Z">
 <meta property="article:author" content="mellofly">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://shenpf.top/mellofly/43376/桥接模式.jpg">
 
 
 <link rel="canonical" href="http://shenpf.top/mellofly/43376.html">
@@ -78,6 +80,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -92,11 +95,37 @@
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">27</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -230,7 +259,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-07 15:54:10" itemprop="dateModified" datetime="2021-06-07T15:54:10+08:00">2021-06-07</time>
+        <time title="修改时间：2021-06-25 15:06:57" itemprop="dateModified" datetime="2021-06-25T15:06:57+08:00">2021-06-25</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -243,6 +272,13 @@
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
 </div>
 
         </div>
@@ -260,7 +296,6 @@
 </ol>
 
 </blockquote>
-
 <h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
 <li><strong>意图：</strong> 将抽象部分与实际部分分离，使他们都可以独立的变化。</li>
 <li><strong>主要解决：</strong> 在有多种可能会变化的情况下，用继承会造成类爆炸问题，扩展起来不灵活。</li>
@@ -274,7 +309,7 @@
 <li>墙上的开关，可以看到的开关是抽象的，不用管里面具体怎么实现的。</li>
 </ol>
 <ul>
-<li><em><strong>优点：</strong></em> </li>
+<li><strong><em>优点：</em></strong> </li>
 </ul>
 <ol>
 <li>抽象和实现的分离。</li>
@@ -282,7 +317,7 @@
 <li>实现细节对客户透明。</li>
 </ol>
 <ul>
-<li><em><strong>缺点：</strong></em> 桥接模式的引入会增加系统的理解与设计难度，由于聚合关联关系建立在抽象层，要求开发者针对抽象进行设计与编程。</li>
+<li><strong><em>缺点：</em></strong> 桥接模式的引入会增加系统的理解与设计难度，由于聚合关联关系建立在抽象层，要求开发者针对抽象进行设计与编程。</li>
 <li><strong>使用场景：</strong> </li>
 </ul>
 <ol>
@@ -291,13 +326,13 @@
 <li>一个类存在两个独立变化的维度，且这两个维度都需要进行扩展。</li>
 </ol>
 <ul>
-<li><em><strong>注意事项：</strong></em> 对于两个独立变化的维度，使用桥接模式再适合不过了。</li>
+<li><strong><em>注意事项：</em></strong> 对于两个独立变化的维度，使用桥接模式再适合不过了。</li>
 </ul>
 <h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote class="blockquote-center">
 <p>我们有一个作为桥接实现的 DrawAPI 接口和实现了 DrawAPI 接口的实体类 RedCircle、GreenCircle。Shape 是一个抽象类，将使用 DrawAPI 的对象。BridgePatternDemo，我们的演示类使用 Shape 类来画出不同颜色的圆。</p>
 
 </blockquote>
-
+<p><img src="/mellofly/43376/桥接模式.jpg" alt="桥接模式设计类UML图"></p>
 <h2 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h2><blockquote>
 <p>创建桥接实现接口。</p>
 </blockquote>
@@ -322,7 +357,6 @@
 <p>执行程序，输出结果。</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Drawing Circle[ color: red, radius: <span class="number">10</span>, x: <span class="number">100</span>, <span class="number">100</span>]</span><br><span class="line">Drawing Circle[  color: green, radius: <span class="number">10</span>, x: <span class="number">100</span>, <span class="number">100</span>]</span><br></pre></td></tr></table></figure>
-
 <hr>
 <blockquote class="blockquote-center">
 <p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/bridge-pattern2.html">https://www.runoob.com/w3cnote/bridge-pattern2.html</a></p>
@@ -378,6 +412,24 @@
   </span>
   <span class="author" itemprop="copyrightHolder">mellofly</span>
 </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
   </div>
 
@@ -389,13 +441,21 @@
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
 
   
 
-
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-mml-chtml.js","integrity":"sha256-ncNI9OXOS5Ek4tzVYiOMmN/KKCPZ6V0Cpv2P/zHntiA="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 

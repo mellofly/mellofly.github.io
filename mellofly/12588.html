@@ -19,13 +19,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"shenpf.top","root":"/","images":"/images","scheme":"Mist","version":"8.5.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="正则表达式：符合一定规则的表达式。  作用：用于专门操作字符串。  特点：用一些特定的符号来表示一些代码操作，这样就简化书写。  所以学习正则表达式，就是在学习一些特殊符号的使用。   好处：可以简化对字符串的复杂操作。  弊端：符号定义越多，正则越长，阅读性越差。   具体操作功能：1.匹配：Stringmatches方法。用规则匹配整个字符串，只要有一处不符合规则，就匹配结束，返回false正">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shenpf.top","root":"/","images":"/images","scheme":"Mist","version":"8.5.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="正则表达式：符合一定规则的表达式。  作用：用于专门操作字符串。 特点：用一些特定的符号来表示一些代码操作，这样就简化书写。  所以学习正则表达式，就是在学习一些特殊符号的使用。   好处：可以简化对字符串的复杂操作。  弊端：符号定义越多，正则越长，阅读性越差。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java_正则表达式">
 <meta property="og:url" content="http://shenpf.top/mellofly/12588.html">
 <meta property="og:site_name" content="mellofly">
-<meta property="og:description" content="正则表达式：符合一定规则的表达式。  作用：用于专门操作字符串。  特点：用一些特定的符号来表示一些代码操作，这样就简化书写。  所以学习正则表达式，就是在学习一些特殊符号的使用。   好处：可以简化对字符串的复杂操作。  弊端：符号定义越多，正则越长，阅读性越差。   具体操作功能：1.匹配：Stringmatches方法。用规则匹配整个字符串，只要有一处不符合规则，就匹配结束，返回false正">
+<meta property="og:description" content="正则表达式：符合一定规则的表达式。  作用：用于专门操作字符串。 特点：用一些特定的符号来表示一些代码操作，这样就简化书写。  所以学习正则表达式，就是在学习一些特殊符号的使用。   好处：可以简化对字符串的复杂操作。  弊端：符号定义越多，正则越长，阅读性越差。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-11-25T11:58:48.000Z">
 <meta property="article:modified_time" content="2021-06-07T07:54:10.912Z">
@@ -78,6 +78,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -92,11 +93,37 @@
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">27</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -243,6 +270,13 @@
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
 </div>
 
         </div>
@@ -254,8 +288,7 @@
     <div class="post-body" itemprop="articleBody">
         <p>正则表达式：符合一定规则的表达式。</p>
 <ul>
-<li><p>作用：用于专门操作字符串。</p>
-</li>
+<li>作用：用于专门操作字符串。</li>
 <li><p>特点：用一些特定的符号来表示一些代码操作，这样就简化书写。</p>
 <blockquote>
 <p>所以学习正则表达式，就是在学习一些特殊符号的使用。</p>
@@ -263,8 +296,7 @@
 </li>
 <li><p>好处：可以简化对字符串的复杂操作。</p>
 </li>
-<li><p>弊端：符号定义越多，正则越长，阅读性越差。</p>
-</li>
+<li>弊端：符号定义越多，正则越长，阅读性越差。</li>
 </ul>
 <h1 id="具体操作功能："><a href="#具体操作功能：" class="headerlink" title="具体操作功能："></a>具体操作功能：</h1><h2 id="1-匹配：String"><a href="#1-匹配：String" class="headerlink" title="1.匹配：String"></a>1.匹配：String</h2><p>matches方法。用规则匹配整个字符串，只要有一处不符合规则，就匹配结束，返回false<br>正则表达式中的“\”需要进行转义,所以是成对出现的。<br>字符出现次数：</p>
 <ul>
@@ -276,10 +308,8 @@
 <li>{n,m}(至少n次，但是不超过m次)</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对QQ号码进行校验</span></span><br><span class="line"><span class="comment">//要求：5~15位，0不能开头，只能是数字</span></span><br><span class="line"><span class="comment">//这种方式，使用了String类中的方法，进行组合完成了需求，但是代码过于复杂。</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">checkQQ</span><span class="params">()</span></span>&#123;</span><br><span class="line">    String qq=<span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">int</span> len = qq.length();</span><br><span class="line">    <span class="keyword">if</span>(len&gt;<span class="number">5</span>&amp;&amp;len&lt;=<span class="number">15</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!qq.startWith(<span class="string">&quot;0&quot;</span>))&#123;</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            char[] arr = qq.toCharArray();</span></span><br><span class="line"><span class="comment">            boolean flag= true;</span></span><br><span class="line"><span class="comment">            for(int x=0;x&lt;arr.length;x++)&#123;</span></span><br><span class="line"><span class="comment">                if(!(arr[x]&gt;&#x27;0&#x27;&amp;&amp;arr[x]&lt;=&#x27;9&#x27;))&#123;</span></span><br><span class="line"><span class="comment">                     flag=false;</span></span><br><span class="line"><span class="comment">                     break;</span></span><br><span class="line"><span class="comment">                &#125;</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">            if(flag)&#123;</span></span><br><span class="line"><span class="comment">                System.out.println(&quot;qq:&quot;+qq);</span></span><br><span class="line"><span class="comment">            &#125;else&#123;</span></span><br><span class="line"><span class="comment">                System.out.println(&quot;出现非法字符&quot;);</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">            <span class="comment">//替换为：</span></span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                <span class="keyword">long</span> l = Long.parseLong(qq);</span><br><span class="line">                System.out.println(<span class="string">&quot;qq:&quot;</span>+qq);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">catch</span>(NumberFormatException e)&#123;</span><br><span class="line">                SYstem.out.println(<span class="string">&quot;出现非法字符&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;0不能开头&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;长度不对&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用下面的方法比较简单：regex(正则表达式)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">checkQQ_simple</span><span class="params">()</span></span>&#123;</span><br><span class="line">    String qq =<span class="string">&quot;255616548&quot;</span>;</span><br><span class="line">    String regex =<span class="string">&quot;[1-9][0-9]&#123;4,14&#125;&quot;</span>;<span class="comment">//正则表达式</span></span><br><span class="line">    <span class="keyword">boolean</span> flag = qq.matches(regex);</span><br><span class="line">    <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">        System.out.println(qq+<span class="string">&quot; ...is ok&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        System.out.println(qq+<span class="string">&quot;...不合法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <h2 id="2-切割："><a href="#2-切割：" class="headerlink" title="2.切割："></a>2.切割：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">splitDemo</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//String str =&quot;zhangsan  lisi   wangwu&quot;;</span></span><br><span class="line">    <span class="comment">//String reg=&quot; +&quot;;//按照多个空格来进行切割</span></span><br><span class="line">    <span class="comment">//String str =&quot;zhangsan.lisi.wangwu&quot;;</span></span><br><span class="line">    <span class="comment">//String reg =&quot;\\.&quot;;//用点来进行切割</span></span><br><span class="line">    <span class="comment">//String str =&quot;c:\\abc\\a.txt&quot;;</span></span><br><span class="line">    <span class="comment">//String reg =&quot;\\\\&quot;;//用\\来进行切割</span></span><br><span class="line">    String str =<span class="string">&quot;ekjfokksdjfoiewdd&quot;</span>;</span><br><span class="line">    String reg =<span class="string">&quot;(.)\\1&quot;</span>;<span class="comment">//用叠词来进行切割()叫做组 叠词数量不定&quot;(.)\\1+&quot;</span></span><br><span class="line">    \\为了可以让规则的结果被重用，可以将规则封装成一个组，用()来完成，</span><br><span class="line">    \\组的出现都有编号。</span><br><span class="line">    \\从<span class="number">1</span>开始。想要使用已有的组可以通过\n(n就是组的编号)的形式来获取。</span><br><span class="line">    String[]arr = str.split(reg);</span><br><span class="line">    System.out.println(arr.length);</span><br><span class="line">    <span class="keyword">for</span>(String s : arr)&#123;</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="3-替换"><a href="#3-替换" class="headerlink" title="3.替换"></a>3.替换</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">replace</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//String str =&quot;dfw902839082193jfefioe21093&quot;;</span></span><br><span class="line">    <span class="comment">//String reg =&quot;\\d&#123;5,&#125;&quot;;//数字替换</span></span><br><span class="line">    String str =<span class="string">&quot;skdlfaaafewiodddfeoi&quot;</span>;</span><br><span class="line">    <span class="comment">//String reg =&quot;(.)\\1+&quot;;//叠词替换为&amp;</span></span><br><span class="line">    <span class="comment">//String newStr=&quot;&amp;&quot;;</span></span><br><span class="line">    String reg=<span class="string">&quot;(.)\\1+&quot;</span>;<span class="comment">//叠词替换为叠词中的单个词</span></span><br><span class="line">    String newStr =<span class="string">&quot;$1&quot;</span>;<span class="comment">//$1获取前一个规则中的第一个组。</span></span><br><span class="line">    String arr = str.replaceAll(reg,newStr);</span><br><span class="line">    System.out.println(arr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="4-获取："><a href="#4-获取：" class="headerlink" title="4.获取："></a>4.获取：</h2><blockquote>
 <p>按照规则将指定规则的子串在字符串中获取出来。</p>
 </blockquote>
@@ -289,7 +319,8 @@
 <li>2.让正则对象和要操作的字符串相关联。</li>
 <li>3.关联后，获取正则匹配引擎。</li>
 <li>4.通过引擎对符合规则的子串进行操作，比如取出。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getDemo</span><span class="params">()</span></span>&#123;</span><br><span class="line">    String str = <span class="string">&quot;abc djfewo dsjfo dfd fjei dfs&quot;</span>;</span><br><span class="line">    String reg=<span class="string">&quot;\\b[a-z]&#123;3&#125;\\b&quot;</span>;<span class="comment">//查找只有三个单词的，需要加一个边界\\b</span></span><br><span class="line">    <span class="comment">//将规则封装成对象。</span></span><br><span class="line">    Pattern p = Pattern.compile(reg);</span><br><span class="line">    <span class="comment">//让正则对象和要作用的字符串进行关联。获取匹配器对象。</span></span><br><span class="line">    Matcher m = p.matcher(str);</span><br><span class="line">    <span class="comment">//System.out.println(m.matches());//其实String类中的matches方法。用的就是Pattern</span></span><br><span class="line">                                    <span class="comment">//和Matcher对象来完成的。只不过被String的方法封</span></span><br><span class="line">                                   <span class="comment">//装后，用起来比较简单，但是功能却单一。</span></span><br><span class="line">    <span class="comment">//group()方法是获取匹配后结果</span></span><br><span class="line">    <span class="comment">//m.find();//将规则作用到字符串上，并进行符合规则的子串查找。是group()方法的前提。</span></span><br><span class="line">    <span class="comment">//System.out.println(m.group());匹配之前先要使用find()进行查找。</span></span><br><span class="line">    <span class="keyword">while</span>(m.find())&#123;</span><br><span class="line">        System.out.println(m.group);</span><br><span class="line">        System.out.println(m.start()+<span class="string">&quot;.....&quot;</span>+m.end());<span class="comment">//取得是字串的开头和结尾。</span></span><br><span class="line">    &#125;</span><br><span class="line">                                       </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-练习：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//邮箱匹配</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">checkMail</span><span class="params">()</span></span>&#123;</span><br><span class="line">    String mail = <span class="string">&quot;abc12@sunline.orc.com&quot;</span>;</span><br><span class="line">    String reg=<span class="string">&quot;[a-zA-Z0-9_]+@[a-zA-Z0-9]+(\\.[a-zA-Z]+)&#123;1,3&#125;&quot;</span>;<span class="comment">//较为精确的匹配。</span></span><br><span class="line">    reg=<span class="string">&quot;\\w+@\\w+(\\.\\w+)+&quot;</span>;<span class="comment">//相对不太精确的匹配</span></span><br><span class="line">    System.out.println(mail.matches(reg));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+练习：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//邮箱匹配</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">checkMail</span><span class="params">()</span></span>&#123;</span><br><span class="line">    String mail = <span class="string">&quot;abc12@sunline.orc.com&quot;</span>;</span><br><span class="line">    String reg=<span class="string">&quot;[a-zA-Z0-9_]+@[a-zA-Z0-9]+(\\.[a-zA-Z]+)&#123;1,3&#125;&quot;</span>;<span class="comment">//较为精确的匹配。</span></span><br><span class="line">    reg=<span class="string">&quot;\\w+@\\w+(\\.\\w+)+&quot;</span>;<span class="comment">//相对不太精确的匹配</span></span><br><span class="line">    System.out.println(mail.matches(reg));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 
     </div>
@@ -308,6 +339,9 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/mellofly/2044296166.html" rel="prev" title="目录">
+                  <i class="fa fa-chevron-left"></i> 目录
+                </a>
             </div>
             <div class="post-nav-item">
                 <a href="/mellofly/16035.html" rel="next" title="解释器模式">
@@ -339,6 +373,24 @@
   </span>
   <span class="author" itemprop="copyrightHolder">mellofly</span>
 </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
   </div>
 
@@ -350,13 +402,21 @@
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
 
   
 
-
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-mml-chtml.js","integrity":"sha256-ncNI9OXOS5Ek4tzVYiOMmN/KKCPZ6V0Cpv2P/zHntiA="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 

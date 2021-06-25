@@ -19,20 +19,22 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"shenpf.top","root":"/","images":"/images","scheme":"Mist","version":"8.5.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="当对象间存在一对多关系时，则使用观察者模式(Observer Pattern).比如：当一个对象被修改时，则会自动通知它的依赖对象。观察者模式属于行为模式。    介绍： 意图： 定义对象间的一种一对多的依赖关系，当一个对象的状态发生变化时，所有依赖于它的对象都得到通知并自动更新。 主要解决： 一个对象状态改变给其他对象通知的问题，而且要考虑到易用和低耦合，保证高度的协作。 何时使用： 一个对象">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shenpf.top","root":"/","images":"/images","scheme":"Mist","version":"8.5.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="当对象间存在一对多关系时，则使用观察者模式(Observer Pattern).比如：当一个对象被修改时，则会自动通知它的依赖对象。观察者模式属于行为模式。   介绍：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="观察者模式">
 <meta property="og:url" content="http://shenpf.top/mellofly/7738.html">
 <meta property="og:site_name" content="mellofly">
-<meta property="og:description" content="当对象间存在一对多关系时，则使用观察者模式(Observer Pattern).比如：当一个对象被修改时，则会自动通知它的依赖对象。观察者模式属于行为模式。    介绍： 意图： 定义对象间的一种一对多的依赖关系，当一个对象的状态发生变化时，所有依赖于它的对象都得到通知并自动更新。 主要解决： 一个对象状态改变给其他对象通知的问题，而且要考虑到易用和低耦合，保证高度的协作。 何时使用： 一个对象">
+<meta property="og:description" content="当对象间存在一对多关系时，则使用观察者模式(Observer Pattern).比如：当一个对象被修改时，则会自动通知它的依赖对象。观察者模式属于行为模式。   介绍：">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://shenpf.top/mellofly/7738/观察者模式.jpg">
 <meta property="article:published_time" content="2020-01-13T05:16:14.000Z">
-<meta property="article:modified_time" content="2021-06-07T07:54:10.940Z">
+<meta property="article:modified_time" content="2021-06-25T07:08:19.784Z">
 <meta property="article:author" content="mellofly">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://shenpf.top/mellofly/7738/观察者模式.jpg">
 
 
 <link rel="canonical" href="http://shenpf.top/mellofly/7738.html">
@@ -78,6 +80,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -92,11 +95,37 @@
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">27</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -230,7 +259,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-07 15:54:10" itemprop="dateModified" datetime="2021-06-07T15:54:10+08:00">2021-06-07</time>
+        <time title="修改时间：2021-06-25 15:08:19" itemprop="dateModified" datetime="2021-06-25T15:08:19+08:00">2021-06-25</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -243,6 +272,13 @@
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
 </div>
 
         </div>
@@ -256,7 +292,6 @@
 <p>当对象间存在一对多关系时，则使用观察者模式(Observer Pattern).比如：当一个对象被修改时，则会自动通知它的依赖对象。观察者模式属于行为模式。</p>
 
 </blockquote>
-
 <h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
 <li><strong>意图：</strong> 定义对象间的一种一对多的依赖关系，当一个对象的状态发生变化时，所有依赖于它的对象都得到通知并自动更新。</li>
 <li><strong>主要解决：</strong> 一个对象状态改变给其他对象通知的问题，而且要考虑到易用和低耦合，保证高度的协作。</li>
@@ -268,12 +303,12 @@
 <li>西游记里面悟空请求菩萨降服红孩儿，菩萨洒了一地水招来一个老乌龟，这个乌龟就是观察者，他观察菩萨洒水这个动作。</li>
 </ol>
 </li>
-<li><em><strong>优点：</strong></em> <ol>
+<li><strong><em>优点：</em></strong> <ol>
 <li>观察者和被观察者是抽象耦合的。</li>
 <li>建立一套触发机制。</li>
 </ol>
 </li>
-<li><em><strong>缺点：</strong></em> <ol>
+<li><strong><em>缺点：</em></strong> <ol>
 <li>如果一个观察者对象有很多的直接和间接的观察者的话，将所有的观察者都通知到会花费很多时间。</li>
 <li>如果在观察者和观察目标之间有循环依赖的话，观察目标会触发他们之间进行循环调用，可能导致系统崩溃。</li>
 <li>观察者模式没有相应的机制让观察者知道所有观察的目标对象是怎么发生变化的，而仅仅只是知道观察目标发生了变化。</li>
@@ -286,7 +321,7 @@
 <li>需要在系统中创建一个触发链，A对象的行为将影响B对象，B对象的行为将影响C对象…..，可以使用观察者模式创建一种链式触发机制。</li>
 </ul>
 </li>
-<li><em><strong>注意事项：</strong></em> <ol>
+<li><strong><em>注意事项：</em></strong> <ol>
 <li>JAVA中已经有了对观察者模式的支持类。</li>
 <li>避免循环引用。</li>
 <li>如果顺序执行，某一观察者错误会导致系统卡壳，一般采用异步方式。</li>
@@ -296,8 +331,7 @@
 <h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
 <p>观察者模式使用三个类 Subject、Observer 和 Client。Subject 对象带有绑定观察者到 Client 对象和从 Client 对象解绑观察者的方法。我们创建 Subject 类、Observer 抽象类和扩展了抽象类 Observer 的实体类。<br>ObserverPatternDemo，我们的演示类使用 Subject 和实体类对象来演示观察者模式。</p>
 </blockquote>
-
-
+<p><img src="/mellofly/7738/观察者模式.jpg" alt="观察者模式UML图"></p>
 <h2 id="步骤1：创建Subject类。"><a href="#步骤1：创建Subject类。" class="headerlink" title="步骤1：创建Subject类。"></a>步骤1：创建Subject类。</h2><blockquote>
 <p>创建Subject类。</p>
 </blockquote>
@@ -368,6 +402,24 @@
   </span>
   <span class="author" itemprop="copyrightHolder">mellofly</span>
 </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
   </div>
 
@@ -379,13 +431,21 @@
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
 
   
 
-
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-mml-chtml.js","integrity":"sha256-ncNI9OXOS5Ek4tzVYiOMmN/KKCPZ6V0Cpv2P/zHntiA="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 

@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"shenpf.top","root":"/","images":"/images","scheme":"Mist","version":"8.5.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"shenpf.top","root":"/","images":"/images","scheme":"Mist","version":"8.5.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="website">
 <meta property="og:title" content="mellofly">
 <meta property="og:url" content="http://shenpf.top/page/2/index.html">
@@ -73,6 +73,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -87,11 +88,37 @@
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">27</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -192,87 +219,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://shenpf.top/mellofly/8366.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="mellofly">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="mellofly">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/mellofly/8366.html" class="post-title-link" itemprop="url">Java-开发模式</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-12-20 08:59:42" itemprop="dateCreated datePublished" datetime="2019-12-20T08:59:42+08:00">2019-12-20</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-07 15:54:10" itemprop="dateModified" datetime="2021-06-07T15:54:10+08:00">2021-06-07</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Java的三层架构分别为 <em><strong>表示层、业务逻辑层</strong></em> 和 <em><strong>数据持久层</strong></em> 。<br>表示层的主要架构模式为MVC(Model View Controller，模型-视图-控制器)，主要框架有：Spring MVC和Struts2。<br>业务逻辑层的主要框架有Spring。<br>数据持久层的主要框架有Mybatis和Hibernate。<br>常用的两种框架组合：<br>SSH：Struts2+Spring+Hibernate<br>SSM：Spring MVC+Spring+MyBatis</p>
-<p>传统的Java Web应用程序是采用JSP+Servlet+Javabean来实现的，这种模式实现了最基本的MVC分层，使的程序结构分为几层，有负责前台展示的 JSP、负责流程逻辑控制的Servlet以及负责数据封装的Javabean。但是这种结构仍然存在问题：如JSP页面中需要使用符号嵌入很多的 Java代码，造成页面结构混乱，Servlet和Javabean负责了大量的跳转和运算工作，耦合紧密，程序复用度低等等。为了解决这些问题，出现了Struts框架，它是一个完美的MVC实现，它有一个中央控制类(一个 Servlet)，针对不同的业务，我们需要一个Action类负责页面跳转和后台逻辑运算，一个或几个JSP页面负责数据的输入和输出显示，还有一个 Form类负责传递Action和JSP中间的数据。JSP中可以使用Struts框架提供的一组标签，就像使用HTML标签一样简单，但是可以完成非常复杂的逻辑。从此JSP页面中不需要出现一行包围的Java代码了。 可是所有的运算逻辑都放在Struts的Action里将使得 Action类复用度低和逻辑混乱，所以通常人们会把整个Web应用程序分为三层，Struts负责显示层，它调用业务层完成运算逻辑，业务层再调用持久层完成数据库的读写。 使用JDBC连接来读写数据库，我们最常见的就是打开数据库连接、使用复杂的SQL语句进行读写、关闭连接，获得的数据又需要转换或封装后往外传，这是一个非常烦琐的过程。<br>这时出现了 Hibernate框架，它需要你创建一系列的持久化类，每个类的属性都可以简单的看做和一张数据库表的属性一一对应，当然也可以实现关系数据库的各种表件关联的对应。当我们需要相关操作是，不用再关注数据库表。我们不用再去一行行的查询数据库，只需要持久化类就可以完成增删改查的功能。使我们的软件开发真正面向对象， 而不是面向混乱的代码。我的感受是，使用Hibernate比JDBC方式减少了80%的编程量。<br>现在我们有三个层了，可是每层之间的调用是怎样的呢?比如显示层的Struts需要调用一个业务类，就需要new一个业务类出来，然后使用;业务层需要调 用持久层的类，也需要new一个持久层类出来用。通过这种new的方式互相调用就是软件开发中最糟糕设计的体现。简单的说，就是调用者依赖被调用者，它们 之间形成了强耦合，如果我想在其他地方复用某个类，则这个类依赖的其他类也需要包含。程序就变得很混乱，每个类互相依赖互相调用，复用度极低。如果一个类 做了修改，则依赖它的很多类都会受到牵连。<br>为此，出现Spring框架。<br>Spring Spring的作用就是完全解耦类之间的依赖关系，一个类如果要依赖什么，那就是一个接口。至于如何实现这个接口，这都不重要了。只要拿到一个实现了这个接口的类，就可以轻松的通过xml配置文件把实现类注射到调用接口的那个类里。所有类之间的这种依赖关系就完全通过配置文件的方式替代了。所以 Spring框架最核心的就是所谓的依赖注射和控制反转。<br>现在的结构是，Struts负责显示层，Hibernate负责持久层，Spring负责中间的业务层，这个结构是目前国内最流行的Java Web应用程序架构了。<br>另外，由于Spring使用的依赖注射以及AOP(面向方面编程)，所以它的这种内部模式非常优秀，以至于Spring自己也实现了一个使用依赖注射的MVC框架，叫做Spring MVC，同时为了很好的处理事物，Spring集成了Hibernate，使事物管理从Hibernate的持久层提升到了业务层，使用更加方便和强大。 Struts框架是2000年就开始起步了，到目前已经发展了5年，技术相当成熟，目前全球Java开发中Struts框架是显示层技术中当之无愧的王者。它拥有大量的用户群和很好的开发团队。这也是国内大部分Java软件公司对新进员工的基本要求。 其他 Java这个名词似乎注定和开源紧密联系在一起了，在Java界，每天都有大量的开源技术出现，由于是开放源代码的，技术中存在的问题和不足很快就会被人发现，开源软件提供者会很快的修正或扩展这些技术，因此版本更新很快，几个星期或者几天就有一个新版本出来。 </p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://shenpf.top/mellofly/33100.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -304,7 +250,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-07 15:54:10" itemprop="dateModified" datetime="2021-06-07T15:54:10+08:00">2021-06-07</time>
+        <time title="修改时间：2021-06-25 15:05:49" itemprop="dateModified" datetime="2021-06-25T15:05:49+08:00">2021-06-25</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -334,19 +280,6 @@
 <p><strong>外观模式定义了一个将子系统的一组接口集成在一起的高层接口，以提供一个一致的界面。通过这个界面，其他系统可以方便地嗲用子系统中的功能，而忽略子系统内部发生的变化。</strong></p>
 
 </blockquote>
-
-<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
-<li><strong>意图：</strong> 为子系统中的一组接口提供一个一致的界面，外观模式定义了一个高层接口，这个接口使得这一子系统更加容易使用。</li>
-<li><strong>主要解决：</strong> 降低访问复杂系统的内部子系统时的复杂度，简化客户端与之的接口。</li>
-<li><strong>何时使用：</strong> </li>
-</ul>
-<ol>
-<li>客户端不需要知道系统内部的复杂练习，整个系统只需提供一个“接待员”即可，</li>
-<li>定义系统的入口。</li>
-<li>为一个比较复杂的子系统提供一个简单的接口。</li>
-<li>将客户程序与子系统的实现部分分离，提高子系统的独立性和可移植性。</li>
-<li>简化子系统间的依赖关系。</li>
-</ol>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/mellofly/33100.html#more" rel="contents">
@@ -393,7 +326,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/mellofly/38966.html" class="post-title-link" itemprop="url">装饰器</a>
+          <a href="/mellofly/38966.html" class="post-title-link" itemprop="url">装饰器模式</a>
         </h2>
 
         <div class="post-meta-container">
@@ -411,7 +344,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-07 15:54:10" itemprop="dateModified" datetime="2021-06-07T15:54:10+08:00">2021-06-07</time>
+        <time title="修改时间：2021-06-25 15:09:09" itemprop="dateModified" datetime="2021-06-25T15:09:09+08:00">2021-06-25</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -437,20 +370,7 @@
 <p>装饰器模式(Decorator Pattern)允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，他是作为现有的类的一个包装。<br>这种模式创建了一个装饰类，用来包装原有的类，并在保持类方法签名完整性的前提下，提供了额外的功能。<br>通过下面的实例来演示装饰器模式的用法。其中，我们将把一个形状装饰上不同的颜色，同时又不改变形状类。</p>
 
 </blockquote>
-<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
-<li><strong>意图：</strong> 动态地给一个对象添加一些额外的职责。新增加功能来说，装饰器模式相比生成子类更为灵活。</li>
-<li><strong>主要解决：</strong> 一般的，我们为了扩展一个类经常使用继承方式实现，由于继承为类引入静态特征，并且随着扩展功能的增多，子类会很膨胀。</li>
-<li><strong>何时使用：</strong> 在不想增加很多子类的情况下扩展类。</li>
-<li><strong>如何解决：</strong> 将具体功能职责划分，同时继承装饰者模式。</li>
-<li><strong>关键代码：</strong> </li>
-</ul>
-<ol>
-<li>Component类充当抽象角色，不应该具体实现。</li>
-<li>修饰类引用和继承Component类，具体扩展类重写父类方法。</li>
-</ol>
-<ul>
-<li><strong>应用实例：</strong> </li>
-</ul>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/mellofly/38966.html#more" rel="contents">
@@ -515,7 +435,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-07 15:54:10" itemprop="dateModified" datetime="2021-06-07T15:54:10+08:00">2021-06-07</time>
+        <time title="修改时间：2021-06-25 15:07:48" itemprop="dateModified" datetime="2021-06-25T15:07:48+08:00">2021-06-25</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -541,21 +461,7 @@
 <p>组合模式(Composite Pattern),又叫部分整体模式，是用于把一族相似的对象当做一个单一的对象。组合模式依据树形结构来组合对象，用来表示部分以及整体层次。这种类型的设计模式属于结构型模式，它创建了对象组的树形结构。<br>组合模式，就是在一个对象中包含其他对象，这些被包含的对象可能是终点对象（不再包含别的对象），也有可能是非终点对象（其内部还包含其他对象，或叫组对象），我们将对象称为节点，即一个根节点包含许多子节点，这些子节点有的不再包含子节点，而有的仍然包含子节点<br>实例为：组织中员工的层次结构。</p>
 
 </blockquote>
-
-<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
-<li><strong>意图：</strong> 将对象组合成树形结构以宝石“部分-整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。</li>
-<li><strong>主要解决：</strong> 它在我们树型结构的问题中，模糊了简单元素和复杂元素的概念，客户程序可以像处理复杂元素，从而使得客户程序与复杂元素的内部结构解耦。</li>
-<li><strong>何时使用：</strong> </li>
-</ul>
-<ol>
-<li>想表示对象的部分-整体层次结构(树形结构)。</li>
-<li>您希望用户忽略组合对象与单个对象的不同，用户将统一地使用组合结构中的所有对象。</li>
-</ol>
-<ul>
-<li><strong>如何解决：</strong> 树枝和叶子实现统一接口，树枝内部组合该接口。</li>
-<li><strong>关键代码：</strong> 树枝内部组合该接口，并且含有内部属性List，里面放Component。</li>
-<li><strong>应用实例：</strong> </li>
-</ul>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/mellofly/44993.html#more" rel="contents">
@@ -620,7 +526,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-07 15:54:10" itemprop="dateModified" datetime="2021-06-07T15:54:10+08:00">2021-06-07</time>
+        <time title="修改时间：2021-06-25 15:10:05" itemprop="dateModified" datetime="2021-06-25T15:10:05+08:00">2021-06-25</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -646,14 +552,7 @@
 <p>过滤器模式(Filter Pattern)或标准器模式(Criteria Pattern) 是一种设计模式，这种模式允许开发人员使用不同的标准来过滤一组对象，通过逻辑运算以解耦的方式把他们连接起来。这种类型的设计模式属于结构型模式，它结合多个标准来获得单一标准。</p>
 
 </blockquote>
-<h1 id="实现"><a href="#实现" class="headerlink" title="实现:"></a>实现:</h1><blockquote>
-<p>我们将创建一个Person对象、Criteria接口和实现了该接口的实体类，来过滤Person对象的列表。CriteriaPatternDemo，我们的演示类使用Criteria对象，基于各种标准和他们结合来过滤Person对象的列表。</p>
-</blockquote>
-
-
-<h2 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h2><blockquote>
-<p>创建一个类，在该类上应用标准。</p>
-</blockquote>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现:"></a>实现:</h1>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/mellofly/6526.html#more" rel="contents">
@@ -718,7 +617,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-07 15:54:10" itemprop="dateModified" datetime="2021-06-07T15:54:10+08:00">2021-06-07</time>
+        <time title="修改时间：2021-06-25 15:06:57" itemprop="dateModified" datetime="2021-06-25T15:06:57+08:00">2021-06-25</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -748,22 +647,7 @@
 </ol>
 
 </blockquote>
-
-<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
-<li><strong>意图：</strong> 将抽象部分与实际部分分离，使他们都可以独立的变化。</li>
-<li><strong>主要解决：</strong> 在有多种可能会变化的情况下，用继承会造成类爆炸问题，扩展起来不灵活。</li>
-<li><strong>何时使用：</strong> 实现系统可能有多个角度分类，每一种角度都可能变化。</li>
-<li><strong>如何解决：</strong> 把这种多角度分类分离出来，让他们独立变化，减少他们之间耦合。</li>
-<li><strong>关键代码：</strong> 抽象类依赖实现类。</li>
-<li><strong>应用实例：</strong> </li>
-</ul>
-<ol>
-<li>猪八戒从天蓬元帅转世投胎到猪，转世投胎的机制将尘世划分为两个等级，即：灵魂和肉体，前者相当于抽象化，后者相当于实现化。生灵通过功能的委派，调用肉体对象的功能，使得生灵可以动态地选择。 </li>
-<li>墙上的开关，可以看到的开关是抽象的，不用管里面具体怎么实现的。</li>
-</ol>
-<ul>
-<li><em><strong>优点：</strong></em> </li>
-</ul>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/mellofly/43376.html#more" rel="contents">
@@ -828,7 +712,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-07 15:54:10" itemprop="dateModified" datetime="2021-06-07T15:54:10+08:00">2021-06-07</time>
+        <time title="修改时间：2021-06-25 15:12:41" itemprop="dateModified" datetime="2021-06-25T15:12:41+08:00">2021-06-25</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -857,21 +741,7 @@
 <li>下面通过具体事例来演示适配器模式的使用。其中，音频播放器设备只能播放MP3文件，通过使用一个更高级的音频播放器来播放VLC和MP4文件。</li>
 </ol>
 </blockquote>
-<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
-<li><strong>意图：</strong> 将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。</li>
-<li><strong>主要解决：</strong> 主要解决在软件系统中，常常要将一些“现存的对象”放到新的环境中，而新环境要求的接口是现对象不能满足的。</li>
-<li><strong>何时使用：</strong> </li>
-</ul>
-<ol>
-<li>系统需要使用现有的类，而此类的接口不符合系统的需要。</li>
-<li>想要建立一个可以重复使用的类，用于与一些批次之间没有太大关联的一些类，包括一些可能在将来引进的类一起工作，这些袁磊不一定有一致的接口。</li>
-<li>通过接口转换，将一个类插入到另一个类系中。(比如老虎和飞禽，现在多了一个飞虎，在不增加实体的需求下，增加一个适配器，在里面包容一个虎对象，实现非的接口。)</li>
-</ol>
-<ul>
-<li><strong>如何解决：</strong> 继承或依赖(推荐)</li>
-<li><strong>关键代码：</strong> 适配器继承或依赖已有的对象，实现想要的目标接口。</li>
-<li><strong>应用实例：</strong> </li>
-</ul>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/mellofly/39554.html#more" rel="contents">
@@ -936,7 +806,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-07 15:54:10" itemprop="dateModified" datetime="2021-06-07T15:54:10+08:00">2021-06-07</time>
+        <time title="修改时间：2021-06-25 15:04:46" itemprop="dateModified" datetime="2021-06-25T15:04:46+08:00">2021-06-25</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -961,21 +831,7 @@
           <blockquote>
 <p>原型模式(Prototype Pattern)用于创建重复的对象，同时又能保证性能，这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。<br>这种模式是实现了一个原型接口，该接口用于创建当前对象的克隆。当直接创建对象的代价比较大时，则采用这种模式。例如，一个对象需要在一个高代价的数据库操作之后被创建爱你，我们可以缓存该对象，在下一个请求时返回它的克隆，在需要的时候更新数据库，以此来减少数据库调用。</p>
 </blockquote>
-<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
-<li><strong>意图：</strong> 用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。</li>
-<li><strong>主要解决：</strong> 在运行期建立和删除原型。</li>
-<li><strong>何时使用：</strong> </li>
-</ul>
-<ol>
-<li>当一个系统应该独立于它的产品创建，构成和表示时。</li>
-<li>当要实例化的类是在运行时刻指定时，例如，通过动态装载。</li>
-<li>为了避免创建一个与产品类层次平行的工厂类层次时。</li>
-<li>当一个类的实例只能有几个不同状态组合中的一种时。建立相应数目的原型并克隆他们可能比每次用合适的状态手工实例化该类更方便一些。</li>
-</ol>
-<ul>
-<li><strong>如何解决：</strong> 利用已有的一个原型对象，快速地生成和原型对象一样的实例。</li>
-<li><strong>关键代码：</strong> </li>
-</ul>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/mellofly/22548.html#more" rel="contents">
@@ -1040,7 +896,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-07 15:54:10" itemprop="dateModified" datetime="2021-06-07T15:54:10+08:00">2021-06-07</time>
+        <time title="修改时间：2021-06-25 16:34:41" itemprop="dateModified" datetime="2021-06-25T16:34:41+08:00">2021-06-25</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1062,12 +918,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h1><h2 id="使用-和-标记一级和二级标题："><a href="#使用-和-标记一级和二级标题：" class="headerlink" title="使用=和-标记一级和二级标题："></a>使用<code>=</code>和<code>-</code>标记一级和二级标题：</h2><blockquote>
-<p>=和-的使用语法格式如下：  </p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一级标题语法：在标题文字的下一行加上： ===============</span><br></pre></td></tr></table></figure>
+          <blockquote class="blockquote-center">
+<p>Markdown是一种轻量级标记语言，它允许使用易读易写的纯文本格式编写文档。Markdown编写的文档可以到处HTML、Word、图像、PDF、Epub等多种格式的文档。编写出来的文档后缀为.md,.markdown</p>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">二级标题语法：在标题文字的下一行加上：-----</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h1>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/mellofly/39418.html#more" rel="contents">
@@ -1132,7 +987,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-07 15:54:10" itemprop="dateModified" datetime="2021-06-07T15:54:10+08:00">2021-06-07</time>
+        <time title="修改时间：2021-06-25 15:39:35" itemprop="dateModified" datetime="2021-06-25T15:39:35+08:00">2021-06-25</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1156,17 +1011,121 @@
     <div class="post-body" itemprop="articleBody">
           <h1 id="Markdown总体："><a href="#Markdown总体：" class="headerlink" title="Markdown总体："></a>Markdown总体：</h1><blockquote>
 <p>Markdown是一种轻量级标记语言，它允许使用易读易写的纯文本格式编写文档。</p>
-</blockquote>
-<blockquote>
 <p>Markdown语言在2004年有约翰格鲁伯(英语：John Gruber)创建。</p>
-</blockquote>
-<blockquote>
 <p>Markdown编写的文档可以到处HTML、Word、图像、PDF、Epub等多种格式的文档。编写出来的文档后缀为.md,.markdown。</p>
+<h1 id="Markdown应用："><a href="#Markdown应用：" class="headerlink" title="Markdown应用："></a>Markdown应用：</h1><p>可以被使用来撰写电子书，如Gitbook;<br>当前许多网站都广泛使用Markdown来撰写帮助文档或是用于论坛上发表消息。例如：GitHub、简书、reddit、Diaspora、Stack Exchange、OpenStreetMap、SourceForge等。</p>
+<h1 id="简单分类："><a href="#简单分类：" class="headerlink" title="简单分类："></a>简单分类：</h1><ul>
+<li><strong>基础语法：</strong> <a href="#">Post not found: Markdown基础语法</a></li>
+<li><strong>公式：</strong></li>
+<li><strong>画图：</strong></li>
+</ul>
 </blockquote>
-<h1 id="Markdown应用："><a href="#Markdown应用：" class="headerlink" title="Markdown应用："></a>Markdown应用：</h1>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/mellofly/56456.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://shenpf.top/mellofly/29711.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="mellofly">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mellofly">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mellofly/29711.html" class="post-title-link" itemprop="url">建造者模式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-12-09 22:39:01" itemprop="dateCreated datePublished" datetime="2019-12-09T22:39:01+08:00">2019-12-09</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-06-25 15:06:26" itemprop="dateModified" datetime="2021-06-25T15:06:26+08:00">2021-06-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>建造者模式(Builder Pattern) 使用多个简单的对象一步一步构建成一个复杂的对象。这种类型的设计模式属于创建型模式，他提供了一种创建对象的最佳方式。</p>
+<p>一个Builder类会一步一步构造最终的对象。该Builder类是独立于其他对象的。</p>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 将一个复杂的构建与其表示相分离，使得同样的构建过程可以创建不同的表示。</li>
+<li><strong>主要解决：</strong> 主要解决在软件系统中，有时候面临着“一个复杂对象”的创建工作，其通常由各个部分的子对象用一定的算法构成；由于需求的变化，这个复杂对象的各个部分经常面临着剧烈的变化，但是将他们组合在一起的算法却相对稳定。</li>
+<li><strong>何时使用：</strong> 一些基本部件不会变，而其组合经常变化的时候。</li>
+<li><strong>如何解决：</strong> 将变与不变分离开。</li>
+<li><strong>关键代码：</strong> 建造者：创建和提供实例，导演：管理建造出来的实例的依赖关系。</li>
+<li><strong>应用实例：</strong><br>1.去肯德基，汉堡、可乐、薯条、炸鸡翅等是不变的，而其组合是经常变化的，生成出所谓的“套餐”。2.Java中的StringBuilder。</li>
+<li><strong><em>优点：</em></strong> 1、建造者独立，易扩展。<br>2、便于控制细节风险。</li>
+<li><strong><em>缺点：</em></strong> 1、产品必须有共同点，范围有限制。<br>2、如内部变化复杂，会有很多的建造类。</li>
+<li><strong>使用场景：</strong> 需要生成的对象具有复杂的内部结构;需要生成的对象内部属性本身相互依赖。</li>
+<li><strong>注意事项：</strong> 与工厂模式的区别是：建造者模式更加关注与零件装配的顺序。<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1>我们假设一个快餐店的商业案例，其中，一个典型的套餐可以是一个汉堡（Burger）和一杯冷饮（Cold drink）。汉堡（Burger）可以是素食汉堡（Veg Burger）或鸡肉汉堡（Chicken Burger），它们是包在纸盒中。冷饮（Cold drink）可以是可口可乐（coke）或百事可乐（pepsi），它们是装在瓶子中。<br>我们将创建一个表示食物条目（比如汉堡和冷饮）的 Item 接口和实现 Item 接口的实体类，以及一个表示食物包装的 Packing 接口和实现 Packing 接口的实体类，汉堡是包在纸盒中，冷饮是装在瓶子中。<br>然后我们创建一个 Meal 类，带有 Item 的 ArrayList 和一个通过结合 Item 来创建不同类型的 Meal 对象的 MealBuilder。BuilderPatternDemo，我们的演示类使用 MealBuilder 来创建一个 Meal。</li>
+</ul>
+</blockquote>
+<p><img src="/mellofly/29711/建造者模式.jpg" alt="建造者模式设计类UML图"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/mellofly/29711.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1208,6 +1167,24 @@
   </span>
   <span class="author" itemprop="copyrightHolder">mellofly</span>
 </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
   </div>
 
@@ -1219,13 +1196,21 @@
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
 
   
 
-
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-mml-chtml.js","integrity":"sha256-ncNI9OXOS5Ek4tzVYiOMmN/KKCPZ6V0Cpv2P/zHntiA="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 
