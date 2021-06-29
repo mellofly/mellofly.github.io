@@ -176,6 +176,11 @@
 ]]></content>
   </entry>
   <entry>
+    <title>spring/test</title>
+    <url>/mellofly/9f2d41da.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>Java-开发模式</title>
     <url>/mellofly/8366.html</url>
     <content><![CDATA[<p>Java的三层架构分别为 <strong><em>表示层、业务逻辑层</em></strong> 和 <strong><em>数据持久层</em></strong> 。<br>表示层的主要架构模式为MVC(Model View Controller，模型-视图-控制器)，主要框架有：Spring MVC和Struts2。<br>业务逻辑层的主要框架有Spring。<br>数据持久层的主要框架有Mybatis和Hibernate。<br>常用的两种框架组合：<br>SSH：Struts2+Spring+Hibernate<br>SSM：Spring MVC+Spring+MyBatis</p>
@@ -238,6 +243,180 @@
       </tags>
   </entry>
   <entry>
+    <title>SpringBoot入门</title>
+    <url>/mellofly/3ce02997.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>Spring5框架的基本概念:注解与spring </p>
+
+</blockquote>
+<h1 id="微服务SpringCould与SPringBoot联系"><a href="#微服务SpringCould与SPringBoot联系" class="headerlink" title="微服务SpringCould与SPringBoot联系"></a>微服务SpringCould与SPringBoot联系</h1><ul>
+<li><p>单体应用：开发速度慢；启功时间长；依赖庞大。<br>图片展示：<img src="/mellofly/3ce02997/E60D7C5D98164D52969AB2BCE332254C" alt="image"></p>
+</li>
+<li><p>微服务：易开发，理解和维护；独立的部署和启动；问题{分布式系统(分布式事务问题),管理多个服务(服务治理)}；图片管理<img src="/mellofly/3ce02997/A7B1072773DF415EAE73F92B96186C58" alt="image"></p>
+</li>
+<li>springcloud基于springboot。</li>
+</ul>
+<h1 id="SPringBoot项目"><a href="#SPringBoot项目" class="headerlink" title="SPringBoot项目"></a>SPringBoot项目</h1><ul>
+<li>springboot的内容和作用<blockquote>
+<p>一个web开发框架；servlet、SpringMVC的集成；简化配置</p>
+</blockquote>
+</li>
+<li>项目中常见的交互形式<blockquote>
+<p>主流场景使用JSON返回数据。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="创建springboot项目："><a href="#创建springboot项目：" class="headerlink" title="创建springboot项目："></a>创建springboot项目：</h2><ul>
+<li>手动创建：  <blockquote>
+<p>首先创建一个maven项目，然后在pom.xml中添加如下的内容：</p>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li>配置文件：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- 是一个特殊的starter，它用来提供相关的Maven默认依赖</span><br><span class="line">1.指定编码格式默认使用utf-8。</span><br><span class="line">2.指定java版本默认使用1.8。</span><br><span class="line">3.提供Dependency Management进行项目依赖的版本管理，如指定实际依赖的版本号（已经做版本兼容性测试）。</span><br><span class="line">4.默认的资源过滤(增加需要加载的资源)和插件管理。--&gt;</span><br><span class="line">&lt;parent&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;2.5.0&lt;/version&gt;</span><br><span class="line">        &lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;</span><br><span class="line">&lt;/parent&gt;</span><br><span class="line">&lt;properties&gt;</span><br><span class="line">    &lt;java.version&gt;1.8&lt;/java.version&gt;</span><br><span class="line">&lt;/properties&gt;</span><br><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;!-- S支持全栈式Web开发，包括Tomcat和spring-webmvc --&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;!-- 单元测试使用 --&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">        &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line">&lt;build&gt;</span><br><span class="line">    &lt;plugins&gt;</span><br><span class="line">    &lt;!-- 将项目打包成jar包时使用--&gt;</span><br><span class="line">        &lt;plugin&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">        &lt;/plugin&gt;</span><br><span class="line">    &lt;/plugins&gt;</span><br><span class="line">&lt;/build&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>在代码的根目录创建启动类（DemoApplication）：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line">//启动类</span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class DemoApplication &#123;</span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        SpringApplication.run(DemoApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>使用创建工具<a href="https://start.spring.io/">spring Initializr</a>创建<br><img src="/mellofly/3ce02997/235397683C8C43C4920FA4CDDEAC98E1" alt="image"></li>
+</ul>
+<h2 id="使用SpringBoot开发简单接口"><a href="#使用SpringBoot开发简单接口" class="headerlink" title="使用SpringBoot开发简单接口"></a>使用SpringBoot开发简单接口</h2><blockquote>
+<p>使用@RestController注解，返回一个POJO对象（不能返回字符串）<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RestController;</span><br><span class="line">import java.util.HashMap;</span><br><span class="line">import java.util.Map;</span><br><span class="line">/**</span><br><span class="line"> * 视频控制器</span><br><span class="line"> */</span><br><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;/api/v1/video&quot;)</span><br><span class="line">public class VideoController &#123;</span><br><span class="line">    @RequestMapping(&quot;list&quot;)</span><br><span class="line">    public Object list()&#123;</span><br><span class="line">        Map&lt;String,String&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">        map.put(&quot;1&quot;,&quot;下雨视频&quot;);</span><br><span class="line">        map.put(&quot;2&quot;,&quot;下雨视频2&quot;);</span><br><span class="line">        map.put(&quot;3&quot;,&quot;下雨视频3&quot;);</span><br><span class="line">        return map;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<h1 id="开发规范"><a href="#开发规范" class="headerlink" title="开发规范"></a>开发规范</h1></blockquote>
+<h2 id="SpringBoot常用注解："><a href="#SpringBoot常用注解：" class="headerlink" title="SpringBoot常用注解："></a>SpringBoot常用注解：</h2><ul>
+<li><strong>@Controller</strong>作用：用于标记这个类是一个控制器，返回页面的时候使用；如果要返回JSON，则需要在接口上使用@ResponseBody才可以。</li>
+<li><strong>@RestController</strong>作用：用于标记这个类是一个控制器，返回JSON数据的时候使用，如果使用这个注解，则接口返回数据会被序列化为JSON，所以：<code>@RestController=@Controller+@ResponseBody</code>。</li>
+<li><strong>@RequestMapping</strong>作用： 路由映射，用于类上做1级路径；用于某个方法上做子路径。</li>
+<li><p><strong>@SpringBootApplication</strong>作用：用于标记时SpringBoot应用，里面包含多个子注解，即：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@SpringBootApplication =</span><br><span class="line">@Configuration+@EnableAutoConfiguration+@ComponentScan</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>@Configuration</strong>: 主要标注在某个类上，⽤于spring扫描注⼊,⼀般结合@Bean使⽤</p>
+</li>
+<li><p><strong>@EnableAutoConfiguration</strong>: 启⽤Spring的⾃动加载配置,⾃动载⼊应⽤程序所需的所有Bean。</p>
+</li>
+<li><p><strong>@ComponentScan</strong>：告诉spring扫描包的范围，默认是Applocation类所在的全部⼦包，可以指定其他包@ComponentScan({“net.xdclass.package1”,”net.xdclass.package2”})</p>
+</li>
+</ul>
+<h2 id="目录文件结构和静态资源访问"><a href="#目录文件结构和静态资源访问" class="headerlink" title="目录文件结构和静态资源访问"></a>目录文件结构和静态资源访问</h2><ul>
+<li>目录结构：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">src/main/java：存放代码</span><br><span class="line">src/main/resources</span><br><span class="line">static: 存放静态⽂件，⽐如 css、js、image, （访问⽅式 http://localhost:8080/js/main.js）</span><br><span class="line">templates:存放静态⻚⾯jsp,html,tpl</span><br><span class="line">config:存放配置⽂件,application.properties</span><br><span class="line">resources:</span><br></pre></td></tr></table></figure></li>
+<li>静态资源访问<blockquote>
+<p>同一个文件的加载顺序，静态资源文件SpringBoot默认会挨个从一下目录里面查找是否存在相应的资源，如果有则直接返回。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">META/resources &gt;</span><br><span class="line">resources &gt;</span><br><span class="line">static &gt;</span><br><span class="line">public</span><br></pre></td></tr></table></figure>
+<p>以上内容时在SpringBoot中如下配置的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">spring.resources.static-locations = classpath:/METAINF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/</span><br></pre></td></tr></table></figure></blockquote>
+</li>
+<li>资源文件通常做法：<blockquote>
+<p>静态资源文件存储在CDN（内容分发网络），文件服务器（如：阿里云OSS）中。</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="SpringBoot启动类位置常见形式："><a href="#SpringBoot启动类位置常见形式：" class="headerlink" title="SpringBoot启动类位置常见形式："></a>SpringBoot启动类位置常见形式：</h1><ol>
+<li>当启动类和controller在同⼀类中时，在该类上添加注解@Controller即可。</li>
+<li>当启动类和controller分开时，启动类要放在根⽬录下，启动类上只需要注解@SpringBootApplication；</li>
+<li>当启动类和controller分开时，如果启动类在⾮根⽬录下，需要在启动类中增加注解  @ComponentScan，并配置需要扫描的包名，如(basePackages = )  @ComponentScan(basePackages ={“net.xdclass.controller”,”net.xdclass.service”})</li>
+</ol>
+<h2 id="SpringBoot启动方式："><a href="#SpringBoot启动方式：" class="headerlink" title="SpringBoot启动方式："></a>SpringBoot启动方式：</h2><ul>
+<li>IDEA开发中启动：本地开发中常用</li>
+<li>Jar⽅式打包启动<blockquote>
+<p>pom文件中需要有maven插件如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;build&gt;</span><br><span class="line"> &lt;plugins&gt;</span><br><span class="line"> &lt;plugin&gt;</span><br><span class="line"> &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line"> &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line"> &lt;/plugin&gt;</span><br><span class="line"> &lt;/plugins&gt;</span><br><span class="line">&lt;/build&gt;</span><br><span class="line">如果没有加，则执⾏jar包 ，报错如下</span><br><span class="line">java -jar spring-boot-demo-0.0.1-SNAPSHOT.jar</span><br><span class="line">no main manifest attribute, in spring-boot-demo-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+<p>打包命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">构建：mvn install</span><br><span class="line">构建跳过测试类 mvn install -Dmaven.test.skip=true</span><br><span class="line">target⽬录下有对应的jar包就是打包后项⽬</span><br><span class="line">进到对应的target⽬录启动 java -jar xxxxx.jar 即可</span><br><span class="line">想后台运⾏，就⽤守护进程 nohup java -jar xxx.jar &amp; (linux中)</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h2 id="Jar包目录结构"><a href="#Jar包目录结构" class="headerlink" title="Jar包目录结构"></a>Jar包目录结构</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">example.jar</span><br><span class="line"> |</span><br><span class="line"> +-META-INF</span><br><span class="line"> |  +-MANIFEST.MF</span><br><span class="line"> +-org</span><br><span class="line"> | +-springframework</span><br><span class="line"> |  +-boot</span><br><span class="line"> |      +-loader</span><br><span class="line"> |          +-&lt;spring boot loader classes&gt;</span><br><span class="line"> +-BOOT-INF</span><br><span class="line">     +-classes</span><br><span class="line">     |  +-mycompany</span><br><span class="line">     |      +-project</span><br><span class="line">     |          +-YourClasses.class</span><br><span class="line">     +-lib</span><br><span class="line">         +-dependency1.jar</span><br><span class="line">         +-dependency2.jar</span><br></pre></td></tr></table></figure>
+<h1 id="springboot的maven引入："><a href="#springboot的maven引入：" class="headerlink" title="springboot的maven引入："></a>springboot的maven引入：</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
+<li><strong>spring-boot-starter</strong>:这是Spring Boot的核心启动器，包含了自动配置、日志和YAML。</li>
+<li><strong>spring-boot-starter-amqp</strong>:通过spring-rabbit来支持AMQP协议（Advanced Message Queuing Protocol. 。</li>
+<li><strong>spring-boot-starter-aop</strong>:支持面向方面的编程即AOP，包括spring-aop和AspectJ。</li>
+<li><strong>spring-boot-starter-artemis</strong>:通过Apache Artemis支持JMS的API（Java Message Service API. 。</li>
+<li><strong>spring-boot-starter-batch</strong>:支持Spring Batch，包括HSQLDB数据库。</li>
+<li><strong>spring-boot-starter-cache</strong>:支持Spring的Cache抽象。</li>
+<li><strong>spring-boot-starter-cloud-connectors</strong>:支持Spring Cloud Connectors，简化了在像Cloud Foundry或Heroku这样的云平台上连接服务。</li>
+<li><strong>spring-boot-starter-data-elasticsearch</strong>:支持ElasticSearch搜索和分析引擎，包括spring-data-elasticsearch。</li>
+<li><strong>spring-boot-starter-data-gemfire</strong>:支持GemFire分布式数据存储，包括spring-data-gemfire。</li>
+<li><strong>spring-boot-starter-data-jpa</strong>:支持JPA（Java Persistence API. ，包括spring-data-jpa、spring-orm、Hibernate。</li>
+<li><strong>spring-boot-starter-data-mongodb</strong>:支持MongoDB数据，包括spring-data-mongodb。</li>
+<li><strong>spring-boot-starter-data-rest</strong>:通过spring-data-rest-webmvc，支持通过REST暴露Spring Data数据仓库。</li>
+<li><strong>spring-boot-starter-data-solr</strong>:支持Apache Solr搜索平台，包括spring-data-solr。</li>
+<li><strong>spring-boot-starter-freemarker</strong>:支持FreeMarker模板引擎。</li>
+<li><strong>spring-boot-starter-groovy-templates</strong>:支持Groovy模板引擎。</li>
+<li><strong>spring-boot-starter-hateoas</strong>:通过spring-hateoas支持基于HATEOAS的RESTful Web服务。</li>
+<li><strong>spring-boot-starter-hornetq</strong>:通过HornetQ支持JMS。</li>
+<li><strong>spring-boot-starter-integration</strong>:支持通用的spring-integration模块。</li>
+<li><strong>spring-boot-starter-jdbc</strong>:支持JDBC数据库。</li>
+<li><strong>spring-boot-starter-jersey</strong>:支持Jersey RESTful Web服务框架。</li>
+<li><strong>spring-boot-starter-jta-atomikos</strong>:通过Atomikos支持JTA分布式事务处理。</li>
+<li><strong>spring-boot-starter-jta-bitronix</strong>:通过Bitronix支持JTA分布式事务处理。</li>
+<li><strong>spring-boot-starter-mail</strong>:支持javax.mail模块。</li>
+<li><strong>spring-boot-starter-mobile</strong>:支持spring-mobile。</li>
+<li><strong>spring-boot-starter-mustache</strong>:支持Mustache模板引擎。</li>
+<li><strong>spring-boot-starter-redis</strong>:支持Redis键值存储数据库，包括spring-redis。</li>
+<li><strong>spring-boot-starter-security</strong>:支持spring-security。</li>
+<li><strong>spring-boot-starter-social-facebook</strong>:支持spring-social-facebook。</li>
+<li><strong>spring-boot-starter-social-linkedin</strong>:支持spring-social-linkedin。</li>
+<li><strong>spring-boot-starter-social-twitter</strong>:支持pring-social-twitter。</li>
+<li><strong>spring-boot-starter-test</strong>:支持常规的测试依赖，包括JUnit、Hamcrest、Mockito以及spring-test模块。</li>
+<li><strong>spring-boot-starter-thymeleaf</strong>:支持Thymeleaf模板引擎，包括与Spring的集成。</li>
+<li><strong>spring-boot-starter-velocity</strong>:支持Velocity模板引擎。</li>
+<li><strong>spring-boot-starter-web</strong>:S支持全栈式Web开发，包括Tomcat和spring-webmvc。</li>
+<li><strong>spring-boot-starter-websocket</strong>:支持WebSocket开发。</li>
+<li><strong>spring-boot-starter-ws</strong>:支持Spring Web Services。<h2 id="Spring-Boot应用启动器面向生产环境的还有2种，具体如下"><a href="#Spring-Boot应用启动器面向生产环境的还有2种，具体如下" class="headerlink" title="Spring Boot应用启动器面向生产环境的还有2种，具体如下"></a>Spring Boot应用启动器面向生产环境的还有2种，具体如下</h2></li>
+<li><strong>spring-boot-starter-actuator</strong>:增加了面向产品上线相关的功能，比如测量和监控。</li>
+<li><strong>spring-boot-starter-remote-shell</strong>:增加了远程ssh shell的支持。<h2 id="Spring-Boot应用启动器还有一些替换技术的启动器，具体如下"><a href="#Spring-Boot应用启动器还有一些替换技术的启动器，具体如下" class="headerlink" title="Spring Boot应用启动器还有一些替换技术的启动器，具体如下"></a>Spring Boot应用启动器还有一些替换技术的启动器，具体如下</h2></li>
+<li><strong>spring-boot-starter-jetty</strong>:引入了Jetty HTTP引擎（用于替换Tomcat. 。</li>
+<li><strong>spring-boot-starter-log4j</strong>:支持Log4J日志框架。</li>
+<li><strong>spring-boot-starter-logging</strong>:引入了Spring Boot默认的日志框架Logback。</li>
+<li><strong>spring-boot-starter-tomcat</strong>:引入了Spring Boot默认的HTTP引擎Tomcat。</li>
+<li><strong>spring-boot-starter-undertow</strong>:引入了Undertow HTTP引擎（用于替换Tomcat.</li>
+</ul>
+]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot接口开发</title>
+    <url>/mellofly/7371a327.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>SpringBoot开发HTTP接口有两种请求方式：GET请求，POST请求 </p>
+
+</blockquote>
+<h1 id="GET请求"><a href="#GET请求" class="headerlink" title="GET请求"></a>GET请求</h1><h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><ul>
+<li>场景：一般的查询接口就是get请求。</li>
+<li>注解：@GetMapping=@RequestMapping(method=RequestMethod.GET)</li>
+<li>其他注解：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@GetMapping = @RequestMapping(method = RequestMethod.GET)</span><br><span class="line">@PostMapping = @RequestMapping(method = RequestMethod.POST)</span><br><span class="line">@PutMapping = @RequestMapping(method = RequestMethod.PUT)</span><br><span class="line">@DeleteMapping = @RequestMapping(method = RequestMethod.DELETE)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><blockquote>
+<p>通过GET请求获取列表数据</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;/api/v1/video&quot;)</span><br><span class="line">public class VideoController &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    public VideoService videoService;</span><br><span class="line"></span><br><span class="line">    @RequestMapping(value = &quot;list&quot;,method = RequestMethod.GET)</span><br><span class="line">    public Object list()&#123;</span><br><span class="line">        Object obj = videoService.getListValue();</span><br><span class="line">        if(obj==null)&#123;</span><br><span class="line">            return JsonData.buildFail(-1,&quot;查询失败&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        return JsonData.buildSuccess(1,obj);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="返回内容封装"><a href="#返回内容封装" class="headerlink" title="返回内容封装"></a>返回内容封装</h2><blockquote>
+<p>开发过程中不止要返回业务数据，还需要返回交易信息：如交易是否成功、交易错误信息，如此需要对返回数据进行包装。<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public class JsonData &#123;</span><br><span class="line">    private int code;</span><br><span class="line">    private String msg;</span><br><span class="line">    private Object data;</span><br><span class="line"></span><br><span class="line">    public int getCode() &#123;</span><br><span class="line">        return code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setCode(int code) &#123;</span><br><span class="line">        this.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getMsg() &#123;</span><br><span class="line">        return msg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setMsg(String msg) &#123;</span><br><span class="line">        this.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Object getData() &#123;</span><br><span class="line">        return data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setData(Object data) &#123;</span><br><span class="line">        this.data = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public JsonData()&#123;&#125;</span><br><span class="line">    public JsonData(int code,Object data, String msg)&#123;</span><br><span class="line">        this.code = code;</span><br><span class="line">        this.data = data;</span><br><span class="line">        this.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line">    public static JsonData buildSuccess(int code, Object data)&#123;</span><br><span class="line">        return new JsonData(code,data,&quot;处理成功&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    public static JsonData buildFail(int code,String msg)&#123;</span><br><span class="line">        return new JsonData(code,&quot;&quot;,msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h1 id="POST请求"><a href="#POST请求" class="headerlink" title="POST请求"></a>POST请求</h1><h2 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h2><ul>
+<li>场景：表单提交，如果不用细分PUT/DELETE方法，则都可以用POST。</li>
+<li>注解：@PostMapping = @RequestMapping(method = RequestMethod.POST)</li>
+</ul>
+<h2 id="案例-1"><a href="#案例-1" class="headerlink" title="案例"></a>案例</h2><blockquote>
+<p>通过POST请求获取用户登录数据，如果请求的是json数据，接口中使用对象接受需要在接口中的对象中添加@RequestBody注解，请求json数据中的字段名需要与对象中属性名一致。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;/api/v1/user&quot;)</span><br><span class="line">public class UserController &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    UserService userService;</span><br><span class="line">    @PostMapping(&quot;login&quot;)</span><br><span class="line">    public Object logIn(@RequestBody User user)&#123;</span><br><span class="line">        Object obj = userService.loginUser(user);</span><br><span class="line">        if(obj==null) &#123;</span><br><span class="line">            return JsonData.buildFail(-1,&quot;查询用户失败&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        return JsonData.buildSuccess(0,obj);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>中介者模式</title>
     <url>/mellofly/55487.html</url>
     <content><![CDATA[<blockquote class="blockquote-center">
@@ -292,87 +471,6 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Thu Jan <span class="number">31</span> <span class="number">16</span>:<span class="number">05</span>:<span class="number">46</span> IST <span class="number">2013</span> [Robert] : Hi! John!</span><br><span class="line">Thu Jan <span class="number">31</span> <span class="number">16</span>:<span class="number">05</span>:<span class="number">46</span> IST <span class="number">2013</span> [John] : Hello! Robert!</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>设计模式</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>享元模式</title>
-    <url>/mellofly/65163.html</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-<p>享元模式(Flyweight Pattern)主要用于减少创建对象的数量，以减少内存占用和提高性能。这种类型的设计模式属于结构型模式，它提供了减少对象数量从而改善应用所需的对象结构的方式。<br>享元模式尝试重用现有的同类对象，如果未找到匹配的对象，则创建新对象。接下来将通过创建5个对象来画出20个分布不同位置的圆来演示这种模式。由于只有五种可用的颜色，所以color属性被用来检查现有的Circle对象。</p>
-
-</blockquote>
-<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
-<li><strong>意图：</strong> 运用共享技术有效地支持大量细粒度的对象。</li>
-<li><strong>主要解决：</strong> 在有大量对象时，有可能会造成内存溢出，我们把其中共同的部分抽象出来，如果有相同的业务请求，直接返回在内存中已有的对象，避免重新创建。<br>也就是一个系统中如果有多个相同的对象，那么只共享一份就可以了，不必每个都是去实例化一个对象。</li>
-<li><strong>何时使用：</strong></li>
-</ul>
-<ol>
-<li>系统中有大量对象。</li>
-<li>这些对象消耗大量内存。</li>
-<li>这些对象的状态大部分可以外部化。</li>
-<li>这些对象可以按照内蕴状态分为很多组，当把外蕴对象从对象中剔除出来时，每一组对象都可以用一个对象来代替。</li>
-<li>系统不依赖于这些对象身份，这些对象是不可分辨的。</li>
-</ol>
-<ul>
-<li><strong>如何解决：</strong> 用唯一标识码判断，如果在内存中有，则返回这个唯一标识码所标识的对象。</li>
-<li><strong>关键代码：</strong> 用HashMap存储这些对象。</li>
-<li><strong>应用实例：</strong> </li>
-</ul>
-<ol>
-<li>Java中的String，如果有则返回，如果没有则创建一个字符串保存在字符串缓存池里面。</li>
-<li>数据库的数据池。</li>
-</ol>
-<ul>
-<li><strong><em>优点：</em></strong> 大大减少对象的创建，降低系统的内存，使效率提高。</li>
-<li><strong><em>缺点：</em></strong> 提高了系统的复杂度，需要分离出外部状态和内部状态，而且外部状态具有固有化的性质，不应该随着内部状态的变化而变化，否则会造成系统的混乱。</li>
-<li><strong>使用场景：</strong> </li>
-</ul>
-<ol>
-<li>系统有大量相似对象。</li>
-<li>需要缓冲池的场景。</li>
-</ol>
-<ul>
-<li><strong>注意事项：</strong> </li>
-</ul>
-<ol>
-<li>注意划分外部状态和内部状态，否则可能会引起线程安全问题。</li>
-<li>这些类必须有一个工厂独享加以控制。<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
-<p>将创建一个Shape接口和实现了Shape接口的实体类Circle。下一步是定义工厂类ShapeFactory。<br>ShapeFactory有一个Circle的HashMap，其中键名为Circle对象的颜色。无论何时接收到请求，都会创建一个特定颜色的圆。ShapeFactory检查它的HashMap中的circle对象，如果找到Circle对象，则返回该对象，否则将创建一个存储在HashMap中以备后续使用的新对象，并把该对象返回到客户端。<br>FlyWeightPatternDemo，我们的演示类使用ShapeFactory来获取Shape对象。它将向ShapeFactory传递信息(red/green/blue/black/white),以便获取它所需对象的颜色。</p>
-</blockquote>
-</li>
-</ol>
-<p><img src="/mellofly/65163/享元模式.jpg" alt="享元模式UML图"></p>
-<h2 id="步骤1：创建一个接口"><a href="#步骤1：创建一个接口" class="headerlink" title="步骤1：创建一个接口"></a>步骤1：创建一个接口</h2><blockquote>
-<p>创建接口</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Shape.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤2：创建实现接口的实体类"><a href="#步骤2：创建实现接口的实体类" class="headerlink" title="步骤2：创建实现接口的实体类"></a>步骤2：创建实现接口的实体类</h2><blockquote>
-<p>创建实现接口的实体类。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Circle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> String color;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> x;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> y;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> radius;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Circle</span><span class="params">(String color)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.color = color;     </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.x = x;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.y = y;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRadius</span><span class="params">(<span class="keyword">int</span> radius)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.radius = radius;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Circle: Draw() [Color : &quot;</span> + color </span><br><span class="line">         +<span class="string">&quot;, x : &quot;</span> + x +<span class="string">&quot;, y :&quot;</span> + y +<span class="string">&quot;, radius :&quot;</span> + radius);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤3：创建一个工厂，生成基于给定信息的实体类的对象。"><a href="#步骤3：创建一个工厂，生成基于给定信息的实体类的对象。" class="headerlink" title="步骤3：创建一个工厂，生成基于给定信息的实体类的对象。"></a>步骤3：创建一个工厂，生成基于给定信息的实体类的对象。</h2><blockquote>
-<p>创建一个工厂，生成基于给定信息的实体类的对象。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ShapeFactory.java*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeFactory</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> HashMap&lt;String, Shape&gt; circleMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Shape <span class="title">getCircle</span><span class="params">(String color)</span> </span>&#123;</span><br><span class="line">      Circle circle = (Circle)circleMap.get(color);</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">if</span>(circle == <span class="keyword">null</span>) &#123;</span><br><span class="line">         circle = <span class="keyword">new</span> Circle(color);</span><br><span class="line">         circleMap.put(color, circle);</span><br><span class="line">         System.out.println(<span class="string">&quot;Creating circle of color : &quot;</span> + color);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> circle;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤4：使用该工厂，通过传递颜色信息来获取实体类的对象。"><a href="#步骤4：使用该工厂，通过传递颜色信息来获取实体类的对象。" class="headerlink" title="步骤4：使用该工厂，通过传递颜色信息来获取实体类的对象。"></a>步骤4：使用该工厂，通过传递颜色信息来获取实体类的对象。</h2><blockquote>
-<p>使用该工厂，通过传递颜色信息来获取实体类的对象。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*FlyweightPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlyweightPatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String colors[] = </span><br><span class="line">      &#123; <span class="string">&quot;Red&quot;</span>, <span class="string">&quot;Green&quot;</span>, <span class="string">&quot;Blue&quot;</span>, <span class="string">&quot;White&quot;</span>, <span class="string">&quot;Black&quot;</span> &#125;;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; <span class="number">20</span>; ++i) &#123;</span><br><span class="line">         Circle circle = </span><br><span class="line">            (Circle)ShapeFactory.getCircle(getRandomColor());</span><br><span class="line">         circle.setX(getRandomX());</span><br><span class="line">         circle.setY(getRandomY());</span><br><span class="line">         circle.setRadius(<span class="number">100</span>);</span><br><span class="line">         circle.draw();</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">getRandomColor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> colors[(<span class="keyword">int</span>)(Math.random()*colors.length)];</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getRandomX</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> (<span class="keyword">int</span>)(Math.random()*<span class="number">100</span> );</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getRandomY</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> (<span class="keyword">int</span>)(Math.random()*<span class="number">100</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤5：输出结果"><a href="#步骤5：输出结果" class="headerlink" title="步骤5：输出结果"></a>步骤5：输出结果</h2><blockquote>
-<p>执行程序，输出结果：</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Creating circle of color : Black</span><br><span class="line">Circle: Draw() [Color : Black, x : <span class="number">36</span>, y :<span class="number">71</span>, radius :<span class="number">100</span></span><br><span class="line">Creating circle of color : Green</span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">27</span>, y :<span class="number">27</span>, radius :<span class="number">100</span></span><br><span class="line">Creating circle of color : White</span><br><span class="line">Circle: Draw() [Color : White, x : <span class="number">64</span>, y :<span class="number">10</span>, radius :<span class="number">100</span></span><br><span class="line">Creating circle of color : Red</span><br><span class="line">Circle: Draw() [Color : Red, x : <span class="number">15</span>, y :<span class="number">44</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">19</span>, y :<span class="number">10</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">94</span>, y :<span class="number">32</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : White, x : <span class="number">69</span>, y :<span class="number">98</span>, radius :<span class="number">100</span></span><br><span class="line">Creating circle of color : Blue</span><br><span class="line">Circle: Draw() [Color : Blue, x : <span class="number">13</span>, y :<span class="number">4</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">21</span>, y :<span class="number">21</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Blue, x : <span class="number">55</span>, y :<span class="number">86</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : White, x : <span class="number">90</span>, y :<span class="number">70</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">78</span>, y :<span class="number">3</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">64</span>, y :<span class="number">89</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Blue, x : <span class="number">3</span>, y :<span class="number">91</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Blue, x : <span class="number">62</span>, y :<span class="number">82</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">97</span>, y :<span class="number">61</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">86</span>, y :<span class="number">12</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">38</span>, y :<span class="number">93</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Red, x : <span class="number">76</span>, y :<span class="number">82</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Blue, x : <span class="number">95</span>, y :<span class="number">82</span>, radius :<span class="number">100</span></span><br></pre></td></tr></table></figure>
-<h1 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h1><p>享元对象能做到共享的关键是区分内蕴状态（Internal State）和外蕴状态（ExternalState）。  </p>
-<blockquote>
-<p>一个内蕴状态是存储在享元对象内部的，并且不会随环境改变而有所不同的。因此，一个享元可以具有内蕴状态并可以共享。一个外蕴状态是随环境改变而改变的，不可以共享状态。享元对象的外蕴状态必须由客户端保存，并在享元对象被创建之后，在需要使用的时候再传到享元对象内部。外蕴状态不可以影响享元对象的内蕴状态，它们是相互独立的。所有的内蕴状态在对象创建完后就不可再改变。”</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Java</category>
       </categories>
       <tags>
         <tag>Java</tag>
@@ -456,6 +554,87 @@
 <p>执行程序，输出结果：</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Loading test_10mb.jpg</span><br><span class="line">Displaying test_10mb.jpg</span><br><span class="line"></span><br><span class="line">Displaying test_10mb.jpg</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>享元模式</title>
+    <url>/mellofly/65163.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>享元模式(Flyweight Pattern)主要用于减少创建对象的数量，以减少内存占用和提高性能。这种类型的设计模式属于结构型模式，它提供了减少对象数量从而改善应用所需的对象结构的方式。<br>享元模式尝试重用现有的同类对象，如果未找到匹配的对象，则创建新对象。接下来将通过创建5个对象来画出20个分布不同位置的圆来演示这种模式。由于只有五种可用的颜色，所以color属性被用来检查现有的Circle对象。</p>
+
+</blockquote>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 运用共享技术有效地支持大量细粒度的对象。</li>
+<li><strong>主要解决：</strong> 在有大量对象时，有可能会造成内存溢出，我们把其中共同的部分抽象出来，如果有相同的业务请求，直接返回在内存中已有的对象，避免重新创建。<br>也就是一个系统中如果有多个相同的对象，那么只共享一份就可以了，不必每个都是去实例化一个对象。</li>
+<li><strong>何时使用：</strong></li>
+</ul>
+<ol>
+<li>系统中有大量对象。</li>
+<li>这些对象消耗大量内存。</li>
+<li>这些对象的状态大部分可以外部化。</li>
+<li>这些对象可以按照内蕴状态分为很多组，当把外蕴对象从对象中剔除出来时，每一组对象都可以用一个对象来代替。</li>
+<li>系统不依赖于这些对象身份，这些对象是不可分辨的。</li>
+</ol>
+<ul>
+<li><strong>如何解决：</strong> 用唯一标识码判断，如果在内存中有，则返回这个唯一标识码所标识的对象。</li>
+<li><strong>关键代码：</strong> 用HashMap存储这些对象。</li>
+<li><strong>应用实例：</strong> </li>
+</ul>
+<ol>
+<li>Java中的String，如果有则返回，如果没有则创建一个字符串保存在字符串缓存池里面。</li>
+<li>数据库的数据池。</li>
+</ol>
+<ul>
+<li><strong><em>优点：</em></strong> 大大减少对象的创建，降低系统的内存，使效率提高。</li>
+<li><strong><em>缺点：</em></strong> 提高了系统的复杂度，需要分离出外部状态和内部状态，而且外部状态具有固有化的性质，不应该随着内部状态的变化而变化，否则会造成系统的混乱。</li>
+<li><strong>使用场景：</strong> </li>
+</ul>
+<ol>
+<li>系统有大量相似对象。</li>
+<li>需要缓冲池的场景。</li>
+</ol>
+<ul>
+<li><strong>注意事项：</strong> </li>
+</ul>
+<ol>
+<li>注意划分外部状态和内部状态，否则可能会引起线程安全问题。</li>
+<li>这些类必须有一个工厂独享加以控制。<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>将创建一个Shape接口和实现了Shape接口的实体类Circle。下一步是定义工厂类ShapeFactory。<br>ShapeFactory有一个Circle的HashMap，其中键名为Circle对象的颜色。无论何时接收到请求，都会创建一个特定颜色的圆。ShapeFactory检查它的HashMap中的circle对象，如果找到Circle对象，则返回该对象，否则将创建一个存储在HashMap中以备后续使用的新对象，并把该对象返回到客户端。<br>FlyWeightPatternDemo，我们的演示类使用ShapeFactory来获取Shape对象。它将向ShapeFactory传递信息(red/green/blue/black/white),以便获取它所需对象的颜色。</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="/mellofly/65163/享元模式.jpg" alt="享元模式UML图"></p>
+<h2 id="步骤1：创建一个接口"><a href="#步骤1：创建一个接口" class="headerlink" title="步骤1：创建一个接口"></a>步骤1：创建一个接口</h2><blockquote>
+<p>创建接口</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Shape.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2：创建实现接口的实体类"><a href="#步骤2：创建实现接口的实体类" class="headerlink" title="步骤2：创建实现接口的实体类"></a>步骤2：创建实现接口的实体类</h2><blockquote>
+<p>创建实现接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Circle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">implements</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> String color;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> x;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> y;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> radius;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Circle</span><span class="params">(String color)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.color = color;     </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.x = x;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(<span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.y = y;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRadius</span><span class="params">(<span class="keyword">int</span> radius)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.radius = radius;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Circle: Draw() [Color : &quot;</span> + color </span><br><span class="line">         +<span class="string">&quot;, x : &quot;</span> + x +<span class="string">&quot;, y :&quot;</span> + y +<span class="string">&quot;, radius :&quot;</span> + radius);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3：创建一个工厂，生成基于给定信息的实体类的对象。"><a href="#步骤3：创建一个工厂，生成基于给定信息的实体类的对象。" class="headerlink" title="步骤3：创建一个工厂，生成基于给定信息的实体类的对象。"></a>步骤3：创建一个工厂，生成基于给定信息的实体类的对象。</h2><blockquote>
+<p>创建一个工厂，生成基于给定信息的实体类的对象。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ShapeFactory.java*/</span></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeFactory</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> HashMap&lt;String, Shape&gt; circleMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Shape <span class="title">getCircle</span><span class="params">(String color)</span> </span>&#123;</span><br><span class="line">      Circle circle = (Circle)circleMap.get(color);</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">if</span>(circle == <span class="keyword">null</span>) &#123;</span><br><span class="line">         circle = <span class="keyword">new</span> Circle(color);</span><br><span class="line">         circleMap.put(color, circle);</span><br><span class="line">         System.out.println(<span class="string">&quot;Creating circle of color : &quot;</span> + color);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> circle;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4：使用该工厂，通过传递颜色信息来获取实体类的对象。"><a href="#步骤4：使用该工厂，通过传递颜色信息来获取实体类的对象。" class="headerlink" title="步骤4：使用该工厂，通过传递颜色信息来获取实体类的对象。"></a>步骤4：使用该工厂，通过传递颜色信息来获取实体类的对象。</h2><blockquote>
+<p>使用该工厂，通过传递颜色信息来获取实体类的对象。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*FlyweightPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlyweightPatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String colors[] = </span><br><span class="line">      &#123; <span class="string">&quot;Red&quot;</span>, <span class="string">&quot;Green&quot;</span>, <span class="string">&quot;Blue&quot;</span>, <span class="string">&quot;White&quot;</span>, <span class="string">&quot;Black&quot;</span> &#125;;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; <span class="number">20</span>; ++i) &#123;</span><br><span class="line">         Circle circle = </span><br><span class="line">            (Circle)ShapeFactory.getCircle(getRandomColor());</span><br><span class="line">         circle.setX(getRandomX());</span><br><span class="line">         circle.setY(getRandomY());</span><br><span class="line">         circle.setRadius(<span class="number">100</span>);</span><br><span class="line">         circle.draw();</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">getRandomColor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> colors[(<span class="keyword">int</span>)(Math.random()*colors.length)];</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getRandomX</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> (<span class="keyword">int</span>)(Math.random()*<span class="number">100</span> );</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getRandomY</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> (<span class="keyword">int</span>)(Math.random()*<span class="number">100</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤5：输出结果"><a href="#步骤5：输出结果" class="headerlink" title="步骤5：输出结果"></a>步骤5：输出结果</h2><blockquote>
+<p>执行程序，输出结果：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Creating circle of color : Black</span><br><span class="line">Circle: Draw() [Color : Black, x : <span class="number">36</span>, y :<span class="number">71</span>, radius :<span class="number">100</span></span><br><span class="line">Creating circle of color : Green</span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">27</span>, y :<span class="number">27</span>, radius :<span class="number">100</span></span><br><span class="line">Creating circle of color : White</span><br><span class="line">Circle: Draw() [Color : White, x : <span class="number">64</span>, y :<span class="number">10</span>, radius :<span class="number">100</span></span><br><span class="line">Creating circle of color : Red</span><br><span class="line">Circle: Draw() [Color : Red, x : <span class="number">15</span>, y :<span class="number">44</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">19</span>, y :<span class="number">10</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">94</span>, y :<span class="number">32</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : White, x : <span class="number">69</span>, y :<span class="number">98</span>, radius :<span class="number">100</span></span><br><span class="line">Creating circle of color : Blue</span><br><span class="line">Circle: Draw() [Color : Blue, x : <span class="number">13</span>, y :<span class="number">4</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">21</span>, y :<span class="number">21</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Blue, x : <span class="number">55</span>, y :<span class="number">86</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : White, x : <span class="number">90</span>, y :<span class="number">70</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">78</span>, y :<span class="number">3</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">64</span>, y :<span class="number">89</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Blue, x : <span class="number">3</span>, y :<span class="number">91</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Blue, x : <span class="number">62</span>, y :<span class="number">82</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">97</span>, y :<span class="number">61</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">86</span>, y :<span class="number">12</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Green, x : <span class="number">38</span>, y :<span class="number">93</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Red, x : <span class="number">76</span>, y :<span class="number">82</span>, radius :<span class="number">100</span></span><br><span class="line">Circle: Draw() [Color : Blue, x : <span class="number">95</span>, y :<span class="number">82</span>, radius :<span class="number">100</span></span><br></pre></td></tr></table></figure>
+<h1 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h1><p>享元对象能做到共享的关键是区分内蕴状态（Internal State）和外蕴状态（ExternalState）。  </p>
+<blockquote>
+<p>一个内蕴状态是存储在享元对象内部的，并且不会随环境改变而有所不同的。因此，一个享元可以具有内蕴状态并可以共享。一个外蕴状态是随环境改变而改变的，不可以共享状态。享元对象的外蕴状态必须由客户端保存，并在享元对象被创建之后，在需要使用的时候再传到享元对象内部。外蕴状态不可以影响享元对象的内蕴状态，它们是相互独立的。所有的内蕴状态在对象创建完后就不可再改变。”</p>
+</blockquote>
+]]></content>
       <categories>
         <category>Java</category>
       </categories>
@@ -1025,77 +1204,6 @@
       </tags>
   </entry>
   <entry>
-    <title>状态模式</title>
-    <url>/mellofly/39447.html</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-<p>在状态模式(State Pattern)中，类的行为是基于它的状态改变的，这种类型的设计模式属于行为型模式。<br>在状态模式中，我们创建表示各种状态的对象和一个行为随着状态对象改变而改变的context对象。</p>
-
-</blockquote>
-<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
-<li><strong>意图：</strong> 允许对象在内部状态发生改变时改变它的行为，对象看起来好像改变了它的类。</li>
-<li><strong>主要解决：</strong> 对象的行为依赖于它的状态(属性),并且可以根据它的状态改变而改变它的相关行为。</li>
-<li><strong>何时使用：</strong> 代码中包含大量与对象状态有关的条件语句。</li>
-<li><strong>如何解决：</strong> 将各种具体的状态类抽象出来。</li>
-<li><strong>关键代码：</strong> 通常命令模式的接口中只有一个方法。而状态模式的接口中有一个或者多个方法。而且，状态模式的实现类的方法，一般返回值，或者是改变实例变量的值。也就是说，状态模式一般和对象的状态有关。实现类的方法有不同的功能，覆盖接口中的方法。状态模式和命令模式一样，也可以用于消除if…else等条件选择语句。</li>
-<li><strong>应用实例：</strong> <ol>
-<li>打篮球的时候运动员可以有正常状态、不正常状态和超常状态。</li>
-<li>普候乙编钟中，‘钟是抽象接口’，‘钟A’等是具体状态，‘普候乙编钟’是具体环境(Context)。</li>
-</ol>
-</li>
-<li><strong><em>优点：</em></strong> <ol>
-<li>封装了转换规则。</li>
-<li>枚举可能的状态，在枚举状态之前需要确定状态种类。</li>
-<li>将所有与某个状态有关的行为放到一个类中，并且可以方便地增加新的状态，只需要改变对象状态即可改变对象的行为。</li>
-<li>允许状态转换逻辑与状态对象合成一体，而不是某一巨大的条件语句块。</li>
-<li>可以让多个环境对象共享一个状态对象，从而减少系统中对象的个数。</li>
-</ol>
-</li>
-<li><strong><em>缺点：</em></strong> <ol>
-<li>状态模式的使用必然会增加系统类和对象的个数。 </li>
-<li>状态模式的结构与实现都较为复杂，如果使用不当将导致程序结构和代码的混乱。</li>
-<li>状态模式对”开闭原则”的支持并不太好，对于可以切换状态的状态模式，增加新的状态类需要修改那些负责状态转换的源代码，否则无法切换到新增状态，而且修改某个状态类的行为也需修改对应类的源代码。</li>
-</ol>
-</li>
-<li><strong>使用场景：</strong><ol>
-<li>行为随状态改变而改变的场景。</li>
-<li>条件、分支语句的代替者。</li>
-</ol>
-</li>
-<li><strong>注意事项：</strong> 在行为受状态约束的时候使用状态模式，而且状态不超过5个。</li>
-</ul>
-<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
-<p>我们将创建一个 State 接口和实现了 State 接口的实体状态类。Context 是一个带有某个状态的类。<br>StatePatternDemo，我们的演示类使用 Context 和状态对象来演示 Context 在状态改变时的行为变化。</p>
-</blockquote>
-<p><img src="/mellofly/39447/状态模式.jpg" alt="状态模式UML图"></p>
-<h2 id="步骤1：创建一个接口"><a href="#步骤1：创建一个接口" class="headerlink" title="步骤1：创建一个接口"></a>步骤1：创建一个接口</h2><blockquote>
-<p>创建一个接口。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*State.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">State</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAction</span><span class="params">(Context context)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤2：创建实现接口的实体类"><a href="#步骤2：创建实现接口的实体类" class="headerlink" title="步骤2：创建实现接口的实体类"></a>步骤2：创建实现接口的实体类</h2><blockquote>
-<p>创建实现接口的实体类。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*StartState.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StartState</span> <span class="keyword">implements</span> <span class="title">State</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAction</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Player is in start state&quot;</span>);</span><br><span class="line">      context.setState(<span class="keyword">this</span>); </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;Start State&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*StopState.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StopState</span> <span class="keyword">implements</span> <span class="title">State</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAction</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Player is in stop state&quot;</span>);</span><br><span class="line">      context.setState(<span class="keyword">this</span>); </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;Stop State&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤3：创建Context类"><a href="#步骤3：创建Context类" class="headerlink" title="步骤3：创建Context类"></a>步骤3：创建Context类</h2><blockquote>
-<p>创建Context类</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Context.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Context</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> State state;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Context</span><span class="params">()</span></span>&#123;</span><br><span class="line">      state = <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setState</span><span class="params">(State state)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.state = state;     </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> State <span class="title">getState</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> state;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤4：使用Context来查看当状态State改变时的行为变化"><a href="#步骤4：使用Context来查看当状态State改变时的行为变化" class="headerlink" title="步骤4：使用Context来查看当状态State改变时的行为变化"></a>步骤4：使用Context来查看当状态State改变时的行为变化</h2><blockquote>
-<p>使用Context来查看当状态State改变时的行为变化。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*StatePatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StatePatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      Context context = <span class="keyword">new</span> Context();</span><br><span class="line"> </span><br><span class="line">      StartState startState = <span class="keyword">new</span> StartState();</span><br><span class="line">      startState.doAction(context);</span><br><span class="line"> </span><br><span class="line">      System.out.println(context.getState().toString());</span><br><span class="line"> </span><br><span class="line">      StopState stopState = <span class="keyword">new</span> StopState();</span><br><span class="line">      stopState.doAction(context);</span><br><span class="line"> </span><br><span class="line">      System.out.println(context.getState().toString());</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤5：结果"><a href="#步骤5：结果" class="headerlink" title="步骤5：结果"></a>步骤5：结果</h2><blockquote>
-<p>执行程序，输出结果。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Player is in start state</span><br><span class="line">Start State</span><br><span class="line">Player is in stop state</span><br><span class="line">Stop State;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>桥接模式</title>
     <url>/mellofly/43376.html</url>
     <content><![CDATA[<blockquote class="blockquote-center">
@@ -1172,6 +1280,77 @@
 <p><a href="https://www.runoob.com/w3cnote/bridge-pattern2.html">https://www.runoob.com/w3cnote/bridge-pattern2.html</a></p>
 
 </blockquote>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>状态模式</title>
+    <url>/mellofly/39447.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>在状态模式(State Pattern)中，类的行为是基于它的状态改变的，这种类型的设计模式属于行为型模式。<br>在状态模式中，我们创建表示各种状态的对象和一个行为随着状态对象改变而改变的context对象。</p>
+
+</blockquote>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 允许对象在内部状态发生改变时改变它的行为，对象看起来好像改变了它的类。</li>
+<li><strong>主要解决：</strong> 对象的行为依赖于它的状态(属性),并且可以根据它的状态改变而改变它的相关行为。</li>
+<li><strong>何时使用：</strong> 代码中包含大量与对象状态有关的条件语句。</li>
+<li><strong>如何解决：</strong> 将各种具体的状态类抽象出来。</li>
+<li><strong>关键代码：</strong> 通常命令模式的接口中只有一个方法。而状态模式的接口中有一个或者多个方法。而且，状态模式的实现类的方法，一般返回值，或者是改变实例变量的值。也就是说，状态模式一般和对象的状态有关。实现类的方法有不同的功能，覆盖接口中的方法。状态模式和命令模式一样，也可以用于消除if…else等条件选择语句。</li>
+<li><strong>应用实例：</strong> <ol>
+<li>打篮球的时候运动员可以有正常状态、不正常状态和超常状态。</li>
+<li>普候乙编钟中，‘钟是抽象接口’，‘钟A’等是具体状态，‘普候乙编钟’是具体环境(Context)。</li>
+</ol>
+</li>
+<li><strong><em>优点：</em></strong> <ol>
+<li>封装了转换规则。</li>
+<li>枚举可能的状态，在枚举状态之前需要确定状态种类。</li>
+<li>将所有与某个状态有关的行为放到一个类中，并且可以方便地增加新的状态，只需要改变对象状态即可改变对象的行为。</li>
+<li>允许状态转换逻辑与状态对象合成一体，而不是某一巨大的条件语句块。</li>
+<li>可以让多个环境对象共享一个状态对象，从而减少系统中对象的个数。</li>
+</ol>
+</li>
+<li><strong><em>缺点：</em></strong> <ol>
+<li>状态模式的使用必然会增加系统类和对象的个数。 </li>
+<li>状态模式的结构与实现都较为复杂，如果使用不当将导致程序结构和代码的混乱。</li>
+<li>状态模式对”开闭原则”的支持并不太好，对于可以切换状态的状态模式，增加新的状态类需要修改那些负责状态转换的源代码，否则无法切换到新增状态，而且修改某个状态类的行为也需修改对应类的源代码。</li>
+</ol>
+</li>
+<li><strong>使用场景：</strong><ol>
+<li>行为随状态改变而改变的场景。</li>
+<li>条件、分支语句的代替者。</li>
+</ol>
+</li>
+<li><strong>注意事项：</strong> 在行为受状态约束的时候使用状态模式，而且状态不超过5个。</li>
+</ul>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们将创建一个 State 接口和实现了 State 接口的实体状态类。Context 是一个带有某个状态的类。<br>StatePatternDemo，我们的演示类使用 Context 和状态对象来演示 Context 在状态改变时的行为变化。</p>
+</blockquote>
+<p><img src="/mellofly/39447/状态模式.jpg" alt="状态模式UML图"></p>
+<h2 id="步骤1：创建一个接口"><a href="#步骤1：创建一个接口" class="headerlink" title="步骤1：创建一个接口"></a>步骤1：创建一个接口</h2><blockquote>
+<p>创建一个接口。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*State.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">State</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAction</span><span class="params">(Context context)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2：创建实现接口的实体类"><a href="#步骤2：创建实现接口的实体类" class="headerlink" title="步骤2：创建实现接口的实体类"></a>步骤2：创建实现接口的实体类</h2><blockquote>
+<p>创建实现接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*StartState.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StartState</span> <span class="keyword">implements</span> <span class="title">State</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAction</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Player is in start state&quot;</span>);</span><br><span class="line">      context.setState(<span class="keyword">this</span>); </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;Start State&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*StopState.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StopState</span> <span class="keyword">implements</span> <span class="title">State</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAction</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Player is in stop state&quot;</span>);</span><br><span class="line">      context.setState(<span class="keyword">this</span>); </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;Stop State&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3：创建Context类"><a href="#步骤3：创建Context类" class="headerlink" title="步骤3：创建Context类"></a>步骤3：创建Context类</h2><blockquote>
+<p>创建Context类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Context.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Context</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> State state;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Context</span><span class="params">()</span></span>&#123;</span><br><span class="line">      state = <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setState</span><span class="params">(State state)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.state = state;     </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> State <span class="title">getState</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> state;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4：使用Context来查看当状态State改变时的行为变化"><a href="#步骤4：使用Context来查看当状态State改变时的行为变化" class="headerlink" title="步骤4：使用Context来查看当状态State改变时的行为变化"></a>步骤4：使用Context来查看当状态State改变时的行为变化</h2><blockquote>
+<p>使用Context来查看当状态State改变时的行为变化。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*StatePatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StatePatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      Context context = <span class="keyword">new</span> Context();</span><br><span class="line"> </span><br><span class="line">      StartState startState = <span class="keyword">new</span> StartState();</span><br><span class="line">      startState.doAction(context);</span><br><span class="line"> </span><br><span class="line">      System.out.println(context.getState().toString());</span><br><span class="line"> </span><br><span class="line">      StopState stopState = <span class="keyword">new</span> StopState();</span><br><span class="line">      stopState.doAction(context);</span><br><span class="line"> </span><br><span class="line">      System.out.println(context.getState().toString());</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤5：结果"><a href="#步骤5：结果" class="headerlink" title="步骤5：结果"></a>步骤5：结果</h2><blockquote>
+<p>执行程序，输出结果。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Player is in start state</span><br><span class="line">Start State</span><br><span class="line">Player is in stop state</span><br><span class="line">Stop State;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Java</category>
       </categories>
@@ -1727,6 +1906,113 @@
       </tags>
   </entry>
   <entry>
+    <title>适配器模式</title>
+    <url>/mellofly/39554.html</url>
+    <content><![CDATA[<blockquote>
+<ol>
+<li>适配器模式(Adapter Pattern)是作为两个不兼容的接口之间的桥梁。这种类型的设计模式属于结构型模式，它结合了两个独立接口的功能。  </li>
+<li>这种模式涉及到一个单一的类，该类负责加入独立的或不兼容的接口功能。举个真实的例子，读卡器是作为内存卡和笔记本之间的适配器。您将内存卡插入读卡器，再讲读卡器插入笔记本，这样就可以通过笔记本本来读取内存卡。  </li>
+<li>下面通过具体事例来演示适配器模式的使用。其中，音频播放器设备只能播放MP3文件，通过使用一个更高级的音频播放器来播放VLC和MP4文件。</li>
+</ol>
+</blockquote>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。</li>
+<li><strong>主要解决：</strong> 主要解决在软件系统中，常常要将一些“现存的对象”放到新的环境中，而新环境要求的接口是现对象不能满足的。</li>
+<li><strong>何时使用：</strong> </li>
+</ul>
+<ol>
+<li>系统需要使用现有的类，而此类的接口不符合系统的需要。</li>
+<li>想要建立一个可以重复使用的类，用于与一些批次之间没有太大关联的一些类，包括一些可能在将来引进的类一起工作，这些袁磊不一定有一致的接口。</li>
+<li>通过接口转换，将一个类插入到另一个类系中。(比如老虎和飞禽，现在多了一个飞虎，在不增加实体的需求下，增加一个适配器，在里面包容一个虎对象，实现非的接口。)</li>
+</ol>
+<ul>
+<li><strong>如何解决：</strong> 继承或依赖(推荐)</li>
+<li><strong>关键代码：</strong> 适配器继承或依赖已有的对象，实现想要的目标接口。</li>
+<li><strong>应用实例：</strong> </li>
+</ul>
+<ol>
+<li>美国电气110V,中国220V，就要有一个适配器将110V转化为220V。</li>
+<li>JAVA JDK1.1提供了Enumeration接口，而在1.2中提供了Iterator接口，想要使用1.2的JDK，则要将以前系统的Enumeration接口转化为Iterator接口，这时就需要适配器模式。</li>
+<li>在LINUX上运行WINDOWS程序。</li>
+<li>JAVA中的jdbc。</li>
+</ol>
+<ul>
+<li><strong><em>优点：</em></strong> </li>
+</ul>
+<ol>
+<li>可以让任何两个没有关联的类一起运行。</li>
+<li>提高了类的复用。</li>
+<li>增加了类的透明度。</li>
+<li>灵活性好。</li>
+</ol>
+<ul>
+<li><strong><em>缺点：</em></strong></li>
+</ul>
+<ol>
+<li>过多的使用适配器，会让系统非常零乱，不易整体进行把握。比如：明明看到调用的是A接口，其实内部被适配成了B接口的实现，一个系统如果太多出现这种情况，无异于一场灾难。因此如果不是很有必要，可以不适用适配器，而是直接对系统进行重构。</li>
+<li>由于JAVA至多继承一个类，所以至多只能适配一个适配者类，而且目标类必须是抽象类。</li>
+</ol>
+<ul>
+<li><strong>使用场景：</strong> 有动机的修改一个正常运行的系统接口，这时应该考虑使用适配器模式。</li>
+<li><strong>注意事项：</strong> 适配器不是在详细设计时添加的，而是解决正在服役的项目的问题。</li>
+</ul>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们有一个MediaPlayer接口和一个实现了MediaPlayer接口的实体类AudioPlayer。默认情况下，AudioPlayer可以播放MP3格式的音频文件。<br>我们还有另外一个接口AdvancedMediaPlayer和实现了AdvancedMediaPlayer接口的实体类。该类可以播放VLC和MP4格式的文件。<br>我们想要让AudioPlayer播放其他格式的音频文件。为了实现这个功能，我们需要创建一个实现了MediaPlayer接口的适配器类MediaAdapter.<br>并使用AdvancedMediaPlayer对象来播放所需的格式。  </p>
+</blockquote>
+<p><img src="/mellofly/39554/适配器模式.jpg" alt="适配器模式设计类UML图"></p>
+<h2 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h2><blockquote>
+<p>为媒体播放器和更高级的媒体播放器创建接口。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*MediaPlayer.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MediaPlayer</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">(String audioType, String fileName)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*AdvancedMediaPlayer.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AdvancedMediaPlayer</span> </span>&#123; </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playVlc</span><span class="params">(String fileName)</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playMp4</span><span class="params">(String fileName)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2："><a href="#步骤2：" class="headerlink" title="步骤2："></a>步骤2：</h2><blockquote>
+<p>创建实现了AdvancedMediaPlayer接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*VlcPlayer.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VlcPlayer</span> <span class="keyword">implements</span> <span class="title">AdvancedMediaPlayer</span></span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playVlc</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Playing vlc file. Name: &quot;</span>+ fileName);      </span><br><span class="line">   &#125;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playMp4</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">      <span class="comment">//什么也不做</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Mp4Player.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mp4Player</span> <span class="keyword">implements</span> <span class="title">AdvancedMediaPlayer</span></span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playVlc</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">      <span class="comment">//什么也不做</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playMp4</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Playing mp4 file. Name: &quot;</span>+ fileName);      </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3："><a href="#步骤3：" class="headerlink" title="步骤3："></a>步骤3：</h2><blockquote>
+<p>创建实现了MediaPlayer接口的适配器类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*MediaAdapter.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MediaAdapter</span> <span class="keyword">implements</span> <span class="title">MediaPlayer</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   AdvancedMediaPlayer advancedMusicPlayer;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">MediaAdapter</span><span class="params">(String audioType)</span></span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(audioType.equalsIgnoreCase(<span class="string">&quot;vlc&quot;</span>) )&#123;</span><br><span class="line">         advancedMusicPlayer = <span class="keyword">new</span> VlcPlayer();       </span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (audioType.equalsIgnoreCase(<span class="string">&quot;mp4&quot;</span>))&#123;</span><br><span class="line">         advancedMusicPlayer = <span class="keyword">new</span> Mp4Player();</span><br><span class="line">      &#125;  </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">(String audioType, String fileName)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(audioType.equalsIgnoreCase(<span class="string">&quot;vlc&quot;</span>))&#123;</span><br><span class="line">         advancedMusicPlayer.playVlc(fileName);</span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(audioType.equalsIgnoreCase(<span class="string">&quot;mp4&quot;</span>))&#123;</span><br><span class="line">         advancedMusicPlayer.playMp4(fileName);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4："><a href="#步骤4：" class="headerlink" title="步骤4："></a>步骤4：</h2><blockquote>
+<p>创建实现了MediaPlayer接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*AudioPlayer.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AudioPlayer</span> <span class="keyword">implements</span> <span class="title">MediaPlayer</span> </span>&#123;</span><br><span class="line">   MediaAdapter mediaAdapter; </span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">(String audioType, String fileName)</span> </span>&#123;    </span><br><span class="line"> </span><br><span class="line">      <span class="comment">//播放 mp3 音乐文件的内置支持</span></span><br><span class="line">      <span class="keyword">if</span>(audioType.equalsIgnoreCase(<span class="string">&quot;mp3&quot;</span>))&#123;</span><br><span class="line">         System.out.println(<span class="string">&quot;Playing mp3 file. Name: &quot;</span>+ fileName);         </span><br><span class="line">      &#125; </span><br><span class="line">      <span class="comment">//mediaAdapter 提供了播放其他文件格式的支持</span></span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span>(audioType.equalsIgnoreCase(<span class="string">&quot;vlc&quot;</span>) </span><br><span class="line">         || audioType.equalsIgnoreCase(<span class="string">&quot;mp4&quot;</span>))&#123;</span><br><span class="line">         mediaAdapter = <span class="keyword">new</span> MediaAdapter(audioType);</span><br><span class="line">         mediaAdapter.play(audioType, fileName);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span>&#123;</span><br><span class="line">         System.out.println(<span class="string">&quot;Invalid media. &quot;</span>+</span><br><span class="line">            audioType + <span class="string">&quot; format not supported&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤5："><a href="#步骤5：" class="headerlink" title="步骤5："></a>步骤5：</h2><blockquote>
+<p>使用 AudioPlayer 来播放不同类型的音频格式。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*AdapterPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AdapterPatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      AudioPlayer audioPlayer = <span class="keyword">new</span> AudioPlayer();</span><br><span class="line">      audioPlayer.play(<span class="string">&quot;mp3&quot;</span>, <span class="string">&quot;beyond the horizon.mp3&quot;</span>);</span><br><span class="line">      audioPlayer.play(<span class="string">&quot;mp4&quot;</span>, <span class="string">&quot;alone.mp4&quot;</span>);</span><br><span class="line">      audioPlayer.play(<span class="string">&quot;vlc&quot;</span>, <span class="string">&quot;far far away.vlc&quot;</span>);</span><br><span class="line">      audioPlayer.play(<span class="string">&quot;avi&quot;</span>, <span class="string">&quot;mind me.avi&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤6："><a href="#步骤6：" class="headerlink" title="步骤6："></a>步骤6：</h2><blockquote>
+<p>执行程序，输出结果</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Playing mp3 file. Name: beyond the horizon.mp3</span><br><span class="line">Playing mp4 file. Name: alone.mp4</span><br><span class="line">Playing vlc file. Name: far far away.vlc</span><br><span class="line">Invalid media. avi format not supported</span><br></pre></td></tr></table></figure>
+<h1 id="读取SD卡实例："><a href="#读取SD卡实例：" class="headerlink" title="读取SD卡实例："></a>读取SD卡实例：</h1><h2 id="一、模拟计算机读取SD卡："><a href="#一、模拟计算机读取SD卡：" class="headerlink" title="一、模拟计算机读取SD卡："></a>一、模拟计算机读取SD卡：</h2><ol>
+<li>先创建一个SD卡的接口：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SDCard</span> </span>&#123;</span><br><span class="line">    <span class="comment">//读取SD卡方法</span></span><br><span class="line">    <span class="function">String <span class="title">readSD</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//写入SD卡功能</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">writeSD</span><span class="params">(String msg)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>创建SD卡接口的实现类，模拟SD卡的功能：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SDCardImpl</span> <span class="keyword">implements</span> <span class="title">SDCard</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readSD</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String msg = <span class="string">&quot;sdcard read a msg :hello word SD&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> msg;  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">writeSD</span><span class="params">(String msg)</span> </span>&#123;      </span><br><span class="line">        System.out.println(<span class="string">&quot;sd card write msg : &quot;</span> + msg);    </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>创建计算机接口，计算机提供读取SD卡方法：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Computer</span> </span>&#123;    </span><br><span class="line">    <span class="function">String <span class="title">readSD</span><span class="params">(SDCard sdCard)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>创建一个计算机实例，实现计算机接口，并实现其读取SD卡方法：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThinkpadComputer</span> <span class="keyword">implements</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readSD</span><span class="params">(SDCard sdCard)</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">if</span>(sdCard == <span class="keyword">null</span>)<span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;sd card null&quot;</span>);        </span><br><span class="line">        <span class="keyword">return</span> sdCard.readSD();    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>这时候就可以模拟计算机读取SD卡功能：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputerReadDemo</span> </span>&#123;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;        </span><br><span class="line">        Computer computer = <span class="keyword">new</span> ThinkpadComputer();        </span><br><span class="line">        SDCard sdCard = <span class="keyword">new</span> SDCardImpl();       </span><br><span class="line">        System.out.println(computer.readSD(sdCard));    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="二、接下来在不改变计算机读取SD卡接口的情况下，通过适配器模式读取TF卡："><a href="#二、接下来在不改变计算机读取SD卡接口的情况下，通过适配器模式读取TF卡：" class="headerlink" title="二、接下来在不改变计算机读取SD卡接口的情况下，通过适配器模式读取TF卡："></a>二、接下来在不改变计算机读取SD卡接口的情况下，通过适配器模式读取TF卡：</h2><ol>
+<li>创建TF卡接口：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TFCard</span> </span>&#123;    </span><br><span class="line">    <span class="function">String <span class="title">readTF</span><span class="params">()</span></span>;    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">writeTF</span><span class="params">(String msg)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>创建TF卡实例：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TFCardImpl</span> <span class="keyword">implements</span> <span class="title">TFCard</span> </span>&#123;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readTF</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        String msg =<span class="string">&quot;tf card reade msg : hello word tf card&quot;</span>;        </span><br><span class="line">        <span class="keyword">return</span> msg;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">writeTF</span><span class="params">(String msg)</span> </span>&#123;        </span><br><span class="line">        System.out.println(<span class="string">&quot;tf card write a msg : &quot;</span> + msg);        </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>创建SD适配TF （也可以说是SD兼容TF，相当于读卡器）：<br>实现SDCard接口，并将要适配的对象作为适配器的属性引入。<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SDAdapterTF</span> <span class="keyword">implements</span> <span class="title">SDCard</span> </span>&#123;    </span><br><span class="line">    <span class="keyword">private</span> TFCard tfCard;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SDAdapterTF</span><span class="params">(TFCard tfCard)</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">this</span>.tfCard = tfCard;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readSD</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        System.out.println(<span class="string">&quot;adapter read tf card &quot;</span>);        </span><br><span class="line">        <span class="keyword">return</span> tfCard.readTF();    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">writeSD</span><span class="params">(String msg)</span> </span>&#123;        </span><br><span class="line">        System.out.println(<span class="string">&quot;adapter write tf card&quot;</span>);        </span><br><span class="line">        <span class="keyword">return</span> tfCard.writeTF(msg);    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>通过上面的例子测试计算机通过SD读卡器读取TF卡：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputerReadDemo</span> </span>&#123;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;        </span><br><span class="line">        Computer computer = <span class="keyword">new</span> ThinkpadComputer();        </span><br><span class="line">        SDCard sdCard = <span class="keyword">new</span> SDCardImpl();        </span><br><span class="line">        System.out.println(computer.readSD(sdCard));        </span><br><span class="line">        System.out.println(<span class="string">&quot;====================================&quot;</span>);        </span><br><span class="line">        TFCard tfCard = <span class="keyword">new</span> TFCardImpl();        </span><br><span class="line">        SDCard tfCardAdapterSD = <span class="keyword">new</span> SDAdapterTF(tfCard);        </span><br><span class="line">        System.out.println(computer.readSD(tfCardAdapterSD));    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">sdcard read a msg :hello word SD</span><br><span class="line">====================================</span><br><span class="line">adapter read tf card </span><br><span class="line">tf card reade msg : hello word tf card</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在这种模式下，计算机并不需要知道具体是什么卡，只需要负责操作接口即可，具体操作的什么类，由适配器决定。</p>
+</blockquote>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Markdown基础语法</title>
     <url>/mellofly/39418.html</url>
     <content><![CDATA[<blockquote class="blockquote-center">
@@ -1874,113 +2160,6 @@
       <tags>
         <tag>Markdown</tag>
         <tag>工具语言</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>适配器模式</title>
-    <url>/mellofly/39554.html</url>
-    <content><![CDATA[<blockquote>
-<ol>
-<li>适配器模式(Adapter Pattern)是作为两个不兼容的接口之间的桥梁。这种类型的设计模式属于结构型模式，它结合了两个独立接口的功能。  </li>
-<li>这种模式涉及到一个单一的类，该类负责加入独立的或不兼容的接口功能。举个真实的例子，读卡器是作为内存卡和笔记本之间的适配器。您将内存卡插入读卡器，再讲读卡器插入笔记本，这样就可以通过笔记本本来读取内存卡。  </li>
-<li>下面通过具体事例来演示适配器模式的使用。其中，音频播放器设备只能播放MP3文件，通过使用一个更高级的音频播放器来播放VLC和MP4文件。</li>
-</ol>
-</blockquote>
-<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
-<li><strong>意图：</strong> 将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。</li>
-<li><strong>主要解决：</strong> 主要解决在软件系统中，常常要将一些“现存的对象”放到新的环境中，而新环境要求的接口是现对象不能满足的。</li>
-<li><strong>何时使用：</strong> </li>
-</ul>
-<ol>
-<li>系统需要使用现有的类，而此类的接口不符合系统的需要。</li>
-<li>想要建立一个可以重复使用的类，用于与一些批次之间没有太大关联的一些类，包括一些可能在将来引进的类一起工作，这些袁磊不一定有一致的接口。</li>
-<li>通过接口转换，将一个类插入到另一个类系中。(比如老虎和飞禽，现在多了一个飞虎，在不增加实体的需求下，增加一个适配器，在里面包容一个虎对象，实现非的接口。)</li>
-</ol>
-<ul>
-<li><strong>如何解决：</strong> 继承或依赖(推荐)</li>
-<li><strong>关键代码：</strong> 适配器继承或依赖已有的对象，实现想要的目标接口。</li>
-<li><strong>应用实例：</strong> </li>
-</ul>
-<ol>
-<li>美国电气110V,中国220V，就要有一个适配器将110V转化为220V。</li>
-<li>JAVA JDK1.1提供了Enumeration接口，而在1.2中提供了Iterator接口，想要使用1.2的JDK，则要将以前系统的Enumeration接口转化为Iterator接口，这时就需要适配器模式。</li>
-<li>在LINUX上运行WINDOWS程序。</li>
-<li>JAVA中的jdbc。</li>
-</ol>
-<ul>
-<li><strong><em>优点：</em></strong> </li>
-</ul>
-<ol>
-<li>可以让任何两个没有关联的类一起运行。</li>
-<li>提高了类的复用。</li>
-<li>增加了类的透明度。</li>
-<li>灵活性好。</li>
-</ol>
-<ul>
-<li><strong><em>缺点：</em></strong></li>
-</ul>
-<ol>
-<li>过多的使用适配器，会让系统非常零乱，不易整体进行把握。比如：明明看到调用的是A接口，其实内部被适配成了B接口的实现，一个系统如果太多出现这种情况，无异于一场灾难。因此如果不是很有必要，可以不适用适配器，而是直接对系统进行重构。</li>
-<li>由于JAVA至多继承一个类，所以至多只能适配一个适配者类，而且目标类必须是抽象类。</li>
-</ol>
-<ul>
-<li><strong>使用场景：</strong> 有动机的修改一个正常运行的系统接口，这时应该考虑使用适配器模式。</li>
-<li><strong>注意事项：</strong> 适配器不是在详细设计时添加的，而是解决正在服役的项目的问题。</li>
-</ul>
-<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
-<p>我们有一个MediaPlayer接口和一个实现了MediaPlayer接口的实体类AudioPlayer。默认情况下，AudioPlayer可以播放MP3格式的音频文件。<br>我们还有另外一个接口AdvancedMediaPlayer和实现了AdvancedMediaPlayer接口的实体类。该类可以播放VLC和MP4格式的文件。<br>我们想要让AudioPlayer播放其他格式的音频文件。为了实现这个功能，我们需要创建一个实现了MediaPlayer接口的适配器类MediaAdapter.<br>并使用AdvancedMediaPlayer对象来播放所需的格式。  </p>
-</blockquote>
-<p><img src="/mellofly/39554/适配器模式.jpg" alt="适配器模式设计类UML图"></p>
-<h2 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h2><blockquote>
-<p>为媒体播放器和更高级的媒体播放器创建接口。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*MediaPlayer.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MediaPlayer</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">(String audioType, String fileName)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*AdvancedMediaPlayer.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AdvancedMediaPlayer</span> </span>&#123; </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playVlc</span><span class="params">(String fileName)</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playMp4</span><span class="params">(String fileName)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤2："><a href="#步骤2：" class="headerlink" title="步骤2："></a>步骤2：</h2><blockquote>
-<p>创建实现了AdvancedMediaPlayer接口的实体类。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*VlcPlayer.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VlcPlayer</span> <span class="keyword">implements</span> <span class="title">AdvancedMediaPlayer</span></span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playVlc</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Playing vlc file. Name: &quot;</span>+ fileName);      </span><br><span class="line">   &#125;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playMp4</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">      <span class="comment">//什么也不做</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Mp4Player.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mp4Player</span> <span class="keyword">implements</span> <span class="title">AdvancedMediaPlayer</span></span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playVlc</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">      <span class="comment">//什么也不做</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">playMp4</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Playing mp4 file. Name: &quot;</span>+ fileName);      </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤3："><a href="#步骤3：" class="headerlink" title="步骤3："></a>步骤3：</h2><blockquote>
-<p>创建实现了MediaPlayer接口的适配器类。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*MediaAdapter.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MediaAdapter</span> <span class="keyword">implements</span> <span class="title">MediaPlayer</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   AdvancedMediaPlayer advancedMusicPlayer;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">MediaAdapter</span><span class="params">(String audioType)</span></span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(audioType.equalsIgnoreCase(<span class="string">&quot;vlc&quot;</span>) )&#123;</span><br><span class="line">         advancedMusicPlayer = <span class="keyword">new</span> VlcPlayer();       </span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (audioType.equalsIgnoreCase(<span class="string">&quot;mp4&quot;</span>))&#123;</span><br><span class="line">         advancedMusicPlayer = <span class="keyword">new</span> Mp4Player();</span><br><span class="line">      &#125;  </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">(String audioType, String fileName)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(audioType.equalsIgnoreCase(<span class="string">&quot;vlc&quot;</span>))&#123;</span><br><span class="line">         advancedMusicPlayer.playVlc(fileName);</span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(audioType.equalsIgnoreCase(<span class="string">&quot;mp4&quot;</span>))&#123;</span><br><span class="line">         advancedMusicPlayer.playMp4(fileName);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤4："><a href="#步骤4：" class="headerlink" title="步骤4："></a>步骤4：</h2><blockquote>
-<p>创建实现了MediaPlayer接口的实体类。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*AudioPlayer.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AudioPlayer</span> <span class="keyword">implements</span> <span class="title">MediaPlayer</span> </span>&#123;</span><br><span class="line">   MediaAdapter mediaAdapter; </span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">(String audioType, String fileName)</span> </span>&#123;    </span><br><span class="line"> </span><br><span class="line">      <span class="comment">//播放 mp3 音乐文件的内置支持</span></span><br><span class="line">      <span class="keyword">if</span>(audioType.equalsIgnoreCase(<span class="string">&quot;mp3&quot;</span>))&#123;</span><br><span class="line">         System.out.println(<span class="string">&quot;Playing mp3 file. Name: &quot;</span>+ fileName);         </span><br><span class="line">      &#125; </span><br><span class="line">      <span class="comment">//mediaAdapter 提供了播放其他文件格式的支持</span></span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span>(audioType.equalsIgnoreCase(<span class="string">&quot;vlc&quot;</span>) </span><br><span class="line">         || audioType.equalsIgnoreCase(<span class="string">&quot;mp4&quot;</span>))&#123;</span><br><span class="line">         mediaAdapter = <span class="keyword">new</span> MediaAdapter(audioType);</span><br><span class="line">         mediaAdapter.play(audioType, fileName);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span>&#123;</span><br><span class="line">         System.out.println(<span class="string">&quot;Invalid media. &quot;</span>+</span><br><span class="line">            audioType + <span class="string">&quot; format not supported&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤5："><a href="#步骤5：" class="headerlink" title="步骤5："></a>步骤5：</h2><blockquote>
-<p>使用 AudioPlayer 来播放不同类型的音频格式。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*AdapterPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AdapterPatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      AudioPlayer audioPlayer = <span class="keyword">new</span> AudioPlayer();</span><br><span class="line">      audioPlayer.play(<span class="string">&quot;mp3&quot;</span>, <span class="string">&quot;beyond the horizon.mp3&quot;</span>);</span><br><span class="line">      audioPlayer.play(<span class="string">&quot;mp4&quot;</span>, <span class="string">&quot;alone.mp4&quot;</span>);</span><br><span class="line">      audioPlayer.play(<span class="string">&quot;vlc&quot;</span>, <span class="string">&quot;far far away.vlc&quot;</span>);</span><br><span class="line">      audioPlayer.play(<span class="string">&quot;avi&quot;</span>, <span class="string">&quot;mind me.avi&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤6："><a href="#步骤6：" class="headerlink" title="步骤6："></a>步骤6：</h2><blockquote>
-<p>执行程序，输出结果</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Playing mp3 file. Name: beyond the horizon.mp3</span><br><span class="line">Playing mp4 file. Name: alone.mp4</span><br><span class="line">Playing vlc file. Name: far far away.vlc</span><br><span class="line">Invalid media. avi format not supported</span><br></pre></td></tr></table></figure>
-<h1 id="读取SD卡实例："><a href="#读取SD卡实例：" class="headerlink" title="读取SD卡实例："></a>读取SD卡实例：</h1><h2 id="一、模拟计算机读取SD卡："><a href="#一、模拟计算机读取SD卡：" class="headerlink" title="一、模拟计算机读取SD卡："></a>一、模拟计算机读取SD卡：</h2><ol>
-<li>先创建一个SD卡的接口：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SDCard</span> </span>&#123;</span><br><span class="line">    <span class="comment">//读取SD卡方法</span></span><br><span class="line">    <span class="function">String <span class="title">readSD</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//写入SD卡功能</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">writeSD</span><span class="params">(String msg)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>创建SD卡接口的实现类，模拟SD卡的功能：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SDCardImpl</span> <span class="keyword">implements</span> <span class="title">SDCard</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readSD</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String msg = <span class="string">&quot;sdcard read a msg :hello word SD&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> msg;  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">writeSD</span><span class="params">(String msg)</span> </span>&#123;      </span><br><span class="line">        System.out.println(<span class="string">&quot;sd card write msg : &quot;</span> + msg);    </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>创建计算机接口，计算机提供读取SD卡方法：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Computer</span> </span>&#123;    </span><br><span class="line">    <span class="function">String <span class="title">readSD</span><span class="params">(SDCard sdCard)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>创建一个计算机实例，实现计算机接口，并实现其读取SD卡方法：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThinkpadComputer</span> <span class="keyword">implements</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readSD</span><span class="params">(SDCard sdCard)</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">if</span>(sdCard == <span class="keyword">null</span>)<span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">&quot;sd card null&quot;</span>);        </span><br><span class="line">        <span class="keyword">return</span> sdCard.readSD();    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>这时候就可以模拟计算机读取SD卡功能：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputerReadDemo</span> </span>&#123;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;        </span><br><span class="line">        Computer computer = <span class="keyword">new</span> ThinkpadComputer();        </span><br><span class="line">        SDCard sdCard = <span class="keyword">new</span> SDCardImpl();       </span><br><span class="line">        System.out.println(computer.readSD(sdCard));    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="二、接下来在不改变计算机读取SD卡接口的情况下，通过适配器模式读取TF卡："><a href="#二、接下来在不改变计算机读取SD卡接口的情况下，通过适配器模式读取TF卡：" class="headerlink" title="二、接下来在不改变计算机读取SD卡接口的情况下，通过适配器模式读取TF卡："></a>二、接下来在不改变计算机读取SD卡接口的情况下，通过适配器模式读取TF卡：</h2><ol>
-<li>创建TF卡接口：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TFCard</span> </span>&#123;    </span><br><span class="line">    <span class="function">String <span class="title">readTF</span><span class="params">()</span></span>;    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">writeTF</span><span class="params">(String msg)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>创建TF卡实例：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TFCardImpl</span> <span class="keyword">implements</span> <span class="title">TFCard</span> </span>&#123;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readTF</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        String msg =<span class="string">&quot;tf card reade msg : hello word tf card&quot;</span>;        </span><br><span class="line">        <span class="keyword">return</span> msg;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">writeTF</span><span class="params">(String msg)</span> </span>&#123;        </span><br><span class="line">        System.out.println(<span class="string">&quot;tf card write a msg : &quot;</span> + msg);        </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>创建SD适配TF （也可以说是SD兼容TF，相当于读卡器）：<br>实现SDCard接口，并将要适配的对象作为适配器的属性引入。<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SDAdapterTF</span> <span class="keyword">implements</span> <span class="title">SDCard</span> </span>&#123;    </span><br><span class="line">    <span class="keyword">private</span> TFCard tfCard;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SDAdapterTF</span><span class="params">(TFCard tfCard)</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">this</span>.tfCard = tfCard;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">readSD</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        System.out.println(<span class="string">&quot;adapter read tf card &quot;</span>);        </span><br><span class="line">        <span class="keyword">return</span> tfCard.readTF();    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">writeSD</span><span class="params">(String msg)</span> </span>&#123;        </span><br><span class="line">        System.out.println(<span class="string">&quot;adapter write tf card&quot;</span>);        </span><br><span class="line">        <span class="keyword">return</span> tfCard.writeTF(msg);    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>通过上面的例子测试计算机通过SD读卡器读取TF卡：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputerReadDemo</span> </span>&#123;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;        </span><br><span class="line">        Computer computer = <span class="keyword">new</span> ThinkpadComputer();        </span><br><span class="line">        SDCard sdCard = <span class="keyword">new</span> SDCardImpl();        </span><br><span class="line">        System.out.println(computer.readSD(sdCard));        </span><br><span class="line">        System.out.println(<span class="string">&quot;====================================&quot;</span>);        </span><br><span class="line">        TFCard tfCard = <span class="keyword">new</span> TFCardImpl();        </span><br><span class="line">        SDCard tfCardAdapterSD = <span class="keyword">new</span> SDAdapterTF(tfCard);        </span><br><span class="line">        System.out.println(computer.readSD(tfCardAdapterSD));    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">sdcard read a msg :hello word SD</span><br><span class="line">====================================</span><br><span class="line">adapter read tf card </span><br><span class="line">tf card reade msg : hello word tf card</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在这种模式下，计算机并不需要知道具体是什么卡，只需要负责操作接口即可，具体操作的什么类，由适配器决定。</p>
-</blockquote>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>设计模式</tag>
       </tags>
   </entry>
   <entry>
