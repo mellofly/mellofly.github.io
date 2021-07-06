@@ -20,29 +20,29 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"shenpf.top","root":"/","images":"/images","scheme":"Mist","version":"8.5.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="Markdown总体： Markdown是一种轻量级标记语言，它允许使用易读易写的纯文本格式编写文档。 Markdown语言在2004年有约翰格鲁伯(英语：John Gruber)创建。 Markdown编写的文档可以到处HTML、Word、图像、PDF、Epub等多种格式的文档。编写出来的文档后缀为.md,.markdown。 Markdown应用：可以被使用来撰写电子书，如Gitbook;当前">
+<meta name="description" content="Spring Boot 2里面的配置文件    SpringBoot2.x常见配置文件形式：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Markdown总述">
-<meta property="og:url" content="http://shenpf.top/mellofly/56456.html">
+<meta property="og:title" content="SpringBoot配置文件">
+<meta property="og:url" content="http://shenpf.top/mellofly/75ee909c.html">
 <meta property="og:site_name" content="mellofly">
-<meta property="og:description" content="Markdown总体： Markdown是一种轻量级标记语言，它允许使用易读易写的纯文本格式编写文档。 Markdown语言在2004年有约翰格鲁伯(英语：John Gruber)创建。 Markdown编写的文档可以到处HTML、Word、图像、PDF、Epub等多种格式的文档。编写出来的文档后缀为.md,.markdown。 Markdown应用：可以被使用来撰写电子书，如Gitbook;当前">
+<meta property="og:description" content="Spring Boot 2里面的配置文件    SpringBoot2.x常见配置文件形式：">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-12-10T04:42:40.000Z">
-<meta property="article:modified_time" content="2021-06-25T07:39:35.347Z">
+<meta property="article:published_time" content="2021-07-05T01:40:17.000Z">
+<meta property="article:modified_time" content="2021-07-06T08:37:21.982Z">
 <meta property="article:author" content="mellofly">
-<meta property="article:tag" content="Markdown">
-<meta property="article:tag" content="工具语言">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://shenpf.top/mellofly/56456.html">
+<link rel="canonical" href="http://shenpf.top/mellofly/75ee909c.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://shenpf.top/mellofly/56456.html","path":"mellofly/56456.html","title":"Markdown总述"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://shenpf.top/mellofly/75ee909c.html","path":"mellofly/75ee909c.html","title":"SpringBoot配置文件"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Markdown总述 | mellofly</title>
+<title>SpringBoot配置文件 | mellofly</title>
   
 
 
@@ -149,7 +149,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Markdown%E6%80%BB%E4%BD%93%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">Markdown总体：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Markdown%E5%BA%94%E7%94%A8%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">Markdown应用：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">简单分类：</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringBoot2-x%E5%B8%B8%E8%A7%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%BD%A2%E5%BC%8F%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">SpringBoot2.x常见配置文件形式：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringBoot%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%98%A0%E5%B0%84%E5%B1%9E%E6%80%A7%E5%92%8C%E5%AE%9E%E4%BD%93%E7%B1%BB%E5%AE%9E%E6%88%98"><span class="nav-number">2.</span> <span class="nav-text">SpringBoot注解配置文件映射属性和实体类实战</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Value%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84%E5%88%B0%E5%B1%9E%E6%80%A7%E5%92%8C%E5%AE%9E%E4%BD%93%E7%B1%BB%E3%80%82"><span class="nav-number">2.1.</span> <span class="nav-text">使用@Value注解配置文件自动映射到属性和实体类。</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -226,7 +226,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://shenpf.top/mellofly/56456.html">
+    <link itemprop="mainEntityOfPage" href="http://shenpf.top/mellofly/75ee909c.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -239,7 +239,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Markdown总述
+          SpringBoot配置文件
         </h1>
 
         <div class="post-meta-container">
@@ -250,14 +250,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2019-12-10 12:42:40" itemprop="dateCreated datePublished" datetime="2019-12-10T12:42:40+08:00">2019-12-10</time>
+      <time title="创建时间：2021-07-05 09:40:17" itemprop="dateCreated datePublished" datetime="2021-07-05T09:40:17+08:00">2021-07-05</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-06-25 15:39:35" itemprop="dateModified" datetime="2021-06-25T15:39:35+08:00">2021-06-25</time>
+        <time title="修改时间：2021-07-06 16:37:21" itemprop="dateModified" datetime="2021-07-06T16:37:21+08:00">2021-07-06</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -265,7 +265,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Markdown/" itemprop="url" rel="index"><span itemprop="name">Markdown</span></a>
+          <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
         </span>
     </span>
 
@@ -286,17 +286,50 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="Markdown总体："><a href="#Markdown总体：" class="headerlink" title="Markdown总体："></a>Markdown总体：</h1><blockquote>
-<p>Markdown是一种轻量级标记语言，它允许使用易读易写的纯文本格式编写文档。</p>
-<p>Markdown语言在2004年有约翰格鲁伯(英语：John Gruber)创建。</p>
-<p>Markdown编写的文档可以到处HTML、Word、图像、PDF、Epub等多种格式的文档。编写出来的文档后缀为.md,.markdown。</p>
-<h1 id="Markdown应用："><a href="#Markdown应用：" class="headerlink" title="Markdown应用："></a>Markdown应用：</h1><p>可以被使用来撰写电子书，如Gitbook;<br>当前许多网站都广泛使用Markdown来撰写帮助文档或是用于论坛上发表消息。例如：GitHub、简书、reddit、Diaspora、Stack Exchange、OpenStreetMap、SourceForge等。</p>
-<h1 id="简单分类："><a href="#简单分类：" class="headerlink" title="简单分类："></a>简单分类：</h1><ul>
-<li><strong>基础语法：</strong> <a href="#">Post not found: Markdown基础语法</a></li>
-<li><strong>公式：</strong></li>
-<li><strong>画图：</strong></li>
-</ul>
+        <blockquote class="blockquote-center">
+<p>Spring Boot 2里面的配置文件 </p>
+
 </blockquote>
+<h1 id="SpringBoot2-x常见配置文件形式："><a href="#SpringBoot2-x常见配置文件形式：" class="headerlink" title="SpringBoot2.x常见配置文件形式："></a>SpringBoot2.x常见配置文件形式：</h1><blockquote>
+<p>SpringBoot2.x常见的配置文件形式xml、yml、properties的区别和使用。</p>
+</blockquote>
+<ul>
+<li>常见的配置文件格式：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xml、properties、json、yaml</span><br></pre></td></tr></table></figure></li>
+<li>SpringBoot里面常用xx.yml<ul>
+<li>YAML（Yet Another Markup Language）</li>
+<li>写YAML要比写XML快得多(无需关注标签或引导)使用空格Space缩进表示分层，不同层次之间的缩进可以使用不同的空格数目</li>
+<li>注意：key后面的冒号，后面一定要跟一个空格，树状结构<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">    port: 8080 //设置启动端⼝号为8080</span><br><span class="line"> </span><br><span class="line">house:</span><br><span class="line">    family:</span><br><span class="line">        name: Doe</span><br><span class="line">    parents:</span><br><span class="line">        - John</span><br><span class="line">        - Jane</span><br><span class="line">    children:</span><br><span class="line">        - Paul</span><br><span class="line">        - Mark</span><br><span class="line">        - Simone</span><br><span class="line">address:</span><br><span class="line">    number: 34</span><br><span class="line">    street: Main Street</span><br><span class="line">    city: Nowheretown</span><br><span class="line">    zipcode: 12345</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>SpringBoot里面常用xx.properties<ul>
+<li>Key=Value格式</li>
+<li>语法简单，不容易出错<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server.port=8082</span><br><span class="line">#session失效时间，30m表示30分钟</span><br><span class="line">server.servlet.session.timeout=30m</span><br><span class="line"># Maximum number of connections that the server accepts and processes at</span><br><span class="line">any given time.</span><br><span class="line">server.tomcat.max-connections=10000</span><br><span class="line"># Maximum size of the HTTP post content.</span><br><span class="line">server.tomcat.max-http-post-size=2MB</span><br><span class="line">server.tomcat.max-http-form-post-size=2MB</span><br><span class="line"># Maximum amount of worker threads</span><br><span class="line">server.tomcat.max-threads=200</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>官方配置文档<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/2.3.0.BUILD-SNAPSHOT/reference/htmlsingle/#core-properties">：地址</a>。</li>
+<li>如果需要修改，直接复制对应的配置文件加到application.properties里面，一般不需要调整。</li>
+</ul>
+</li>
+</ul>
+<h1 id="SpringBoot注解配置文件映射属性和实体类实战"><a href="#SpringBoot注解配置文件映射属性和实体类实战" class="headerlink" title="SpringBoot注解配置文件映射属性和实体类实战"></a>SpringBoot注解配置文件映射属性和实体类实战</h1><h2 id="使用-Value注解配置文件自动映射到属性和实体类。"><a href="#使用-Value注解配置文件自动映射到属性和实体类。" class="headerlink" title="使用@Value注解配置文件自动映射到属性和实体类。"></a>使用@Value注解配置文件自动映射到属性和实体类。</h2><ul>
+<li>配置文件加载<ul>
+<li>方法一：<ul>
+<li>1.Controller上面配置@PropertySource({“classpath:resource.properties”})</li>
+<li>2.增加属性@Value(“${test.name}”) private String name;</li>
+</ul>
+</li>
+<li>方法二：<ul>
+<li>1.添加@Component注解</li>
+<li>2.使用@PropertySource注解指定配置文件位置；</li>
+<li>3.使用@ConfigurationProperties注解，设置相关属性；</li>
+<li>4.必须通过注入IOC对象Resource进来，才能在类中使用获取的配置文件值。@Autowired private ServerSettings serverSettings。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">例⼦：</span><br><span class="line">@Configuration</span><br><span class="line">@ConfigurationProperties(prefix=&quot;test&quot;)</span><br><span class="line">@PropertySource(value=&quot;classpath:resource.properties&quot;)</span><br><span class="line">public class ServerConstant &#123;</span><br><span class="line">&#125;</span><br><span class="line">常⻅问题：</span><br><span class="line">1、配置⽂件注⼊失败，Could not resolve placeholder</span><br><span class="line">解决：根据springboot启动流程，会有⾃动扫描包没有扫描到相关注解,</span><br><span class="line">默认Spring框架实现会从声明@ComponentScan所在的类的package进⾏扫描，来⾃动注⼊，</span><br><span class="line">因此启动类最好放在根路径下⾯，或者指定扫描包范围</span><br><span class="line">spring-boot扫描启动类对应的⽬录和⼦⽬录</span><br><span class="line">2、注⼊bean的⽅式，属性名称和配置⽂件⾥⾯的key⼀⼀对应，就⽤加@Value 这个注解</span><br><span class="line">如果不⼀样，就要加@value(&quot;$&#123;XXX&#125;&quot;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
     </div>
 
@@ -306,21 +339,21 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Markdown/" rel="tag"># Markdown</a>
-              <a href="/tags/%E5%B7%A5%E5%85%B7%E8%AF%AD%E8%A8%80/" rel="tag"># 工具语言</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/SpringBoot/" rel="tag"># SpringBoot</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/mellofly/29711.html" rel="prev" title="建造者模式">
-                  <i class="fa fa-chevron-left"></i> 建造者模式
+                <a href="/mellofly/3ce02997.html" rel="prev" title="SpringBoot热部署">
+                  <i class="fa fa-chevron-left"></i> SpringBoot热部署
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/mellofly/39418.html" rel="next" title="Markdown基础语法">
-                  Markdown基础语法 <i class="fa fa-chevron-right"></i>
+                <a href="/mellofly/75ee909c.html" rel="next" title="SpringBoot单元测试">
+                  SpringBoot单元测试 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

@@ -176,20 +176,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Java-开发模式</title>
-    <url>/mellofly/8366.html</url>
-    <content><![CDATA[<p>Java的三层架构分别为 <strong><em>表示层、业务逻辑层</em></strong> 和 <strong><em>数据持久层</em></strong> 。<br>表示层的主要架构模式为MVC(Model View Controller，模型-视图-控制器)，主要框架有：Spring MVC和Struts2。<br>业务逻辑层的主要框架有Spring。<br>数据持久层的主要框架有Mybatis和Hibernate。<br>常用的两种框架组合：<br>SSH：Struts2+Spring+Hibernate<br>SSM：Spring MVC+Spring+MyBatis</p>
-<p>传统的Java Web应用程序是采用JSP+Servlet+Javabean来实现的，这种模式实现了最基本的MVC分层，使的程序结构分为几层，有负责前台展示的 JSP、负责流程逻辑控制的Servlet以及负责数据封装的Javabean。但是这种结构仍然存在问题：如JSP页面中需要使用符号嵌入很多的 Java代码，造成页面结构混乱，Servlet和Javabean负责了大量的跳转和运算工作，耦合紧密，程序复用度低等等。为了解决这些问题，出现了Struts框架，它是一个完美的MVC实现，它有一个中央控制类(一个 Servlet)，针对不同的业务，我们需要一个Action类负责页面跳转和后台逻辑运算，一个或几个JSP页面负责数据的输入和输出显示，还有一个 Form类负责传递Action和JSP中间的数据。JSP中可以使用Struts框架提供的一组标签，就像使用HTML标签一样简单，但是可以完成非常复杂的逻辑。从此JSP页面中不需要出现一行包围的Java代码了。 可是所有的运算逻辑都放在Struts的Action里将使得 Action类复用度低和逻辑混乱，所以通常人们会把整个Web应用程序分为三层，Struts负责显示层，它调用业务层完成运算逻辑，业务层再调用持久层完成数据库的读写。 使用JDBC连接来读写数据库，我们最常见的就是打开数据库连接、使用复杂的SQL语句进行读写、关闭连接，获得的数据又需要转换或封装后往外传，这是一个非常烦琐的过程。<br>这时出现了 Hibernate框架，它需要你创建一系列的持久化类，每个类的属性都可以简单的看做和一张数据库表的属性一一对应，当然也可以实现关系数据库的各种表件关联的对应。当我们需要相关操作是，不用再关注数据库表。我们不用再去一行行的查询数据库，只需要持久化类就可以完成增删改查的功能。使我们的软件开发真正面向对象， 而不是面向混乱的代码。我的感受是，使用Hibernate比JDBC方式减少了80%的编程量。<br>现在我们有三个层了，可是每层之间的调用是怎样的呢?比如显示层的Struts需要调用一个业务类，就需要new一个业务类出来，然后使用;业务层需要调 用持久层的类，也需要new一个持久层类出来用。通过这种new的方式互相调用就是软件开发中最糟糕设计的体现。简单的说，就是调用者依赖被调用者，它们 之间形成了强耦合，如果我想在其他地方复用某个类，则这个类依赖的其他类也需要包含。程序就变得很混乱，每个类互相依赖互相调用，复用度极低。如果一个类 做了修改，则依赖它的很多类都会受到牵连。<br>为此，出现Spring框架。<br>Spring Spring的作用就是完全解耦类之间的依赖关系，一个类如果要依赖什么，那就是一个接口。至于如何实现这个接口，这都不重要了。只要拿到一个实现了这个接口的类，就可以轻松的通过xml配置文件把实现类注射到调用接口的那个类里。所有类之间的这种依赖关系就完全通过配置文件的方式替代了。所以 Spring框架最核心的就是所谓的依赖注射和控制反转。<br>现在的结构是，Struts负责显示层，Hibernate负责持久层，Spring负责中间的业务层，这个结构是目前国内最流行的Java Web应用程序架构了。<br>另外，由于Spring使用的依赖注射以及AOP(面向方面编程)，所以它的这种内部模式非常优秀，以至于Spring自己也实现了一个使用依赖注射的MVC框架，叫做Spring MVC，同时为了很好的处理事物，Spring集成了Hibernate，使事物管理从Hibernate的持久层提升到了业务层，使用更加方便和强大。 Struts框架是2000年就开始起步了，到目前已经发展了5年，技术相当成熟，目前全球Java开发中Struts框架是显示层技术中当之无愧的王者。它拥有大量的用户群和很好的开发团队。这也是国内大部分Java软件公司对新进员工的基本要求。 其他 Java这个名词似乎注定和开源紧密联系在一起了，在Java界，每天都有大量的开源技术出现，由于是开放源代码的，技术中存在的问题和不足很快就会被人发现，开源软件提供者会很快的修正或扩展这些技术，因此版本更新很快，几个星期或者几天就有一个新版本出来。 </p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>开发模式介绍</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java_正则表达式</title>
     <url>/mellofly/12588.html</url>
     <content><![CDATA[<p>正则表达式：符合一定规则的表达式。</p>
@@ -235,6 +221,138 @@
       <tags>
         <tag>Java</tag>
         <tag>String</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java-开发模式</title>
+    <url>/mellofly/8366.html</url>
+    <content><![CDATA[<p>Java的三层架构分别为 <strong><em>表示层、业务逻辑层</em></strong> 和 <strong><em>数据持久层</em></strong> 。<br>表示层的主要架构模式为MVC(Model View Controller，模型-视图-控制器)，主要框架有：Spring MVC和Struts2。<br>业务逻辑层的主要框架有Spring。<br>数据持久层的主要框架有Mybatis和Hibernate。<br>常用的两种框架组合：<br>SSH：Struts2+Spring+Hibernate<br>SSM：Spring MVC+Spring+MyBatis</p>
+<p>传统的Java Web应用程序是采用JSP+Servlet+Javabean来实现的，这种模式实现了最基本的MVC分层，使的程序结构分为几层，有负责前台展示的 JSP、负责流程逻辑控制的Servlet以及负责数据封装的Javabean。但是这种结构仍然存在问题：如JSP页面中需要使用符号嵌入很多的 Java代码，造成页面结构混乱，Servlet和Javabean负责了大量的跳转和运算工作，耦合紧密，程序复用度低等等。为了解决这些问题，出现了Struts框架，它是一个完美的MVC实现，它有一个中央控制类(一个 Servlet)，针对不同的业务，我们需要一个Action类负责页面跳转和后台逻辑运算，一个或几个JSP页面负责数据的输入和输出显示，还有一个 Form类负责传递Action和JSP中间的数据。JSP中可以使用Struts框架提供的一组标签，就像使用HTML标签一样简单，但是可以完成非常复杂的逻辑。从此JSP页面中不需要出现一行包围的Java代码了。 可是所有的运算逻辑都放在Struts的Action里将使得 Action类复用度低和逻辑混乱，所以通常人们会把整个Web应用程序分为三层，Struts负责显示层，它调用业务层完成运算逻辑，业务层再调用持久层完成数据库的读写。 使用JDBC连接来读写数据库，我们最常见的就是打开数据库连接、使用复杂的SQL语句进行读写、关闭连接，获得的数据又需要转换或封装后往外传，这是一个非常烦琐的过程。<br>这时出现了 Hibernate框架，它需要你创建一系列的持久化类，每个类的属性都可以简单的看做和一张数据库表的属性一一对应，当然也可以实现关系数据库的各种表件关联的对应。当我们需要相关操作是，不用再关注数据库表。我们不用再去一行行的查询数据库，只需要持久化类就可以完成增删改查的功能。使我们的软件开发真正面向对象， 而不是面向混乱的代码。我的感受是，使用Hibernate比JDBC方式减少了80%的编程量。<br>现在我们有三个层了，可是每层之间的调用是怎样的呢?比如显示层的Struts需要调用一个业务类，就需要new一个业务类出来，然后使用;业务层需要调 用持久层的类，也需要new一个持久层类出来用。通过这种new的方式互相调用就是软件开发中最糟糕设计的体现。简单的说，就是调用者依赖被调用者，它们 之间形成了强耦合，如果我想在其他地方复用某个类，则这个类依赖的其他类也需要包含。程序就变得很混乱，每个类互相依赖互相调用，复用度极低。如果一个类 做了修改，则依赖它的很多类都会受到牵连。<br>为此，出现Spring框架。<br>Spring Spring的作用就是完全解耦类之间的依赖关系，一个类如果要依赖什么，那就是一个接口。至于如何实现这个接口，这都不重要了。只要拿到一个实现了这个接口的类，就可以轻松的通过xml配置文件把实现类注射到调用接口的那个类里。所有类之间的这种依赖关系就完全通过配置文件的方式替代了。所以 Spring框架最核心的就是所谓的依赖注射和控制反转。<br>现在的结构是，Struts负责显示层，Hibernate负责持久层，Spring负责中间的业务层，这个结构是目前国内最流行的Java Web应用程序架构了。<br>另外，由于Spring使用的依赖注射以及AOP(面向方面编程)，所以它的这种内部模式非常优秀，以至于Spring自己也实现了一个使用依赖注射的MVC框架，叫做Spring MVC，同时为了很好的处理事物，Spring集成了Hibernate，使事物管理从Hibernate的持久层提升到了业务层，使用更加方便和强大。 Struts框架是2000年就开始起步了，到目前已经发展了5年，技术相当成熟，目前全球Java开发中Struts框架是显示层技术中当之无愧的王者。它拥有大量的用户群和很好的开发团队。这也是国内大部分Java软件公司对新进员工的基本要求。 其他 Java这个名词似乎注定和开源紧密联系在一起了，在Java界，每天都有大量的开源技术出现，由于是开放源代码的，技术中存在的问题和不足很快就会被人发现，开源软件提供者会很快的修正或扩展这些技术，因此版本更新很快，几个星期或者几天就有一个新版本出来。 </p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>开发模式介绍</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot单元测试</title>
+    <url>/mellofly/75ee909c.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>软件开发测试流程介绍，SpringBoot单元测试应用 </p>
+
+</blockquote>
+<h1 id="软件开发测试流程"><a href="#软件开发测试流程" class="headerlink" title="软件开发测试流程"></a>软件开发测试流程</h1><ul>
+<li>整体的生命周期： 需求测试 -&gt; 设计 -&gt; 开发 -&gt; 测试 -&gt; 上线。</li>
+<li>测试种类：<ul>
+<li><strong>单元测试</strong>：完成最小的软件设计单元的验证工作，目标是确保模块被正确的编码。</li>
+<li><strong>黑盒测试</strong>：不考虑内部结构，主要测试功能十分满足需求。</li>
+<li><strong>白盒测试</strong>：针对代码级别，测试开发工程师一般具备白盒测试能力，针对程序内部的逻辑结构进行代码级别的测试。</li>
+<li><strong>回归测试</strong>：对原先提出的缺陷进行二次验证，开发人员修复后进行二次的验证。</li>
+<li><strong>集成测试</strong>：测试模块和模块之间的整合，且测试主要的业务功能。</li>
+<li><strong>系统测试</strong>：针对整个产品系统进行的测试，验证系统是否满足产品业务需求。</li>
+</ul>
+</li>
+</ul>
+<h1 id="SpingBoot单元测试。"><a href="#SpingBoot单元测试。" class="headerlink" title="SpingBoot单元测试。"></a>SpingBoot单元测试。</h1><ul>
+<li>引入相关依赖<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--springboot程序测试依赖，如果是⾃动创建项⽬默认添加--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">    &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">     &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">     &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">     &lt;version&gt;4.12&lt;/version&gt;</span><br><span class="line">     &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></li>
+<li>配置相关注解<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@RunWith(SpringRunner.class) //底层⽤junit SpringJUnit4ClassRunner</span><br><span class="line">@SpringBootTest(classes=&#123;XdclassApplication.class&#125;)//启动整个springboot⼯程</span><br><span class="line">public class SpringBootTests &#123; &#125;</span><br></pre></td></tr></table></figure></li>
+<li>常用单元测试的注解<ul>
+<li>@before</li>
+<li>@Test</li>
+<li>@After</li>
+</ul>
+</li>
+<li>断言<ul>
+<li>判断程序结果是否符合预期 TestCase.assertXXX</li>
+</ul>
+</li>
+</ul>
+<h1 id="单元测试调用Controller-Service层接口。"><a href="#单元测试调用Controller-Service层接口。" class="headerlink" title="单元测试调用Controller-Service层接口。"></a>单元测试调用Controller-Service层接口。</h1><ul>
+<li>案例Controller层登录方法测试。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">private UserController userController;</span><br><span class="line">@Test</span><br><span class="line">public void loginTest()&#123;</span><br><span class="line">    User user = new User();</span><br><span class="line">    user.setUsername(&quot;jack&quot;);</span><br><span class="line">    user.setPwd(&quot;1234&quot;);</span><br><span class="line">    JsonData jsonData = userController.login(user);</span><br><span class="line">    System.out.println(jsonData.toString());</span><br><span class="line">    TestCase.assertEquals(0,jsonData.getCode());</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+<li>案例实战 视频列表Service层单元测试。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">private VideoService videoService;</span><br><span class="line">@Test</span><br><span class="line">public void testVideoList()&#123;</span><br><span class="line">    List&lt;Video&gt; videoList = videoService.listVideo();</span><br><span class="line">    TestCase.assertTrue(videoList.size()&gt;0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="MockMvc案例实战调用Controller层API接口"><a href="#MockMvc案例实战调用Controller层API接口" class="headerlink" title="MockMvc案例实战调用Controller层API接口"></a>MockMvc案例实战调用Controller层API接口</h1><ul>
+<li>测试Controller对外提供的接口：<ul>
+<li>增加类注解@AutoConfigureMockMvc</li>
+<li>注入一个MockMvc类</li>
+<li>相关API：<ul>
+<li>perform执行一个RequestBuilder请求。</li>
+<li>andExpect:添加ResultMatcher-&gt;MockMvcResultMatchers验证规则。</li>
+<li>andReturn：最后返回相应的MvcResult-&gt;Response</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>案例：视频列表单元测试：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> @Autowired</span><br><span class="line"> private MockMvc mockMvc;</span><br><span class="line"> @Test</span><br><span class="line"> public void testVideoListApi()throws Exception&#123;</span><br><span class="line"> MvcResult mvcResult = </span><br><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/api/v1/pub/video/list&quot;))</span><br><span class="line"> </span><br><span class="line">.andExpect(MockMvcResultMatchers.status().isOk()).andReturn();</span><br><span class="line"> int status = mvcResult.getResponse().getStatus();</span><br><span class="line"> System.out.println(status);</span><br><span class="line"> //会乱码</span><br><span class="line"> //String result = mvcResult.getResponse().getContentAsString();</span><br><span class="line"> // 使⽤下⾯这个，增加 编码 说明，就不会乱码打印</span><br><span class="line"> String result =</span><br><span class="line">mvcResult.getResponse().getContentAsString(Charset.forName(&quot;utf-8&quot;));</span><br><span class="line"> System.out.println(result);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
+        <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot配置文件</title>
+    <url>/mellofly/75ee909c.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>Spring Boot 2里面的配置文件 </p>
+
+</blockquote>
+<h1 id="SpringBoot2-x常见配置文件形式："><a href="#SpringBoot2-x常见配置文件形式：" class="headerlink" title="SpringBoot2.x常见配置文件形式："></a>SpringBoot2.x常见配置文件形式：</h1><blockquote>
+<p>SpringBoot2.x常见的配置文件形式xml、yml、properties的区别和使用。</p>
+</blockquote>
+<ul>
+<li>常见的配置文件格式：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">xml、properties、json、yaml</span><br></pre></td></tr></table></figure></li>
+<li>SpringBoot里面常用xx.yml<ul>
+<li>YAML（Yet Another Markup Language）</li>
+<li>写YAML要比写XML快得多(无需关注标签或引导)使用空格Space缩进表示分层，不同层次之间的缩进可以使用不同的空格数目</li>
+<li>注意：key后面的冒号，后面一定要跟一个空格，树状结构<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server:</span><br><span class="line">    port: 8080 //设置启动端⼝号为8080</span><br><span class="line"> </span><br><span class="line">house:</span><br><span class="line">    family:</span><br><span class="line">        name: Doe</span><br><span class="line">    parents:</span><br><span class="line">        - John</span><br><span class="line">        - Jane</span><br><span class="line">    children:</span><br><span class="line">        - Paul</span><br><span class="line">        - Mark</span><br><span class="line">        - Simone</span><br><span class="line">address:</span><br><span class="line">    number: 34</span><br><span class="line">    street: Main Street</span><br><span class="line">    city: Nowheretown</span><br><span class="line">    zipcode: 12345</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>SpringBoot里面常用xx.properties<ul>
+<li>Key=Value格式</li>
+<li>语法简单，不容易出错<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server.port=8082</span><br><span class="line">#session失效时间，30m表示30分钟</span><br><span class="line">server.servlet.session.timeout=30m</span><br><span class="line"># Maximum number of connections that the server accepts and processes at</span><br><span class="line">any given time.</span><br><span class="line">server.tomcat.max-connections=10000</span><br><span class="line"># Maximum size of the HTTP post content.</span><br><span class="line">server.tomcat.max-http-post-size=2MB</span><br><span class="line">server.tomcat.max-http-form-post-size=2MB</span><br><span class="line"># Maximum amount of worker threads</span><br><span class="line">server.tomcat.max-threads=200</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>官方配置文档<ul>
+<li><a href="https://docs.spring.io/spring-boot/docs/2.3.0.BUILD-SNAPSHOT/reference/htmlsingle/#core-properties">：地址</a>。</li>
+<li>如果需要修改，直接复制对应的配置文件加到application.properties里面，一般不需要调整。</li>
+</ul>
+</li>
+</ul>
+<h1 id="SpringBoot注解配置文件映射属性和实体类实战"><a href="#SpringBoot注解配置文件映射属性和实体类实战" class="headerlink" title="SpringBoot注解配置文件映射属性和实体类实战"></a>SpringBoot注解配置文件映射属性和实体类实战</h1><h2 id="使用-Value注解配置文件自动映射到属性和实体类。"><a href="#使用-Value注解配置文件自动映射到属性和实体类。" class="headerlink" title="使用@Value注解配置文件自动映射到属性和实体类。"></a>使用@Value注解配置文件自动映射到属性和实体类。</h2><ul>
+<li>配置文件加载<ul>
+<li>方法一：<ul>
+<li>1.Controller上面配置@PropertySource({“classpath:resource.properties”})</li>
+<li>2.增加属性@Value(“${test.name}”) private String name;</li>
+</ul>
+</li>
+<li>方法二：<ul>
+<li>1.添加@Component注解</li>
+<li>2.使用@PropertySource注解指定配置文件位置；</li>
+<li>3.使用@ConfigurationProperties注解，设置相关属性；</li>
+<li>4.必须通过注入IOC对象Resource进来，才能在类中使用获取的配置文件值。@Autowired private ServerSettings serverSettings。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">例⼦：</span><br><span class="line">@Configuration</span><br><span class="line">@ConfigurationProperties(prefix=&quot;test&quot;)</span><br><span class="line">@PropertySource(value=&quot;classpath:resource.properties&quot;)</span><br><span class="line">public class ServerConstant &#123;</span><br><span class="line">&#125;</span><br><span class="line">常⻅问题：</span><br><span class="line">1、配置⽂件注⼊失败，Could not resolve placeholder</span><br><span class="line">解决：根据springboot启动流程，会有⾃动扫描包没有扫描到相关注解,</span><br><span class="line">默认Spring框架实现会从声明@ComponentScan所在的类的package进⾏扫描，来⾃动注⼊，</span><br><span class="line">因此启动类最好放在根路径下⾯，或者指定扫描包范围</span><br><span class="line">spring-boot扫描启动类对应的⽬录和⼦⽬录</span><br><span class="line">2、注⼊bean的⽅式，属性名称和配置⽂件⾥⾯的key⼀⼀对应，就⽤加@Value 这个注解</span><br><span class="line">如果不⼀样，就要加@value(&quot;$&#123;XXX&#125;&quot;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
       </tags>
   </entry>
   <entry>
@@ -376,43 +494,6 @@
       </tags>
   </entry>
   <entry>
-    <title>SpringBoot热部署</title>
-    <url>/mellofly/3ce02997.html</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-<p>热部署：应用正在运行的时候升级功能，不需要重新启动应用；就是在运行时更新Java类文件，不需要手工重新启动应用，提高开发效率 </p>
-
-</blockquote>
-<h1 id="常见实现热部署的方式。"><a href="#常见实现热部署的方式。" class="headerlink" title="常见实现热部署的方式。"></a>常见实现热部署的方式。</h1><ul>
-<li>Jrebel</li>
-<li>Spring Loaded</li>
-<li>spring-boot-devtools</li>
-</ul>
-<h2 id="dev-tool实现IDEA热部署"><a href="#dev-tool实现IDEA热部署" class="headerlink" title="dev-tool实现IDEA热部署"></a>dev-tool实现IDEA热部署</h2><ul>
-<li><p>实现步骤：</p>
-<ul>
-<li><p>pom文件添加依赖包</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt; </span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; </span><br><span class="line">    &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt; </span><br><span class="line">    &lt;optional&gt;true&lt;/optional&gt; </span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;build&gt;</span><br><span class="line">    &lt;plugins&gt;</span><br><span class="line">        &lt;plugin&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">            &lt;configuration&gt;</span><br><span class="line">               &lt;fork&gt;true&lt;/fork&gt;&lt;!--必须添加这个配置--&gt;</span><br><span class="line">            &lt;/configuration&gt;</span><br><span class="line">        &lt;/plugin&gt;</span><br><span class="line">    &lt;/plugins&gt;</span><br><span class="line">&lt;/build&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>IDEA配置</p>
-<ul>
-<li>idea里面要配置：<br><img src="/mellofly/3ce02997/IDEA热部署.jpg" alt="步骤1"></li>
-<li>使用快捷键打开，选择Registry<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">注意默认快捷键：</span><br><span class="line">    window快捷键 Shift+Ctrl+Alt+/</span><br><span class="line">    mac快捷键 Shift+Command+Alt+/</span><br></pre></td></tr></table></figure></li>
-<li>选择compiler.automake.allow.when.app.running ，重启idea就⾏！！！<br><img src="/mellofly/3ce02997/最后一步.png" alt="步骤2"></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>框架</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringBoot接口开发</title>
     <url>/mellofly/7371a327.html</url>
     <content><![CDATA[<blockquote class="blockquote-center">
@@ -460,6 +541,43 @@
 <li>反序列化操作</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">List&lt;Video&gt; temp = objectMapper.readValue(jsonStr,List.class);</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot热部署</title>
+    <url>/mellofly/3ce02997.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>热部署：应用正在运行的时候升级功能，不需要重新启动应用；就是在运行时更新Java类文件，不需要手工重新启动应用，提高开发效率 </p>
+
+</blockquote>
+<h1 id="常见实现热部署的方式。"><a href="#常见实现热部署的方式。" class="headerlink" title="常见实现热部署的方式。"></a>常见实现热部署的方式。</h1><ul>
+<li>Jrebel</li>
+<li>Spring Loaded</li>
+<li>spring-boot-devtools</li>
+</ul>
+<h2 id="dev-tool实现IDEA热部署"><a href="#dev-tool实现IDEA热部署" class="headerlink" title="dev-tool实现IDEA热部署"></a>dev-tool实现IDEA热部署</h2><ul>
+<li><p>实现步骤：</p>
+<ul>
+<li><p>pom文件添加依赖包</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt; </span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; </span><br><span class="line">    &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt; </span><br><span class="line">    &lt;optional&gt;true&lt;/optional&gt; </span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;build&gt;</span><br><span class="line">    &lt;plugins&gt;</span><br><span class="line">        &lt;plugin&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">            &lt;configuration&gt;</span><br><span class="line">               &lt;fork&gt;true&lt;/fork&gt;&lt;!--必须添加这个配置--&gt;</span><br><span class="line">            &lt;/configuration&gt;</span><br><span class="line">        &lt;/plugin&gt;</span><br><span class="line">    &lt;/plugins&gt;</span><br><span class="line">&lt;/build&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>IDEA配置</p>
+<ul>
+<li>idea里面要配置：<br><img src="/mellofly/3ce02997/IDEA热部署.jpg" alt="步骤1"></li>
+<li>使用快捷键打开，选择Registry<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">注意默认快捷键：</span><br><span class="line">    window快捷键 Shift+Ctrl+Alt+/</span><br><span class="line">    mac快捷键 Shift+Command+Alt+/</span><br></pre></td></tr></table></figure></li>
+<li>选择compiler.automake.allow.when.app.running ，重启idea就⾏！！！<br><img src="/mellofly/3ce02997/最后一步.png" alt="步骤2"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
       <categories>
         <category>框架</category>
       </categories>
@@ -1199,63 +1317,6 @@
       </tags>
   </entry>
   <entry>
-    <title>抽象工厂模式</title>
-    <url>/mellofly/56455.html</url>
-    <content><![CDATA[<blockquote>
-<p>抽象工厂模式(Abstract Factory Pattern)是围绕一个超级工厂创建其他工厂。该工厂又称为其他工厂的工厂。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。</p>
-</blockquote>
-<p>在抽象工厂模式中，接口是负责创建一个相关对象的工厂，不需要显式指定他们的类。每个生成的工厂都能按照工厂模式提供对象。</p>
-<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
-<li><strong>意图：</strong> 提供一个创建一系列相关或相互依赖对象的接口，而无需指定他们具体的类。</li>
-<li><strong>主要解决：</strong> 主要解决接口选择的问题。</li>
-<li><strong>何时使用：</strong> 系统的产品有多于一个的产品族，而系统只消费其中某一族的产品。</li>
-<li><strong>如何解决：</strong> 在一个产品族里面，定义多个产品。</li>
-<li><strong>关键代码：</strong> 在一个工厂里聚合多个同类产品。</li>
-<li><strong>应用实例：</strong> 工作了，为了参加一些聚会，肯定有两套或多套衣服吧，比如说商务装(成套，一系列具体产品)、时尚装(成套，一系列具体产品)，甚至对于一个家庭来说，可能有商务女装、商务男装、时尚女装，这些也都是成套的，即一系列具体产品。假设一种情况(现实中是不存在的，要不然，没法进入共产主义了，但有利于说明抽象工厂模式)，在您的家中，某一个衣柜(具体工厂)只能存放某一种这样的衣服(成套，一系列具体产品)，每次拿这种成套的衣服时也自然要从这个衣柜中取出了。用OOP的思想去理解，所有的衣柜(具体工厂)都是衣柜类的(抽象工厂)某一个，而每一件成套的衣服又包括具体的上衣(某一具体产品)，裤子(某一具体产品)，这些具体的上衣其实也都是上衣(抽象产品)，具体的裤子也都是裤子(另一个抽象产品)。</li>
-<li><strong>优点：</strong> 当一个产品族中的多个对象被设计成一起工作时，他能保证客户端始终只使用同一个产品族中的对象。</li>
-<li><strong>缺点：</strong> 产品族扩展非常困难，要增加一个系列的某一产品，既要在抽象的Creator里面代码，又要在具体的里面加代码。</li>
-<li><strong>使用场景：</strong> 1、QQ换皮肤，一整套一起换。2、生成不同操作系统的程序。</li>
-<li><strong>注意事项：</strong> 产品族难扩展，产品等级易扩展。</li>
-</ul>
-<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
-<p>我们将创建Shape和Color接口和实现这些接口的实体类。下一步是创建抽象工厂类<em>AbstractFactory</em>，接着定义工厂类<em>ShapeFactory</em>和<em>ColorFactory</em>,这两个工厂类都是扩展了<em>AbstractFactory</em>。然后创建一个工厂创造器/生成器类FactoryProducer。</p>
-<p>AbstractFactoryPatternDemo,我们的演示类使用FactoryProducer来获取AbstractFactory对象。它将向AbstractFactory传递形状信息Shape(CIRCLE/RECTANGLE/SQUARE),以便获取它所需对象的类型。同时它还向AbstractFactory传递颜色信息Color(RED/GREEN/BLUE),以便获取它所需对象的类型。同时它还向AbstractFactory传递颜色信息Color(RED/GREEN/BLUE),以便获取它所需对象的类型。</p>
-<p><img src="/mellofly/56455/抽象工厂模式.jpg" alt="抽象工厂模式设计类UML图"></p>
-</blockquote>
-<h2 id="步骤1：创建接口"><a href="#步骤1：创建接口" class="headerlink" title="步骤1：创建接口:"></a>步骤1：创建接口:</h2><blockquote>
-<p>为形状创建一个接口。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Shape.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="步骤2：实现接口的实体类"><a href="#步骤2：实现接口的实体类" class="headerlink" title="步骤2：实现接口的实体类"></a>步骤2：实现接口的实体类</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Rectangle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">implements</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Rectangle::draw() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">implements</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Square::draw() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">implements</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Circle::draw() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤3：为颜色创建一个接口。"><a href="#步骤3：为颜色创建一个接口。" class="headerlink" title="步骤3：为颜色创建一个接口。"></a>步骤3：为颜色创建一个接口。</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Color</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fill</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤4：实现颜色接口类。"><a href="#步骤4：实现颜色接口类。" class="headerlink" title="步骤4：实现颜色接口类。"></a>步骤4：实现颜色接口类。</h2><blockquote>
-<p>创建实现接口的实体类。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Red.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Red</span> <span class="keyword">implements</span> <span class="title">Color</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fill</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Red::fill() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Green.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Green</span> <span class="keyword">implements</span> <span class="title">Color</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fill</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Green::fill() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Blue.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Blue</span> <span class="keyword">implements</span> <span class="title">Color</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fill</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Blue::fill() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤5：为Color和Shape对象创建抽象类来获取工厂。"><a href="#步骤5：为Color和Shape对象创建抽象类来获取工厂。" class="headerlink" title="步骤5：为Color和Shape对象创建抽象类来获取工厂。"></a>步骤5：为Color和Shape对象创建抽象类来获取工厂。</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractFactory</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> Color <span class="title">getColor</span><span class="params">(String color)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="title">getShape</span><span class="params">(String shape)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤6：-创建扩展了AbstractFactory的工厂类。基于给定的信息生成实体类的对象。"><a href="#步骤6：-创建扩展了AbstractFactory的工厂类。基于给定的信息生成实体类的对象。" class="headerlink" title="步骤6： 创建扩展了AbstractFactory的工厂类。基于给定的信息生成实体类的对象。"></a>步骤6： 创建扩展了AbstractFactory的工厂类。基于给定的信息生成实体类的对象。</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ShapeFactory.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeFactory</span> <span class="keyword">extends</span> <span class="title">AbstractFactory</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Shape <span class="title">getShape</span><span class="params">(String shapeType)</span></span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(shapeType == <span class="keyword">null</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;        </span><br><span class="line">      <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">&quot;CIRCLE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Circle();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">&quot;RECTANGLE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Rectangle();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">&quot;SQUARE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Square();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Color <span class="title">getColor</span><span class="params">(String color)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ColorFactory.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ColorFactory</span> <span class="keyword">extends</span> <span class="title">AbstractFactory</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Shape <span class="title">getShape</span><span class="params">(String shapeType)</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Color <span class="title">getColor</span><span class="params">(String color)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(color == <span class="keyword">null</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;        </span><br><span class="line">      <span class="keyword">if</span>(color.equalsIgnoreCase(<span class="string">&quot;RED&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Red();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(color.equalsIgnoreCase(<span class="string">&quot;GREEN&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Green();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(color.equalsIgnoreCase(<span class="string">&quot;BLUE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Blue();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤7"><a href="#步骤7" class="headerlink" title="步骤7:"></a>步骤7:</h2><blockquote>
-<p>创建一个工厂创造器/生成器类，通过传递形状或颜色来获取工厂。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*FactoryProducer.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FactoryProducer</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> AbstractFactory <span class="title">getFactory</span><span class="params">(String choice)</span></span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(choice.equalsIgnoreCase(<span class="string">&quot;SHAPE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> ShapeFactory();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(choice.equalsIgnoreCase(<span class="string">&quot;COLOR&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> ColorFactory();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤8："><a href="#步骤8：" class="headerlink" title="步骤8："></a>步骤8：</h2><blockquote>
-<p>使用 FactoryProducer 来获取 AbstractFactory，通过传递类型信息来获取实体类的对象。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractFactoryPatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取形状工厂</span></span><br><span class="line">      AbstractFactory shapeFactory = FactoryProducer.getFactory(<span class="string">&quot;SHAPE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取形状为 Circle 的对象</span></span><br><span class="line">      Shape shape1 = shapeFactory.getShape(<span class="string">&quot;CIRCLE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Circle 的 draw 方法</span></span><br><span class="line">      shape1.draw();</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取形状为 Rectangle 的对象</span></span><br><span class="line">      Shape shape2 = shapeFactory.getShape(<span class="string">&quot;RECTANGLE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Rectangle 的 draw 方法</span></span><br><span class="line">      shape2.draw();</span><br><span class="line">      </span><br><span class="line">      <span class="comment">//获取形状为 Square 的对象</span></span><br><span class="line">      Shape shape3 = shapeFactory.getShape(<span class="string">&quot;SQUARE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Square 的 draw 方法</span></span><br><span class="line">      shape3.draw();</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取颜色工厂</span></span><br><span class="line">      AbstractFactory colorFactory = FactoryProducer.getFactory(<span class="string">&quot;COLOR&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取颜色为 Red 的对象</span></span><br><span class="line">      Color color1 = colorFactory.getColor(<span class="string">&quot;RED&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Red 的 fill 方法</span></span><br><span class="line">      color1.fill();</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取颜色为 Green 的对象</span></span><br><span class="line">      Color color2 = colorFactory.getColor(<span class="string">&quot;Green&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Green 的 fill 方法</span></span><br><span class="line">      color2.fill();</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取颜色为 Blue 的对象</span></span><br><span class="line">      Color color3 = colorFactory.getColor(<span class="string">&quot;BLUE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Blue 的 fill 方法</span></span><br><span class="line">      color3.fill();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤9：输出结果"><a href="#步骤9：输出结果" class="headerlink" title="步骤9：输出结果"></a>步骤9：输出结果</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Inside Circle::draw() method.</span><br><span class="line">Inside Rectangle::draw() method.</span><br><span class="line">Inside Square::draw() method.</span><br><span class="line">Inside Red::fill() method.</span><br><span class="line">Inside Green::fill() method.</span><br><span class="line">Inside Blue::fill() method.</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>桥接模式</title>
     <url>/mellofly/43376.html</url>
     <content><![CDATA[<blockquote class="blockquote-center">
@@ -1332,6 +1393,63 @@
 <p><a href="https://www.runoob.com/w3cnote/bridge-pattern2.html">https://www.runoob.com/w3cnote/bridge-pattern2.html</a></p>
 
 </blockquote>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>抽象工厂模式</title>
+    <url>/mellofly/56455.html</url>
+    <content><![CDATA[<blockquote>
+<p>抽象工厂模式(Abstract Factory Pattern)是围绕一个超级工厂创建其他工厂。该工厂又称为其他工厂的工厂。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。</p>
+</blockquote>
+<p>在抽象工厂模式中，接口是负责创建一个相关对象的工厂，不需要显式指定他们的类。每个生成的工厂都能按照工厂模式提供对象。</p>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 提供一个创建一系列相关或相互依赖对象的接口，而无需指定他们具体的类。</li>
+<li><strong>主要解决：</strong> 主要解决接口选择的问题。</li>
+<li><strong>何时使用：</strong> 系统的产品有多于一个的产品族，而系统只消费其中某一族的产品。</li>
+<li><strong>如何解决：</strong> 在一个产品族里面，定义多个产品。</li>
+<li><strong>关键代码：</strong> 在一个工厂里聚合多个同类产品。</li>
+<li><strong>应用实例：</strong> 工作了，为了参加一些聚会，肯定有两套或多套衣服吧，比如说商务装(成套，一系列具体产品)、时尚装(成套，一系列具体产品)，甚至对于一个家庭来说，可能有商务女装、商务男装、时尚女装，这些也都是成套的，即一系列具体产品。假设一种情况(现实中是不存在的，要不然，没法进入共产主义了，但有利于说明抽象工厂模式)，在您的家中，某一个衣柜(具体工厂)只能存放某一种这样的衣服(成套，一系列具体产品)，每次拿这种成套的衣服时也自然要从这个衣柜中取出了。用OOP的思想去理解，所有的衣柜(具体工厂)都是衣柜类的(抽象工厂)某一个，而每一件成套的衣服又包括具体的上衣(某一具体产品)，裤子(某一具体产品)，这些具体的上衣其实也都是上衣(抽象产品)，具体的裤子也都是裤子(另一个抽象产品)。</li>
+<li><strong>优点：</strong> 当一个产品族中的多个对象被设计成一起工作时，他能保证客户端始终只使用同一个产品族中的对象。</li>
+<li><strong>缺点：</strong> 产品族扩展非常困难，要增加一个系列的某一产品，既要在抽象的Creator里面代码，又要在具体的里面加代码。</li>
+<li><strong>使用场景：</strong> 1、QQ换皮肤，一整套一起换。2、生成不同操作系统的程序。</li>
+<li><strong>注意事项：</strong> 产品族难扩展，产品等级易扩展。</li>
+</ul>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们将创建Shape和Color接口和实现这些接口的实体类。下一步是创建抽象工厂类<em>AbstractFactory</em>，接着定义工厂类<em>ShapeFactory</em>和<em>ColorFactory</em>,这两个工厂类都是扩展了<em>AbstractFactory</em>。然后创建一个工厂创造器/生成器类FactoryProducer。</p>
+<p>AbstractFactoryPatternDemo,我们的演示类使用FactoryProducer来获取AbstractFactory对象。它将向AbstractFactory传递形状信息Shape(CIRCLE/RECTANGLE/SQUARE),以便获取它所需对象的类型。同时它还向AbstractFactory传递颜色信息Color(RED/GREEN/BLUE),以便获取它所需对象的类型。同时它还向AbstractFactory传递颜色信息Color(RED/GREEN/BLUE),以便获取它所需对象的类型。</p>
+<p><img src="/mellofly/56455/抽象工厂模式.jpg" alt="抽象工厂模式设计类UML图"></p>
+</blockquote>
+<h2 id="步骤1：创建接口"><a href="#步骤1：创建接口" class="headerlink" title="步骤1：创建接口:"></a>步骤1：创建接口:</h2><blockquote>
+<p>为形状创建一个接口。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Shape.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="步骤2：实现接口的实体类"><a href="#步骤2：实现接口的实体类" class="headerlink" title="步骤2：实现接口的实体类"></a>步骤2：实现接口的实体类</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Rectangle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">implements</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Rectangle::draw() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">implements</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Square::draw() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">implements</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Circle::draw() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3：为颜色创建一个接口。"><a href="#步骤3：为颜色创建一个接口。" class="headerlink" title="步骤3：为颜色创建一个接口。"></a>步骤3：为颜色创建一个接口。</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Color</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">fill</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4：实现颜色接口类。"><a href="#步骤4：实现颜色接口类。" class="headerlink" title="步骤4：实现颜色接口类。"></a>步骤4：实现颜色接口类。</h2><blockquote>
+<p>创建实现接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Red.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Red</span> <span class="keyword">implements</span> <span class="title">Color</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fill</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Red::fill() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Green.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Green</span> <span class="keyword">implements</span> <span class="title">Color</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fill</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Green::fill() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Blue.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Blue</span> <span class="keyword">implements</span> <span class="title">Color</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fill</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Blue::fill() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤5：为Color和Shape对象创建抽象类来获取工厂。"><a href="#步骤5：为Color和Shape对象创建抽象类来获取工厂。" class="headerlink" title="步骤5：为Color和Shape对象创建抽象类来获取工厂。"></a>步骤5：为Color和Shape对象创建抽象类来获取工厂。</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractFactory</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> Color <span class="title">getColor</span><span class="params">(String color)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="title">getShape</span><span class="params">(String shape)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤6：-创建扩展了AbstractFactory的工厂类。基于给定的信息生成实体类的对象。"><a href="#步骤6：-创建扩展了AbstractFactory的工厂类。基于给定的信息生成实体类的对象。" class="headerlink" title="步骤6： 创建扩展了AbstractFactory的工厂类。基于给定的信息生成实体类的对象。"></a>步骤6： 创建扩展了AbstractFactory的工厂类。基于给定的信息生成实体类的对象。</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ShapeFactory.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeFactory</span> <span class="keyword">extends</span> <span class="title">AbstractFactory</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Shape <span class="title">getShape</span><span class="params">(String shapeType)</span></span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(shapeType == <span class="keyword">null</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;        </span><br><span class="line">      <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">&quot;CIRCLE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Circle();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">&quot;RECTANGLE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Rectangle();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">&quot;SQUARE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Square();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Color <span class="title">getColor</span><span class="params">(String color)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ColorFactory.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ColorFactory</span> <span class="keyword">extends</span> <span class="title">AbstractFactory</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Shape <span class="title">getShape</span><span class="params">(String shapeType)</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Color <span class="title">getColor</span><span class="params">(String color)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(color == <span class="keyword">null</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;        </span><br><span class="line">      <span class="keyword">if</span>(color.equalsIgnoreCase(<span class="string">&quot;RED&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Red();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(color.equalsIgnoreCase(<span class="string">&quot;GREEN&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Green();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(color.equalsIgnoreCase(<span class="string">&quot;BLUE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Blue();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤7"><a href="#步骤7" class="headerlink" title="步骤7:"></a>步骤7:</h2><blockquote>
+<p>创建一个工厂创造器/生成器类，通过传递形状或颜色来获取工厂。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*FactoryProducer.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FactoryProducer</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> AbstractFactory <span class="title">getFactory</span><span class="params">(String choice)</span></span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(choice.equalsIgnoreCase(<span class="string">&quot;SHAPE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> ShapeFactory();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(choice.equalsIgnoreCase(<span class="string">&quot;COLOR&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> ColorFactory();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤8："><a href="#步骤8：" class="headerlink" title="步骤8："></a>步骤8：</h2><blockquote>
+<p>使用 FactoryProducer 来获取 AbstractFactory，通过传递类型信息来获取实体类的对象。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractFactoryPatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取形状工厂</span></span><br><span class="line">      AbstractFactory shapeFactory = FactoryProducer.getFactory(<span class="string">&quot;SHAPE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取形状为 Circle 的对象</span></span><br><span class="line">      Shape shape1 = shapeFactory.getShape(<span class="string">&quot;CIRCLE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Circle 的 draw 方法</span></span><br><span class="line">      shape1.draw();</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取形状为 Rectangle 的对象</span></span><br><span class="line">      Shape shape2 = shapeFactory.getShape(<span class="string">&quot;RECTANGLE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Rectangle 的 draw 方法</span></span><br><span class="line">      shape2.draw();</span><br><span class="line">      </span><br><span class="line">      <span class="comment">//获取形状为 Square 的对象</span></span><br><span class="line">      Shape shape3 = shapeFactory.getShape(<span class="string">&quot;SQUARE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Square 的 draw 方法</span></span><br><span class="line">      shape3.draw();</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取颜色工厂</span></span><br><span class="line">      AbstractFactory colorFactory = FactoryProducer.getFactory(<span class="string">&quot;COLOR&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取颜色为 Red 的对象</span></span><br><span class="line">      Color color1 = colorFactory.getColor(<span class="string">&quot;RED&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Red 的 fill 方法</span></span><br><span class="line">      color1.fill();</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取颜色为 Green 的对象</span></span><br><span class="line">      Color color2 = colorFactory.getColor(<span class="string">&quot;Green&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Green 的 fill 方法</span></span><br><span class="line">      color2.fill();</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取颜色为 Blue 的对象</span></span><br><span class="line">      Color color3 = colorFactory.getColor(<span class="string">&quot;BLUE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Blue 的 fill 方法</span></span><br><span class="line">      color3.fill();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤9：输出结果"><a href="#步骤9：输出结果" class="headerlink" title="步骤9：输出结果"></a>步骤9：输出结果</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Inside Circle::draw() method.</span><br><span class="line">Inside Rectangle::draw() method.</span><br><span class="line">Inside Square::draw() method.</span><br><span class="line">Inside Red::fill() method.</span><br><span class="line">Inside Green::fill() method.</span><br><span class="line">Inside Blue::fill() method.</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Java</category>
       </categories>
