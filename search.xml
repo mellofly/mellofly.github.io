@@ -176,6 +176,20 @@
 ]]></content>
   </entry>
   <entry>
+    <title>Java-开发模式</title>
+    <url>/mellofly/8366.html</url>
+    <content><![CDATA[<p>Java的三层架构分别为 <strong><em>表示层、业务逻辑层</em></strong> 和 <strong><em>数据持久层</em></strong> 。<br>表示层的主要架构模式为MVC(Model View Controller，模型-视图-控制器)，主要框架有：Spring MVC和Struts2。<br>业务逻辑层的主要框架有Spring。<br>数据持久层的主要框架有Mybatis和Hibernate。<br>常用的两种框架组合：<br>SSH：Struts2+Spring+Hibernate<br>SSM：Spring MVC+Spring+MyBatis</p>
+<p>传统的Java Web应用程序是采用JSP+Servlet+Javabean来实现的，这种模式实现了最基本的MVC分层，使的程序结构分为几层，有负责前台展示的 JSP、负责流程逻辑控制的Servlet以及负责数据封装的Javabean。但是这种结构仍然存在问题：如JSP页面中需要使用符号嵌入很多的 Java代码，造成页面结构混乱，Servlet和Javabean负责了大量的跳转和运算工作，耦合紧密，程序复用度低等等。为了解决这些问题，出现了Struts框架，它是一个完美的MVC实现，它有一个中央控制类(一个 Servlet)，针对不同的业务，我们需要一个Action类负责页面跳转和后台逻辑运算，一个或几个JSP页面负责数据的输入和输出显示，还有一个 Form类负责传递Action和JSP中间的数据。JSP中可以使用Struts框架提供的一组标签，就像使用HTML标签一样简单，但是可以完成非常复杂的逻辑。从此JSP页面中不需要出现一行包围的Java代码了。 可是所有的运算逻辑都放在Struts的Action里将使得 Action类复用度低和逻辑混乱，所以通常人们会把整个Web应用程序分为三层，Struts负责显示层，它调用业务层完成运算逻辑，业务层再调用持久层完成数据库的读写。 使用JDBC连接来读写数据库，我们最常见的就是打开数据库连接、使用复杂的SQL语句进行读写、关闭连接，获得的数据又需要转换或封装后往外传，这是一个非常烦琐的过程。<br>这时出现了 Hibernate框架，它需要你创建一系列的持久化类，每个类的属性都可以简单的看做和一张数据库表的属性一一对应，当然也可以实现关系数据库的各种表件关联的对应。当我们需要相关操作是，不用再关注数据库表。我们不用再去一行行的查询数据库，只需要持久化类就可以完成增删改查的功能。使我们的软件开发真正面向对象， 而不是面向混乱的代码。我的感受是，使用Hibernate比JDBC方式减少了80%的编程量。<br>现在我们有三个层了，可是每层之间的调用是怎样的呢?比如显示层的Struts需要调用一个业务类，就需要new一个业务类出来，然后使用;业务层需要调 用持久层的类，也需要new一个持久层类出来用。通过这种new的方式互相调用就是软件开发中最糟糕设计的体现。简单的说，就是调用者依赖被调用者，它们 之间形成了强耦合，如果我想在其他地方复用某个类，则这个类依赖的其他类也需要包含。程序就变得很混乱，每个类互相依赖互相调用，复用度极低。如果一个类 做了修改，则依赖它的很多类都会受到牵连。<br>为此，出现Spring框架。<br>Spring Spring的作用就是完全解耦类之间的依赖关系，一个类如果要依赖什么，那就是一个接口。至于如何实现这个接口，这都不重要了。只要拿到一个实现了这个接口的类，就可以轻松的通过xml配置文件把实现类注射到调用接口的那个类里。所有类之间的这种依赖关系就完全通过配置文件的方式替代了。所以 Spring框架最核心的就是所谓的依赖注射和控制反转。<br>现在的结构是，Struts负责显示层，Hibernate负责持久层，Spring负责中间的业务层，这个结构是目前国内最流行的Java Web应用程序架构了。<br>另外，由于Spring使用的依赖注射以及AOP(面向方面编程)，所以它的这种内部模式非常优秀，以至于Spring自己也实现了一个使用依赖注射的MVC框架，叫做Spring MVC，同时为了很好的处理事物，Spring集成了Hibernate，使事物管理从Hibernate的持久层提升到了业务层，使用更加方便和强大。 Struts框架是2000年就开始起步了，到目前已经发展了5年，技术相当成熟，目前全球Java开发中Struts框架是显示层技术中当之无愧的王者。它拥有大量的用户群和很好的开发团队。这也是国内大部分Java软件公司对新进员工的基本要求。 其他 Java这个名词似乎注定和开源紧密联系在一起了，在Java界，每天都有大量的开源技术出现，由于是开放源代码的，技术中存在的问题和不足很快就会被人发现，开源软件提供者会很快的修正或扩展这些技术，因此版本更新很快，几个星期或者几天就有一个新版本出来。 </p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>开发模式介绍</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java_正则表达式</title>
     <url>/mellofly/12588.html</url>
     <content><![CDATA[<p>正则表达式：符合一定规则的表达式。</p>
@@ -221,20 +235,6 @@
       <tags>
         <tag>Java</tag>
         <tag>String</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java-开发模式</title>
-    <url>/mellofly/8366.html</url>
-    <content><![CDATA[<p>Java的三层架构分别为 <strong><em>表示层、业务逻辑层</em></strong> 和 <strong><em>数据持久层</em></strong> 。<br>表示层的主要架构模式为MVC(Model View Controller，模型-视图-控制器)，主要框架有：Spring MVC和Struts2。<br>业务逻辑层的主要框架有Spring。<br>数据持久层的主要框架有Mybatis和Hibernate。<br>常用的两种框架组合：<br>SSH：Struts2+Spring+Hibernate<br>SSM：Spring MVC+Spring+MyBatis</p>
-<p>传统的Java Web应用程序是采用JSP+Servlet+Javabean来实现的，这种模式实现了最基本的MVC分层，使的程序结构分为几层，有负责前台展示的 JSP、负责流程逻辑控制的Servlet以及负责数据封装的Javabean。但是这种结构仍然存在问题：如JSP页面中需要使用符号嵌入很多的 Java代码，造成页面结构混乱，Servlet和Javabean负责了大量的跳转和运算工作，耦合紧密，程序复用度低等等。为了解决这些问题，出现了Struts框架，它是一个完美的MVC实现，它有一个中央控制类(一个 Servlet)，针对不同的业务，我们需要一个Action类负责页面跳转和后台逻辑运算，一个或几个JSP页面负责数据的输入和输出显示，还有一个 Form类负责传递Action和JSP中间的数据。JSP中可以使用Struts框架提供的一组标签，就像使用HTML标签一样简单，但是可以完成非常复杂的逻辑。从此JSP页面中不需要出现一行包围的Java代码了。 可是所有的运算逻辑都放在Struts的Action里将使得 Action类复用度低和逻辑混乱，所以通常人们会把整个Web应用程序分为三层，Struts负责显示层，它调用业务层完成运算逻辑，业务层再调用持久层完成数据库的读写。 使用JDBC连接来读写数据库，我们最常见的就是打开数据库连接、使用复杂的SQL语句进行读写、关闭连接，获得的数据又需要转换或封装后往外传，这是一个非常烦琐的过程。<br>这时出现了 Hibernate框架，它需要你创建一系列的持久化类，每个类的属性都可以简单的看做和一张数据库表的属性一一对应，当然也可以实现关系数据库的各种表件关联的对应。当我们需要相关操作是，不用再关注数据库表。我们不用再去一行行的查询数据库，只需要持久化类就可以完成增删改查的功能。使我们的软件开发真正面向对象， 而不是面向混乱的代码。我的感受是，使用Hibernate比JDBC方式减少了80%的编程量。<br>现在我们有三个层了，可是每层之间的调用是怎样的呢?比如显示层的Struts需要调用一个业务类，就需要new一个业务类出来，然后使用;业务层需要调 用持久层的类，也需要new一个持久层类出来用。通过这种new的方式互相调用就是软件开发中最糟糕设计的体现。简单的说，就是调用者依赖被调用者，它们 之间形成了强耦合，如果我想在其他地方复用某个类，则这个类依赖的其他类也需要包含。程序就变得很混乱，每个类互相依赖互相调用，复用度极低。如果一个类 做了修改，则依赖它的很多类都会受到牵连。<br>为此，出现Spring框架。<br>Spring Spring的作用就是完全解耦类之间的依赖关系，一个类如果要依赖什么，那就是一个接口。至于如何实现这个接口，这都不重要了。只要拿到一个实现了这个接口的类，就可以轻松的通过xml配置文件把实现类注射到调用接口的那个类里。所有类之间的这种依赖关系就完全通过配置文件的方式替代了。所以 Spring框架最核心的就是所谓的依赖注射和控制反转。<br>现在的结构是，Struts负责显示层，Hibernate负责持久层，Spring负责中间的业务层，这个结构是目前国内最流行的Java Web应用程序架构了。<br>另外，由于Spring使用的依赖注射以及AOP(面向方面编程)，所以它的这种内部模式非常优秀，以至于Spring自己也实现了一个使用依赖注射的MVC框架，叫做Spring MVC，同时为了很好的处理事物，Spring集成了Hibernate，使事物管理从Hibernate的持久层提升到了业务层，使用更加方便和强大。 Struts框架是2000年就开始起步了，到目前已经发展了5年，技术相当成熟，目前全球Java开发中Struts框架是显示层技术中当之无愧的王者。它拥有大量的用户群和很好的开发团队。这也是国内大部分Java软件公司对新进员工的基本要求。 其他 Java这个名词似乎注定和开源紧密联系在一起了，在Java界，每天都有大量的开源技术出现，由于是开放源代码的，技术中存在的问题和不足很快就会被人发现，开源软件提供者会很快的修正或扩展这些技术，因此版本更新很快，几个星期或者几天就有一个新版本出来。 </p>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>开发模式介绍</tag>
       </tags>
   </entry>
   <entry>
@@ -346,6 +346,38 @@
 </ul>
 </li>
 </ul>
+]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot配置文件</title>
+    <url>/mellofly/7957b469.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>好的异常处理机制对于代码调试和错误捕获定位帮助非常之大，好的异常处理机制能够简化代码开发 </p>
+
+</blockquote>
+<h1 id="全局异常处理"><a href="#全局异常处理" class="headerlink" title="全局异常处理"></a>全局异常处理</h1><h2 id="好处："><a href="#好处：" class="headerlink" title="好处："></a>好处：</h2><ul>
+<li>统一的错误页面或者错误码</li>
+<li>对用户更友好</li>
+</ul>
+<h2 id="配置全局异常："><a href="#配置全局异常：" class="headerlink" title="配置全局异常："></a>配置全局异常：</h2><h3 id="类添加注解："><a href="#类添加注解：" class="headerlink" title="类添加注解："></a>类添加注解：</h3><ul>
+<li>@ControllerAdvice:如果需要返回json数据，则方法需要加@ResponseBody。</li>
+<li>@RestControllerAdvice:默认返回json数据，方法不需要加@ResponseBody。</li>
+<li><h3 id="方法添加处理器："><a href="#方法添加处理器：" class="headerlink" title="方法添加处理器："></a>方法添加处理器：</h3></li>
+<li>捕获全局异常，处理所有不可知的异常</li>
+<li>@ExceptionHandler(value=Exception.class)</li>
+</ul>
+<h2 id="自定义全局异常返回页面"><a href="#自定义全局异常返回页面" class="headerlink" title="自定义全局异常返回页面"></a>自定义全局异常返回页面</h2><ol>
+<li>返回自定义界面异常，需要引入thymeleaf依赖(简单的html界面不需要)。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line"> &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line"> &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></li>
+<li>在resource目录下新建templates,并新建error.html</li>
+<li>代码处理<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ModelAndView modelAndView = new ModelAndView();</span><br><span class="line">modelAndView.setViewName(&quot;error.html&quot;);</span><br><span class="line">modelAndView.addObject(&quot;msg&quot;, e.getMessage());</span><br><span class="line">return modelAndView;</span><br></pre></td></tr></table></figure></li>
+</ol>
 ]]></content>
       <categories>
         <category>框架</category>
@@ -729,91 +761,6 @@
       </tags>
   </entry>
   <entry>
-    <title>代理模式</title>
-    <url>/mellofly/48003.html</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-<p>在代理模式(Proxy Pattern)中，一个类代表另一个类的功能。这种类型的设计模式属于结构型模式。<br>在代理模式中，我们创建具有现有对象的对象，以便向外界提供功能接口。</p>
-
-</blockquote>
-<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
-<li><strong>意图：</strong> 为其他对象提供一种代理以控制对这个对象的访问。</li>
-<li><strong>主要解决：</strong> 在直接访问对象时带来的问题，比如说：要访问的对象在远程的机器上，在面向对象系统中，有些对象由于某些原因(比如对象创建开销很大，或者某些操作需要安全控制，或者需要进程外的访问)，直接访问会给作用者或者系统结构带来很多麻烦，我们可以在访问此对象时加上一个对此对象的访问层。</li>
-<li><strong>何时使用：</strong> 想在访问一个类时做一些控制。</li>
-<li><strong>如何解决：</strong> 增加中间层。</li>
-<li><strong>关键代码：</strong> 实现与被代理类组合。</li>
-<li><strong>应用实例：</strong> </li>
-</ul>
-<ol>
-<li>Windows里面的快捷方式。</li>
-<li>猪八戒去找高翠兰结果是孙悟空变的，可以这样理解；把高翠兰的外貌抽象出来，高翠兰本人和孙悟空都实现了这个接口，猪八戒访问高翠兰的时候看不出来这个是孙悟空，所以说孙悟空是高翠兰代理类。</li>
-<li>买火车票不一定在火车站买，也可以去代售点。</li>
-<li>一张支票或银行存单是账户中资金的代理。支票在市场交易中用来代替现金，并提供对签发人账户上资金的控制。</li>
-<li>Spring aop。</li>
-</ol>
-<ul>
-<li><strong><em>优点：</em></strong> </li>
-</ul>
-<ol>
-<li>职责清晰。</li>
-<li>高扩展性。</li>
-<li>智能化。</li>
-</ol>
-<ul>
-<li><strong><em>缺点：</em></strong></li>
-</ul>
-<ol>
-<li>由于在客户端和真实主题之间增加了代理对象，因此有些类型的代理模式可能会造成请求的处理速度变慢。</li>
-<li>实现代理模式需要额外的工作，有些代理模式的实现非常复杂。</li>
-</ol>
-<ul>
-<li><strong>使用场景：</strong> <blockquote>
-<p>按职责来划分，通常有以下使用场景：</p>
-</blockquote>
-</li>
-</ul>
-<ol>
-<li>远程代理。</li>
-<li>虚拟代理。</li>
-<li>Copy-on-Write代理。</li>
-<li>保护(Protect or Access)代理。</li>
-<li>Cache代理。</li>
-<li>防火墙(Firewall)代理。</li>
-<li>同步化(Synchronization)代理。</li>
-<li>智能引用(Smart Reference)代理。</li>
-</ol>
-<ul>
-<li><strong>注意事项：</strong> </li>
-</ul>
-<ol>
-<li>和适配器模式的区别：适配器模式主要改变所考虑对象的接口，而代理模式不能改变所代理类的接口。</li>
-<li>和装饰器模式的区别：<strong><em>装饰器模式为了增强功能，而代理模式是为了加以控制。</em></strong></li>
-</ol>
-<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
-<p>我们将创建一个 Image 接口和实现了 Image 接口的实体类。ProxyImage 是一个代理类，减少 RealImage 对象加载的内存占用。<br>ProxyPatternDemo，我们的演示类使用 ProxyImage 来获取要加载的 Image 对象，并按照需求进行显示。</p>
-</blockquote>
-<p><img src="/mellofly/48003/代理模式.jpg" alt="代理模式UML图"></p>
-<h2 id="步骤1：创建一个接口"><a href="#步骤1：创建一个接口" class="headerlink" title="步骤1：创建一个接口"></a>步骤1：创建一个接口</h2><blockquote>
-<p>创建一个接口：</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Image.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Image</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤2：创建实现接口的实体类。"><a href="#步骤2：创建实现接口的实体类。" class="headerlink" title="步骤2：创建实现接口的实体类。"></a>步骤2：创建实现接口的实体类。</h2><blockquote>
-<p>创建实现接口的实体类。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*RealImage.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealImage</span> <span class="keyword">implements</span> <span class="title">Image</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> String fileName;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">RealImage</span><span class="params">(String fileName)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.fileName = fileName;</span><br><span class="line">      loadFromDisk(fileName);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Displaying &quot;</span> + fileName);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">loadFromDisk</span><span class="params">(String fileName)</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Loading &quot;</span> + fileName);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*ProxyImage.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyImage</span> <span class="keyword">implements</span> <span class="title">Image</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> RealImage realImage;</span><br><span class="line">   <span class="keyword">private</span> String fileName;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">ProxyImage</span><span class="params">(String fileName)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.fileName = fileName;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(realImage == <span class="keyword">null</span>)&#123;</span><br><span class="line">         realImage = <span class="keyword">new</span> RealImage(fileName);</span><br><span class="line">      &#125;</span><br><span class="line">      realImage.display();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤3：当被请求时，使用ProxyImage来获取RealImage类的对象。"><a href="#步骤3：当被请求时，使用ProxyImage来获取RealImage类的对象。" class="headerlink" title="步骤3：当被请求时，使用ProxyImage来获取RealImage类的对象。"></a>步骤3：当被请求时，使用ProxyImage来获取RealImage类的对象。</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ProxyPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyPatternDemo</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      Image image = <span class="keyword">new</span> ProxyImage(<span class="string">&quot;test_10mb.jpg&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">// 图像将从磁盘加载</span></span><br><span class="line">      image.display(); </span><br><span class="line">      System.out.println(<span class="string">&quot;&quot;</span>);</span><br><span class="line">      <span class="comment">// 图像不需要从磁盘加载</span></span><br><span class="line">      image.display();  </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤4：结果"><a href="#步骤4：结果" class="headerlink" title="步骤4：结果"></a>步骤4：结果</h2><blockquote>
-<p>执行程序，输出结果：</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Loading test_10mb.jpg</span><br><span class="line">Displaying test_10mb.jpg</span><br><span class="line"></span><br><span class="line">Displaying test_10mb.jpg</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>单例模式</title>
     <url>/mellofly/46132.html</url>
     <content><![CDATA[<blockquote>
@@ -974,6 +921,91 @@
 <p>执行程序，输出结果<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Shape : Circle</span><br><span class="line">Shape : Square</span><br><span class="line">Shape : Rectangle</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 ]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>代理模式</title>
+    <url>/mellofly/48003.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>在代理模式(Proxy Pattern)中，一个类代表另一个类的功能。这种类型的设计模式属于结构型模式。<br>在代理模式中，我们创建具有现有对象的对象，以便向外界提供功能接口。</p>
+
+</blockquote>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 为其他对象提供一种代理以控制对这个对象的访问。</li>
+<li><strong>主要解决：</strong> 在直接访问对象时带来的问题，比如说：要访问的对象在远程的机器上，在面向对象系统中，有些对象由于某些原因(比如对象创建开销很大，或者某些操作需要安全控制，或者需要进程外的访问)，直接访问会给作用者或者系统结构带来很多麻烦，我们可以在访问此对象时加上一个对此对象的访问层。</li>
+<li><strong>何时使用：</strong> 想在访问一个类时做一些控制。</li>
+<li><strong>如何解决：</strong> 增加中间层。</li>
+<li><strong>关键代码：</strong> 实现与被代理类组合。</li>
+<li><strong>应用实例：</strong> </li>
+</ul>
+<ol>
+<li>Windows里面的快捷方式。</li>
+<li>猪八戒去找高翠兰结果是孙悟空变的，可以这样理解；把高翠兰的外貌抽象出来，高翠兰本人和孙悟空都实现了这个接口，猪八戒访问高翠兰的时候看不出来这个是孙悟空，所以说孙悟空是高翠兰代理类。</li>
+<li>买火车票不一定在火车站买，也可以去代售点。</li>
+<li>一张支票或银行存单是账户中资金的代理。支票在市场交易中用来代替现金，并提供对签发人账户上资金的控制。</li>
+<li>Spring aop。</li>
+</ol>
+<ul>
+<li><strong><em>优点：</em></strong> </li>
+</ul>
+<ol>
+<li>职责清晰。</li>
+<li>高扩展性。</li>
+<li>智能化。</li>
+</ol>
+<ul>
+<li><strong><em>缺点：</em></strong></li>
+</ul>
+<ol>
+<li>由于在客户端和真实主题之间增加了代理对象，因此有些类型的代理模式可能会造成请求的处理速度变慢。</li>
+<li>实现代理模式需要额外的工作，有些代理模式的实现非常复杂。</li>
+</ol>
+<ul>
+<li><strong>使用场景：</strong> <blockquote>
+<p>按职责来划分，通常有以下使用场景：</p>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li>远程代理。</li>
+<li>虚拟代理。</li>
+<li>Copy-on-Write代理。</li>
+<li>保护(Protect or Access)代理。</li>
+<li>Cache代理。</li>
+<li>防火墙(Firewall)代理。</li>
+<li>同步化(Synchronization)代理。</li>
+<li>智能引用(Smart Reference)代理。</li>
+</ol>
+<ul>
+<li><strong>注意事项：</strong> </li>
+</ul>
+<ol>
+<li>和适配器模式的区别：适配器模式主要改变所考虑对象的接口，而代理模式不能改变所代理类的接口。</li>
+<li>和装饰器模式的区别：<strong><em>装饰器模式为了增强功能，而代理模式是为了加以控制。</em></strong></li>
+</ol>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们将创建一个 Image 接口和实现了 Image 接口的实体类。ProxyImage 是一个代理类，减少 RealImage 对象加载的内存占用。<br>ProxyPatternDemo，我们的演示类使用 ProxyImage 来获取要加载的 Image 对象，并按照需求进行显示。</p>
+</blockquote>
+<p><img src="/mellofly/48003/代理模式.jpg" alt="代理模式UML图"></p>
+<h2 id="步骤1：创建一个接口"><a href="#步骤1：创建一个接口" class="headerlink" title="步骤1：创建一个接口"></a>步骤1：创建一个接口</h2><blockquote>
+<p>创建一个接口：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Image.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Image</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2：创建实现接口的实体类。"><a href="#步骤2：创建实现接口的实体类。" class="headerlink" title="步骤2：创建实现接口的实体类。"></a>步骤2：创建实现接口的实体类。</h2><blockquote>
+<p>创建实现接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*RealImage.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealImage</span> <span class="keyword">implements</span> <span class="title">Image</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> String fileName;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">RealImage</span><span class="params">(String fileName)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.fileName = fileName;</span><br><span class="line">      loadFromDisk(fileName);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Displaying &quot;</span> + fileName);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">loadFromDisk</span><span class="params">(String fileName)</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Loading &quot;</span> + fileName);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*ProxyImage.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyImage</span> <span class="keyword">implements</span> <span class="title">Image</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> RealImage realImage;</span><br><span class="line">   <span class="keyword">private</span> String fileName;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">ProxyImage</span><span class="params">(String fileName)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.fileName = fileName;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(realImage == <span class="keyword">null</span>)&#123;</span><br><span class="line">         realImage = <span class="keyword">new</span> RealImage(fileName);</span><br><span class="line">      &#125;</span><br><span class="line">      realImage.display();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3：当被请求时，使用ProxyImage来获取RealImage类的对象。"><a href="#步骤3：当被请求时，使用ProxyImage来获取RealImage类的对象。" class="headerlink" title="步骤3：当被请求时，使用ProxyImage来获取RealImage类的对象。"></a>步骤3：当被请求时，使用ProxyImage来获取RealImage类的对象。</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ProxyPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyPatternDemo</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      Image image = <span class="keyword">new</span> ProxyImage(<span class="string">&quot;test_10mb.jpg&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">// 图像将从磁盘加载</span></span><br><span class="line">      image.display(); </span><br><span class="line">      System.out.println(<span class="string">&quot;&quot;</span>);</span><br><span class="line">      <span class="comment">// 图像不需要从磁盘加载</span></span><br><span class="line">      image.display();  </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4：结果"><a href="#步骤4：结果" class="headerlink" title="步骤4：结果"></a>步骤4：结果</h2><blockquote>
+<p>执行程序，输出结果：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Loading test_10mb.jpg</span><br><span class="line">Displaying test_10mb.jpg</span><br><span class="line"></span><br><span class="line">Displaying test_10mb.jpg</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Java</category>
       </categories>
