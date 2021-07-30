@@ -266,6 +266,105 @@
 </ul>
 </li>
 <li>断言<ul>
+<li>判断程序结果是否符合预期 TestCase.assertXXX<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void testTwo()&#123;</span><br><span class="line">    System.out.println(&quot;这个是测试 Test&quot;);</span><br><span class="line">    //断言</span><br><span class="line">    TestCase.assertEquals(1,3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="单元测试调用Controller-Service层接口。"><a href="#单元测试调用Controller-Service层接口。" class="headerlink" title="单元测试调用Controller-Service层接口。"></a>单元测试调用Controller-Service层接口。</h1><ul>
+<li><p>测试类编写</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@RunWith(SpringRunner.class) //底层用junit，SpringJUnitClassrunner</span><br><span class="line">@SpringBootTest(classes=&#123;ApplicationMain.class&#125;)//启动整个springboot工程</span><br><span class="line">public class DemoTest &#123;</span><br><span class="line">    @Before</span><br><span class="line">    public void testOne()&#123;</span><br><span class="line">        System.out.println(&quot;这个是测试 before&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    @Test</span><br><span class="line">    public void testTwo()&#123;</span><br><span class="line">        System.out.println(&quot;这个是测试 Test&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    @After</span><br><span class="line">    public void testThree()&#123;</span><br><span class="line">        System.out.println(&quot;这个是测试 After&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>案例Controller层登录方法测试。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">private UserController userController;</span><br><span class="line">@Test</span><br><span class="line">public void loginTest()&#123;</span><br><span class="line">    User user = new User();</span><br><span class="line">    user.setUsername(&quot;jack&quot;);</span><br><span class="line">    user.setPwd(&quot;1234&quot;);</span><br><span class="line">    JsonData jsonData = userController.login(user);</span><br><span class="line">    System.out.println(jsonData.toString());</span><br><span class="line">    TestCase.assertEquals(0,jsonData.getCode());</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+<li>案例实战 视频列表Service层单元测试。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">private VideoService videoService;</span><br><span class="line">@Test</span><br><span class="line">public void testVideoList()&#123;</span><br><span class="line">    List&lt;Video&gt; videoList = videoService.listVideo();</span><br><span class="line">    TestCase.assertTrue(videoList.size()&gt;0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="MockMvc案例实战调用Controller层API接口"><a href="#MockMvc案例实战调用Controller层API接口" class="headerlink" title="MockMvc案例实战调用Controller层API接口"></a>MockMvc案例实战调用Controller层API接口</h1><ul>
+<li>测试Controller对外提供的接口：<ul>
+<li>增加类注解@AutoConfigureMockMvc</li>
+<li>注入一个MockMvc类</li>
+<li>相关API：<ul>
+<li>perform执行一个RequestBuilder请求。</li>
+<li>andExpect:添加ResultMatcher-&gt;MockMvcResultMatchers验证规则。</li>
+<li>andReturn：最后返回相应的MvcResult-&gt;Response</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>案例：视频列表单元测试：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">private MockMvc mockMvc;</span><br><span class="line">@Test</span><br><span class="line">public void ApiTest() throws Exception &#123;</span><br><span class="line">    MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get(&quot;/user/hello&quot;))</span><br><span class="line">            .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();</span><br><span class="line">    //可能会乱码</span><br><span class="line">    //String result = mvcResult.getResponse().getContentAsString();</span><br><span class="line">    String result = mvcResult.getResponse().getContentAsString(Charset.forName(&quot;utf-8&quot;));</span><br><span class="line">    System.out.println(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
+        <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot异常处理</title>
+    <url>/mellofly/7957b469.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>程序运行时，发生的不被期望的事件，它阻止了程序按照程序员的预期正常执行，这就是异常。异常发生时，是任程序自生自灭，立刻退出终止。在Java中即，Java在编译或运行或者运行过程中出现的错误。<br>Java提供了更加优秀的解决办法：异常处理机制 </p>
+
+</blockquote>
+<h1 id="全局异常处理"><a href="#全局异常处理" class="headerlink" title="全局异常处理"></a>全局异常处理</h1><h2 id="好处："><a href="#好处：" class="headerlink" title="好处："></a>好处：</h2><ul>
+<li>统一的错误页面或者错误码</li>
+<li>对用户更友好</li>
+</ul>
+<h2 id="配置全局异常："><a href="#配置全局异常：" class="headerlink" title="配置全局异常："></a>配置全局异常：</h2><h3 id="类添加注解："><a href="#类添加注解：" class="headerlink" title="类添加注解："></a>类添加注解：</h3><ul>
+<li>@ControllerAdvice:如果需要返回json数据，则方法需要加@ResponseBody。</li>
+<li>@RestControllerAdvice:默认返回json数据，方法不需要加@ResponseBody。</li>
+<li><h3 id="方法添加处理器："><a href="#方法添加处理器：" class="headerlink" title="方法添加处理器："></a>方法添加处理器：</h3></li>
+<li>捕获全局异常，处理所有不可知的异常</li>
+<li>@ExceptionHandler(value=Exception.class)</li>
+</ul>
+<h2 id="自定义全局异常返回页面"><a href="#自定义全局异常返回页面" class="headerlink" title="自定义全局异常返回页面"></a>自定义全局异常返回页面</h2><ol>
+<li>返回自定义界面异常，需要引入thymeleaf依赖(简单的html界面不需要)。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line"> &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line"> &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></li>
+<li>在resource目录下新建templates,并新建error.html</li>
+<li>代码处理<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ModelAndView modelAndView = new ModelAndView();</span><br><span class="line">modelAndView.setViewName(&quot;error.html&quot;);</span><br><span class="line">modelAndView.addObject(&quot;msg&quot;, e.getMessage());</span><br><span class="line">return modelAndView;</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot配置文件</title>
+    <url>/mellofly/75ee909c.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>软件开发测试流程介绍，SpringBoot单元测试应用 </p>
+
+</blockquote>
+<h1 id="软件开发测试流程"><a href="#软件开发测试流程" class="headerlink" title="软件开发测试流程"></a>软件开发测试流程</h1><ul>
+<li>整体的生命周期： 需求测试 -&gt; 设计 -&gt; 开发 -&gt; 测试 -&gt; 上线。</li>
+<li>测试种类：<ul>
+<li><strong>单元测试</strong>：完成最小的软件设计单元的验证工作，目标是确保模块被正确的编码。</li>
+<li><strong>黑盒测试</strong>：不考虑内部结构，主要测试功能十分满足需求。</li>
+<li><strong>白盒测试</strong>：针对代码级别，测试开发工程师一般具备白盒测试能力，针对程序内部的逻辑结构进行代码级别的测试。</li>
+<li><strong>回归测试</strong>：对原先提出的缺陷进行二次验证，开发人员修复后进行二次的验证。</li>
+<li><strong>集成测试</strong>：测试模块和模块之间的整合，且测试主要的业务功能。</li>
+<li><strong>系统测试</strong>：针对整个产品系统进行的测试，验证系统是否满足产品业务需求。</li>
+</ul>
+</li>
+</ul>
+<h1 id="SpingBoot单元测试。"><a href="#SpingBoot单元测试。" class="headerlink" title="SpingBoot单元测试。"></a>SpingBoot单元测试。</h1><ul>
+<li>引入相关依赖<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--springboot程序测试依赖，如果是⾃动创建项⽬默认添加--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">    &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">     &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">     &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">     &lt;version&gt;4.12&lt;/version&gt;</span><br><span class="line">     &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></li>
+<li>配置相关注解<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@RunWith(SpringRunner.class) //底层⽤junit SpringJUnit4ClassRunner</span><br><span class="line">@SpringBootTest(classes=&#123;XdclassApplication.class&#125;)//启动整个springboot⼯程</span><br><span class="line">public class SpringBootTests &#123; &#125;</span><br></pre></td></tr></table></figure></li>
+<li>常用单元测试的注解<ul>
+<li>@before</li>
+<li>@Test</li>
+<li>@After</li>
+</ul>
+</li>
+<li>断言<ul>
 <li>判断程序结果是否符合预期 TestCase.assertXXX</li>
 </ul>
 </li>
@@ -289,95 +388,6 @@
 </li>
 <li>案例：视频列表单元测试：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> @Autowired</span><br><span class="line"> private MockMvc mockMvc;</span><br><span class="line"> @Test</span><br><span class="line"> public void testVideoListApi()throws Exception&#123;</span><br><span class="line"> MvcResult mvcResult = </span><br><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/api/v1/pub/video/list&quot;))</span><br><span class="line"> </span><br><span class="line">.andExpect(MockMvcResultMatchers.status().isOk()).andReturn();</span><br><span class="line"> int status = mvcResult.getResponse().getStatus();</span><br><span class="line"> System.out.println(status);</span><br><span class="line"> //会乱码</span><br><span class="line"> //String result = mvcResult.getResponse().getContentAsString();</span><br><span class="line"> // 使⽤下⾯这个，增加 编码 说明，就不会乱码打印</span><br><span class="line"> String result =</span><br><span class="line">mvcResult.getResponse().getContentAsString(Charset.forName(&quot;utf-8&quot;));</span><br><span class="line"> System.out.println(result);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-]]></content>
-      <categories>
-        <category>框架</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>SpringBoot</tag>
-        <tag>测试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringBoot配置文件</title>
-    <url>/mellofly/75ee909c.html</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-<p>Spring Boot 2里面的配置文件 </p>
-
-</blockquote>
-<h1 id="SpringBoot2-x常见配置文件形式："><a href="#SpringBoot2-x常见配置文件形式：" class="headerlink" title="SpringBoot2.x常见配置文件形式："></a>SpringBoot2.x常见配置文件形式：</h1><blockquote>
-<p>SpringBoot2.x常见的配置文件形式xml、yml、properties的区别和使用。</p>
-</blockquote>
-<ul>
-<li>常见的配置文件格式：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">xml、properties、json、yaml</span><br></pre></td></tr></table></figure></li>
-<li>SpringBoot里面常用xx.yml<ul>
-<li>YAML（Yet Another Markup Language）</li>
-<li>写YAML要比写XML快得多(无需关注标签或引导)使用空格Space缩进表示分层，不同层次之间的缩进可以使用不同的空格数目</li>
-<li>注意：key后面的冒号，后面一定要跟一个空格，树状结构<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server:</span><br><span class="line">    port: 8080 //设置启动端⼝号为8080</span><br><span class="line"> </span><br><span class="line">house:</span><br><span class="line">    family:</span><br><span class="line">        name: Doe</span><br><span class="line">    parents:</span><br><span class="line">        - John</span><br><span class="line">        - Jane</span><br><span class="line">    children:</span><br><span class="line">        - Paul</span><br><span class="line">        - Mark</span><br><span class="line">        - Simone</span><br><span class="line">address:</span><br><span class="line">    number: 34</span><br><span class="line">    street: Main Street</span><br><span class="line">    city: Nowheretown</span><br><span class="line">    zipcode: 12345</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>SpringBoot里面常用xx.properties<ul>
-<li>Key=Value格式</li>
-<li>语法简单，不容易出错<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server.port=8082</span><br><span class="line">#session失效时间，30m表示30分钟</span><br><span class="line">server.servlet.session.timeout=30m</span><br><span class="line"># Maximum number of connections that the server accepts and processes at</span><br><span class="line">any given time.</span><br><span class="line">server.tomcat.max-connections=10000</span><br><span class="line"># Maximum size of the HTTP post content.</span><br><span class="line">server.tomcat.max-http-post-size=2MB</span><br><span class="line">server.tomcat.max-http-form-post-size=2MB</span><br><span class="line"># Maximum amount of worker threads</span><br><span class="line">server.tomcat.max-threads=200</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>官方配置文档<ul>
-<li><a href="https://docs.spring.io/spring-boot/docs/2.3.0.BUILD-SNAPSHOT/reference/htmlsingle/#core-properties">：地址</a>。</li>
-<li>如果需要修改，直接复制对应的配置文件加到application.properties里面，一般不需要调整。</li>
-</ul>
-</li>
-</ul>
-<h1 id="SpringBoot注解配置文件映射属性和实体类实战"><a href="#SpringBoot注解配置文件映射属性和实体类实战" class="headerlink" title="SpringBoot注解配置文件映射属性和实体类实战"></a>SpringBoot注解配置文件映射属性和实体类实战</h1><h2 id="使用-Value注解配置文件自动映射到属性和实体类。"><a href="#使用-Value注解配置文件自动映射到属性和实体类。" class="headerlink" title="使用@Value注解配置文件自动映射到属性和实体类。"></a>使用@Value注解配置文件自动映射到属性和实体类。</h2><ul>
-<li>配置文件加载<ul>
-<li>方法一：<ul>
-<li>1.Controller上面配置@PropertySource({“classpath:resource.properties”})</li>
-<li>2.增加属性@Value(“${test.name}”) private String name;</li>
-</ul>
-</li>
-<li>方法二：<ul>
-<li>1.添加@Component注解</li>
-<li>2.使用@PropertySource注解指定配置文件位置；</li>
-<li>3.使用@ConfigurationProperties注解，设置相关属性；</li>
-<li>4.必须通过注入IOC对象Resource进来，才能在类中使用获取的配置文件值。@Autowired private ServerSettings serverSettings。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">例⼦：</span><br><span class="line">@Configuration</span><br><span class="line">@ConfigurationProperties(prefix=&quot;test&quot;)</span><br><span class="line">@PropertySource(value=&quot;classpath:resource.properties&quot;)</span><br><span class="line">public class ServerConstant &#123;</span><br><span class="line">&#125;</span><br><span class="line">常⻅问题：</span><br><span class="line">1、配置⽂件注⼊失败，Could not resolve placeholder</span><br><span class="line">解决：根据springboot启动流程，会有⾃动扫描包没有扫描到相关注解,</span><br><span class="line">默认Spring框架实现会从声明@ComponentScan所在的类的package进⾏扫描，来⾃动注⼊，</span><br><span class="line">因此启动类最好放在根路径下⾯，或者指定扫描包范围</span><br><span class="line">spring-boot扫描启动类对应的⽬录和⼦⽬录</span><br><span class="line">2、注⼊bean的⽅式，属性名称和配置⽂件⾥⾯的key⼀⼀对应，就⽤加@Value 这个注解</span><br><span class="line">如果不⼀样，就要加@value(&quot;$&#123;XXX&#125;&quot;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>框架</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringBoot配置文件</title>
-    <url>/mellofly/7957b469.html</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-<p>好的异常处理机制对于代码调试和错误捕获定位帮助非常之大，好的异常处理机制能够简化代码开发 </p>
-
-</blockquote>
-<h1 id="全局异常处理"><a href="#全局异常处理" class="headerlink" title="全局异常处理"></a>全局异常处理</h1><h2 id="好处："><a href="#好处：" class="headerlink" title="好处："></a>好处：</h2><ul>
-<li>统一的错误页面或者错误码</li>
-<li>对用户更友好</li>
-</ul>
-<h2 id="配置全局异常："><a href="#配置全局异常：" class="headerlink" title="配置全局异常："></a>配置全局异常：</h2><h3 id="类添加注解："><a href="#类添加注解：" class="headerlink" title="类添加注解："></a>类添加注解：</h3><ul>
-<li>@ControllerAdvice:如果需要返回json数据，则方法需要加@ResponseBody。</li>
-<li>@RestControllerAdvice:默认返回json数据，方法不需要加@ResponseBody。</li>
-<li><h3 id="方法添加处理器："><a href="#方法添加处理器：" class="headerlink" title="方法添加处理器："></a>方法添加处理器：</h3></li>
-<li>捕获全局异常，处理所有不可知的异常</li>
-<li>@ExceptionHandler(value=Exception.class)</li>
-</ul>
-<h2 id="自定义全局异常返回页面"><a href="#自定义全局异常返回页面" class="headerlink" title="自定义全局异常返回页面"></a>自定义全局异常返回页面</h2><ol>
-<li>返回自定义界面异常，需要引入thymeleaf依赖(简单的html界面不需要)。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line"> &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line"> &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></li>
-<li>在resource目录下新建templates,并新建error.html</li>
-<li>代码处理<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ModelAndView modelAndView = new ModelAndView();</span><br><span class="line">modelAndView.setViewName(&quot;error.html&quot;);</span><br><span class="line">modelAndView.addObject(&quot;msg&quot;, e.getMessage());</span><br><span class="line">return modelAndView;</span><br></pre></td></tr></table></figure></li>
-</ol>
 ]]></content>
       <categories>
         <category>框架</category>
@@ -761,6 +771,91 @@
       </tags>
   </entry>
   <entry>
+    <title>代理模式</title>
+    <url>/mellofly/48003.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>在代理模式(Proxy Pattern)中，一个类代表另一个类的功能。这种类型的设计模式属于结构型模式。<br>在代理模式中，我们创建具有现有对象的对象，以便向外界提供功能接口。</p>
+
+</blockquote>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 为其他对象提供一种代理以控制对这个对象的访问。</li>
+<li><strong>主要解决：</strong> 在直接访问对象时带来的问题，比如说：要访问的对象在远程的机器上，在面向对象系统中，有些对象由于某些原因(比如对象创建开销很大，或者某些操作需要安全控制，或者需要进程外的访问)，直接访问会给作用者或者系统结构带来很多麻烦，我们可以在访问此对象时加上一个对此对象的访问层。</li>
+<li><strong>何时使用：</strong> 想在访问一个类时做一些控制。</li>
+<li><strong>如何解决：</strong> 增加中间层。</li>
+<li><strong>关键代码：</strong> 实现与被代理类组合。</li>
+<li><strong>应用实例：</strong> </li>
+</ul>
+<ol>
+<li>Windows里面的快捷方式。</li>
+<li>猪八戒去找高翠兰结果是孙悟空变的，可以这样理解；把高翠兰的外貌抽象出来，高翠兰本人和孙悟空都实现了这个接口，猪八戒访问高翠兰的时候看不出来这个是孙悟空，所以说孙悟空是高翠兰代理类。</li>
+<li>买火车票不一定在火车站买，也可以去代售点。</li>
+<li>一张支票或银行存单是账户中资金的代理。支票在市场交易中用来代替现金，并提供对签发人账户上资金的控制。</li>
+<li>Spring aop。</li>
+</ol>
+<ul>
+<li><strong><em>优点：</em></strong> </li>
+</ul>
+<ol>
+<li>职责清晰。</li>
+<li>高扩展性。</li>
+<li>智能化。</li>
+</ol>
+<ul>
+<li><strong><em>缺点：</em></strong></li>
+</ul>
+<ol>
+<li>由于在客户端和真实主题之间增加了代理对象，因此有些类型的代理模式可能会造成请求的处理速度变慢。</li>
+<li>实现代理模式需要额外的工作，有些代理模式的实现非常复杂。</li>
+</ol>
+<ul>
+<li><strong>使用场景：</strong> <blockquote>
+<p>按职责来划分，通常有以下使用场景：</p>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li>远程代理。</li>
+<li>虚拟代理。</li>
+<li>Copy-on-Write代理。</li>
+<li>保护(Protect or Access)代理。</li>
+<li>Cache代理。</li>
+<li>防火墙(Firewall)代理。</li>
+<li>同步化(Synchronization)代理。</li>
+<li>智能引用(Smart Reference)代理。</li>
+</ol>
+<ul>
+<li><strong>注意事项：</strong> </li>
+</ul>
+<ol>
+<li>和适配器模式的区别：适配器模式主要改变所考虑对象的接口，而代理模式不能改变所代理类的接口。</li>
+<li>和装饰器模式的区别：<strong><em>装饰器模式为了增强功能，而代理模式是为了加以控制。</em></strong></li>
+</ol>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们将创建一个 Image 接口和实现了 Image 接口的实体类。ProxyImage 是一个代理类，减少 RealImage 对象加载的内存占用。<br>ProxyPatternDemo，我们的演示类使用 ProxyImage 来获取要加载的 Image 对象，并按照需求进行显示。</p>
+</blockquote>
+<p><img src="/mellofly/48003/代理模式.jpg" alt="代理模式UML图"></p>
+<h2 id="步骤1：创建一个接口"><a href="#步骤1：创建一个接口" class="headerlink" title="步骤1：创建一个接口"></a>步骤1：创建一个接口</h2><blockquote>
+<p>创建一个接口：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Image.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Image</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2：创建实现接口的实体类。"><a href="#步骤2：创建实现接口的实体类。" class="headerlink" title="步骤2：创建实现接口的实体类。"></a>步骤2：创建实现接口的实体类。</h2><blockquote>
+<p>创建实现接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*RealImage.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealImage</span> <span class="keyword">implements</span> <span class="title">Image</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> String fileName;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">RealImage</span><span class="params">(String fileName)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.fileName = fileName;</span><br><span class="line">      loadFromDisk(fileName);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Displaying &quot;</span> + fileName);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">loadFromDisk</span><span class="params">(String fileName)</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Loading &quot;</span> + fileName);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*ProxyImage.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyImage</span> <span class="keyword">implements</span> <span class="title">Image</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> RealImage realImage;</span><br><span class="line">   <span class="keyword">private</span> String fileName;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">ProxyImage</span><span class="params">(String fileName)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.fileName = fileName;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(realImage == <span class="keyword">null</span>)&#123;</span><br><span class="line">         realImage = <span class="keyword">new</span> RealImage(fileName);</span><br><span class="line">      &#125;</span><br><span class="line">      realImage.display();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3：当被请求时，使用ProxyImage来获取RealImage类的对象。"><a href="#步骤3：当被请求时，使用ProxyImage来获取RealImage类的对象。" class="headerlink" title="步骤3：当被请求时，使用ProxyImage来获取RealImage类的对象。"></a>步骤3：当被请求时，使用ProxyImage来获取RealImage类的对象。</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ProxyPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyPatternDemo</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      Image image = <span class="keyword">new</span> ProxyImage(<span class="string">&quot;test_10mb.jpg&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">// 图像将从磁盘加载</span></span><br><span class="line">      image.display(); </span><br><span class="line">      System.out.println(<span class="string">&quot;&quot;</span>);</span><br><span class="line">      <span class="comment">// 图像不需要从磁盘加载</span></span><br><span class="line">      image.display();  </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4：结果"><a href="#步骤4：结果" class="headerlink" title="步骤4：结果"></a>步骤4：结果</h2><blockquote>
+<p>执行程序，输出结果：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Loading test_10mb.jpg</span><br><span class="line">Displaying test_10mb.jpg</span><br><span class="line"></span><br><span class="line">Displaying test_10mb.jpg</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>单例模式</title>
     <url>/mellofly/46132.html</url>
     <content><![CDATA[<blockquote>
@@ -930,91 +1025,6 @@
       </tags>
   </entry>
   <entry>
-    <title>代理模式</title>
-    <url>/mellofly/48003.html</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-<p>在代理模式(Proxy Pattern)中，一个类代表另一个类的功能。这种类型的设计模式属于结构型模式。<br>在代理模式中，我们创建具有现有对象的对象，以便向外界提供功能接口。</p>
-
-</blockquote>
-<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
-<li><strong>意图：</strong> 为其他对象提供一种代理以控制对这个对象的访问。</li>
-<li><strong>主要解决：</strong> 在直接访问对象时带来的问题，比如说：要访问的对象在远程的机器上，在面向对象系统中，有些对象由于某些原因(比如对象创建开销很大，或者某些操作需要安全控制，或者需要进程外的访问)，直接访问会给作用者或者系统结构带来很多麻烦，我们可以在访问此对象时加上一个对此对象的访问层。</li>
-<li><strong>何时使用：</strong> 想在访问一个类时做一些控制。</li>
-<li><strong>如何解决：</strong> 增加中间层。</li>
-<li><strong>关键代码：</strong> 实现与被代理类组合。</li>
-<li><strong>应用实例：</strong> </li>
-</ul>
-<ol>
-<li>Windows里面的快捷方式。</li>
-<li>猪八戒去找高翠兰结果是孙悟空变的，可以这样理解；把高翠兰的外貌抽象出来，高翠兰本人和孙悟空都实现了这个接口，猪八戒访问高翠兰的时候看不出来这个是孙悟空，所以说孙悟空是高翠兰代理类。</li>
-<li>买火车票不一定在火车站买，也可以去代售点。</li>
-<li>一张支票或银行存单是账户中资金的代理。支票在市场交易中用来代替现金，并提供对签发人账户上资金的控制。</li>
-<li>Spring aop。</li>
-</ol>
-<ul>
-<li><strong><em>优点：</em></strong> </li>
-</ul>
-<ol>
-<li>职责清晰。</li>
-<li>高扩展性。</li>
-<li>智能化。</li>
-</ol>
-<ul>
-<li><strong><em>缺点：</em></strong></li>
-</ul>
-<ol>
-<li>由于在客户端和真实主题之间增加了代理对象，因此有些类型的代理模式可能会造成请求的处理速度变慢。</li>
-<li>实现代理模式需要额外的工作，有些代理模式的实现非常复杂。</li>
-</ol>
-<ul>
-<li><strong>使用场景：</strong> <blockquote>
-<p>按职责来划分，通常有以下使用场景：</p>
-</blockquote>
-</li>
-</ul>
-<ol>
-<li>远程代理。</li>
-<li>虚拟代理。</li>
-<li>Copy-on-Write代理。</li>
-<li>保护(Protect or Access)代理。</li>
-<li>Cache代理。</li>
-<li>防火墙(Firewall)代理。</li>
-<li>同步化(Synchronization)代理。</li>
-<li>智能引用(Smart Reference)代理。</li>
-</ol>
-<ul>
-<li><strong>注意事项：</strong> </li>
-</ul>
-<ol>
-<li>和适配器模式的区别：适配器模式主要改变所考虑对象的接口，而代理模式不能改变所代理类的接口。</li>
-<li>和装饰器模式的区别：<strong><em>装饰器模式为了增强功能，而代理模式是为了加以控制。</em></strong></li>
-</ol>
-<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
-<p>我们将创建一个 Image 接口和实现了 Image 接口的实体类。ProxyImage 是一个代理类，减少 RealImage 对象加载的内存占用。<br>ProxyPatternDemo，我们的演示类使用 ProxyImage 来获取要加载的 Image 对象，并按照需求进行显示。</p>
-</blockquote>
-<p><img src="/mellofly/48003/代理模式.jpg" alt="代理模式UML图"></p>
-<h2 id="步骤1：创建一个接口"><a href="#步骤1：创建一个接口" class="headerlink" title="步骤1：创建一个接口"></a>步骤1：创建一个接口</h2><blockquote>
-<p>创建一个接口：</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Image.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Image</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤2：创建实现接口的实体类。"><a href="#步骤2：创建实现接口的实体类。" class="headerlink" title="步骤2：创建实现接口的实体类。"></a>步骤2：创建实现接口的实体类。</h2><blockquote>
-<p>创建实现接口的实体类。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*RealImage.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealImage</span> <span class="keyword">implements</span> <span class="title">Image</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> String fileName;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">RealImage</span><span class="params">(String fileName)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.fileName = fileName;</span><br><span class="line">      loadFromDisk(fileName);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Displaying &quot;</span> + fileName);</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">loadFromDisk</span><span class="params">(String fileName)</span></span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Loading &quot;</span> + fileName);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*ProxyImage.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyImage</span> <span class="keyword">implements</span> <span class="title">Image</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> RealImage realImage;</span><br><span class="line">   <span class="keyword">private</span> String fileName;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">ProxyImage</span><span class="params">(String fileName)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.fileName = fileName;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(realImage == <span class="keyword">null</span>)&#123;</span><br><span class="line">         realImage = <span class="keyword">new</span> RealImage(fileName);</span><br><span class="line">      &#125;</span><br><span class="line">      realImage.display();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤3：当被请求时，使用ProxyImage来获取RealImage类的对象。"><a href="#步骤3：当被请求时，使用ProxyImage来获取RealImage类的对象。" class="headerlink" title="步骤3：当被请求时，使用ProxyImage来获取RealImage类的对象。"></a>步骤3：当被请求时，使用ProxyImage来获取RealImage类的对象。</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ProxyPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyPatternDemo</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      Image image = <span class="keyword">new</span> ProxyImage(<span class="string">&quot;test_10mb.jpg&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">// 图像将从磁盘加载</span></span><br><span class="line">      image.display(); </span><br><span class="line">      System.out.println(<span class="string">&quot;&quot;</span>);</span><br><span class="line">      <span class="comment">// 图像不需要从磁盘加载</span></span><br><span class="line">      image.display();  </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤4：结果"><a href="#步骤4：结果" class="headerlink" title="步骤4：结果"></a>步骤4：结果</h2><blockquote>
-<p>执行程序，输出结果：</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Loading test_10mb.jpg</span><br><span class="line">Displaying test_10mb.jpg</span><br><span class="line"></span><br><span class="line">Displaying test_10mb.jpg</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>命令模式</title>
     <url>/mellofly/22977.html</url>
     <content><![CDATA[<blockquote class="blockquote-center">
@@ -1148,6 +1158,55 @@
       </tags>
   </entry>
   <entry>
+    <title>工厂模式</title>
+    <url>/mellofly/6013.html</url>
+    <content><![CDATA[<blockquote>
+<p>工厂模式(Factory Pattern)是Java中最常用的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口指向新创建的对象。</p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><ul>
+<li><strong>意图：</strong> 定义一个创建对象的接口，让其子类自己决定实例化哪一个工厂类，工厂模式使其创建过程延迟到子类进行。</li>
+<li><strong>主要解决：</strong> 主要解决接口选择的问题。</li>
+<li><strong>如何解决：</strong> 让其子类实现工厂接口，返回的也是一个抽象的产品。</li>
+<li><strong>关键代码：</strong> 创建过程在其子类执行。</li>
+<li><strong>应用实例：</strong> 1、您需要一辆汽车，可以直接从工厂里面提货，而不用去管这辆汽车是怎么做出来的，以及这个汽车里面的实现。2、Hibernate换数据库只需换方言和驱动就可以。<h2 id="优缺点："><a href="#优缺点：" class="headerlink" title="优缺点："></a>优缺点：</h2></li>
+<li><strong>优点：</strong> 1、一个调用者想要创建一个对象，只要知道其名称就可以了。2、扩展性搞，如果想增加一个产品，只要扩展一个工厂类就可以。2、屏蔽产品的具体实现，调用者只关心产品的接口。</li>
+<li><strong>缺点：</strong> 每次增加一个产品是，都需要增加一个具体类和对象实现工厂，使得系统中类的个数城北增加，在一定程度上增加了系统的复杂度，同时也增加了系统具体类的依赖。这并不是什么好事。</li>
+<li><strong>使用场景：</strong> <ul>
+<li>1、日志记录器：<br>记录可能记录到本地硬盘、系统时间、远程服务器等，用户可以选择记录日志到什么地方。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<pre><code>- 2、数据库访问：
+&gt; 当用户不知道最后采用哪一类数据库，以及数据库可能有变化是。
+
+- 3、设计一个连接服务器的框架：
+&gt; 需要三个协议，&quot;POP3&quot;,&quot;IMAP&quot;,&quot;HTTP&quot;,可以把这三个作为产品类，共同实现一个接口。
+</code></pre><ul>
+<li><strong><em>注意事项：</em></strong> 作为一种创建类模式，在任何需要生成复杂对象的地方，都可以使用工厂方法模式。有一点需要注意的地方就是复杂独享适合使用工厂模式，而简单对象，特别是只需要通过new就可以完成创建的对象，无需使用工厂模式。如果使用工厂模式，就需要引入一个工厂类，会增加系统的复杂度。</li>
+</ul>
+<h1 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h1><blockquote>
+<p>我们将创建一个Shape接口和实现Shape接口的实体类。下一步是定义工厂类<em>ShapeFactory</em>。<em>FactoryPatternDemo</em>,我们将演示类使用<em>ShapeFactory</em>来获取<em>Shape</em>对象。它将向<em>ShapeFactory</em>传递信息(<em>CIRCLE / RECTANGLE / SQUARE</em>),以便获取它所需要对象的类型。</p>
+<p><img src="/mellofly/6013/工厂模式.jpg" alt="工厂模式设计类UML图"></p>
+</blockquote>
+<h2 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h2><blockquote>
+<p>创建接口<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Shape.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="步骤2："><a href="#步骤2：" class="headerlink" title="步骤2："></a>步骤2：</h2><p>创建实现接口的实体类。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Rectangle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">implements</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Rectangle::draw() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Square.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">implements</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Square::draw() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Circle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">implements</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">     <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Circle::draw() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="步骤3："><a href="#步骤3：" class="headerlink" title="步骤3："></a>步骤3：</h2><p>创建一个工厂，生成基于给定信息的实体类的对象。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ShapeFactory.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeFactory</span> </span>&#123;</span><br><span class="line">   <span class="comment">//使用 getShape 方法获取形状类型的对象</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Shape <span class="title">getShape</span><span class="params">(String shapeType)</span></span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(shapeType == <span class="keyword">null</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;        </span><br><span class="line">      <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">&quot;CIRCLE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Circle();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">&quot;RECTANGLE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Rectangle();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">&quot;SQUARE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Square();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="步骤4："><a href="#步骤4：" class="headerlink" title="步骤4："></a>步骤4：</h2><p>使用该工厂，通过传递类型信息来获取实体类的对象。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*FactoryPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FactoryPatternDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      ShapeFactory shapeFactory = <span class="keyword">new</span> ShapeFactory();</span><br><span class="line">      <span class="comment">//获取 Circle 的对象，并调用它的 draw 方法</span></span><br><span class="line">      Shape shape1 = shapeFactory.getShape(<span class="string">&quot;CIRCLE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Circle 的 draw 方法</span></span><br><span class="line">      shape1.draw();</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取 Rectangle 的对象，并调用它的 draw 方法</span></span><br><span class="line">      Shape shape2 = shapeFactory.getShape(<span class="string">&quot;RECTANGLE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Rectangle 的 draw 方法</span></span><br><span class="line">      shape2.draw();</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取 Square 的对象，并调用它的 draw 方法</span></span><br><span class="line">      Shape shape3 = shapeFactory.getShape(<span class="string">&quot;SQUARE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Square 的 draw 方法</span></span><br><span class="line">      shape3.draw();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="步骤5："><a href="#步骤5：" class="headerlink" title="步骤5："></a>步骤5：</h2><blockquote>
+<p>执行程序，输出结果：<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Inside Circle::draw() method.</span><br><span class="line">Inside Rectangle::draw() method.</span><br><span class="line">Inside Square::draw() method.</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>外观模式</title>
     <url>/mellofly/33100.html</url>
     <content><![CDATA[<blockquote class="blockquote-center">
@@ -1231,55 +1290,6 @@
 </ol>
 
 </blockquote>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>工厂模式</title>
-    <url>/mellofly/6013.html</url>
-    <content><![CDATA[<blockquote>
-<p>工厂模式(Factory Pattern)是Java中最常用的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口指向新创建的对象。</p>
-<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><ul>
-<li><strong>意图：</strong> 定义一个创建对象的接口，让其子类自己决定实例化哪一个工厂类，工厂模式使其创建过程延迟到子类进行。</li>
-<li><strong>主要解决：</strong> 主要解决接口选择的问题。</li>
-<li><strong>如何解决：</strong> 让其子类实现工厂接口，返回的也是一个抽象的产品。</li>
-<li><strong>关键代码：</strong> 创建过程在其子类执行。</li>
-<li><strong>应用实例：</strong> 1、您需要一辆汽车，可以直接从工厂里面提货，而不用去管这辆汽车是怎么做出来的，以及这个汽车里面的实现。2、Hibernate换数据库只需换方言和驱动就可以。<h2 id="优缺点："><a href="#优缺点：" class="headerlink" title="优缺点："></a>优缺点：</h2></li>
-<li><strong>优点：</strong> 1、一个调用者想要创建一个对象，只要知道其名称就可以了。2、扩展性搞，如果想增加一个产品，只要扩展一个工厂类就可以。2、屏蔽产品的具体实现，调用者只关心产品的接口。</li>
-<li><strong>缺点：</strong> 每次增加一个产品是，都需要增加一个具体类和对象实现工厂，使得系统中类的个数城北增加，在一定程度上增加了系统的复杂度，同时也增加了系统具体类的依赖。这并不是什么好事。</li>
-<li><strong>使用场景：</strong> <ul>
-<li>1、日志记录器：<br>记录可能记录到本地硬盘、系统时间、远程服务器等，用户可以选择记录日志到什么地方。</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<pre><code>- 2、数据库访问：
-&gt; 当用户不知道最后采用哪一类数据库，以及数据库可能有变化是。
-
-- 3、设计一个连接服务器的框架：
-&gt; 需要三个协议，&quot;POP3&quot;,&quot;IMAP&quot;,&quot;HTTP&quot;,可以把这三个作为产品类，共同实现一个接口。
-</code></pre><ul>
-<li><strong><em>注意事项：</em></strong> 作为一种创建类模式，在任何需要生成复杂对象的地方，都可以使用工厂方法模式。有一点需要注意的地方就是复杂独享适合使用工厂模式，而简单对象，特别是只需要通过new就可以完成创建的对象，无需使用工厂模式。如果使用工厂模式，就需要引入一个工厂类，会增加系统的复杂度。</li>
-</ul>
-<h1 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h1><blockquote>
-<p>我们将创建一个Shape接口和实现Shape接口的实体类。下一步是定义工厂类<em>ShapeFactory</em>。<em>FactoryPatternDemo</em>,我们将演示类使用<em>ShapeFactory</em>来获取<em>Shape</em>对象。它将向<em>ShapeFactory</em>传递信息(<em>CIRCLE / RECTANGLE / SQUARE</em>),以便获取它所需要对象的类型。</p>
-<p><img src="/mellofly/6013/工厂模式.jpg" alt="工厂模式设计类UML图"></p>
-</blockquote>
-<h2 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h2><blockquote>
-<p>创建接口<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Shape.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="步骤2："><a href="#步骤2：" class="headerlink" title="步骤2："></a>步骤2：</h2><p>创建实现接口的实体类。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Rectangle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">implements</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Rectangle::draw() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Square.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">implements</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Square::draw() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Circle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">implements</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">     <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Circle::draw() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="步骤3："><a href="#步骤3：" class="headerlink" title="步骤3："></a>步骤3：</h2><p>创建一个工厂，生成基于给定信息的实体类的对象。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ShapeFactory.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeFactory</span> </span>&#123;</span><br><span class="line">   <span class="comment">//使用 getShape 方法获取形状类型的对象</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Shape <span class="title">getShape</span><span class="params">(String shapeType)</span></span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(shapeType == <span class="keyword">null</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;        </span><br><span class="line">      <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">&quot;CIRCLE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Circle();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">&quot;RECTANGLE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Rectangle();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">&quot;SQUARE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Square();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="步骤4："><a href="#步骤4：" class="headerlink" title="步骤4："></a>步骤4：</h2><p>使用该工厂，通过传递类型信息来获取实体类的对象。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*FactoryPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FactoryPatternDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      ShapeFactory shapeFactory = <span class="keyword">new</span> ShapeFactory();</span><br><span class="line">      <span class="comment">//获取 Circle 的对象，并调用它的 draw 方法</span></span><br><span class="line">      Shape shape1 = shapeFactory.getShape(<span class="string">&quot;CIRCLE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Circle 的 draw 方法</span></span><br><span class="line">      shape1.draw();</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取 Rectangle 的对象，并调用它的 draw 方法</span></span><br><span class="line">      Shape shape2 = shapeFactory.getShape(<span class="string">&quot;RECTANGLE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Rectangle 的 draw 方法</span></span><br><span class="line">      shape2.draw();</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取 Square 的对象，并调用它的 draw 方法</span></span><br><span class="line">      Shape shape3 = shapeFactory.getShape(<span class="string">&quot;SQUARE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Square 的 draw 方法</span></span><br><span class="line">      shape3.draw();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="步骤5："><a href="#步骤5：" class="headerlink" title="步骤5："></a>步骤5：</h2><blockquote>
-<p>执行程序，输出结果：<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Inside Circle::draw() method.</span><br><span class="line">Inside Rectangle::draw() method.</span><br><span class="line">Inside Square::draw() method.</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-]]></content>
       <categories>
         <category>Java</category>
       </categories>
@@ -1406,6 +1416,77 @@
       </tags>
   </entry>
   <entry>
+    <title>状态模式</title>
+    <url>/mellofly/39447.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>在状态模式(State Pattern)中，类的行为是基于它的状态改变的，这种类型的设计模式属于行为型模式。<br>在状态模式中，我们创建表示各种状态的对象和一个行为随着状态对象改变而改变的context对象。</p>
+
+</blockquote>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 允许对象在内部状态发生改变时改变它的行为，对象看起来好像改变了它的类。</li>
+<li><strong>主要解决：</strong> 对象的行为依赖于它的状态(属性),并且可以根据它的状态改变而改变它的相关行为。</li>
+<li><strong>何时使用：</strong> 代码中包含大量与对象状态有关的条件语句。</li>
+<li><strong>如何解决：</strong> 将各种具体的状态类抽象出来。</li>
+<li><strong>关键代码：</strong> 通常命令模式的接口中只有一个方法。而状态模式的接口中有一个或者多个方法。而且，状态模式的实现类的方法，一般返回值，或者是改变实例变量的值。也就是说，状态模式一般和对象的状态有关。实现类的方法有不同的功能，覆盖接口中的方法。状态模式和命令模式一样，也可以用于消除if…else等条件选择语句。</li>
+<li><strong>应用实例：</strong> <ol>
+<li>打篮球的时候运动员可以有正常状态、不正常状态和超常状态。</li>
+<li>普候乙编钟中，‘钟是抽象接口’，‘钟A’等是具体状态，‘普候乙编钟’是具体环境(Context)。</li>
+</ol>
+</li>
+<li><strong><em>优点：</em></strong> <ol>
+<li>封装了转换规则。</li>
+<li>枚举可能的状态，在枚举状态之前需要确定状态种类。</li>
+<li>将所有与某个状态有关的行为放到一个类中，并且可以方便地增加新的状态，只需要改变对象状态即可改变对象的行为。</li>
+<li>允许状态转换逻辑与状态对象合成一体，而不是某一巨大的条件语句块。</li>
+<li>可以让多个环境对象共享一个状态对象，从而减少系统中对象的个数。</li>
+</ol>
+</li>
+<li><strong><em>缺点：</em></strong> <ol>
+<li>状态模式的使用必然会增加系统类和对象的个数。 </li>
+<li>状态模式的结构与实现都较为复杂，如果使用不当将导致程序结构和代码的混乱。</li>
+<li>状态模式对”开闭原则”的支持并不太好，对于可以切换状态的状态模式，增加新的状态类需要修改那些负责状态转换的源代码，否则无法切换到新增状态，而且修改某个状态类的行为也需修改对应类的源代码。</li>
+</ol>
+</li>
+<li><strong>使用场景：</strong><ol>
+<li>行为随状态改变而改变的场景。</li>
+<li>条件、分支语句的代替者。</li>
+</ol>
+</li>
+<li><strong>注意事项：</strong> 在行为受状态约束的时候使用状态模式，而且状态不超过5个。</li>
+</ul>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们将创建一个 State 接口和实现了 State 接口的实体状态类。Context 是一个带有某个状态的类。<br>StatePatternDemo，我们的演示类使用 Context 和状态对象来演示 Context 在状态改变时的行为变化。</p>
+</blockquote>
+<p><img src="/mellofly/39447/状态模式.jpg" alt="状态模式UML图"></p>
+<h2 id="步骤1：创建一个接口"><a href="#步骤1：创建一个接口" class="headerlink" title="步骤1：创建一个接口"></a>步骤1：创建一个接口</h2><blockquote>
+<p>创建一个接口。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*State.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">State</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAction</span><span class="params">(Context context)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2：创建实现接口的实体类"><a href="#步骤2：创建实现接口的实体类" class="headerlink" title="步骤2：创建实现接口的实体类"></a>步骤2：创建实现接口的实体类</h2><blockquote>
+<p>创建实现接口的实体类。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*StartState.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StartState</span> <span class="keyword">implements</span> <span class="title">State</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAction</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Player is in start state&quot;</span>);</span><br><span class="line">      context.setState(<span class="keyword">this</span>); </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;Start State&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*StopState.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StopState</span> <span class="keyword">implements</span> <span class="title">State</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAction</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Player is in stop state&quot;</span>);</span><br><span class="line">      context.setState(<span class="keyword">this</span>); </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;Stop State&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3：创建Context类"><a href="#步骤3：创建Context类" class="headerlink" title="步骤3：创建Context类"></a>步骤3：创建Context类</h2><blockquote>
+<p>创建Context类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Context.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Context</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> State state;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Context</span><span class="params">()</span></span>&#123;</span><br><span class="line">      state = <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setState</span><span class="params">(State state)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.state = state;     </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> State <span class="title">getState</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> state;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4：使用Context来查看当状态State改变时的行为变化"><a href="#步骤4：使用Context来查看当状态State改变时的行为变化" class="headerlink" title="步骤4：使用Context来查看当状态State改变时的行为变化"></a>步骤4：使用Context来查看当状态State改变时的行为变化</h2><blockquote>
+<p>使用Context来查看当状态State改变时的行为变化。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*StatePatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StatePatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      Context context = <span class="keyword">new</span> Context();</span><br><span class="line"> </span><br><span class="line">      StartState startState = <span class="keyword">new</span> StartState();</span><br><span class="line">      startState.doAction(context);</span><br><span class="line"> </span><br><span class="line">      System.out.println(context.getState().toString());</span><br><span class="line"> </span><br><span class="line">      StopState stopState = <span class="keyword">new</span> StopState();</span><br><span class="line">      stopState.doAction(context);</span><br><span class="line"> </span><br><span class="line">      System.out.println(context.getState().toString());</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤5：结果"><a href="#步骤5：结果" class="headerlink" title="步骤5：结果"></a>步骤5：结果</h2><blockquote>
+<p>执行程序，输出结果。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Player is in start state</span><br><span class="line">Start State</span><br><span class="line">Player is in stop state</span><br><span class="line">Stop State;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>桥接模式</title>
     <url>/mellofly/43376.html</url>
     <content><![CDATA[<blockquote class="blockquote-center">
@@ -1482,77 +1563,6 @@
 <p><a href="https://www.runoob.com/w3cnote/bridge-pattern2.html">https://www.runoob.com/w3cnote/bridge-pattern2.html</a></p>
 
 </blockquote>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>状态模式</title>
-    <url>/mellofly/39447.html</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-<p>在状态模式(State Pattern)中，类的行为是基于它的状态改变的，这种类型的设计模式属于行为型模式。<br>在状态模式中，我们创建表示各种状态的对象和一个行为随着状态对象改变而改变的context对象。</p>
-
-</blockquote>
-<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
-<li><strong>意图：</strong> 允许对象在内部状态发生改变时改变它的行为，对象看起来好像改变了它的类。</li>
-<li><strong>主要解决：</strong> 对象的行为依赖于它的状态(属性),并且可以根据它的状态改变而改变它的相关行为。</li>
-<li><strong>何时使用：</strong> 代码中包含大量与对象状态有关的条件语句。</li>
-<li><strong>如何解决：</strong> 将各种具体的状态类抽象出来。</li>
-<li><strong>关键代码：</strong> 通常命令模式的接口中只有一个方法。而状态模式的接口中有一个或者多个方法。而且，状态模式的实现类的方法，一般返回值，或者是改变实例变量的值。也就是说，状态模式一般和对象的状态有关。实现类的方法有不同的功能，覆盖接口中的方法。状态模式和命令模式一样，也可以用于消除if…else等条件选择语句。</li>
-<li><strong>应用实例：</strong> <ol>
-<li>打篮球的时候运动员可以有正常状态、不正常状态和超常状态。</li>
-<li>普候乙编钟中，‘钟是抽象接口’，‘钟A’等是具体状态，‘普候乙编钟’是具体环境(Context)。</li>
-</ol>
-</li>
-<li><strong><em>优点：</em></strong> <ol>
-<li>封装了转换规则。</li>
-<li>枚举可能的状态，在枚举状态之前需要确定状态种类。</li>
-<li>将所有与某个状态有关的行为放到一个类中，并且可以方便地增加新的状态，只需要改变对象状态即可改变对象的行为。</li>
-<li>允许状态转换逻辑与状态对象合成一体，而不是某一巨大的条件语句块。</li>
-<li>可以让多个环境对象共享一个状态对象，从而减少系统中对象的个数。</li>
-</ol>
-</li>
-<li><strong><em>缺点：</em></strong> <ol>
-<li>状态模式的使用必然会增加系统类和对象的个数。 </li>
-<li>状态模式的结构与实现都较为复杂，如果使用不当将导致程序结构和代码的混乱。</li>
-<li>状态模式对”开闭原则”的支持并不太好，对于可以切换状态的状态模式，增加新的状态类需要修改那些负责状态转换的源代码，否则无法切换到新增状态，而且修改某个状态类的行为也需修改对应类的源代码。</li>
-</ol>
-</li>
-<li><strong>使用场景：</strong><ol>
-<li>行为随状态改变而改变的场景。</li>
-<li>条件、分支语句的代替者。</li>
-</ol>
-</li>
-<li><strong>注意事项：</strong> 在行为受状态约束的时候使用状态模式，而且状态不超过5个。</li>
-</ul>
-<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
-<p>我们将创建一个 State 接口和实现了 State 接口的实体状态类。Context 是一个带有某个状态的类。<br>StatePatternDemo，我们的演示类使用 Context 和状态对象来演示 Context 在状态改变时的行为变化。</p>
-</blockquote>
-<p><img src="/mellofly/39447/状态模式.jpg" alt="状态模式UML图"></p>
-<h2 id="步骤1：创建一个接口"><a href="#步骤1：创建一个接口" class="headerlink" title="步骤1：创建一个接口"></a>步骤1：创建一个接口</h2><blockquote>
-<p>创建一个接口。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*State.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">State</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAction</span><span class="params">(Context context)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤2：创建实现接口的实体类"><a href="#步骤2：创建实现接口的实体类" class="headerlink" title="步骤2：创建实现接口的实体类"></a>步骤2：创建实现接口的实体类</h2><blockquote>
-<p>创建实现接口的实体类。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*StartState.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StartState</span> <span class="keyword">implements</span> <span class="title">State</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAction</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Player is in start state&quot;</span>);</span><br><span class="line">      context.setState(<span class="keyword">this</span>); </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;Start State&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*StopState.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StopState</span> <span class="keyword">implements</span> <span class="title">State</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAction</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Player is in stop state&quot;</span>);</span><br><span class="line">      context.setState(<span class="keyword">this</span>); </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;Stop State&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤3：创建Context类"><a href="#步骤3：创建Context类" class="headerlink" title="步骤3：创建Context类"></a>步骤3：创建Context类</h2><blockquote>
-<p>创建Context类</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Context.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Context</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> State state;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Context</span><span class="params">()</span></span>&#123;</span><br><span class="line">      state = <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setState</span><span class="params">(State state)</span></span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.state = state;     </span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">public</span> State <span class="title">getState</span><span class="params">()</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> state;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤4：使用Context来查看当状态State改变时的行为变化"><a href="#步骤4：使用Context来查看当状态State改变时的行为变化" class="headerlink" title="步骤4：使用Context来查看当状态State改变时的行为变化"></a>步骤4：使用Context来查看当状态State改变时的行为变化</h2><blockquote>
-<p>使用Context来查看当状态State改变时的行为变化。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*StatePatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StatePatternDemo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      Context context = <span class="keyword">new</span> Context();</span><br><span class="line"> </span><br><span class="line">      StartState startState = <span class="keyword">new</span> StartState();</span><br><span class="line">      startState.doAction(context);</span><br><span class="line"> </span><br><span class="line">      System.out.println(context.getState().toString());</span><br><span class="line"> </span><br><span class="line">      StopState stopState = <span class="keyword">new</span> StopState();</span><br><span class="line">      stopState.doAction(context);</span><br><span class="line"> </span><br><span class="line">      System.out.println(context.getState().toString());</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤5：结果"><a href="#步骤5：结果" class="headerlink" title="步骤5：结果"></a>步骤5：结果</h2><blockquote>
-<p>执行程序，输出结果。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Player is in start state</span><br><span class="line">Start State</span><br><span class="line">Player is in stop state</span><br><span class="line">Stop State;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Java</category>
       </categories>
@@ -2051,63 +2061,6 @@
       </tags>
   </entry>
   <entry>
-    <title>迭代器模式</title>
-    <url>/mellofly/28241.html</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-<p>迭代器模式(Iterator Pattern) 是java和.Net编程环境中非常常用的设计模式。这种模式用于顺序访问集合对象的元素，不需要知道集合对象的底层表示。迭代模式属于行为模式。</p>
-
-</blockquote>
-<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
-<li><strong>意图：</strong> 提供一种方法顺序访问一个聚合对象中各个元素，而又无须暴露该对象的内部表示。</li>
-<li><strong>主要解决：</strong> 不同的方式来遍历真个整合对象。</li>
-<li><strong>何时使用：</strong> 遍历一个聚合对象。</li>
-<li><strong>关键代码：</strong> 定义接口：hasNext，next。</li>
-<li><strong>应用实例：</strong> JAVA中的iterator。</li>
-<li><strong><em>优点：</em></strong><ol>
-<li>它支持以不同的方式遍历一个聚合对象。</li>
-<li>迭代器简化了聚合类。</li>
-<li>在同一个聚合上可以有多个遍历</li>
-<li>在迭代器模式中，增加新的聚合类和迭代器都很方便，无须修改原有代码。</li>
-</ol>
-</li>
-<li><strong><em>缺点：</em></strong> 由于迭代器模式将存储数据和遍历数据的职责分离，增加新的聚合类需要对应增加新的迭代器类，类的个数成对增加，这在一定程度上增加了系统的复杂性。</li>
-<li><strong>使用场景：</strong> <ol>
-<li>访问一个聚合对象的内容而无需暴露它的内部表示。</li>
-<li>需要为聚合独享提供多种遍历方式。</li>
-<li>为遍历不同的聚合结构提供一个统一地接口。</li>
-</ol>
-</li>
-<li><strong>注意事项：</strong> 迭代器模式就是分离了集合对象的遍历行为，抽象出一个迭代器类来负责，这样既可以做到不暴露集合的内部结构，又可让外部代码透明地访问集合内部的数据。</li>
-</ul>
-<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
-<p>我们将创建一个叙述导航方法的Iterator接口和一个返回迭代器的Container接口。实现了Container接口的实体类将负责实现Iterator接口。IteratorPatternDemo，我们的演示类使用实体类NamesRepository来打印NamesRepository中存储为集合的Names。</p>
-<p><img src="/mellofly/28241/迭代器模式.jpg" alt="迭代器模式UML图"></p>
-</blockquote>
-<h2 id="步骤1：创建接口："><a href="#步骤1：创建接口：" class="headerlink" title="步骤1：创建接口："></a>步骤1：创建接口：</h2><blockquote>
-<p>创建接口</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Iterator.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Container.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Container</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Iterator <span class="title">getIterator</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤2：实现接口"><a href="#步骤2：实现接口" class="headerlink" title="步骤2：实现接口"></a>步骤2：实现接口</h2><blockquote>
-<p>创建实现了Container接口的实体类。该类有实现了Iterator接口的内部类NameIterator。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*NameRepository.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NameRepository</span> <span class="keyword">implements</span> <span class="title">Container</span> </span>&#123;</span><br><span class="line">   <span class="keyword">public</span> String names[] = &#123;<span class="string">&quot;Robert&quot;</span> , <span class="string">&quot;John&quot;</span> ,<span class="string">&quot;Julie&quot;</span> , <span class="string">&quot;Lora&quot;</span>&#125;;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Iterator <span class="title">getIterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> NameIterator();</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">NameIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">int</span> index;</span><br><span class="line"> </span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(index &lt; names.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line"> </span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(<span class="keyword">this</span>.hasNext())&#123;</span><br><span class="line">            <span class="keyword">return</span> names[index++];</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;     </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤3：获取迭代器，并打印名字。"><a href="#步骤3：获取迭代器，并打印名字。" class="headerlink" title="步骤3：获取迭代器，并打印名字。"></a>步骤3：获取迭代器，并打印名字。</h2><blockquote>
-<p>使用NameRepository来获取迭代器，并打印名字。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*IteratorPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IteratorPatternDemo</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      NameRepository namesRepository = <span class="keyword">new</span> NameRepository();</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">for</span>(Iterator iter = namesRepository.getIterator(); iter.hasNext();)&#123;</span><br><span class="line">         String name = (String)iter.next();</span><br><span class="line">         System.out.println(<span class="string">&quot;Name : &quot;</span> + name);</span><br><span class="line">      &#125;  </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤4：输出结果"><a href="#步骤4：输出结果" class="headerlink" title="步骤4：输出结果"></a>步骤4：输出结果</h2><blockquote>
-<p>执行程序，输出结果：</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Name : Robert</span><br><span class="line">Name : John</span><br><span class="line">Name : Julie</span><br><span class="line">Name : Lora</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>适配器模式</title>
     <url>/mellofly/39554.html</url>
     <content><![CDATA[<blockquote>
@@ -2206,6 +2159,63 @@
 </li>
 </ol>
 ]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>迭代器模式</title>
+    <url>/mellofly/28241.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>迭代器模式(Iterator Pattern) 是java和.Net编程环境中非常常用的设计模式。这种模式用于顺序访问集合对象的元素，不需要知道集合对象的底层表示。迭代模式属于行为模式。</p>
+
+</blockquote>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 提供一种方法顺序访问一个聚合对象中各个元素，而又无须暴露该对象的内部表示。</li>
+<li><strong>主要解决：</strong> 不同的方式来遍历真个整合对象。</li>
+<li><strong>何时使用：</strong> 遍历一个聚合对象。</li>
+<li><strong>关键代码：</strong> 定义接口：hasNext，next。</li>
+<li><strong>应用实例：</strong> JAVA中的iterator。</li>
+<li><strong><em>优点：</em></strong><ol>
+<li>它支持以不同的方式遍历一个聚合对象。</li>
+<li>迭代器简化了聚合类。</li>
+<li>在同一个聚合上可以有多个遍历</li>
+<li>在迭代器模式中，增加新的聚合类和迭代器都很方便，无须修改原有代码。</li>
+</ol>
+</li>
+<li><strong><em>缺点：</em></strong> 由于迭代器模式将存储数据和遍历数据的职责分离，增加新的聚合类需要对应增加新的迭代器类，类的个数成对增加，这在一定程度上增加了系统的复杂性。</li>
+<li><strong>使用场景：</strong> <ol>
+<li>访问一个聚合对象的内容而无需暴露它的内部表示。</li>
+<li>需要为聚合独享提供多种遍历方式。</li>
+<li>为遍历不同的聚合结构提供一个统一地接口。</li>
+</ol>
+</li>
+<li><strong>注意事项：</strong> 迭代器模式就是分离了集合对象的遍历行为，抽象出一个迭代器类来负责，这样既可以做到不暴露集合的内部结构，又可让外部代码透明地访问集合内部的数据。</li>
+</ul>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们将创建一个叙述导航方法的Iterator接口和一个返回迭代器的Container接口。实现了Container接口的实体类将负责实现Iterator接口。IteratorPatternDemo，我们的演示类使用实体类NamesRepository来打印NamesRepository中存储为集合的Names。</p>
+<p><img src="/mellofly/28241/迭代器模式.jpg" alt="迭代器模式UML图"></p>
+</blockquote>
+<h2 id="步骤1：创建接口："><a href="#步骤1：创建接口：" class="headerlink" title="步骤1：创建接口："></a>步骤1：创建接口：</h2><blockquote>
+<p>创建接口</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Iterator.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Container.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Container</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Iterator <span class="title">getIterator</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2：实现接口"><a href="#步骤2：实现接口" class="headerlink" title="步骤2：实现接口"></a>步骤2：实现接口</h2><blockquote>
+<p>创建实现了Container接口的实体类。该类有实现了Iterator接口的内部类NameIterator。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*NameRepository.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NameRepository</span> <span class="keyword">implements</span> <span class="title">Container</span> </span>&#123;</span><br><span class="line">   <span class="keyword">public</span> String names[] = &#123;<span class="string">&quot;Robert&quot;</span> , <span class="string">&quot;John&quot;</span> ,<span class="string">&quot;Julie&quot;</span> , <span class="string">&quot;Lora&quot;</span>&#125;;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Iterator <span class="title">getIterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> NameIterator();</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">NameIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">int</span> index;</span><br><span class="line"> </span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(index &lt; names.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line"> </span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(<span class="keyword">this</span>.hasNext())&#123;</span><br><span class="line">            <span class="keyword">return</span> names[index++];</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;     </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3：获取迭代器，并打印名字。"><a href="#步骤3：获取迭代器，并打印名字。" class="headerlink" title="步骤3：获取迭代器，并打印名字。"></a>步骤3：获取迭代器，并打印名字。</h2><blockquote>
+<p>使用NameRepository来获取迭代器，并打印名字。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*IteratorPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IteratorPatternDemo</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      NameRepository namesRepository = <span class="keyword">new</span> NameRepository();</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">for</span>(Iterator iter = namesRepository.getIterator(); iter.hasNext();)&#123;</span><br><span class="line">         String name = (String)iter.next();</span><br><span class="line">         System.out.println(<span class="string">&quot;Name : &quot;</span> + name);</span><br><span class="line">      &#125;  </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4：输出结果"><a href="#步骤4：输出结果" class="headerlink" title="步骤4：输出结果"></a>步骤4：输出结果</h2><blockquote>
+<p>执行程序，输出结果：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Name : Robert</span><br><span class="line">Name : John</span><br><span class="line">Name : Julie</span><br><span class="line">Name : Lora</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Java</category>
       </categories>
