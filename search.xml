@@ -305,38 +305,6 @@
       </tags>
   </entry>
   <entry>
-    <title>SpringBoot异常处理</title>
-    <url>/mellofly/7957b469.html</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-<p>程序运行时，发生的不被期望的事件，它阻止了程序按照程序员的预期正常执行，这就是异常。异常发生时，是任程序自生自灭，立刻退出终止。在Java中即，Java在编译或运行或者运行过程中出现的错误。<br>Java提供了更加优秀的解决办法：异常处理机制 </p>
-
-</blockquote>
-<h1 id="全局异常处理"><a href="#全局异常处理" class="headerlink" title="全局异常处理"></a>全局异常处理</h1><h2 id="好处："><a href="#好处：" class="headerlink" title="好处："></a>好处：</h2><ul>
-<li>统一的错误页面或者错误码</li>
-<li>对用户更友好</li>
-</ul>
-<h2 id="配置全局异常："><a href="#配置全局异常：" class="headerlink" title="配置全局异常："></a>配置全局异常：</h2><h3 id="类添加注解："><a href="#类添加注解：" class="headerlink" title="类添加注解："></a>类添加注解：</h3><ul>
-<li>@ControllerAdvice:如果需要返回json数据，则方法需要加@ResponseBody。</li>
-<li>@RestControllerAdvice:默认返回json数据，方法不需要加@ResponseBody。</li>
-<li><h3 id="方法添加处理器："><a href="#方法添加处理器：" class="headerlink" title="方法添加处理器："></a>方法添加处理器：</h3></li>
-<li>捕获全局异常，处理所有不可知的异常</li>
-<li>@ExceptionHandler(value=Exception.class)</li>
-</ul>
-<h2 id="自定义全局异常返回页面"><a href="#自定义全局异常返回页面" class="headerlink" title="自定义全局异常返回页面"></a>自定义全局异常返回页面</h2><ol>
-<li>返回自定义界面异常，需要引入thymeleaf依赖(简单的html界面不需要)。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line"> &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line"> &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></li>
-<li>在resource目录下新建templates,并新建error.html</li>
-<li>代码处理<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ModelAndView modelAndView = new ModelAndView();</span><br><span class="line">modelAndView.setViewName(&quot;error.html&quot;);</span><br><span class="line">modelAndView.addObject(&quot;msg&quot;, e.getMessage());</span><br><span class="line">return modelAndView;</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>框架</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringBoot配置文件</title>
     <url>/mellofly/75ee909c.html</url>
     <content><![CDATA[<blockquote class="blockquote-center">
@@ -388,6 +356,38 @@
 </li>
 <li>案例：视频列表单元测试：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> @Autowired</span><br><span class="line"> private MockMvc mockMvc;</span><br><span class="line"> @Test</span><br><span class="line"> public void testVideoListApi()throws Exception&#123;</span><br><span class="line"> MvcResult mvcResult = </span><br><span class="line">mockMvc.perform(MockMvcRequestBuilders.get(&quot;/api/v1/pub/video/list&quot;))</span><br><span class="line"> </span><br><span class="line">.andExpect(MockMvcResultMatchers.status().isOk()).andReturn();</span><br><span class="line"> int status = mvcResult.getResponse().getStatus();</span><br><span class="line"> System.out.println(status);</span><br><span class="line"> //会乱码</span><br><span class="line"> //String result = mvcResult.getResponse().getContentAsString();</span><br><span class="line"> // 使⽤下⾯这个，增加 编码 说明，就不会乱码打印</span><br><span class="line"> String result =</span><br><span class="line">mvcResult.getResponse().getContentAsString(Charset.forName(&quot;utf-8&quot;));</span><br><span class="line"> System.out.println(result);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
+]]></content>
+      <categories>
+        <category>框架</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot异常处理</title>
+    <url>/mellofly/7957b469.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>程序运行时，发生的不被期望的事件，它阻止了程序按照程序员的预期正常执行，这就是异常。异常发生时，是任程序自生自灭，立刻退出终止。在Java中即，Java在编译或运行或者运行过程中出现的错误。<br>Java提供了更加优秀的解决办法：异常处理机制 </p>
+
+</blockquote>
+<h1 id="全局异常处理"><a href="#全局异常处理" class="headerlink" title="全局异常处理"></a>全局异常处理</h1><h2 id="好处："><a href="#好处：" class="headerlink" title="好处："></a>好处：</h2><ul>
+<li>统一的错误页面或者错误码</li>
+<li>对用户更友好</li>
+</ul>
+<h2 id="配置全局异常："><a href="#配置全局异常：" class="headerlink" title="配置全局异常："></a>配置全局异常：</h2><h3 id="类添加注解："><a href="#类添加注解：" class="headerlink" title="类添加注解："></a>类添加注解：</h3><ul>
+<li>@ControllerAdvice:如果需要返回json数据，则方法需要加@ResponseBody。</li>
+<li>@RestControllerAdvice:默认返回json数据，方法不需要加@ResponseBody。</li>
+<li><h3 id="方法添加处理器："><a href="#方法添加处理器：" class="headerlink" title="方法添加处理器："></a>方法添加处理器：</h3></li>
+<li>捕获全局异常，处理所有不可知的异常</li>
+<li>@ExceptionHandler(value=Exception.class)</li>
+</ul>
+<h2 id="自定义全局异常返回页面"><a href="#自定义全局异常返回页面" class="headerlink" title="自定义全局异常返回页面"></a>自定义全局异常返回页面</h2><ol>
+<li>返回自定义界面异常，需要引入thymeleaf依赖(简单的html界面不需要)。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line"> &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line"> &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></li>
+<li>在resource目录下新建templates,并新建error.html</li>
+<li>代码处理<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ModelAndView modelAndView = new ModelAndView();</span><br><span class="line">modelAndView.setViewName(&quot;error.html&quot;);</span><br><span class="line">modelAndView.addObject(&quot;msg&quot;, e.getMessage());</span><br><span class="line">return modelAndView;</span><br></pre></td></tr></table></figure></li>
+</ol>
 ]]></content>
       <categories>
         <category>框架</category>
@@ -1158,55 +1158,6 @@
       </tags>
   </entry>
   <entry>
-    <title>工厂模式</title>
-    <url>/mellofly/6013.html</url>
-    <content><![CDATA[<blockquote>
-<p>工厂模式(Factory Pattern)是Java中最常用的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口指向新创建的对象。</p>
-<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><ul>
-<li><strong>意图：</strong> 定义一个创建对象的接口，让其子类自己决定实例化哪一个工厂类，工厂模式使其创建过程延迟到子类进行。</li>
-<li><strong>主要解决：</strong> 主要解决接口选择的问题。</li>
-<li><strong>如何解决：</strong> 让其子类实现工厂接口，返回的也是一个抽象的产品。</li>
-<li><strong>关键代码：</strong> 创建过程在其子类执行。</li>
-<li><strong>应用实例：</strong> 1、您需要一辆汽车，可以直接从工厂里面提货，而不用去管这辆汽车是怎么做出来的，以及这个汽车里面的实现。2、Hibernate换数据库只需换方言和驱动就可以。<h2 id="优缺点："><a href="#优缺点：" class="headerlink" title="优缺点："></a>优缺点：</h2></li>
-<li><strong>优点：</strong> 1、一个调用者想要创建一个对象，只要知道其名称就可以了。2、扩展性搞，如果想增加一个产品，只要扩展一个工厂类就可以。2、屏蔽产品的具体实现，调用者只关心产品的接口。</li>
-<li><strong>缺点：</strong> 每次增加一个产品是，都需要增加一个具体类和对象实现工厂，使得系统中类的个数城北增加，在一定程度上增加了系统的复杂度，同时也增加了系统具体类的依赖。这并不是什么好事。</li>
-<li><strong>使用场景：</strong> <ul>
-<li>1、日志记录器：<br>记录可能记录到本地硬盘、系统时间、远程服务器等，用户可以选择记录日志到什么地方。</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<pre><code>- 2、数据库访问：
-&gt; 当用户不知道最后采用哪一类数据库，以及数据库可能有变化是。
-
-- 3、设计一个连接服务器的框架：
-&gt; 需要三个协议，&quot;POP3&quot;,&quot;IMAP&quot;,&quot;HTTP&quot;,可以把这三个作为产品类，共同实现一个接口。
-</code></pre><ul>
-<li><strong><em>注意事项：</em></strong> 作为一种创建类模式，在任何需要生成复杂对象的地方，都可以使用工厂方法模式。有一点需要注意的地方就是复杂独享适合使用工厂模式，而简单对象，特别是只需要通过new就可以完成创建的对象，无需使用工厂模式。如果使用工厂模式，就需要引入一个工厂类，会增加系统的复杂度。</li>
-</ul>
-<h1 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h1><blockquote>
-<p>我们将创建一个Shape接口和实现Shape接口的实体类。下一步是定义工厂类<em>ShapeFactory</em>。<em>FactoryPatternDemo</em>,我们将演示类使用<em>ShapeFactory</em>来获取<em>Shape</em>对象。它将向<em>ShapeFactory</em>传递信息(<em>CIRCLE / RECTANGLE / SQUARE</em>),以便获取它所需要对象的类型。</p>
-<p><img src="/mellofly/6013/工厂模式.jpg" alt="工厂模式设计类UML图"></p>
-</blockquote>
-<h2 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h2><blockquote>
-<p>创建接口<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Shape.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="步骤2："><a href="#步骤2：" class="headerlink" title="步骤2："></a>步骤2：</h2><p>创建实现接口的实体类。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Rectangle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">implements</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Rectangle::draw() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Square.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">implements</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Square::draw() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Circle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">implements</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">     <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Circle::draw() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="步骤3："><a href="#步骤3：" class="headerlink" title="步骤3："></a>步骤3：</h2><p>创建一个工厂，生成基于给定信息的实体类的对象。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ShapeFactory.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeFactory</span> </span>&#123;</span><br><span class="line">   <span class="comment">//使用 getShape 方法获取形状类型的对象</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Shape <span class="title">getShape</span><span class="params">(String shapeType)</span></span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(shapeType == <span class="keyword">null</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;        </span><br><span class="line">      <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">&quot;CIRCLE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Circle();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">&quot;RECTANGLE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Rectangle();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">&quot;SQUARE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Square();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="步骤4："><a href="#步骤4：" class="headerlink" title="步骤4："></a>步骤4：</h2><p>使用该工厂，通过传递类型信息来获取实体类的对象。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*FactoryPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FactoryPatternDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      ShapeFactory shapeFactory = <span class="keyword">new</span> ShapeFactory();</span><br><span class="line">      <span class="comment">//获取 Circle 的对象，并调用它的 draw 方法</span></span><br><span class="line">      Shape shape1 = shapeFactory.getShape(<span class="string">&quot;CIRCLE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Circle 的 draw 方法</span></span><br><span class="line">      shape1.draw();</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取 Rectangle 的对象，并调用它的 draw 方法</span></span><br><span class="line">      Shape shape2 = shapeFactory.getShape(<span class="string">&quot;RECTANGLE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Rectangle 的 draw 方法</span></span><br><span class="line">      shape2.draw();</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取 Square 的对象，并调用它的 draw 方法</span></span><br><span class="line">      Shape shape3 = shapeFactory.getShape(<span class="string">&quot;SQUARE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Square 的 draw 方法</span></span><br><span class="line">      shape3.draw();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h2 id="步骤5："><a href="#步骤5：" class="headerlink" title="步骤5："></a>步骤5：</h2><blockquote>
-<p>执行程序，输出结果：<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Inside Circle::draw() method.</span><br><span class="line">Inside Rectangle::draw() method.</span><br><span class="line">Inside Square::draw() method.</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>外观模式</title>
     <url>/mellofly/33100.html</url>
     <content><![CDATA[<blockquote class="blockquote-center">
@@ -1290,6 +1241,55 @@
 </ol>
 
 </blockquote>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>工厂模式</title>
+    <url>/mellofly/6013.html</url>
+    <content><![CDATA[<blockquote>
+<p>工厂模式(Factory Pattern)是Java中最常用的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口指向新创建的对象。</p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><ul>
+<li><strong>意图：</strong> 定义一个创建对象的接口，让其子类自己决定实例化哪一个工厂类，工厂模式使其创建过程延迟到子类进行。</li>
+<li><strong>主要解决：</strong> 主要解决接口选择的问题。</li>
+<li><strong>如何解决：</strong> 让其子类实现工厂接口，返回的也是一个抽象的产品。</li>
+<li><strong>关键代码：</strong> 创建过程在其子类执行。</li>
+<li><strong>应用实例：</strong> 1、您需要一辆汽车，可以直接从工厂里面提货，而不用去管这辆汽车是怎么做出来的，以及这个汽车里面的实现。2、Hibernate换数据库只需换方言和驱动就可以。<h2 id="优缺点："><a href="#优缺点：" class="headerlink" title="优缺点："></a>优缺点：</h2></li>
+<li><strong>优点：</strong> 1、一个调用者想要创建一个对象，只要知道其名称就可以了。2、扩展性搞，如果想增加一个产品，只要扩展一个工厂类就可以。2、屏蔽产品的具体实现，调用者只关心产品的接口。</li>
+<li><strong>缺点：</strong> 每次增加一个产品是，都需要增加一个具体类和对象实现工厂，使得系统中类的个数城北增加，在一定程度上增加了系统的复杂度，同时也增加了系统具体类的依赖。这并不是什么好事。</li>
+<li><strong>使用场景：</strong> <ul>
+<li>1、日志记录器：<br>记录可能记录到本地硬盘、系统时间、远程服务器等，用户可以选择记录日志到什么地方。</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<pre><code>- 2、数据库访问：
+&gt; 当用户不知道最后采用哪一类数据库，以及数据库可能有变化是。
+
+- 3、设计一个连接服务器的框架：
+&gt; 需要三个协议，&quot;POP3&quot;,&quot;IMAP&quot;,&quot;HTTP&quot;,可以把这三个作为产品类，共同实现一个接口。
+</code></pre><ul>
+<li><strong><em>注意事项：</em></strong> 作为一种创建类模式，在任何需要生成复杂对象的地方，都可以使用工厂方法模式。有一点需要注意的地方就是复杂独享适合使用工厂模式，而简单对象，特别是只需要通过new就可以完成创建的对象，无需使用工厂模式。如果使用工厂模式，就需要引入一个工厂类，会增加系统的复杂度。</li>
+</ul>
+<h1 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h1><blockquote>
+<p>我们将创建一个Shape接口和实现Shape接口的实体类。下一步是定义工厂类<em>ShapeFactory</em>。<em>FactoryPatternDemo</em>,我们将演示类使用<em>ShapeFactory</em>来获取<em>Shape</em>对象。它将向<em>ShapeFactory</em>传递信息(<em>CIRCLE / RECTANGLE / SQUARE</em>),以便获取它所需要对象的类型。</p>
+<p><img src="/mellofly/6013/工厂模式.jpg" alt="工厂模式设计类UML图"></p>
+</blockquote>
+<h2 id="步骤1："><a href="#步骤1：" class="headerlink" title="步骤1："></a>步骤1：</h2><blockquote>
+<p>创建接口<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Shape.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="步骤2："><a href="#步骤2：" class="headerlink" title="步骤2："></a>步骤2：</h2><p>创建实现接口的实体类。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Rectangle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">implements</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Rectangle::draw() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Square.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">implements</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Square::draw() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Circle.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">implements</span> <span class="title">Shape</span></span>&#123;</span><br><span class="line">     <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Inside Circle::draw() method.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="步骤3："><a href="#步骤3：" class="headerlink" title="步骤3："></a>步骤3：</h2><p>创建一个工厂，生成基于给定信息的实体类的对象。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*ShapeFactory.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeFactory</span> </span>&#123;</span><br><span class="line">   <span class="comment">//使用 getShape 方法获取形状类型的对象</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Shape <span class="title">getShape</span><span class="params">(String shapeType)</span></span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(shapeType == <span class="keyword">null</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;        </span><br><span class="line">      <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">&quot;CIRCLE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Circle();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">&quot;RECTANGLE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Rectangle();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(shapeType.equalsIgnoreCase(<span class="string">&quot;SQUARE&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> Square();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="步骤4："><a href="#步骤4：" class="headerlink" title="步骤4："></a>步骤4：</h2><p>使用该工厂，通过传递类型信息来获取实体类的对象。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*FactoryPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FactoryPatternDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      ShapeFactory shapeFactory = <span class="keyword">new</span> ShapeFactory();</span><br><span class="line">      <span class="comment">//获取 Circle 的对象，并调用它的 draw 方法</span></span><br><span class="line">      Shape shape1 = shapeFactory.getShape(<span class="string">&quot;CIRCLE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Circle 的 draw 方法</span></span><br><span class="line">      shape1.draw();</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取 Rectangle 的对象，并调用它的 draw 方法</span></span><br><span class="line">      Shape shape2 = shapeFactory.getShape(<span class="string">&quot;RECTANGLE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Rectangle 的 draw 方法</span></span><br><span class="line">      shape2.draw();</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//获取 Square 的对象，并调用它的 draw 方法</span></span><br><span class="line">      Shape shape3 = shapeFactory.getShape(<span class="string">&quot;SQUARE&quot;</span>);</span><br><span class="line"> </span><br><span class="line">      <span class="comment">//调用 Square 的 draw 方法</span></span><br><span class="line">      shape3.draw();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="步骤5："><a href="#步骤5：" class="headerlink" title="步骤5："></a>步骤5：</h2><blockquote>
+<p>执行程序，输出结果：<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Inside Circle::draw() method.</span><br><span class="line">Inside Rectangle::draw() method.</span><br><span class="line">Inside Square::draw() method.</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+]]></content>
       <categories>
         <category>Java</category>
       </categories>
@@ -2061,6 +2061,63 @@
       </tags>
   </entry>
   <entry>
+    <title>迭代器模式</title>
+    <url>/mellofly/28241.html</url>
+    <content><![CDATA[<blockquote class="blockquote-center">
+<p>迭代器模式(Iterator Pattern) 是java和.Net编程环境中非常常用的设计模式。这种模式用于顺序访问集合对象的元素，不需要知道集合对象的底层表示。迭代模式属于行为模式。</p>
+
+</blockquote>
+<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
+<li><strong>意图：</strong> 提供一种方法顺序访问一个聚合对象中各个元素，而又无须暴露该对象的内部表示。</li>
+<li><strong>主要解决：</strong> 不同的方式来遍历真个整合对象。</li>
+<li><strong>何时使用：</strong> 遍历一个聚合对象。</li>
+<li><strong>关键代码：</strong> 定义接口：hasNext，next。</li>
+<li><strong>应用实例：</strong> JAVA中的iterator。</li>
+<li><strong><em>优点：</em></strong><ol>
+<li>它支持以不同的方式遍历一个聚合对象。</li>
+<li>迭代器简化了聚合类。</li>
+<li>在同一个聚合上可以有多个遍历</li>
+<li>在迭代器模式中，增加新的聚合类和迭代器都很方便，无须修改原有代码。</li>
+</ol>
+</li>
+<li><strong><em>缺点：</em></strong> 由于迭代器模式将存储数据和遍历数据的职责分离，增加新的聚合类需要对应增加新的迭代器类，类的个数成对增加，这在一定程度上增加了系统的复杂性。</li>
+<li><strong>使用场景：</strong> <ol>
+<li>访问一个聚合对象的内容而无需暴露它的内部表示。</li>
+<li>需要为聚合独享提供多种遍历方式。</li>
+<li>为遍历不同的聚合结构提供一个统一地接口。</li>
+</ol>
+</li>
+<li><strong>注意事项：</strong> 迭代器模式就是分离了集合对象的遍历行为，抽象出一个迭代器类来负责，这样既可以做到不暴露集合的内部结构，又可让外部代码透明地访问集合内部的数据。</li>
+</ul>
+<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
+<p>我们将创建一个叙述导航方法的Iterator接口和一个返回迭代器的Container接口。实现了Container接口的实体类将负责实现Iterator接口。IteratorPatternDemo，我们的演示类使用实体类NamesRepository来打印NamesRepository中存储为集合的Names。</p>
+<p><img src="/mellofly/28241/迭代器模式.jpg" alt="迭代器模式UML图"></p>
+</blockquote>
+<h2 id="步骤1：创建接口："><a href="#步骤1：创建接口：" class="headerlink" title="步骤1：创建接口："></a>步骤1：创建接口：</h2><blockquote>
+<p>创建接口</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Iterator.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Container.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Container</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Iterator <span class="title">getIterator</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤2：实现接口"><a href="#步骤2：实现接口" class="headerlink" title="步骤2：实现接口"></a>步骤2：实现接口</h2><blockquote>
+<p>创建实现了Container接口的实体类。该类有实现了Iterator接口的内部类NameIterator。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*NameRepository.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NameRepository</span> <span class="keyword">implements</span> <span class="title">Container</span> </span>&#123;</span><br><span class="line">   <span class="keyword">public</span> String names[] = &#123;<span class="string">&quot;Robert&quot;</span> , <span class="string">&quot;John&quot;</span> ,<span class="string">&quot;Julie&quot;</span> , <span class="string">&quot;Lora&quot;</span>&#125;;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Iterator <span class="title">getIterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> NameIterator();</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">NameIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">int</span> index;</span><br><span class="line"> </span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(index &lt; names.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line"> </span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(<span class="keyword">this</span>.hasNext())&#123;</span><br><span class="line">            <span class="keyword">return</span> names[index++];</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;     </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤3：获取迭代器，并打印名字。"><a href="#步骤3：获取迭代器，并打印名字。" class="headerlink" title="步骤3：获取迭代器，并打印名字。"></a>步骤3：获取迭代器，并打印名字。</h2><blockquote>
+<p>使用NameRepository来获取迭代器，并打印名字。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*IteratorPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IteratorPatternDemo</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      NameRepository namesRepository = <span class="keyword">new</span> NameRepository();</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">for</span>(Iterator iter = namesRepository.getIterator(); iter.hasNext();)&#123;</span><br><span class="line">         String name = (String)iter.next();</span><br><span class="line">         System.out.println(<span class="string">&quot;Name : &quot;</span> + name);</span><br><span class="line">      &#125;  </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤4：输出结果"><a href="#步骤4：输出结果" class="headerlink" title="步骤4：输出结果"></a>步骤4：输出结果</h2><blockquote>
+<p>执行程序，输出结果：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Name : Robert</span><br><span class="line">Name : John</span><br><span class="line">Name : Julie</span><br><span class="line">Name : Lora</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>适配器模式</title>
     <url>/mellofly/39554.html</url>
     <content><![CDATA[<blockquote>
@@ -2159,63 +2216,6 @@
 </li>
 </ol>
 ]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>迭代器模式</title>
-    <url>/mellofly/28241.html</url>
-    <content><![CDATA[<blockquote class="blockquote-center">
-<p>迭代器模式(Iterator Pattern) 是java和.Net编程环境中非常常用的设计模式。这种模式用于顺序访问集合对象的元素，不需要知道集合对象的底层表示。迭代模式属于行为模式。</p>
-
-</blockquote>
-<h1 id="介绍："><a href="#介绍：" class="headerlink" title="介绍："></a>介绍：</h1><ul>
-<li><strong>意图：</strong> 提供一种方法顺序访问一个聚合对象中各个元素，而又无须暴露该对象的内部表示。</li>
-<li><strong>主要解决：</strong> 不同的方式来遍历真个整合对象。</li>
-<li><strong>何时使用：</strong> 遍历一个聚合对象。</li>
-<li><strong>关键代码：</strong> 定义接口：hasNext，next。</li>
-<li><strong>应用实例：</strong> JAVA中的iterator。</li>
-<li><strong><em>优点：</em></strong><ol>
-<li>它支持以不同的方式遍历一个聚合对象。</li>
-<li>迭代器简化了聚合类。</li>
-<li>在同一个聚合上可以有多个遍历</li>
-<li>在迭代器模式中，增加新的聚合类和迭代器都很方便，无须修改原有代码。</li>
-</ol>
-</li>
-<li><strong><em>缺点：</em></strong> 由于迭代器模式将存储数据和遍历数据的职责分离，增加新的聚合类需要对应增加新的迭代器类，类的个数成对增加，这在一定程度上增加了系统的复杂性。</li>
-<li><strong>使用场景：</strong> <ol>
-<li>访问一个聚合对象的内容而无需暴露它的内部表示。</li>
-<li>需要为聚合独享提供多种遍历方式。</li>
-<li>为遍历不同的聚合结构提供一个统一地接口。</li>
-</ol>
-</li>
-<li><strong>注意事项：</strong> 迭代器模式就是分离了集合对象的遍历行为，抽象出一个迭代器类来负责，这样既可以做到不暴露集合的内部结构，又可让外部代码透明地访问集合内部的数据。</li>
-</ul>
-<h1 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h1><blockquote>
-<p>我们将创建一个叙述导航方法的Iterator接口和一个返回迭代器的Container接口。实现了Container接口的实体类将负责实现Iterator接口。IteratorPatternDemo，我们的演示类使用实体类NamesRepository来打印NamesRepository中存储为集合的Names。</p>
-<p><img src="/mellofly/28241/迭代器模式.jpg" alt="迭代器模式UML图"></p>
-</blockquote>
-<h2 id="步骤1：创建接口："><a href="#步骤1：创建接口：" class="headerlink" title="步骤1：创建接口："></a>步骤1：创建接口：</h2><blockquote>
-<p>创建接口</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*Iterator.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*Container.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Container</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> Iterator <span class="title">getIterator</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤2：实现接口"><a href="#步骤2：实现接口" class="headerlink" title="步骤2：实现接口"></a>步骤2：实现接口</h2><blockquote>
-<p>创建实现了Container接口的实体类。该类有实现了Iterator接口的内部类NameIterator。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*NameRepository.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NameRepository</span> <span class="keyword">implements</span> <span class="title">Container</span> </span>&#123;</span><br><span class="line">   <span class="keyword">public</span> String names[] = &#123;<span class="string">&quot;Robert&quot;</span> , <span class="string">&quot;John&quot;</span> ,<span class="string">&quot;Julie&quot;</span> , <span class="string">&quot;Lora&quot;</span>&#125;;</span><br><span class="line"> </span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Iterator <span class="title">getIterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> NameIterator();</span><br><span class="line">   &#125;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">NameIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">int</span> index;</span><br><span class="line"> </span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(index &lt; names.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line"> </span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> Object <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(<span class="keyword">this</span>.hasNext())&#123;</span><br><span class="line">            <span class="keyword">return</span> names[index++];</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;     </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤3：获取迭代器，并打印名字。"><a href="#步骤3：获取迭代器，并打印名字。" class="headerlink" title="步骤3：获取迭代器，并打印名字。"></a>步骤3：获取迭代器，并打印名字。</h2><blockquote>
-<p>使用NameRepository来获取迭代器，并打印名字。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*IteratorPatternDemo.java*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IteratorPatternDemo</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      NameRepository namesRepository = <span class="keyword">new</span> NameRepository();</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">for</span>(Iterator iter = namesRepository.getIterator(); iter.hasNext();)&#123;</span><br><span class="line">         String name = (String)iter.next();</span><br><span class="line">         System.out.println(<span class="string">&quot;Name : &quot;</span> + name);</span><br><span class="line">      &#125;  </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤4：输出结果"><a href="#步骤4：输出结果" class="headerlink" title="步骤4：输出结果"></a>步骤4：输出结果</h2><blockquote>
-<p>执行程序，输出结果：</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Name : Robert</span><br><span class="line">Name : John</span><br><span class="line">Name : Julie</span><br><span class="line">Name : Lora</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Java</category>
       </categories>
