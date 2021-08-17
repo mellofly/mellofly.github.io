@@ -20,29 +20,30 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"shenpf.cn","root":"/","images":"/images","scheme":"Mist","version":"8.5.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="程序运行时，发生的不被期望的事件，它阻止了程序按照程序员的预期正常执行，这就是异常。异常发生时，是任程序自生自灭，立刻退出终止。在Java中即，Java在编译或运行或者运行过程中出现的错误。Java提供了更加优秀的解决办法：异常处理机制    全局异常处理">
+<meta name="description" content="JavaSE基础是Java中级程序员的起点，是帮助你从小白到懂得编程的必经之路。在Java基础板块中有6个子模块的学习：基础语法，可帮助你建立基本的编程逻辑思维；面向对象，以对象方式去编写优美的Java程序；集合，后期开发中存储数据必备技术；IO，对磁盘文件进行读取和写入基础操作；多线程与并发，提高程序效率；异常，编写代码逻辑更加健全；网络编程，应用服务器学习基础，完成数据的远程传输。学习该阶段">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringBoot异常处理">
+<meta property="og:title" content="Java基础">
 <meta property="og:url" content="http://shenpf.cn/mellofly/7957b469.html">
 <meta property="og:site_name" content="mellofly">
-<meta property="og:description" content="程序运行时，发生的不被期望的事件，它阻止了程序按照程序员的预期正常执行，这就是异常。异常发生时，是任程序自生自灭，立刻退出终止。在Java中即，Java在编译或运行或者运行过程中出现的错误。Java提供了更加优秀的解决办法：异常处理机制    全局异常处理">
+<meta property="og:description" content="JavaSE基础是Java中级程序员的起点，是帮助你从小白到懂得编程的必经之路。在Java基础板块中有6个子模块的学习：基础语法，可帮助你建立基本的编程逻辑思维；面向对象，以对象方式去编写优美的Java程序；集合，后期开发中存储数据必备技术；IO，对磁盘文件进行读取和写入基础操作；多线程与并发，提高程序效率；异常，编写代码逻辑更加健全；网络编程，应用服务器学习基础，完成数据的远程传输。学习该阶段">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://shenpf.cn/mellofly/7957b469/java基础汇总.png">
 <meta property="article:published_time" content="2021-07-28T01:40:17.000Z">
-<meta property="article:modified_time" content="2021-07-30T01:58:45.309Z">
+<meta property="article:modified_time" content="2021-08-17T09:13:54.626Z">
 <meta property="article:author" content="mellofly">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="SpringBoot">
+<meta property="article:tag" content="Java基础">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://shenpf.cn/mellofly/7957b469/java基础汇总.png">
 
 
 <link rel="canonical" href="http://shenpf.cn/mellofly/7957b469.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://shenpf.cn/mellofly/7957b469.html","path":"mellofly/7957b469.html","title":"SpringBoot异常处理"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://shenpf.cn/mellofly/7957b469.html","path":"mellofly/7957b469.html","title":"Java基础"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>SpringBoot异常处理 | mellofly</title>
+<title>Java基础 | mellofly</title>
   
 
 
@@ -89,9 +90,9 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">10</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">34</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">35</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -136,7 +137,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -149,7 +150,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">全局异常处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A5%BD%E5%A4%84%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">好处：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">配置全局异常：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E6%B7%BB%E5%8A%A0%E6%B3%A8%E8%A7%A3%EF%BC%9A"><span class="nav-number">1.2.1.</span> <span class="nav-text">类添加注解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E6%B7%BB%E5%8A%A0%E5%A4%84%E7%90%86%E5%99%A8%EF%BC%9A"><span class="nav-number">1.2.2.</span> <span class="nav-text">方法添加处理器：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E8%BF%94%E5%9B%9E%E9%A1%B5%E9%9D%A2"><span class="nav-number">1.3.</span> <span class="nav-text">自定义全局异常返回页面</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -166,7 +166,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -179,7 +179,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -239,7 +239,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          SpringBoot异常处理
+          Java基础
         </h1>
 
         <div class="post-meta-container">
@@ -257,7 +257,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-07-30 09:58:45" itemprop="dateModified" datetime="2021-07-30T09:58:45+08:00">2021-07-30</time>
+        <time title="修改时间：2021-08-17 17:13:54" itemprop="dateModified" datetime="2021-08-17T17:13:54+08:00">2021-08-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -265,7 +265,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
         </span>
     </span>
 
@@ -287,25 +287,10 @@
     
     <div class="post-body" itemprop="articleBody">
         <blockquote class="blockquote-center">
-<p>程序运行时，发生的不被期望的事件，它阻止了程序按照程序员的预期正常执行，这就是异常。异常发生时，是任程序自生自灭，立刻退出终止。在Java中即，Java在编译或运行或者运行过程中出现的错误。<br>Java提供了更加优秀的解决办法：异常处理机制 </p>
+<p>JavaSE基础是Java中级程序员的起点，是帮助你从小白到懂得编程的必经之路。在Java基础板块中有6个子模块的学习：基础语法，可帮助你建立基本的编程逻辑思维；面向对象，以对象方式去编写优美的Java程序；集合，后期开发中存储数据必备技术；IO，对磁盘文件进行读取和写入基础操作；多线程与并发，提高程序效率；异常，编写代码逻辑更加健全；网络编程，应用服务器学习基础，完成数据的远程传输。学习该阶段，可以完成一些简单的管理系统、坦克大战游戏、QQ通信等。</p>
 
-</blockquote>
-<h1 id="全局异常处理"><a href="#全局异常处理" class="headerlink" title="全局异常处理"></a>全局异常处理</h1><h2 id="好处："><a href="#好处：" class="headerlink" title="好处："></a>好处：</h2><ul>
-<li>统一的错误页面或者错误码</li>
-<li>对用户更友好</li>
-</ul>
-<h2 id="配置全局异常："><a href="#配置全局异常：" class="headerlink" title="配置全局异常："></a>配置全局异常：</h2><h3 id="类添加注解："><a href="#类添加注解：" class="headerlink" title="类添加注解："></a>类添加注解：</h3><ul>
-<li>@ControllerAdvice:如果需要返回json数据，则方法需要加@ResponseBody。</li>
-<li>@RestControllerAdvice:默认返回json数据，方法不需要加@ResponseBody。</li>
-<li><h3 id="方法添加处理器："><a href="#方法添加处理器：" class="headerlink" title="方法添加处理器："></a>方法添加处理器：</h3></li>
-<li>捕获全局异常，处理所有不可知的异常</li>
-<li>@ExceptionHandler(value=Exception.class)</li>
-</ul>
-<h2 id="自定义全局异常返回页面"><a href="#自定义全局异常返回页面" class="headerlink" title="自定义全局异常返回页面"></a>自定义全局异常返回页面</h2><ol>
-<li>返回自定义界面异常，需要引入thymeleaf依赖(简单的html界面不需要)。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line"> &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line"> &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></li>
-<li>在resource目录下新建templates,并新建error.html</li>
-<li>代码处理<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ModelAndView modelAndView = new ModelAndView();</span><br><span class="line">modelAndView.setViewName(&quot;error.html&quot;);</span><br><span class="line">modelAndView.addObject(&quot;msg&quot;, e.getMessage());</span><br><span class="line">return modelAndView;</span><br></pre></td></tr></table></figure></li>
-</ol>
+</blockquote> 
+<p>图片展示：<img src="/mellofly/7957b469/java基础汇总.png" alt="单体应用"></p>
 
     </div>
 
@@ -315,8 +300,7 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Java/" rel="tag"># Java</a>
-              <a href="/tags/SpringBoot/" rel="tag"># SpringBoot</a>
+              <a href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="tag"># Java基础</a>
           </div>
 
         
@@ -328,6 +312,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/mellofly/7957b469.html" rel="next" title="SpringBoot异常处理">
+                  SpringBoot异常处理 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
